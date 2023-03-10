@@ -1,0 +1,59 @@
+<section class="category">
+
+        <div class="collection">
+            <h2><span id="jewery">Jeweries</span></h2>
+        </div>
+
+        <div class="collection">
+            <h2><span id="craft">Craft</span></h2>
+        </div>
+
+  
+</section>
+
+
+<section class="collectionModal">
+
+
+    <div>
+        <ul>
+          
+        </ul>
+    </div>
+
+
+</section>
+
+<script>
+   var jewery = document.getElementById('jewery');
+   var craft = document.getElementById('craft');
+   var categoryContent = document.querySelector('.collectionModal div ul')
+   var collectionModal = document.querySelector('.collectionModal');
+
+   jewery.addEventListener('click',(e)=>{
+    if(e.target.textContent == "Jeweries"){
+        
+        collectionModal.classList.add('active');
+        categoryContent.innerHTML = `
+           <li>Rings</li>
+           <li>Bracelets</li>
+           <li>Necklace</li>
+        `; 
+
+    }
+   })
+
+   craft.addEventListener('click',(e)=>{
+    if(e.target.textContent == "Craft"){
+        
+        collectionModal.classList.add('active');
+        categoryContent.innerHTML = `
+           <li>Custom Flasks</li>
+           <li>Custom Wallet</li>
+           <li>Photoshop</li>
+        `; 
+
+    }
+   })
+
+</script>

@@ -5,6 +5,7 @@ const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/home');
+const categoryRouter = require('./routes/collection')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views/')
@@ -25,5 +26,6 @@ mongoose.connect('mongodb://localhost:27017/legendary_shield')
 
 
 app.use('/',indexRouter )
+app.use('/collections', categoryRouter)
 
 app.listen(process.env.PORT || 5200) 
