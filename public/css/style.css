@@ -68,10 +68,38 @@ body{
     position: sticky;
     top: 0;
     left: 0;
+    z-index: 1000;
 }
 #header h2{
     font-size: 180%;
 }
+.search{
+    display: none;
+    position: absolute;
+    right: 10%;
+    top: 125%;
+    transition-delay: 2s;
+    transition: cubic-bezier(0.19, 1, 0.22, 1);
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.search.active{
+    display: block;
+    transition-delay: 2s;
+    transition: cubic-bezier(0.19, 1, 0.22, 1);
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.search #searchBarSubmit{
+    position: absolute;
+    top: 15px;
+    right: 7%;
+}
+.search input{
+    padding: 20px;
+    border-radius: 17px;
+    width: 70vw;
+    height: 50px;
+}
+
 
 #navbar{
     display: flex;
@@ -278,6 +306,7 @@ body{
     }
     .overlay{
         display: none;
+        z-index: 700;
     }
     .overlay h1{
         margin-top: 70px;
@@ -338,23 +367,32 @@ body{
      }
      .collectionModal{
         position: absolute;
-        background-color: #76787e;
+        /* background-color: #76787e; */
         width: 60vw;
         height: -60vh;
-        top: 15%;
+        top: 20%;
         right: 20%;
         /* left: 20%; */
         border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+        /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8); */
         display: none;
         justify-content: center;
         align-items: center;
         transition: width 2s, height 4s, transform 2s;
         transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
         list-style: none;
+        z-index: 900;
+     }
+     .collectionModal .closeModal{
+        width: 100%;
+        height: fit-content;
+     }
+     .collectionModal .closeModal span{
+        font-size: 54px;
+        font-weight: 900;
      }
      .collectionModal.active{
-        height: 60vh;
+        height: fit-content;
         display: flex;
      }
      .collectionModal ul{
@@ -369,7 +407,8 @@ body{
         margin: 2% 2% 0% 5%;
         height: 120px;
         list-style: none;
-        background-color: #A18B74;
+        background-color: #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
         width: 50vw;
         text-align: center;
         padding-left: 0px;
