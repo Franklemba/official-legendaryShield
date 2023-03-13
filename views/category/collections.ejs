@@ -1,72 +1,60 @@
 <h2>Select service of choice below</h2>
 <section class="category">
+  <div class="collection">
+    <h2><span id="jewery">Jeweries</span></h2>
+  </div>
 
-        <div class="collection">
-            <h2><span id="jewery">Jeweries</span></h2>
-        </div>
+  <div class="collection">
+    <h2><span id="craft">Craft</span></h2>
+  </div>
 
-        <div class="collection">
-            <h2><span id="craft">Craft</span></h2>
-        </div>
-
-  
+ 
 </section>
 
-
 <section class="collectionModal">
+  <div class="closeModal">
+    <span>&timesd;</span>
+  </div>
 
-    <div class="closeModal">
-        <span>&timesd;</span>
-    </div>
-
-    <div>
-        <ul>
-          
-        </ul>
-    </div>
-
-
+  <div>
+    <ul></ul>
+  </div>
 </section>
 
 <script>
-   var jewery = document.getElementById('jewery');
-   var craft = document.getElementById('craft');
-   var categoryContent = document.querySelector('.collectionModal div ul')
-   var collectionModal = document.querySelector('.collectionModal');
-   let modalClose = document.querySelector('.collectionModal .closeModal span');
+  var jewery = document.getElementById("jewery");
+  var craft = document.getElementById("craft");
+  var categoryContent = document.querySelector(".collectionModal div ul");
+  var collectionModal = document.querySelector(".collectionModal");
+  let modalClose = document.querySelector(".collectionModal .closeModal span");
 
-   jewery.addEventListener('click',(e)=>{
-    if(e.target.textContent == "Jeweries"){
-        modalClose.style.display = "block"
-        collectionModal.classList.add('active');
-        categoryContent.innerHTML = `
+  jewery.addEventListener("click", (e) => {
+    if (e.target.textContent == "Jeweries") {
+      modalClose.style.display = "block";
+      collectionModal.classList.add("active");
+      categoryContent.innerHTML = `
            <li>Rings</li>
            <li>Bracelets</li>
            <li>Necklace</li>
            <li>Wrist watch</li>
-        `; 
-
+        `;
     }
-   })
+  });
 
-   craft.addEventListener('click',(e)=>{
-    if(e.target.textContent == "Craft"){
-        
-        modalClose.style.display = "block"
-        collectionModal.classList.add('active');
-        categoryContent.innerHTML = `
+  craft.addEventListener("click", (e) => {
+    if (e.target.textContent == "Craft") {
+      modalClose.style.display = "block";
+      collectionModal.classList.add("active");
+      categoryContent.innerHTML = `
            <li>Custom Flasks</li>
            <li>Custom Wallet</li>
            <li>Photoshop</li>
-        `; 
-
+        `;
     }
-   })
+  });
 
-   modalClose.addEventListener('click',(e)=>{
-    collectionModal.classList.remove('active');
-    modalClose.style.display = "none"
-   })
- 
-
+  modalClose.addEventListener("click", (e) => {
+    collectionModal.classList.remove("active");
+    modalClose.style.display = "none";
+  });
 </script>

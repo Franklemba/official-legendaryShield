@@ -95,9 +95,12 @@ body{
 }
 .search input{
     padding: 20px;
+    padding-right: 60px;
     border-radius: 17px;
     width: 70vw;
     height: 50px;
+    box-shadow:20px 20px 30px rgba(0, 0, 0, 0.06);
+    border: 2px solid #000000;
 }
 
 
@@ -123,6 +126,18 @@ body{
     border-bottom: 0.15rem solid #088178;
     padding-bottom: .2rem;
 }
+#navbar .storeNavbar {
+    display: none;
+    top: 46px;
+    right: -300px;
+    position: absolute;
+    height: 100vh;
+    background: #eaecef;
+    width: 300px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+    padding: 80px 0 10px 10px;
+}
 
 #mobile{
     color: #A18B74;
@@ -132,6 +147,7 @@ body{
 /* Home section */
     #hero{
     background: linear-gradient(to top, #eaecef, rgb(250, 248, 248) );
+    /* background: red; */
      height: 90vh;
      width: 100%;
      padding: 0px;
@@ -634,6 +650,31 @@ body{
     #navbar li{
         margin-bottom: 25px;
     }
+    #navbar .storeNavbar{
+        display: block;
+        top: 46px;
+        right: -300px;
+        position: absolute;
+        height: 100vh;
+        background: #eaecef;
+        width: 300px;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+        /* padding: 80px 0 6px 10px; */
+    }
+    #navbar .storeNavbar.active{
+      right: 160%;
+      transition: 0.3s ease-in-out;
+    }
+    #navbar .storeNavbar span{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 40px;
+        font-weight: 300;
+        color: red;
+        text-shadow: 2px 4px 4px rgba(14, 14, 15, 0.6);
+    }
     .section-p1{
         padding: 40px 10px;
     }
@@ -661,6 +702,7 @@ body{
         right: -200px;
         width: 200px;
     }
+    
     #feature{
         justify-content: space-around;
      }
@@ -753,6 +795,15 @@ body{
         justify-content: space-around;
         font-size: 40%;
       }
+      .search input{
+        padding-right: 30px;
+    }
     
 }
 
+@media (max-width: 350px){
+    #navbar .storeNavbar.active {
+            right: 60%;
+            transition: 0.3s ease-in-out;
+        }
+}

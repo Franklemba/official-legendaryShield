@@ -5,6 +5,9 @@ let navbar = document.getElementById('navbar');
 let overlay = document.querySelector('.overlay');
 let searchBar = document.getElementById('searchBar');
 let search = document.querySelector('.search');
+let store = document.querySelector('.store');
+let storeNavbar = document.querySelector('.storeNavbar');
+let storeNavbarClose = document.querySelector('.storeNavbarClose');
 let check = true
 
 bar.addEventListener('click',()=>{
@@ -19,6 +22,7 @@ overlay.addEventListener('click',()=>{
     navbar.classList.remove('active');
     overlay.classList.remove('active');
     search.classList.remove('active');
+    storeNavbar.classList.remove('active');
     check = true;
 })
 
@@ -34,11 +38,20 @@ searchBar.addEventListener('click',()=>{
     }
 })
 
+store.addEventListener('click', () => {
+    storeNavbar.classList.add('active');
+    navbar.classList.remove('active');
+})
+storeNavbarClose.addEventListener('click', () => {
+    storeNavbar.classList.remove('active');
+    overlay.classList.remove('active');
+})
 
 
 window.onscroll =() =>{
     navbar.classList.remove('active');
     overlay.classList.remove('active');
     search.classList.remove('active');
+    storeNavbar.classList.remove('active');
     check = true;
 }
