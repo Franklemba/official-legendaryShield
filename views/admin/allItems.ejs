@@ -1,0 +1,50 @@
+<section>
+
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/Ncss/bootstrap.css">
+
+    <div>
+        <% products.forEach(data=> { %>
+
+            <div style=" display: flex;   background-color: #d0e1e0; margin-top: 10px; padding: 5px;">
+                <div style="display:flex; justify-content: center; align-items: center;">
+                    <img style="border-radius: 8px;" height="190" width="100"
+                        src="<%= data.ImagesPath%>\<%=data.mainImg%>" alt="">
+                </div>
+                <div style="padding: 0px 10px ; line-height: 28px; font-size: 20%;">
+                    <h1>
+                        <%= data.brandName %>
+                    </h1>
+                    <p>
+                        CATEGORY:<%= data.category %>
+                    </p>
+                    <p>
+                        K<%= data.price%>
+                    </p>
+                
+                    <p>
+                        <strong>Date uploaded:</strong>
+                        <%= data.createdAt.toString().split('GMT')[0] %>
+                    </p>
+                    <div style="display: flex; ">
+                        <span style="margin-right:10px; font-size: 15px; height: fit-content;"><a
+                                href="/admin/<%= data._id%>">update</a></span>
+                        <form action="/admin/delete/<%= data._id%>" method="post">
+                            <input type="hidden" name="id" value="<%= data._id%>">
+                            <input type="submit" class="btn" value="delete" id="submit" />
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <% }) %>
+    </div>
+
+</section>
+
+<script src="/Njs/bootstrap.js"></script>
+<script src="/js/script.js"></script>

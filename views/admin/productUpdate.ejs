@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="/css/style.css">
+
+<section>
+
+    <div class="productContainer">
+        <div class="mainImg" style="padding: 5px;">
+            <img height="350" width="200" src="<%= product.ImagesPath%>\<%=product.mainImg%>" alt="">
+        </div>
+        <div class="contentContainer">
+            <h2>
+                <%=product.brandName %>
+            </h2>
+            <p>
+                <strong>Category:</strong>
+                <%=product.category %>
+            </p>
+            <p>
+                K<strong>
+                    <%=product.price %>
+                </strong>
+            </p>
+                    <p><strong>Quantity:</strong>
+                        <%=product.quantity %>
+                    </p>
+
+        </div>
+
+
+    </div>
+
+    <div style="display: flex; align-items: flex-start; flex-direction: column; padding: 15px;">
+        <p><i><strong>related Images</strong></i></p>
+        <div class="relatedImg">
+            <% product.images.forEach(element=> { %>
+                <div style="display:flex; justify-content: center; align-items: center; margin: 3%  ;">
+                    <img style="border-radius: 8px;" height="200" width="100"
+                        src="<%= product.ImagesPath%>\<%=element%>" alt="">
+                </div>
+
+                <% }) %>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- //////////////////////////// -->
+
+<div class="row">
+
+    <form action="/admin_product/<%=product._id%>" method="POST" enctype="multipart/form-data">
+
+        <h3>update the <strong>
+                <%=product.category%>
+                    <%=product.brandName%>
+            </strong></h3>
+
+        <!-- <p id="contactP">Any suggestions, questions ,comments? let us know in the comment section below.</p> -->
+
+        <div class="inputbox">
+            <label for=""><strong>brandName:</strong></label>
+            <input style="text-transform: lowercase;" type="text" value="<%=product.brandName%>" id="name"
+                name="brandName" placeholder="brandName" required />
+        </div>
+
+        <div class="inputbox">
+            <label for=""><strong>category:</strong></label>
+            <input style="text-transform: lowercase;" type="text" value="<%=product.category%>" id="category"
+                name="category" placeholder="category" required>
+        </div>
+
+        <div class="inputbox">
+            <label for=""><strong>price:</strong></label>
+            <input type="number" min="4" id="price" name="price" value="<%=product.price%>" placeholder="price"
+                required />
+        </div>
+
+
+        <div class="inputbox">
+            <label for=""><strong>quantity</strong></label>
+            <input type="number" min="1" id="quantity" name="quantity" value="<%=product.quantity%>"
+                placeholder="quantity" required />
+        </div>
+
+
+        <div class="inputbox">
+            <label for=""><strong>typeBrand:</strong></label>
+            <input type="text" id="typeBrand" name="typeBrand" value="<%=product.typeBrand%>" placeholder="typeBrand"
+                required />
+        </div>
+
+        <div class="inputbox">
+            <label for=""><strong>description:</strong></label>
+            <textarea id="description" name="description" cols="50" rows="5" placeholder="description" required>
+                <%=product.description%>
+        </textarea>
+        </div>
+        <div class="inputbox">
+            <label for="mainImg">
+                <h3><strong>update main Image:</strong></h3>
+            </label>
+            <input type="file" name="mainImg">
+        </div>
+        <div class="inputbox">
+            <label for="images">
+                <h3><strong>update related Images:</strong></h3>
+            </label>
+            <input type="file" name="images" multiple>
+
+        </div>
+        <br>
+        <p><i><strong>Note:</strong> that updating main image or related images of a certain product
+                deletes the previous main image and related images of that particular product respectively</i></p>
+
+        <input type="submit" class="btn" value="Submit" id="submit" />
+
+    </form>
+
+</div>
+
+
+
+
+<script src="/js/script.js"></script>

@@ -52,6 +52,6 @@ window.onscroll =() =>{
     navbar.classList.remove('active');
     overlay.classList.remove('active');
     search.classList.remove('active');
-    storeNavbar.classList.remove('active');
+    // storeNavbar.classList.remove('active');
     check = true;
 }
