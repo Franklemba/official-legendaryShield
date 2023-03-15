@@ -45,6 +45,7 @@ store.addEventListener('click', () => {
 storeNavbarClose.addEventListener('click', () => {
     storeNavbar.classList.remove('active');
     overlay.classList.remove('active');
+    navbar.classList.remove('active');
 })
 
 

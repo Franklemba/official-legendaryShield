@@ -5,8 +5,9 @@ const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/home');
-const categoryRouter = require('./routes/collection')
+// const categoryRouter = require('./routes/collection')
 const adminRouter = require('./routes/admin');
+const storeRouter = require('./routes/store');
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views/')
@@ -42,7 +43,8 @@ const mongoose = require("mongoose")
 
 
 app.use('/',indexRouter )
-app.use('/collections', categoryRouter)
+// app.use('/collections', categoryRouter)
+app.use('/store',storeRouter)
 app.use('/admin', adminRouter);
 
 app.listen(process.env.PORT || 5200) 

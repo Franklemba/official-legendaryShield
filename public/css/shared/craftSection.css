@@ -1,0 +1,130 @@
+/* craftmen section */
+#craftMen {
+  background-color: #eaecef;
+  padding: 10px;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+#craftMen #craftMenContent {
+  width: 40%;
+}
+#craftMen #craftMenContent h2 {
+  font-size: 80px;
+  font-weight: 900;
+}
+#craftMen #craftMenItems {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#craftMen #craftMenItems .item {
+  width: 40%;
+}
+#craftMen #craftMenItems .item .itemImg {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: #fff;
+  padding: 15px;
+}
+#craftMen #craftMenItems .item .itemImg img {
+  width: 200px;
+}
+#craftMen #craftMenItems .item .itemDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+/*_______________________________________devices of maximum width of #799  */
+
+@media (max-width: 799px) {
+  #craftMen {
+    background-color: #eaecef;
+    padding: 10px;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+  }
+
+  #craftMen #craftMenContent h2 {
+    font-size: 200%;
+    font-weight: 900;
+  }
+  #craftMen #craftMenItems .item {
+    width: 45%;
+  }
+  #craftMen #craftMenItems .item .itemImg {
+    padding: 5px;
+  }
+  #craftMen #craftMenItems .item .itemImg img {
+    width: 150px;
+  }
+  #craftMen #craftMenItems .item .itemDetails p {
+    font-size: 150%;
+  }
+  #craftMen #craftMenItems .item .itemDetails {
+    font-size: 50%;
+  }
+}
+
+/*_______________________________________devices of maximum width of #477  */
+
+@media (max-width: 477px) {
+  #craftMen {
+    background-color: #eaecef;
+    padding: 10px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-content: center; */
+  }
+  #craftMen #craftMenContent {
+    line-height: 20px;
+    width: 100%;
+    height: 20vh;
+    /* background-color: #fff; */
+  }
+  #craftMen #craftMenContent h2 {
+    font-size: 100%;
+    font-weight: 900;
+  }
+  #craftMen #craftMenItems {
+    width: 100%;
+    /* background-color: #cce7d0; */
+  }
+  #craftMen #craftMenItems {
+    width: 100%;
+    /* display: flex;
+        flex-wrap: wrap; */
+    justify-content: space-evenly;
+  }
+  #craftMen #craftMenItems .item {
+    width: 50%;
+  }
+  #craftMen #craftMenItems .item .itemImg {
+    margin: 5px;
+    padding: 5px;
+  }
+  #craftMen #craftMenItems .item .itemImg img {
+    width: 120px;
+  }
+  #craftMen #craftMenItems .item .itemDetails p {
+    font-size: 150%;
+  }
+  #craftMen #craftMenItems .item .itemDetails {
+    justify-content: space-around;
+    font-size: 40%;
+  }
+}

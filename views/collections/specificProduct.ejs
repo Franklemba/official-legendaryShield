@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/Ncss/bootstrap.css">
+
+<section id="product1" class="section-p1">
+    <h2>
+        <%- productName %>
+    </h2>
+    <p>Latests <%- productName %> brands available</p>
+       <p><button>view cart</button></p>
+
+    <% products.forEach(data=> { %>
+
+        <div class="pro-container-sub">
+            <!-- ///////////product 1///////////// -->
+          <a href="/store/item/<%=data._id%>">  <div class="pro">
+                <img src="<%= data.ImagesPath%>\<%=data.mainImg%>" alt="">
+                <div class="des">
+                    <span>
+                        <strong><%= data.category %></strong> <i><%=data.brandName %></i>
+                    </span>
+                
+                    <h5>
+                        <strong>Quantity:</strong><%=data.quantity %>
+                    </h5>
+                       
+                    <h3>K<%= data.price%>
+                    </h3>
+                </div>
+                </a>
+                <i class="fa fa-shopping-cart cart"></i>
+                
+            </div>
+
+            <% }) %>
+
+</section>
+<style>
+    
+</style>
+<script src="/js/script.js"></script>
+<script src="/Njs/bootstrap.js"></script>
