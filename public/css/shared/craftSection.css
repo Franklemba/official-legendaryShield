@@ -64,7 +64,7 @@
     width: 45%;
   }
   #craftMen #craftMenItems .item .itemImg {
-    padding: 5px;
+    padding: 0px;
   }
   #craftMen #craftMenItems .item .itemImg img {
     width: 150px;
@@ -111,14 +111,14 @@
     justify-content: space-evenly;
   }
   #craftMen #craftMenItems .item {
-    width: 50%;
+    width: fit-content;
   }
   #craftMen #craftMenItems .item .itemImg {
     margin: 5px;
-    padding: 5px;
+    padding: 0px;
   }
   #craftMen #craftMenItems .item .itemImg img {
-    width: 120px;
+    width: 150px;
   }
   #craftMen #craftMenItems .item .itemDetails p {
     font-size: 150%;

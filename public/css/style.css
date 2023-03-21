@@ -72,9 +72,12 @@ body {
   cursor: pointer;
   font-weight: 700;
 }
-
+.carousel-inner {
+  margin-top: 0px !important;
+}
 #carouselExampleControls {
   width: 100vw;
+  margin-top: 60px;
   position: relative;
 }
 #carouselExampleControls img {

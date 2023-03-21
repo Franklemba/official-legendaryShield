@@ -12,6 +12,7 @@
   top: 0;
   left: 0;
   z-index: 1000;
+  margin-bottom: 0px;
 }
 
 #header h2 {
@@ -55,7 +56,28 @@
   color: #a18b74;
   display: none;
 }
-
+/* #mobile .menuIcon {
+  position: fixed;
+  right: 10px;
+  top: 20px;
+  display: none;
+  flex-direction: column;
+  width: 40px;
+  height: fit-content;
+  padding: 3px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  opacity: 1;
+}
+#mobile .menuIcon span {
+  width: 35px;
+  height: 5px;
+  margin: 2.2px;
+  border-radius: 2px;
+  background-color: #a18b74;
+  transition: 0.5s;
+} */
 /* Navbar over here */
 
 #navbar {
