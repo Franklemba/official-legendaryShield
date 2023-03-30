@@ -129,15 +129,13 @@ router.post('/delete/:id', async (req,res)=>{
                     })
                 })
 
-            }
-
+            } 
        }
        catch{
             res.send('error deleting product')
             console.error();
        }
    
-
 })
 
 ///selecting item for update

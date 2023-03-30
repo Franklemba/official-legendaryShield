@@ -1,0 +1,26 @@
+.authSection{
+    width: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45vh;
+  }
+    
+  .authSection form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 16px;
+    margin-top: 40px;  
+  }
+  
+  .authSection input {
+    height: 40px;
+    border-radius: 6px;
+    text-align: center;
+  } 
+  
+  .authSection button{
+      height: 40px;
+  }
