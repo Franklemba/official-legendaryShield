@@ -31,7 +31,6 @@ router.post('/',multipleUploads,async (req,res)=>{
 
     //for saving the data to the database
     ///////////////////////////////////
-
     let photos = req.files
     let images = photos.images
     let mainImgName = photos.mainImg[0].filename
@@ -101,9 +100,7 @@ router.post('/delete/:id', async (req,res)=>{
     const currentMainImg = SelectedProduct.mainImg
     const currentImagesArray = SelectedProduct.images
 
-
     try{
-
             await SelectedProduct.deleteOne({    ///deletes selected item
                 _id:`${id}`      
             })

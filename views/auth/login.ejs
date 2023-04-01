@@ -1,15 +1,18 @@
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/auth.css" />
-<link rel="stylesheet" href="/Ncss/bootstrap.css" />
 
 <section class="authSection">
-  <form action="">
-    <input type="text" placeholder="User Name"/>
-    <input type="password"  placeholder="Password"/>
+  <br>
+  <br>
+  <span id="adminName">Administrator</span>
+  <form action="/auth/loginAdmin" id="authForm" method="post">
+    <h5 id="errorField"></h5>
+    <input type="text" name="userName" id="name" placeholder="User Name"/>
+    <input type="password" name="password" id="password"  placeholder="Password"/>
     <button type="submit">Login</button>
   </form>
 </section>
 
-<script src="/Njs/bootstrap.js"></script>
-<script src="/js/script.js"></script>
-<script src="/js/auth.js"></script>
+<script defer src="/js/auth.js"></script>
+<script defer src="/Njs/bootstrap.js"></script>
+
