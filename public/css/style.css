@@ -2,6 +2,7 @@
 @import "shared/layout.css";
 @import "shared/craftSection.css";
 @import "shared/products.css";
+@import "shared/custom.css";
 * {
   margin: 0px;
   padding: 0px;
@@ -53,13 +54,14 @@ body {
 
 /* Home section */
 #hero {
+  /* margin-top: 2%; */
   background: linear-gradient(to top, #eaecef, rgb(250, 248, 248));
   /* background: red; */
   height: 90vh;
   width: 100%;
   padding: 0px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 #hero button {
@@ -72,16 +74,20 @@ body {
   cursor: pointer;
   font-weight: 700;
 }
-.carousel-inner {
+/* .mt-4 {
+  margin-top: 0rem !important;
+} */
+/* .carousel-inner {
   margin-top: 0px !important;
-}
+} */
 #carouselExampleControls {
   width: 100vw;
-  margin-top: 60px;
+  /* margin-top: 60px; */
   position: relative;
 }
+
 #carouselExampleControls img {
-  height: 80vh;
+  height: 90vh;
   width: 100%;
   background-size: cover;
 }
@@ -218,13 +224,14 @@ body {
     height: 100vh;
     width: 100%;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
   }
   /* #heroContent{
     padding: 5%;
     width: 100%;
 } */
   #carouselExampleControls {
+
     width: 100%;
   }
   #carouselExampleControls #viewBtn {
@@ -298,7 +305,7 @@ body {
 
   #hero {
     background: linear-gradient(to top, #eaecef, rgb(250, 248, 248));
-    height: 60vh;
+    height: 50vh;
     width: 100%;
     padding: 0px;
     display: block;

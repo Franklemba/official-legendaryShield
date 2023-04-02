@@ -51,35 +51,18 @@
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
   border: 2px solid #000000;
 }
+.icons i{
+  font-size: 30px;
+}
 
 #mobile {
   color: #a18b74;
   display: none;
 }
-/* #mobile .menuIcon {
-  position: fixed;
-  right: 10px;
-  top: 20px;
-  display: none;
-  flex-direction: column;
-  width: 40px;
-  height: fit-content;
-  padding: 3px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3px;
-  opacity: 1;
+.logo {
+  /* width: 10%; */
+  height: 55px;
 }
-#mobile .menuIcon span {
-  width: 35px;
-  height: 5px;
-  margin: 2.2px;
-  border-radius: 2px;
-  background-color: #a18b74;
-  transition: 0.5s;
-} */
-/* Navbar over here */
-
 #navbar {
   display: flex;
   align-items: center;
@@ -198,6 +181,13 @@ footer a:hover {
 
   #mobile {
     display: block;
+  }
+  .icons i{
+    font-size: 25px;
+  }
+  .logo {
+    /* width: 10%; */
+    height: 35px;
   }
 
   #navbar {

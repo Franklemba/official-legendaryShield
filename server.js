@@ -1,11 +1,11 @@
 
 const express = require('express')
 const app = express()
-const expressLayouts = require('express-ejs-layouts')
+const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/home');
-// const categoryRouter = require('./routes/collection')
+const customRouter = require('./routes/custom');
 const adminRouter = require('./routes/admin');
 const storeRouter = require('./routes/store');
 
@@ -42,9 +42,10 @@ mongoose.connect('mongodb://localhost:27017/legendary_shield')
        
 
 
-app.use('/',indexRouter )
+app.use('/',indexRouter );
 // app.use('/collections', categoryRouter)
-app.use('/store',storeRouter)
+app.use('/store',storeRouter);
 app.use('/admin', adminRouter);
+app.use('/custom', customRouter);
 
 app.listen(process.env.PORT || 5200) 

@@ -1,3 +1,8 @@
+.productsAd{
+  /* padding-bottom: 20%; */
+  width: 100%;
+  height: fit-content;
+}
 .section-p1 {
   padding: 40px 80px;
   background: linear-gradient(to top, rgb(250, 248, 248), #eaecef);
@@ -69,6 +74,19 @@
   bottom: 20px;
   right: 10px;
 }
+.customImg{
+  margin-top: 6%;
+  width: 100vw;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.customImg img{
+  width: 90%;
+  height: 460px;
+}
+
 /*_______________________________________devices of maximum width of #799  */
 
 @media (max-width: 799px) {
@@ -100,11 +118,29 @@
   #product1 button {
     margin-top: 10px;
   }
+  .customImg{
+    /* margin-top: 6%; */
+    width: 100vw;
+    /* height: fit-content; */
+  }
+  .customImg img{
+    width: 100%;
+    height: 250px;
+  }
 }
 /*_______________________________________devices of maximum width of #477  */
 
 @media (max-width: 477px) {
   .section-p1 {
     padding: 10px;
+  }
+  .customImg{
+    /* margin-top: 6%; */
+    width: 100vw;
+    /* height: fit-content; */
+  }
+  .customImg img{
+    width: 100%;
+    height: 150px;
   }
 }
