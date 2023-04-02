@@ -3,6 +3,7 @@
 @import "shared/craftSection.css";
 @import "shared/products.css";
 @import "shared/custom.css";
+@import "shared/auth.css";
 * {
   margin: 0px;
   padding: 0px;
@@ -314,3 +315,4 @@ body {
     height: 50vh;
   }
 }
+
