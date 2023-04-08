@@ -1,36 +1,82 @@
 <section class="custom">
-     <!-- <h1>Custom Item</h1> -->
+    <div class="cusOverlay">
+
+    </div>
+    <div class="selectedItem">
+        <span class="closeModal">
+            &times;
+        </span>
+          <form action="/custom" enctype="multipart/form-data" method="post">
+              
+              <!-- <hr> -->
+              <div class="inputIMGbox">
+                <h3>custom <span id="cartItem"> </span></h3>
+                <div class="formImg">
+
+                </div>
+                <label for="images">
+                    upload sample images (Optional)
+                </label>
+                <input id="uploadfiles" type="file" name="images" multiple >
+            </div>
+            <!-- <hr> -->
+            <div class="inputbox numberItems">
+                <label for="total">Enter number of items:</label>
+                <input type="number" min="1" max="501" name="quantity" id="quantity" placeholder="number of items" required>
+            </div>
+            <div class="inputbox">
+                <textarea name="description" id="description" cols="30" rows="5" placeholder="(Optional) any descriptions on your custom item" ></textarea>
+            </div>
+            <div class="inputbox">
+                <input type="text"  id="name" name="name" placeholder="enter  name" required />
+            </div>
+            <div class="inputbox">
+                <input type="email" name="email" id="email" placeholder="email" required>
+            </div>
+            <div class="inputbox">
+                <input type="number" name="Pnumber" id="Pnumber" placeholder="phone number" required>
+            </div>
+            <input type="submit" class="btn" value="Send" id="submit" />
+            <div class="cusHiddenContent">
+
+            </div>
+            <p>
+                <i>to talk to custom designer directly:</i>
+                <span>call: <strong>696968965</strong></span>
+                <span>whatsApp: <strong>985584759</strong></span>
+            </p>
+          </form>
+    </div>
 
      <div class="items">
      <h1>Custom Item</h1>
      
 
         <ul>
-            <li>
-                <img src="images/icons/IMG_0730.jpg" alt="Wallets">
-                <span>Wallets</span>
+            <li id="customCart">
+                <img  class="wallets" src="images/icons/wallets.jpg" alt="Wallets">
+                <span class="wallets">Wallets</span>
             </li>
-            <li>
-                <img src="images/icons/IMG_0732.png" alt="Gift Cards">
-              <span>Gift Cards</span>    
+            <li id="customCart">
+                <img class="gift cards" src="images/icons/gift cards.png" alt="Gift Cards">
+              <span class="gift cards">Gift Cards</span>    
             </li>
-            <li>
-                <img src="images/icons/IMG_0741.png" alt="Flasks">
-               <span>Flasks</span>    
+            <li id="customCart">
+                <img class="flasks" src="images/icons/flasks.png" alt="Flasks">
+               <span class="flasks" >Flasks</span>    
             </li>
-            <li>
-                <img src="images/icons/IMG_0736.jpg" alt="Pouches">
-                <span>Pouches</span>
+            <li id="customCart">
+                <img class="pouches" src="images/icons/pouches.jpg" alt="Pouches">
+                <span class="pouches">Pouches</span>
             </li>
-            <li>
-                <img src="images/icons/IMG_0738.jpg" alt="Diaries">
-                <span>Diaries</span>
+            <li id="customCart">
+                <img class="diaries" src="images/icons/diaries.jpg" alt="Diaries">
+                <span class="diaries">Diaries</span>
             </li>
-            <li>
-                <img src="images/icons/IMG_0740.png" alt="Mug cups">
-                <span>Mug cups</span>
+            <li id="customCart">
+                <img class="mug cups" src="images/icons/mug cups.png" alt="Mug cups">
+                <span class="mug cups">Mug cups</span>
             </li>
-            <!-- <li></li> -->
         </ul>
         <div>
         
@@ -38,3 +84,36 @@
      </div>
 
 </section>
+
+<script>
+    let customCart = document.querySelectorAll('#customCart');
+    let selectedItem = document.querySelector('.selectedItem');
+    let cartItem = document.getElementById('cartItem');
+    let cusOverlay = document.querySelector('.cusOverlay');
+    let formImg = document.querySelector('.formImg');
+    let cusHiddenContent = document.querySelector('.cusHiddenContent');
+    let closeModal = document.querySelector('.closeModal');
+    customCart.forEach(value=>{
+        value.addEventListener('click',(e)=>{
+            let clickedItem = e.target.className;
+            let imgSrc = e.target.src;
+            console.log(e.target.src)
+            if(clickedItem){
+                cartItem.textContent = `${clickedItem}`;
+                formImg.innerHTML = `<img src="${imgSrc}" alt="${clickedItem}">`;
+                cusHiddenContent.innerHTML = `<input type="text"  name="ImgLink" value="${imgSrc}" hidden />`;
+                cusOverlay.classList.add('active');
+                selectedItem.classList.add('active');
+            }
+        })
+    })
+    cusOverlay.addEventListener('click',(e)=>{
+        cusOverlay.classList.remove('active');
+        selectedItem.classList.remove('active');
+    })
+    closeModal.addEventListener('click',()=>{
+        cusOverlay.classList.remove('active');
+        selectedItem.classList.remove('active');
+    })
+
+</script>

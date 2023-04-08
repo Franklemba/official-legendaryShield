@@ -22,4 +22,4 @@ router.post('/loginAdmin', (req, res)=>{
 
   return;
 })
-module.exports = router
+module.exports = router;
