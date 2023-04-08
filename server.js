@@ -4,6 +4,7 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 const passport = require('passport')
 // configure passport
@@ -25,7 +26,6 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: false }))
 
 const mongoose = require("mongoose");
 
-
 //global database connection
 // mongodb://localhost:27017/svint_stores
    ////// online connection////
@@ -34,12 +34,14 @@ const mongoose = require("mongoose");
     // .then(()=>{
     //     console.log('database is connected')
     // }).catch((err) => console.log(err));
-
 //////////local database connection
+
+
 mongoose.connect('mongodb://localhost:27017/legendary_shield')
 .then(()=>{
     console.log('database is connected')
 }).catch((err) => console.log(err));
+
 
 app.use('/',indexRouter );
 
@@ -48,9 +50,12 @@ app.use(session({
     resave: false,
     saveUninitialized: false    
   }));
-  
+
+  app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+// Configure Passport
+require('./config/passport')(passport);
 
 app.use('/',indexRouter );
 // app.use('/collections', categoryRouter)

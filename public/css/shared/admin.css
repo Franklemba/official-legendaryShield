@@ -1,0 +1,127 @@
+.optionsContainer p {
+  width: 100%;
+  height: 70px;
+  background-color: rgb(230, 234, 238);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 10px 1px black;
+  border-radius: 4px;
+}
+
+.optionsContainer p a {
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: none;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adminHeader {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+form input,
+form textarea {
+  height: 35px;
+  border-radius: 6px;
+  text-align: center;
+  max-width: 370px;
+  width: 335px;
+}
+
+form textarea {
+}
+
+form button {
+  margin-top: 10px;
+  background-color: #f5f5f5;
+  width: 180px;
+  height: 40px;
+}
+
+.file.inputbox {
+  position: relative;
+}
+
+.orderList {
+  display: flex;
+  width: 100%;
+  min-height: 450px;
+  max-height: 640px;
+  overflow-y: scroll;
+
+  padding-top: 10px;
+  justify-content: center;
+}
+.orderList .orderItem {
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 10px 1px black;
+  box-shadow: #000;
+  height: 100px;
+  width: 95%;
+  border-radius: 5px;
+}
+
+.orderList .orderItem div {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.orderItem div span {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderItem div .contentSection {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5px;
+gap: 10px;
+  width: 70%;
+}
+
+.orderItem div .buttonSection {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.orderOptions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 5px;
+}
+.orderOptions button{
+    padding: 6px;
+}
+.orderItem button {
+  width: 95px;
+  border: none;
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+.orderItem .markRead {
+  background-color: rgb(195, 255, 195);
+}
+
+.orderItem .delete {
+  background-color: rgb(238, 166, 166);
+}

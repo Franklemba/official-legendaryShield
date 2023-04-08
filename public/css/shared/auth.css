@@ -50,3 +50,11 @@ input.incomplete{
   font-size: 30px;
   text-align: center;
  }
+
+ .authSection button{
+  background-color: #f5f5f5;
+  width: 180px;
+  height: 40px;
+ }
+
+ 
