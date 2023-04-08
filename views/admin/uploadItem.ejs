@@ -1,133 +1,130 @@
-
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="Ncss/bootstrap.css" />
 <style>
-
-    .row .inputbox select{
-        font-size: 15px;
-    }
-    .row .inputbox textarea{
-        padding: 10px;
-        font-size: 10px;
-        width: 60vw;
-        height: 120px;
-    }
-
+  .row .inputbox select {
+    font-size: 15px;
+  }
+  .row .inputbox textarea {
+    padding: 10px;
+    font-size: 10px;
+    width: 60vw;
+    height: 120px;
+  }
 </style>
 
+<section class="uploadSection" id="uploadSection">
+  <!-- <h1 class="heading"> <span>contact</span> us </h1> -->
 
-        <section class="uploadSection" id="uploadSection">
-            <!-- <h1 class="heading"> <span>contact</span> us </h1> -->
-            <h1>Legendary Shields Innovation</h1>
-            <div style="margin:2% 5%;">
-                <p><a href="/admin/all">view all products</a></p>
-                <!-- <p><a href="/admin/customers">view all customers</a></p> -->
-            </div>
+  <div class="row">
+    <form
+      action="/admin"
+      method="POST"
+      enctype="multipart/form-data"
+      id="uploadSubmit"
+    >
+      <h2 class="adminHeader">Insert Item</h2>
 
-            <div class="row">
+      <div class="inputbox">
+        <label for="brandName"><strong>Enter brandname:</strong></label>
+        <input
+          style="text-transform: lowercase"
+          type="text"
+          id="name"
+          name="brandName"
+          placeholder="e.g Dior,gucci,classic shit"
+          required
+        />
+      </div>
 
-                <form action="/admin" method="POST" enctype="multipart/form-data" id="uploadSubmit">
+      <div class="inputbox">
+        <label for="category"><strong>select category:</strong></label>
+        <select name="category" id="category">
+          <option value="Mens Watch">Mens Watch</option>
+          <option value="Women Watch">Women Watch</option>
+          <option value="Unisex Watch">Unisex Watch</option>
+          <option value="Necklaces">Necklaces</option>
+          <option value="Rings">Rings</option>
+          <option value="Neck chain">Neck chain</option>
+          <option value="Bracelet">Bracelet</option>
+        </select>
+      </div>
 
-                    <h3>Insert Item</h3>
+      <div class="inputbox">
+        <label for="price"><strong>Enter price:</strong></label>
+        <input
+          type="number"
+          min="4"
+          id="price"
+          name="price"
+          placeholder="price"
+          required
+        />
+      </div>
 
-                    <div class="inputbox">
-                        <label for="brandName">Enter brandname:</label>
-                        <input style="text-transform: lowercase;" type="text" id="name" name="brandName"
-                            placeholder="e.g Dior,gucci,classic shit" required />
-                    </div>
+      <div class="inputbox">
+        <label for="quantity"><strong>Enter quantity:</strong></label>
+        <input
+          type="number"
+          min="1"
+          id="quantity"
+          name="quantity"
+          placeholder="quantity"
+          required
+        />
+      </div>
 
-                    <div class="inputbox">
-                        <label for="category"><strong>select category:</strong></label>
-                        <select name="category" id="category">
-                            <option value="Mens Watch">Mens Watch</option>
-                            <option value="Women Watch">Women Watch</option>
-                            <option value="Unisex Watch">Unisex Watch</option>
-                            <option value="Necklaces">Necklaces</option>
-                            <option value="Rings">Rings</option>
-                            <option value="Neck chain">Neck chain</option>
-                            <option value="Bracelet">Bracelet</option>
-                        </select>
-                    </div>
+      <div class="inputbox">
+        <label for="description"><strong>Enter Description</strong></label>
+        <textarea
+          id="description"
+          name="description"
+          cols="50"
+          rows="5"
+          placeholder="description"
+          required
+        ></textarea>
+      </div>
 
+      <div class="inputbox file">
+        <label for="mainImg">
+          <h3><strong>upload main Image:</strong></h3>
+        </label>
+        <input type="file" name="mainImg" required />
+      </div>
 
-                    
+      <div class="inputbox file">
+        <label for="images">
+          <h3><strong>upload related Images:</strong></h3>
+        </label>
+        <input id="uploadfiles" type="file" name="images" multiple required />
+      </div>
 
-                    <div class="inputbox">
-                        <label for="price">Enter price:</label>
-                        <input type="number" min="4" id="price" name="price" placeholder="price" required />
-                    </div>
+      <button type="submit" id="submit">submit</button>
+    </form>
+  </div>
 
+  <div class="preview"></div>
+</section>
 
-                    <div class="inputbox">
-                        <label for="quantity">Enter quantity: </label>
-                        <input type="number" min="1" id="quantity" name="quantity" placeholder="quantity" required />
-                    </div>
+<script>
+  let image = document.getElementById("uploadfiles");
+  let uploadSubmit = document.getElementById("uploadSubmit");
+  let submit = document.getElementById("submit");
+  let preview = document.querySelector(".preview");
 
+  const imageList = image.files;
 
-
-                    <div class="inputbox">
-                        <label for="description">Enter Description</label> 
-                        <textarea id="description" name="description" cols="50" rows="5" placeholder="description"
-                            required></textarea>
-                    </div>
-
-                    <div class="inputbox">
-                        <label for="mainImg">
-                            <h3><strong>upload main Image:</strong></h3>
-                        </label>
-                        <input type="file" name="mainImg" required>
-                    </div>
-
-                    <div class="inputbox">
-                        <label for="images">
-                            <h3><strong>upload related Images:</strong></h3>
-                        </label>
-                        <input id="uploadfiles" type="file" name="images" multiple required>
-                    </div>
-
-
-                  <button type="submit" id="submit">submit</button>
-
-
-                </form>
-
-            </div>
-
-            <div class="preview">
-
-            </div>
-
-
-        </section>
-
-        <script>
-
-
-    let image = document.getElementById('uploadfiles')
-   let uploadSubmit = document.getElementById('uploadSubmit')
-    let submit = document.getElementById('submit')
-    let preview = document.querySelector('.preview')
-   
-    
-    const imageList = image.files
-
-    submit.addEventListener('click', (e)=>{
-         console.log(image.files)
-         if(image.files.length > 4){
-            alert('you can only upload a maximum of 4 images')
-            for(var i =0; i<image.files.length; i++){
-               preview.innerHTML += `<p>${image.files[i].name}</p>`
-          }
-
-         }else if(image.files.length == 0){
-             alert('please select image to upload')
-         }else
-         {
-           uploadSubmit.submit()        
-         }
-          
-    })
-
-    
-
-
-
-    </script>
+  submit.addEventListener("click", (e) => {
+    console.log(image.files);
+    if (image.files.length > 4) {
+      alert("you can only upload a maximum of 4 images");
+      for (var i = 0; i < image.files.length; i++) {
+        preview.innerHTML += `<p>${image.files[i].name}</p>`;
+      }
+    } else if (image.files.length == 0) {
+      alert("please select image to upload");
+    } else {
+      uploadSubmit.submit();
+    }
+  });
+</script>

@@ -22,13 +22,26 @@ const multipleUploads = imagesUpload.fields([{name:'mainImg', maxCount:1},{name:
 
 ///create product
 router.get('/', (req, res) =>{
+    res.render('admin/startOptions');
+})  
+
+
+router.get('/uploadItem', (req, res) =>{
     res.render('admin/uploadItem');
+})  
+
+router.get('/customOrders', (req, res) =>{
+    res.render('admin/customOrders');
+})  
+ 
+
+router.get('/orders', (req, res) =>{
+    res.render('admin/orders');
 })  
 
 
 ///uploading  product
 router.post('/',multipleUploads,async (req,res)=>{
-
     //for saving the data to the database
     ///////////////////////////////////
     let photos = req.files
@@ -39,7 +52,6 @@ router.post('/',multipleUploads,async (req,res)=>{
     images.forEach(data=>{
         imagesArray.push(data.filename)
     })
-
 
     const product = new Product({
         brandName: req.body.brandName,
@@ -99,7 +111,6 @@ router.post('/delete/:id', async (req,res)=>{
     const SelectedProduct = await Product.findById(`${id}`)
     const currentMainImg = SelectedProduct.mainImg
     const currentImagesArray = SelectedProduct.images
-
     try{
             await SelectedProduct.deleteOne({    ///deletes selected item
                 _id:`${id}`      
