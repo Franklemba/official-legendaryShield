@@ -27,20 +27,20 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: false }))
 const mongoose = require("mongoose");
 
 //global database connection
-// mongodb://localhost:27017/svint_stores
-   //// online connection////
-    mongoose.set('strictQuery', true);
+//mongodb://localhost:27017/svint_stores
+   // online connection////
+   mongoose.set('strictQuery', true);
     mongoose.connect('mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
     .then(()=>{
         console.log('database is connected')
     }).catch((err) => console.log(err));
 //////////local database connection
 
-
 // mongoose.connect('mongodb://localhost:27017/legendary_shield')
 // .then(()=>{
 //     console.log('database is connected')
 // }).catch((err) => console.log(err));
+
 
 
 app.use('/',indexRouter );

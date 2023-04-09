@@ -52,22 +52,27 @@ form button {
 }
 
 .orderList {
-  display: flex;
+  display: none;
   width: 100%;
   min-height: 450px;
   max-height: 640px;
   overflow-y: scroll;
-
+flex-direction: column;
   padding-top: 10px;
-  justify-content: center;
+  align-items: center;
+}
+.orderList.active{
+  display: flex;
 }
 .orderList .orderItem {
   background-color: #f5f5f5;
-  box-shadow: 0px 0px 10px 1px black;
+  box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.561);
   box-shadow: #000;
   height: 100px;
   width: 95%;
+  max-width: 600px;
   border-radius: 5px;
+  margin: 5px 0px;
 }
 
 .orderList .orderItem div {
@@ -88,6 +93,7 @@ form button {
     padding: 5px;
 gap: 10px;
   width: 70%;
+  font-size: 15px;
 }
 
 .orderItem div .buttonSection {
@@ -119,7 +125,7 @@ gap: 10px;
   border-radius: 6px;
 }
 .orderItem .markRead {
-  background-color: rgb(195, 255, 195);
+  background-color: rgb(233, 233, 233);
 }
 
 .orderItem .delete {

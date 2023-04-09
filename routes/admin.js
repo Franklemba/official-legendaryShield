@@ -30,13 +30,27 @@ router.get('/uploadItem', (req, res) =>{
     res.render('admin/uploadItem');
 })  
 
-router.get('/customOrders', (req, res) =>{
-    res.render('admin/customOrders');
+const customOrder = require('../models/customSchema')
+
+router.get('/customOrders', async(req, res) =>{
+    try {
+        const customOrders = await customOrder.find({});
+        res.render('admin/customOrders', {customOrders});
+      } catch (err) {
+        res.status(500).send(err);
+      }
+   
 })  
  
 
-router.get('/orders', (req, res) =>{
-    res.render('admin/orders');
+router.get('/orders', async(req, res) =>{
+    
+    try {
+        const customOrders = await customOrder.find({});
+        res.render('admin/orders', {customOrders});
+      } catch (err) {
+        res.status(500).send(err);
+      }
 })  
 
 

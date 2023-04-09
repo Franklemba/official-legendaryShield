@@ -24,10 +24,9 @@ router.post('/',multipleUploads,async (req,res)=>{
     let images = photos.images
     const imagesArray = [];
     
-    images.forEach(data=>{
+    images?.forEach(data=>{
         imagesArray.push(data.filename)
     })
-
     const cProduct = new customProduct({
         name: req.body.name,
         email: req.body.email,
