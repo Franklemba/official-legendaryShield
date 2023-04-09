@@ -77,11 +77,12 @@ ul {
     color: red;
     position: fixed;
     top: 16%;
-    right: 2%;
+    right: 6%;
     z-index: 700;
 }
 .selectedItem form{
     /* margin-top: 60%; */
+    width: 100%;
     top: 6%;
     position: absolute;
     /* height: fit-content; */
@@ -101,13 +102,14 @@ ul {
     width: 120px;
     height: 180px;
 }
+
 .selectedItem form .inputIMGbox{
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 80%;
     height: fit-content;
     background-color:rgb(250, 248, 248);
     padding: 2%;
@@ -124,6 +126,9 @@ ul {
    text-transform: capitalize;
    font-weight: bold;
 }
+.selectedItem form .inputIMGbox label{
+    text-align: center;
+}
 .numberItems{
     display: flex;
     flex-direction: column;
@@ -132,19 +137,25 @@ ul {
     text-align: center;
 }
 .inputbox{
+    width: 100%;
     margin: 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-textarea{
+.inputbox textarea {
+    text-align: center;
+    /* max-width: 370px; */
+    width: 80%;
     margin: 0.2rem 0;
     border-radius: 10px;
     background-color: white;
     outline: none;
     padding: 0.5rem 1rem;
-    text-align: center;
+    height: 80vh;
 }
-input{
-    width: 50vh;
-    /* font-size: 680%; */
+.inputbox input{
+    width: 70%;
     height: 60px;
     margin: 0.2rem 0;
     border-radius: 10px;
@@ -176,31 +187,28 @@ input{
     .selectedItem{
     top: 10%;
     border-radius: 6px;
-    /* margin-top: 20%; */
-    width: 80%;
+    width: 90%;
     height: 80vh;
     padding: 5%;
 }
+.selectedItem form{
+    /* margin-top: 60%; */
+    width: fit-content;
+    top: 6%;
+
+}
 .selectedItem form .inputIMGbox{
-    width: 90%;
+    width: 80%;
     height: 220px;
     padding: 2%;
 }
-input{
-    width: 80%;
-    height: 40px;
-    margin: 0.2rem 0;
-    border-radius: 10px;
-    background-color: white;
-    outline: none;
-    padding: 0 1rem;
-    text-align: center;
-  }
+
   .closeModal{
-    top: 6%;
-    right: 2%;
+    top: 8%;
+    right: 6%;
+ }
 }
-}
+
 @media (max-width: 477px) {
     .custom .items ul li {
         height: 180px;
@@ -208,19 +216,16 @@ input{
         padding: 5%;
     }
     .custom .items ul li img, .selectedItem form .formImg img{
-        /* background-color: rgb(179, 186, 183); */
         width: 100px;
         height: 160px;
     }
     .selectedItem form .formImg img{
         width: 100px;
         height: 100px;
-    }
-    .selectedItem form .inputIMGbox input{
-        height: 30px;
-        width: 90%;
-     }
+    }   
 }
+
+
 @media (max-width: 350px) {
     .custom{
         padding: 5%;
@@ -231,7 +236,6 @@ input{
         height: fit-content;
     }
     .selectedItem{
-        width: fit-content;
-        height: 100vh;
+        height: 86vh;
     }
 }
