@@ -1,0 +1,113 @@
+<br />
+<section class="cartList"></section>
+<button id="submitOrder">Submit Order</button>
+
+<script defer>
+  const cartItems = localStorage.getItem("cartList");
+  async function getItems() {
+    const options = {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const res = await fetch(`/getItems/${cartItems}`);
+    const data = await res.json();
+    let qtyMinus;
+    let qtyPlus;
+    data.forEach((item) => {
+      const cartItem = document.createElement("div");
+      cartItem.classList.add("cartItem");
+      cartItem.innerHTML = `
+      
+    <div class="cartImage">
+      <img src="/uploads/images/${item.mainImg}" alt="null" />
+    </div>
+    <div class="contentSection">
+     
+        <span>${item.brandName}</span>
+        <span>${item.category}</span>
+        <span>Price: K${item.price}</span>
+      
+    </div>
+    <div class="qtyControl">
+      <div class="qtyMinus">-</div>
+      <div class="qty">1</div>
+      <div class="qtyPlus">+</div>
+    </div>
+  
+      `;
+      document.querySelector(".cartList").append(cartItem);
+    });
+
+    qtyMinus = document.querySelectorAll(".qtyMinus");
+    qtyPlus = document.querySelectorAll(".qtyPlus");
+
+    qtyMinus.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        if (parseInt(button.nextElementSibling.innerText) > 0) {
+          button.nextElementSibling.innerText =
+            parseInt(button.nextElementSibling.innerText) - 1;
+        }
+      });
+    });
+
+    qtyPlus.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        button.previousElementSibling.innerText =
+          parseInt(button.previousElementSibling.innerText) + 1;
+      });
+    });
+    console.log(data);
+  }
+  getItems();
+</script>
+
+<style>
+  .cartList {
+    display: flex;
+    width: 100%;
+    min-height: 450px;
+    max-height: 640px;
+    overflow-y: scroll;
+    flex-direction: column;
+    padding-top: 10px;
+    align-items: center;
+  }
+
+  .cartList .cartItem {
+    background-color: #f5f5f5;
+    box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.561);
+    box-shadow: #000;
+    height: 130px;
+    width: 97%;
+    max-width: 600px;
+    border-radius: 5px;
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .cartImage img {
+    width: 80px;
+    height: 80px;
+  }
+  .cartImage {
+    width: 30%;
+    margin: 5px;
+  }
+  .contentSection {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  .qtyControl {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-right: 10px;
+  }
+</style>

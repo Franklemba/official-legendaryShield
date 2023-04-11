@@ -349,3 +349,17 @@ body {
   display: flex;
 }
 
+.icons{
+  position: relative;
+}
+.icons a{
+ text-decoration: none;
+ padding: 0;
+ margin: 0;
+ color: black;
+ font-size: 24px;
+
+}
+#cartCounter{
+  margin-left: 4px;
+}

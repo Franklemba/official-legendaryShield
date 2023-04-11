@@ -110,8 +110,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
+
                 <li><a class="active" href="/">Home</a></li>
                 <li class="store">Store <span>></span></li>
                 <li><a href="/catalog">Catalog</a></li>
@@ -127,12 +127,13 @@
             </div>
     
         </div> 
-        <div class="icons"  >
+        <div class="icons" >
             <!-- <input type="search" name="item" id="itemSearched"> -->
             <i id="searchBar" class="fa fa-search"></i>
         </div>
         <div class="icons" >
-            <i class="fa fa-shopping-cart cart"></i>
+            <a href="/cart" class="fa fa-shopping-cart cart"></a>
+            <span id="cartCounter"></span>
         </div>
         <div id="mobile" style="font-size: 30px;">
             <!-- <i id="bar" class="fa fa-outdent"></i> -->
@@ -190,4 +191,7 @@
   </body>
   <script src="Njs/bootstrap.js"></script>
   <script src="/js/script.js"></script>
+  <script>
+    document.getElementById('cartCounter').innerText = localStorage.getItem('cartList').split(',').length -1
+  </script>
 </html>
