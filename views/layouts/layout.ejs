@@ -5,13 +5,13 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <link rel="stylesheet" href="css/style.css" />
+      <link rel="stylesheet" href="/css/style.css" />
       <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" > -->
       <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       />
-      <link rel="stylesheet" href="Ncss/bootstrap.css" />
+      <link rel="stylesheet" href="/Ncss/bootstrap.css" />
       <title>legendary shield</title>
     </head>
 </head>
@@ -26,7 +26,7 @@
        
         <div class="logo">
             <a href="/">
-                <img src="images/lsiLogo.png" class="logo" alt="Legendary Shield">
+                <img src="/images/lsiLogo.png" class="logo" alt="Legendary Shield">
             </a>
         </div>
         <div>
@@ -37,19 +37,19 @@
                     <div class=" container accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                    aria-expanded="true" aria-controls="collapseOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                    aria-expanded="false" aria-controls="collapseOne">
                                     Jewelry
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <ul>
-                                        <li>Necklaces</li>
+                                        <li><a href="/store/Necklaces">Necklaces</a></li>
                                         <li><a href="/store/Rings">Rings</a></li>
-                                        <li>Bracelets</li>
-                                        <li>Chains</li>
+                                        <li><a href="/store/Bracelets">Bracelets</a></li>
+                                        <li><a href="/store/Chains"></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                         <li><a href="/store/Mens Watch">Men's watch</a></li>
                                         <li><a href="/store/Women Watch">Women's watch</a></li>
                                         <li><a href="/store/Unisex Watch">Unisex watch</a></li>
-                                        <li><a href="">Classic watch</a></li>
+                                        <li><a href="/store/Classic watch">Classic watch</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -113,8 +113,7 @@
                 </div>
 
                 <li><a class="active" href="/">Home</a></li>
-                <li class="store">Store <span>></span></li>
-                <li><a href="/catalog">Catalog</a></li>
+                <li class="store">Store <span><strong>></strong></span></li>
                 <li><a href="/about">About us</a></li>
                 <li><a href="/user"><i id="userBar" class="fa fa-user" ></i></a></li>
 
@@ -189,7 +188,7 @@
 
     <!-- After  -->
   </body>
-  <script src="Njs/bootstrap.js"></script>
+  <script src="/Njs/bootstrap.js"></script>
   <script src="/js/script.js"></script>
   <script>
     document.getElementById('cartCounter').innerText = localStorage.getItem('cartList').split(',').length -1

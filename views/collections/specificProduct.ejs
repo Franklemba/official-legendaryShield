@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/Ncss/bootstrap.css">
 
 <section id="product1" class="section-p1">
     <h2>
@@ -8,11 +6,13 @@
     <p>Latests <%- productName %> brands available</p>
        <p><button>view cart</button></p>
 
+ <div class="itemsContainer">
     <% products.forEach(data=> { %>
 
         <div class="pro-container-sub">
             <!-- ///////////product 1///////////// -->
-          <a href="/store/item/<%=data._id%>">  <div class="pro">
+          <a href="/store/item/<%=data._id%>">  
+            <div class="pro">
                 <img src="<%= data.ImagesPath%>\<%=data.mainImg%>" alt="">
                 <div class="des">
                     <span>
@@ -23,19 +23,57 @@
                         <strong>Quantity:</strong><%=data.quantity %>
                     </h5>
                        
-                    <h3>K<%= data.price%>
+                    <h3>
+                        K<%= data.price%>
                     </h3>
                 </div>
                 <i class="fa fa-shopping-cart cart"></i>
-                </a>
-                
             </div>
+           </a>
+         </div>       
 
             <% }) %>
+ </div>
 
 </section>
 <style>
+    .itemsContainer{
+        width: 100%;
+        padding: 10%;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-gap: 10px;
+        grid: auto / auto auto  ;
+    }
+    .pro-container-sub{
+        width: fit-content;
+        margin: 2%;
+    }
     
+    .pro img{
+        height: 40vh;
+    }
+    @media (max-width: 799px) {
+        .pro-container-sub{
+            width: fit-content;
+            margin: 2%;
+        }
+        .pro img{
+            height: 20vh;
+        }
+    }
+    @media (max-width: 477px) {
+            .itemsContainer{
+                grid: auto / auto  ;
+            }
+            .pro-container-sub{
+                width: fit-content;
+                margin: 2%;
+            }
+            .pro img{
+                height: 25vh;
+            }
+    }
+
 </style>
-<script src="/js/script.js"></script>
-<script src="/Njs/bootstrap.js"></script>

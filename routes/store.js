@@ -14,23 +14,21 @@ router.get('/', (req, res) =>{
 router.get('/:categoryName', async (req,res)=>{
 
     let stripedCategoryName = req.params.categoryName;
-    // let newCategoryName = stripedCategoryName.toLowerCase();
-
-    // console.log(stripedCategoryName)
+ 
 
     const product = await Product.find({
                 category: stripedCategoryName
     });
-    // console.log(product)
+
     try{
         if(product != ''){
-            // res.send('product available')
+   
             res.render('collections/specificProduct',{
                 productName: stripedCategoryName,
                 products: product
             })
         }else{
-            // res.send('products are not yet available in this category')
+ 
             res.send('this category is not yet uploaded');
         }
     }

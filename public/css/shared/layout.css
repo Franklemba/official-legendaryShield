@@ -216,8 +216,8 @@ footer a:hover {
   }
 
   #navbar .storeNavbar {
-    display: block;
-    top: 0%;
+    display: none;
+    top: 15%;
     right: -300px;
     /* left: 0px; */
     position: absolute;
@@ -232,7 +232,7 @@ footer a:hover {
   }
 
   #navbar .storeNavbar.active {
-    right: 280px;
+    right: 100%;
     transition: 0.3s ease-in-out;
   }
 }
@@ -249,7 +249,11 @@ footer a:hover {
   }
   #navbar .storeNavbar {
     top: 9%;
+    display: block;
   }
+  /* #navbar .storeNavbar.active {
+    right: 100%;
+  } */
   .search input {
     padding-right: 30px;
   }

@@ -88,7 +88,7 @@
     background-color: #eaecef;
     padding: 10px;
     width: 100%;
-    /* height: fit-content; */
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -97,7 +97,7 @@
   #craftMen #craftMenContent {
     line-height: 20px;
     width: 100%;
-    height: 20vh;
+    height: 30vh;
     /* background-color: #fff; */
   }
   #craftMen #craftMenContent h2 {
@@ -107,8 +107,7 @@
 
   #craftMen #craftMenItems {
     width: 100%;
-    /* display: flex;
-        flex-wrap: wrap; */
+    height: 60vh;
     justify-content: space-evenly;
   }
   #craftMen #craftMenItems .item {
@@ -127,5 +126,28 @@
   #craftMen #craftMenItems .item .itemDetails {
     justify-content: space-around;
     font-size: 40%;
+  }
+}
+
+@media (max-width: 320px) {
+  #craftMen{
+    height: 100vh;
+  }
+  #craftMen #craftMenContent {
+    line-height: 20px;
+    width: 100%;
+    height: 40vh;
+  }
+  #craftMen #craftMenItems .item .itemImg {
+    width: fit-content;
+    margin: 5px;
+    padding: 0px;
+  }
+  #craftMen #craftMenItems .item .itemImg img {
+    width: 100px;
+  }
+  #craftMen #craftMenItems {
+    height: 60vh;
+
   }
 }
