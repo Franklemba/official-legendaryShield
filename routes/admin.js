@@ -31,7 +31,7 @@ router.get('/uploadItem', (req, res) =>{
 })  
 
 const customOrder = require('../models/customSchema')
-
+const purchaseOrder = require('../models/purchaseSchema')
 router.get('/customOrders', async(req, res) =>{
     try {
         const customOrders = await customOrder.find({});
@@ -46,8 +46,8 @@ router.get('/customOrders', async(req, res) =>{
 router.get('/orders', async(req, res) =>{
     
     try {
-        const customOrders = await customOrder.find({});
-        res.render('admin/orders', {customOrders});
+        const purchaseOrders = await purchaseOrder.find({});
+        res.render('admin/orders', {purchaseOrders});
       } catch (err) {
         res.status(500).send(err);
       }

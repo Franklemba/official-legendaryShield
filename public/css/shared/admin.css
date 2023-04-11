@@ -68,8 +68,8 @@ flex-direction: column;
   background-color: #f5f5f5;
   box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.561);
   box-shadow: #000;
-  height: 100px;
-  width: 95%;
+  height: 130px;
+  width: 97%;
   max-width: 600px;
   border-radius: 5px;
   margin: 5px 0px;
@@ -97,12 +97,14 @@ gap: 10px;
 }
 
 .orderItem div .buttonSection {
-  width: 30%;
+  width: 40%;
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 7px 7px;
+  font-weight: bolder;
 }
 
 .orderOptions {
@@ -118,16 +120,29 @@ gap: 10px;
 }
 .orderItem button {
   width: 95px;
+  height: fit-content;
   border: none;
   font-size: 15px;
   padding: 5px;
-  border: 1px solid black;
-  border-radius: 6px;
+  border: 2px solid rgb(151, 151, 151);
+  border-radius: 20px;
+  color: rgb(0, 0, 0);
 }
 .orderItem .markRead {
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(207, 207, 207);
 }
 
 .orderItem .delete {
-  background-color: rgb(238, 166, 166);
+  background-color: rgb(255, 113, 113);
+  border:none;
+  color: white;
+}
+ 
+.orderItem form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: fit-content;
 }

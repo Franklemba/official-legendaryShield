@@ -28,6 +28,11 @@ const customSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
+    isRead:{
+        type: Boolean,
+        required: false,
+        default: false
+    },
     ImgLink:{
         type: String,
         required: true  

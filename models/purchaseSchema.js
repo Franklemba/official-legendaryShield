@@ -19,9 +19,15 @@ const purchaseSchema = new mongoose.Schema({
         required: true
     },
     cart:{
-        type: array,
+        type: Array,
         required: true
     },
+    isRead:{
+        type: Boolean,
+        required: false,
+        default: false
+    }
+    ,
     purchasedAt: {
         type: Date,
         required: true,
