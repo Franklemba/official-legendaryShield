@@ -1,0 +1,228 @@
+<br />
+<h4 id="totalPrice" style="text-align: end; width: 95%">Total: K0</h4>
+<section class="cartList"></section>
+
+<div class="buyModal">
+  <span class="closeModal"> &times; </span>
+
+  <h4 style="text-align: center">
+    Kindly Confirm Your Details and Click Submit
+  </h4>
+  <form action="/makeOrder" method="post">
+    <div class="inputbox">
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Name"
+        required
+      />
+    </div>
+    <div class="inputbox">
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email"
+        required
+      />
+    </div>
+    <div class="inputbox">
+      <input
+        type="number"
+        name="Pnumber"
+        id="Pnumber"
+        placeholder="Phone Number"
+        required
+      />
+      <input type="hidden" name="orderData" id="orderData">
+    </div>
+    <input type="submit" class="btn" value="Send" id="submit" />
+  </form>
+</div>
+<div
+  style="
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  <button
+    style="background-color: #f5f5f5; color: #000; padding: 8px"
+    id="submitOrder"
+  >
+    Proceed to checkout
+  </button>
+</div>
+<div class="cusOverlay"></div>
+<script defer>
+  const cartItems = localStorage.getItem("cartList");
+  const _overlay = document.querySelector(".cusOverlay");
+  const buyModal = document.querySelector(".buyModal");
+  const closeModal = document.querySelector(".closeModal");
+  const submitOrder = document.querySelector("#submitOrder");
+  let totalPrice = 0;
+
+  submitOrder.addEventListener("click", () => {
+    buyModal.classList.add("active");
+    _overlay.classList.add("active");
+    let cartString = '';
+ 
+    document.querySelectorAll('.cartItem').forEach(cartItem=>{
+      cartString += `${cartItem.lastElementChild.firstElementChild.id}:${cartItem.lastElementChild.firstElementChild.nextElementSibling.innerText},`
+    })
+    document.getElementById('orderData').value = cartString
+  });
+
+  async function getItems() {
+    const options = {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    if (cartItems) {
+      const res = await fetch(`/getItems/${cartItems}`);
+      const data = await res.json();
+      let qtyMinus;
+      let qtyPlus;
+
+      data?.forEach((item) => {
+        addToTotal(item.price);
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cartItem");
+        cartItem.innerHTML = `
+      
+    <div class="cartImage">
+      <img src="/uploads/images/${item.mainImg}" alt="null" />
+    </div>
+    <div class="contentSection">
+        <span>${item.brandName}</span>
+        <span>${item.category}</span>
+        <span>Price: K${item.price}</span>
+    </div>
+    <div class="qtyControl" id="${item.price}">
+      <div class="qtyMinus" id="${item._id}">-</div>
+      <div class="qty">1</div>
+      <div class="qtyPlus">+</div>
+    </div>
+      `;
+        document.querySelector(".cartList").append(cartItem);
+      });
+
+      qtyMinus = document.querySelectorAll(".qtyMinus");
+      qtyPlus = document.querySelectorAll(".qtyPlus");
+
+      qtyMinus.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          if (parseInt(button.nextElementSibling.innerText) > 0) {
+            button.nextElementSibling.innerText =
+              parseInt(button.nextElementSibling.innerText) - 1;
+              minusTotalPrice(parseInt(button.parentElement.id));
+            
+          }
+          else if(parseInt(button.nextElementSibling.innerText) == 0){
+            const oldCart = localStorage.getItem("cartList");
+            const newCart = oldCart.replace(`${button.id},`, "");
+            localStorage.setItem("cartList", newCart);
+            document.getElementById('cartCounter').innerText = parseInt(document.getElementById('cartCounter').innerText)-1
+            button.parentElement.parentElement.remove()
+          }
+        });
+      });
+
+      qtyPlus.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          button.previousElementSibling.innerText =
+            parseInt(button.previousElementSibling.innerText) + 1;
+          addToTotal(parseInt(button.parentElement.id));
+        });
+      });
+
+      console.log(data);
+    }
+  }
+
+  getItems();
+
+  _overlay.addEventListener("click", () => {
+    buyModal.classList.remove("active");
+    _overlay.classList.remove("active");
+  });
+
+  closeModal.addEventListener("click", () => {
+    _overlay.classList.remove("active");
+    buyModal.classList.remove("active");
+  });
+
+  function addToTotal(price) {
+    totalPrice += price;
+    document.getElementById("totalPrice").innerText = `Total: K${totalPrice}`;
+  }
+
+  function minusTotalPrice(price) {
+    totalPrice -= price;
+    document.getElementById("totalPrice").innerText = `Total: K${totalPrice}`;
+  }
+  document.getElementById('submit').addEventListener('click',()=>{
+    const nameField = document.getElementById('name').value
+    const emailField = document.getElementById('email').value
+    const numberField = document.getElementById('Pnumber').value
+
+    if(nameField&&numberField){
+      localStorage.setItem('cartList', "")
+    }
+  })
+</script>
+
+<style>
+  .cartList {
+    display: flex;
+    width: 100%;
+    min-height: 450px;
+    max-height: 500px;
+    overflow-y: scroll;
+    flex-direction: column;
+    padding-top: 10px;
+    align-items: center;
+  }
+
+  .cartList .cartItem {
+    background-color: #f5f5f5;
+    box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.561);
+    box-shadow: #000;
+    height: 130px;
+    width: 97%;
+    max-width: 600px;
+    border-radius: 5px;
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .cartImage img {
+    width: 80px;
+    height: 80px;
+  }
+  .cartImage {
+    width: 30%;
+    margin: 5px;
+  }
+  .contentSection {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  .qtyControl {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-right: 10px;
+  }
+</style>

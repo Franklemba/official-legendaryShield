@@ -32,6 +32,11 @@ router.get('/uploadItem', (req, res) =>{
 
 const customOrder = require('../models/customSchema')
 const purchaseOrder = require('../models/purchaseSchema')
+
+// deleteMany({})
+//   .then(() => console.log('All items deleted'))
+//   .catch(err => console.error(err));
+
 router.get('/customOrders', async(req, res) =>{
     try {
         const customOrders = await customOrder.find({});
@@ -39,20 +44,63 @@ router.get('/customOrders', async(req, res) =>{
       } catch (err) {
         res.status(500).send(err);
       }
-   
-})  
- 
+})
+
+
 
 router.get('/orders', async(req, res) =>{
-    
     try {
         const purchaseOrders = await purchaseOrder.find({});
+        console.log(purchaseOrders)
         res.render('admin/orders', {purchaseOrders});
       } catch (err) {
         res.status(500).send(err);
       }
 })  
 
+router.post('/deletePurchaseOrder',async(req, res)=>{
+    const {} = req.body;
+ res.send('Delete purchase order route still working on this')
+    // try {
+    //     const purchaseOrders = await purchaseOrder.find({});
+    //     res.render('admin/orders', {purchaseOrders});
+    //   } catch (err) {
+    //     res.status(500).send(err);
+    //   }  
+})
+
+router.post('/updatePurchaseOrder',async(req, res)=>{
+    const {} = req.body;
+     res.send('Update purchase order route still working on this')
+    // try {
+    //     const purchaseOrders = await purchaseOrder.find({});
+    //     res.render('admin/orders', {purchaseOrders});
+    //   } catch (err) {
+    //     res.status(500).send(err);
+    //   }
+})
+
+router.post('/deleteCustomOrder',async(req, res)=>{
+    const {} = req.body;
+    res.send('Delete custom order route still working on this')
+    // try {
+    //     const customOrders = await purchaseOrder.find({});
+    //     res.render('admin/orders', {purchaseOrders});
+    //   } catch (err) {
+    //     res.status(500).send(err);
+    //   }  
+})
+
+router.post('/updateCustomOrder',async(req, res)=>{
+    const {} = req.body;
+        res.send('Update custom order route still working on this')
+    // try {
+    //     const customOrders = await purchaseOrder.find({});
+    //     res.render('admin/orders', {purchaseOrders});
+    //   } catch (err) {
+    //     res.status(500).send(err);
+    //   }
+})
 
 ///uploading  product
 router.post('/',multipleUploads,async (req,res)=>{
@@ -174,6 +222,7 @@ router.get('/:id', async (req,res)=>{
        }
     //    res.send(req.params.id)
 })
+
 
 
 

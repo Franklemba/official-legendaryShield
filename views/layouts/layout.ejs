@@ -110,8 +110,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
+
                 <li><a class="active" href="/">Home</a></li>
                 <li class="store"><a href="">Store </a></li>
                 <li><a href="/about">About us</a></li>
@@ -131,12 +131,13 @@
             </div>
     
         </div> 
-        <div class="icons"  >
+        <div class="icons" >
             <!-- <input type="search" name="item" id="itemSearched"> -->
             <i id="searchBar" class="fa fa-search"></i>
         </div>
         <div class="icons" >
-            <i class="fa fa-shopping-cart cart"></i>
+            <a href="/cart" class="fa fa-shopping-cart cart"></a>
+            <span id="cartCounter"></span>
         </div>
         <div id="mobile" style="font-size: 30px;">
             <!-- <i id="bar" class="fa fa-outdent"></i> -->
@@ -190,9 +191,27 @@
       </div>
     </footer>
 
+    <div class="screen">
+        <div class="content">
+          <button class="close-button">&times;</button>
+      Detailed Message Content Appears here
+        </div>
+      </div>
     <!-- After  -->
   </body>
   <script src="/Njs/bootstrap.js"></script>
   <script src="/js/script.js"></script>
+<<<<<<< HEAD
   <script src="/js/search.js"></script>
+=======
+  <script>
+const closeButton = document.querySelector('.close-button');
+const screen = document.querySelector('.screen');
+closeButton.addEventListener('click', () => {
+  screen.classList.remove('open');
+});
+   document.getElementById('cartCounter').innerText = localStorage.getItem('cartList').split(',').length -1
+  </script>
+  
+>>>>>>> 09b9e7012a5916b2ef354a6c5025dedc308d34e5
 </html>

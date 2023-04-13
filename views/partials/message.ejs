@@ -1,15 +1,10 @@
 <% if (locals.message !=null && locals.url !=null) { %>
     <div class="messageBg">
-
         <div class="message">
-    
               <p>
-                 
                 <%=message%>
-
               </p>
-
-           <button><a href=<%=url%> >cancel</a></button>
+           <button><a href=<%=url%> >Done</a></button>
         </div>
 
     </div>
@@ -30,9 +25,9 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                z-index: 999;
                 /* visibility: hidden; */
             }
-
             .message {
                 border-radius: 5px;
                 background-color: #dee7ef;
@@ -42,10 +37,10 @@
                 flex-wrap: nowrap;
                 justify-content: center;
                 align-items: center;
-                position: absolute;
+                position: fixed;
                 margin: auto;
                 width: 50%;
-                height: 40vh;
+                height: 30vh;
                 left: 20%;
                 box-shadow: 2px 2px 8px;
                 padding: 2%;

@@ -2,65 +2,104 @@
 
 <h2 class="adminHeader">Pending Orders</h2>
 <div class="orderOptions">
-    <button id="viewPending"><h3>Pending</h3></button>
+    <button id="viewPending" class="active"><h3>Pending</h3></button>
     <button id="viewProcessed"><h3>Processed</h3></button>
     
 </div>
-<section class="orderList pending active">
-    <% purchaseOrders?.forEach(order => { %>
-        <div class="orderItem">
-          <div>
-            <span class="contentSection">
-              <h5>Name: <%= order.name %></h5>
-              <h5>Email: <%= order.email %></h5>
-              <h5>Phone: <%= order.Pnumber %></h5>
-              <h5>Date: <%= order.purchasedAt.toLocaleString(); %></h5>
-            </span>
-            <span class="buttonSection">
-              <button class="markRead">Mark Read</button>
-              <button class="delete">Delete</button>
-            </span>
-          </div>
-        </div>
-        
-      <% }); %>
+<section class="orderList pending">
+  <% purchaseOrders?.forEach(order => { %>
+    <% if(!order.isRead){ %>
+     <div class="orderItem">
+       <div>
+         <span class="contentSection">
+           <h5>Name: <%= order.name %></h5>
+           <h5>Phone: <%= order.Pnumber %></h5>
+           <h5>Date: <%= order.purchasedAt.toLocaleString() %></h5>
+         </span>
+      
+          <form class="buttonSection">
+            <button class="markRead">Mark Read</button>
+            <button class="delete">Delete</button>
+          </form>
+         
+       </div>
+     </div>
+    <% } %>
+   <% }); %>
 </section>
 
 <section class="orderList processed">
     <% purchaseOrders?.forEach(order => { %>
-        <div class="orderItem">
+     
+       <% if(order.isRead){ %>
+        <div class="orderItem" data-items="">
           <div>
             <span class="contentSection">
               <h5>Name: <%= order.name %></h5>
-              <h5>Email: <%= order.email %></h5>
               <h5>Phone: <%= order.Pnumber %></h5>
-              <h5>Date: <%= order.purchasedAt.toLocaleString(); %></h5>
+              <h5>Date: <%= order.purchasedAt.toLocaleString() %></h5>
             </span>
-            <span class="buttonSection">
+            <form class="buttonSection">
               <button class="markRead">Mark Read</button>
               <button class="delete">Delete</button>
-            </span>
+            </form>
           </div>
         </div>
+       <% } %>
       <% }); %>
 </section>
 
-<script>
-    
-    const switchButtons = document.querySelectorAll('.orderOptions button')
-    const sections = document.querySelectorAll('section')
-    const adminHeader = document.querySelector('.adminHeader')
-    switchButtons.forEach(button=>{
-        button.addEventListener('click',()=>{
-            sections.forEach(section=>{
-                section.classList.toggle('active');
-            })
-            if(button.innerText == 'Processed'){
-                adminHeader.innerText = 'Processed Orders'
-            }else{
-                adminHeader.innerText = 'Pending Orders'
-            }
-            
-        })
-    })
+<script defer>
+const switchButtons = document.querySelectorAll('.orderOptions button');
+const sections = document.querySelectorAll('section');
+const adminHeader = document.querySelector('.adminHeader');
+
+switchButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    switchButtons.forEach((button) => {
+      button.classList.remove('active');
+    });
+
+    sections.forEach((section) => {
+      section.classList.remove('active');
+    });
+
+    button.classList.add('active');
+    sections[index].classList.add('active');
+
+    if (button.innerText == 'Processed') {
+      adminHeader.innerText = 'Processed Orders';
+    } else {
+      adminHeader.innerText = 'Pending Orders';
+    }
+  });
+});
+
+const orderItems = document.querySelectorAll(".orderItem");
+
+orderItems.forEach((orderItem) => {
+    orderItem.addEventListener("click", () => {
+      console.log(orderItem.getAttribute('data-items'));
+      screen.classList.add('open');
+    });
+  });
+
+  const form = document.querySelector('.buttonSection');
+const markReadButton = document.querySelector('.markRead');
+const deleteButton = document.querySelector('.delete');
+
+
+
+deleteButton.addEventListener('click', () => {
+  form.action = '/admin/deletePurchaseOrder';
+  form.method = 'post'
+  form.submit();
+});
+
+markReadButton.addEventListener('click', () => {
+  form.action = '/admin/updatePurchaseOrder';
+  form.method = 'post'
+  form.submit();
+});
 </script>
+

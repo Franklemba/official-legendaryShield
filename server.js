@@ -48,12 +48,12 @@ app.use(session({
     saveUninitialized: false    
   }));
 
-  
-  app.use(flash());
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 // Configure Passport
 require('./config/passport')(passport);
+
 
 app.use('/',indexRouter );
 // app.use('/collections', categoryRouter)
