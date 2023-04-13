@@ -186,11 +186,23 @@
       </div>
     </footer>
 
+    <div class="screen">
+        <div class="content">
+          <button class="close-button">&times;</button>
+      Detailed Message Content Appears here
+        </div>
+      </div>
     <!-- After  -->
   </body>
   <script src="/Njs/bootstrap.js"></script>
   <script src="/js/script.js"></script>
   <script>
-    document.getElementById('cartCounter').innerText = localStorage.getItem('cartList').split(',').length -1
+const closeButton = document.querySelector('.close-button');
+const screen = document.querySelector('.screen');
+closeButton.addEventListener('click', () => {
+  screen.classList.remove('open');
+});
+   document.getElementById('cartCounter').innerText = localStorage.getItem('cartList').split(',').length -1
   </script>
+  
 </html>

@@ -14,10 +14,6 @@ const purchaseSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    totalPrice: {
-        type: Number,
-        required: true
-    },
     cart:{
         type: Array,
         required: true
