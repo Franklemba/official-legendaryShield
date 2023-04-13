@@ -5,6 +5,8 @@ router.get('/', (req,res)=>{
     res.render('home/index')
 })
 
+
+
 router.get('/about', (req, res) => {
     res.render('home/about')
     // res.send('we run this shit')
@@ -39,6 +41,15 @@ router.post('/buy/:id', async(req,res)=>{
  
 })
 
+router.post('/search', (req,res)=>{
+    let keyword = req.body.item;
+    const customArray = ["wallets","flasks","phone pouches","diaries","special customization"];
+    if(customArray.includes(keyword) == true){
+        res.redirect("/custom")
+    }else{
+        res.redirect(`/store/${keyword}`)
+    }
+})
 
 module.exports = router;
 
