@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const path = require('path')
 const customImgPath = 'uploads/customImages'
+var _uuid = require("uuid");
 
 const customSchema = new mongoose.Schema({
     name: {
@@ -42,8 +43,11 @@ const customSchema = new mongoose.Schema({
         type: Boolean,
         required: false,
         default: false
-
     },
+    _id:{
+        type:String,
+        default:_uuid.v4()
+    }
     
 })
 

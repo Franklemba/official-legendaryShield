@@ -72,7 +72,7 @@ router.post("/makeOrder", async (req, res) => {
 router.post("/customOrder/:id", async (req, res) => {
   const id = req.params.id;
   console.log(id)
-  customOrder.findOne({_id:id})
+  customOrder.findOne({_id:`${id}`})
     .then(order => {
       console.log('oder is'+order);
       res.json(order);
@@ -86,7 +86,7 @@ router.post("/customOrder/:id", async (req, res) => {
 router.post("/purchaseOrder/:id", async (req, res) => {
   const id = req.params.id;
 console.log(id)
-  purchaseOrder.findOne({_id:id})
+  purchaseOrder.findOne({_id:`${id}`})
     .then(order => {
       
 

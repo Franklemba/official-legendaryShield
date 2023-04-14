@@ -44,6 +44,12 @@ const purchaseOrder = require("../models/purchaseSchema");
 //   .then(() => console.log('All items deleted'))
 //   .catch(err => console.error(err));
 
+//   customOrder.deleteMany({})
+//   .then(() => console.log('All items deleted'))
+//   .catch(err => console.error(err));
+
+
+
 router.get("/customOrders", async (req, res) => {
   try {
     const customOrders = await customOrder.find({});
