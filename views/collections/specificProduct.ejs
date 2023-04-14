@@ -38,39 +38,25 @@
 </section>
 <style>
     .itemsContainer{
-        width: 100%;
-        padding: 10%;
-        display: grid;
+        display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        grid-gap: 10px;
-        grid: auto / auto auto  ;
+    }
+    .pro img{
+        height: 40vh;
     }
     .pro-container-sub{
         width: fit-content;
         margin: 2%;
     }
     
-    .pro img{
-        height: 40vh;
-    }
     @media (max-width: 799px) {
-        .pro-container-sub{
-            width: fit-content;
-            margin: 2%;
-        }
         .pro img{
-            height: 20vh;
+            height: 30vh;
         }
     }
     @media (max-width: 477px) {
-            .itemsContainer{
-                grid: auto / auto  ;
-            }
-            .pro-container-sub{
-                width: fit-content;
-                margin: 2%;
-            }
             .pro img{
                 height: 25vh;
             }

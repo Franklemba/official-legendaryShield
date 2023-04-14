@@ -97,4 +97,15 @@ console.log(id)
     });
 });
 
+
+router.post('/search', (req,res)=>{
+    let keyword = req.body.item;
+    const customArray = ["wallets","flasks","phone pouches","diaries","special customization"];
+    if(customArray.includes(keyword) == true){
+        res.redirect("/custom")
+    }else{
+        res.redirect(`/store/${keyword}`)
+    }
+})
+
 module.exports = router;

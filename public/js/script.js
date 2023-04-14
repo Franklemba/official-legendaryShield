@@ -10,6 +10,7 @@ let storeNavbar = document.querySelector('.storeNavbar');
 let storeNavbarClose = document.querySelector('.storeNavbarClose');
 let check = true
 
+
 bar.addEventListener('click',()=>{
     navbar.classList.add('active');
     overlay.classList.add('active');

@@ -113,15 +113,20 @@
                 </div>
 
                 <li><a class="active" href="/">Home</a></li>
-                <li class="store">Store <span><strong>></strong></span></li>
+                <li class="store"><a href="">Store </a></li>
                 <li><a href="/about">About us</a></li>
                 <li><a href="/user"><i id="userBar" class="fa fa-user" ></i></a></li>
 
             </ul>
             <div class="search">
-                <form action="/" method="get">
-                    <input type="search" name="item" id="itemSearched" placeholder="search...">
-                    <i id="searchBarSubmit" class="fa fa-search"></i>
+                <form action="/search" method="post" id="submitForm">
+                    <div class="search-input">
+                        <input type="search" name="item" id="itemSearched" placeholder="search...">
+                        <div class="autocom-box">
+
+                        </div>
+                        <i id="searchBarSubmit" class="fa fa-search"></i>
+                    </div>
                 </form>
             </div>
     
@@ -201,6 +206,9 @@
   </body>
   <script src="/Njs/bootstrap.js"></script>
   <script src="/js/script.js"></script>
+<<<<<<< HEAD
+  <script src="/js/search.js"></script>
+=======
   <script>
 const closeButton = document.querySelector('.close-button');
 const screen = document.querySelector('.screen');
@@ -210,4 +218,5 @@ closeButton.addEventListener('click', () => {
    document.getElementById('cartCounter').innerText = localStorage.getItem('cartList').split(',').length -1
   </script>
   
+>>>>>>> 09b9e7012a5916b2ef354a6c5025dedc308d34e5
 </html>
