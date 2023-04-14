@@ -37,7 +37,14 @@ const customSchema = new mongoose.Schema({
         type: String,
         required: true  
     },
-    images:[String]
+    images:[String],
+    isDeleted:{
+        type: Boolean,
+        required: false,
+        default: false
+
+    },
+    
 })
 
 customSchema.virtual('customImgPath').get(function(){

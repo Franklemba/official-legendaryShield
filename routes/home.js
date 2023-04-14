@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const customOrder = require('../models/customSchema')
 const purchaseOrder = require("../models/purchaseSchema");
 const Product = require("../models/uploadSchema");
 
@@ -32,36 +33,68 @@ router.get("/getItems/:list", async (req, res) => {
 
 router.post("/makeOrder", async (req, res) => {
   const { name, email, Pnumber, orderData } = req.body;
-  const orderList = orderData.split(',');
-  let orderArray = []
-  orderList.forEach(item=>{
-    if(item != ''){
-      orderArray.push({itemId:item.split(':')[0], quantity:item.split(':')[1]})
+  const orderList = orderData.split(",");
+  let orderArray = [];
+  orderList.forEach((item) => {
+    if (item != "") {
+      orderArray.push({
+        itemId: item.split(":")[0],
+        quantity: item.split(":")[1],
+      });
     }
-  })
-console.log( orderArray )
+  });
+  console.log(orderArray);
   const newOrder = new purchaseOrder({
     name,
     email,
     cart: orderArray,
     Pnumber,
   });
-  
-    newOrder.save().then(()=>{
+
+  newOrder
+    .save()
+    .then(() => {
       console.log("product successfully saved");
       res.render("home/index", {
         message: "Order Successfully Made, press cancel to return",
         url: "/",
       });
-    }).catch((err)=>{
+    })
+    .catch((err) => {
       res.render("home/index", {
         message: "Something went wrong, press cancel to return",
         url: "/",
       });
-      console.log(err)
+      console.log(err);
+    });
+});
+
+router.post("/customOrder/:id", async (req, res) => {
+  const id = req.params.id;
+  console.log(id)
+  customOrder.findOne({_id:id})
+    .then(order => {
+      console.log('oder is'+order);
+      res.json(order);
     })
-  
-  
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+
+router.post("/purchaseOrder/:id", async (req, res) => {
+  const id = req.params.id;
+console.log(id)
+  purchaseOrder.findOne({_id:id})
+    .then(order => {
+      
+
+      res.json(order);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 module.exports = router;

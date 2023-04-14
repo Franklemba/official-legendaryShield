@@ -56,3 +56,6 @@ window.onscroll =() =>{
     // storeNavbar.classList.remove('active');
     check = true;
 }
+
+
+

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+var _uuid = require("uuid");
 
 const purchaseSchema = new mongoose.Schema({
     name: {
@@ -28,7 +28,18 @@ const purchaseSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    isDeleted:{
+        type: Boolean,
+        required: false,
+        default: false
+
+    },
+    _id:{
+        type:String,
+        default:_uuid.v4()
     }
+    
 })
 
 
