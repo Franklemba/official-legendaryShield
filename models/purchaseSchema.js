@@ -37,7 +37,7 @@ const purchaseSchema = new mongoose.Schema({
     },
     _id:{
         type:String,
-        default:_uuid.v4()
+        default:mongoose.Types.ObjectId()
     }
     
 })

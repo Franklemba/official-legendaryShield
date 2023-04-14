@@ -139,7 +139,7 @@
 
   
   orderItems.forEach(orderItem=>{
-    orderItem.addEventListener('click', async()=>{
+    orderItem.firstElementChild.firstElementChild.addEventListener('click', async()=>{
       screen.classList.add('open')
       const options = {
         method: 'POST',
@@ -169,8 +169,9 @@
           <h4>Date: ${data.requestedAt.toLocaleString()}</h4>
           <br>
           <br>
-          <img style="width:340px; height:340px;" src="${data.ImgLink}"/>
-          <img src="${data.images[0]}"/>
+          <h4>Attached Image</h4>
+          <img style="width:340px; height:340px;" src="${data.images[0]}"/>
+          
          
         `;
     

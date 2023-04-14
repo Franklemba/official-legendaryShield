@@ -3,7 +3,7 @@ const router = express.Router();
 const customOrder = require('../models/customSchema')
 const purchaseOrder = require("../models/purchaseSchema");
 const Product = require("../models/uploadSchema");
-
+const mongoose = require('mongoose')
 router.get("/", (req, res) => {
   res.render("home/index");
 });
@@ -33,6 +33,7 @@ router.get("/getItems/:list", async (req, res) => {
 
 router.post("/makeOrder", async (req, res) => {
   const { name, email, Pnumber, orderData } = req.body;
+  console.log(orderData)
   const orderList = orderData.split(",");
   let orderArray = [];
   orderList.forEach((item) => {
@@ -43,8 +44,9 @@ router.post("/makeOrder", async (req, res) => {
       });
     }
   });
-  console.log(orderArray);
+
   const newOrder = new purchaseOrder({
+    _id: new mongoose.Types.ObjectId(),
     name,
     email,
     cart: orderArray,

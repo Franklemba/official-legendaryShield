@@ -8,6 +8,7 @@ const ImagesPath = path.join('public',customProduct.customImgPath);
 const imageMimeType = ['image/jpeg','image/png','image/gif','image/png','image/webp']
 
 
+const mongoose = require('mongoose')
 const imagesUpload = multer({
     dest:ImagesPath,
     fileFilter: (req, file, callback)=>{
@@ -28,6 +29,7 @@ router.post('/',multipleUploads,async (req,res)=>{
         imagesArray.push(data.filename)
     })
     const cProduct = new customProduct({
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         email: req.body.email,
         quantity: req.body.quantity,
