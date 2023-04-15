@@ -9,7 +9,7 @@ let store = document.querySelector('.store');
 let storeNavbar = document.querySelector('.storeNavbar');
 let storeNavbarClose = document.querySelector('.storeNavbarClose');
 let check = true
-
+let logo = document.querySelector(".logo")
 
 bar.addEventListener('click',()=>{
     navbar.classList.add('active');

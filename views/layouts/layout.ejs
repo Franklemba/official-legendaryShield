@@ -22,9 +22,18 @@
     </div>
      <!-- Header Section -->
      <section id="header">
+
+        <div class="icons" id="cart" >
+            <a href="/cart" class="fa fa-shopping-cart cart"></a>
+            <span id="cartCounter"></span>
+        </div>
        
-        
-        <div>
+        <div class="logo">
+            <a href="/">
+                <img src="/images/lsiLogo.png" class="logo" alt="Legendary Shield">
+            </a>
+        </div>
+        <div class="menuContent">
             <ul id="navbar">
                 <div class="storeNavbar">
                     <span class="storeNavbarClose" >x</span>
@@ -111,6 +120,7 @@
                 <li><a class="active" href="/">Home</a></li>
                 <li class="store"><a href="">Store </a></li>
                 <li><a href="/about">About us</a></li>
+                <li><i id="searchBar" class="fa fa-search"></i></li>
                 <li><a href="/user"><i id="userBar" class="fa fa-user" ></i></a></li>
 
             </ul>
@@ -127,22 +137,16 @@
             </div>
     
         </div> 
-        <div class="icons" >
-            <!-- <input type="search" name="item" id="itemSearched"> -->
-            <i id="searchBar" class="fa fa-search"></i>
-        </div>
-        <div class="logo">
-            <a href="/">
-                <img src="/images/lsiLogo.png" class="logo" alt="Legendary Shield">
-            </a>
-        </div>
-        <div class="icons" >
-            <a href="/cart" class="fa fa-shopping-cart cart"></a>
-            <span id="cartCounter"></span>
-        </div>
-        <div id="mobile" style="font-size: 30px;">
-            <!-- <i id="bar" class="fa fa-outdent"></i> -->
-            <i id="bar" class="fa fa-bars" aria-hidden="true"></i>
+        <div class="iconsMobile">
+
+            
+            <div id="mobile" style="font-size: 30px;">
+                <!-- <i id="bar" class="fa fa-outdent"></i> -->
+                <i id="bar" class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+            <!-- <div class="icons" >
+                <i id="searchBar" class="fa fa-search"></i>
+            </div> -->
         </div>
         
      </section>
