@@ -56,9 +56,7 @@ require('./config/passport')(passport);
 
 
 app.use('/',indexRouter );
-// app.use('/collections', categoryRouter)
-// app.use('/store',storeRouter);
-// app.use('/admin', adminRouter);
+
 app.use('/custom', customRouter);
 // app.use('/collections', categoryRouter)
 app.use('/store',storeRouter);
