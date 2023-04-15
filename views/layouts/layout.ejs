@@ -17,18 +17,13 @@
 </head>
 <body>
     <!-- Before  -->
-
     <div class="overlay">
-        <h1>x</h1>
-     </div>
+        
+    </div>
      <!-- Header Section -->
      <section id="header">
        
-        <div class="logo">
-            <a href="/">
-                <img src="/images/lsiLogo.png" class="logo" alt="Legendary Shield">
-            </a>
-        </div>
+        
         <div>
             <ul id="navbar">
                 <div class="storeNavbar">
@@ -94,6 +89,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -134,6 +130,11 @@
         <div class="icons" >
             <!-- <input type="search" name="item" id="itemSearched"> -->
             <i id="searchBar" class="fa fa-search"></i>
+        </div>
+        <div class="logo">
+            <a href="/">
+                <img src="/images/lsiLogo.png" class="logo" alt="Legendary Shield">
+            </a>
         </div>
         <div class="icons" >
             <a href="/cart" class="fa fa-shopping-cart cart"></a>
@@ -201,6 +202,10 @@
                 
             </section>
         </div>
+      </div>
+
+      <div id="screenLoader">
+        <%- include('../partials/loader') %>
       </div>
     <!-- After  -->
   </body>

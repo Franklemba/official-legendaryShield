@@ -6,6 +6,8 @@
 @import "shared/admin.css";
 @import "shared/auth.css";
 
+@import "shared/loader.css";
+
 * {
   margin: 0px;
   padding: 0px;
@@ -267,6 +269,7 @@ body {
   .row .inputbox {
     padding: 5px;
     font-size: 20%;
+    background-color: rgb(210, 210, 210);
   }
 
   .row .inputbox input {
