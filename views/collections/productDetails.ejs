@@ -148,8 +148,8 @@
     </div>
 
     <hr />
-    <div class="buttons">
-      <div id="buyBtn">
+    <div class="buttons" >
+      <div id="buyBtn" id="<%=product._id%>">
         <span>
           <a style="color: white; text-decoration: none" href="/cart">Buy it now</a>
         </span>
@@ -181,7 +181,7 @@
   let currCart = localStorage.getItem("cartList");
 
   buyButton.addEventListener("click", () => {
-    if (!currCart.includes(addToCartButton.id)) {
+    if (!currCart.includes(addToCartButton.id) && addToCartButton.innerText == "Added") {
       addToCartButton.innerText = "Added";
       if (localStorage.getItem("cartList") != null) {
         localStorage.setItem(

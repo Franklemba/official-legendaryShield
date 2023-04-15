@@ -10,17 +10,23 @@ module.exports = function(passport) {
       User.findOne({ userName: userName })
         .then(user => {
           if (!user) {
-            console.log('That email is not registered' )
+           // console.log('That email is not registered' )
             return done(null, false, { message: 'That email is not registered' });
           }
           // Match password
           bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
+              if(userName == "Legendary Admin"){
+                return done(null, user,{userType:'admin'});
+
+              }else{
+                return done(null, user,{userType:'designer'});
+
+              }
                 console.log('logged in')
-              return done(null, user);
             } else {
-                console.log('Password incorrect')
+               // console.log('Password incorrect')
               return done(null, false, { message: 'Password incorrect' });
             }
           });

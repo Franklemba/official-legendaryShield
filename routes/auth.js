@@ -3,6 +3,9 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const router = express.Router();
 const User = require('../models/adminUserSchema');
+User.deleteMany({})
+  .then(() => console.log('All items deleted'))
+  .catch(err => console.error(err));
 
 router.get('/', (req, res) =>{
     res.render('auth/login');
@@ -27,7 +30,7 @@ router.get('/registerdesigner/:username/:password',(req, res) =>{
 });
 
 router.post('/loginAdmin', (req, res, next)=>{
-  console.log(req.body)
+
     passport.authenticate('local', {
       successRedirect: '/admin',
       failureRedirect: '/auth/login',

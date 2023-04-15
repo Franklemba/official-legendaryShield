@@ -29,8 +29,14 @@ const multipleUploads = imagesUpload.fields([
 ]);
 
 ///create product
+
 router.get("/", (req, res) => {
-  res.render("admin/startOptions");
+  console.log(req.user)
+  if(req.user.userName == 'Legendary Admin'){
+    res.render("admin/adminOptions");
+  }else{
+    res.render("admin/designerOptions");
+  }
 });
 
 router.get("/uploadItem", (req, res) => {
@@ -40,9 +46,6 @@ router.get("/uploadItem", (req, res) => {
 const customOrder = require("../models/customSchema");
 const purchaseOrder = require("../models/purchaseSchema");
 
-// purchaseOrder.deleteMany({})
-//   .then(() => console.log('All items deleted'))
-//   .catch(err => console.error(err));
 
 //   customOrder.deleteMany({})
 //   .then(() => console.log('All items deleted'))
