@@ -125,11 +125,11 @@ body {
 
 
 #carouselExampleControls .carousel-item .imgText p {
-  font-size: 50px;
-  font-weight: 500;
+  font-size: 80px;
+  font-weight: 400;
   font-stretch: expanded;
-  color: #cce7d0;
-  text-shadow: 2px 4px 4px rgba(14, 14, 15, 0.6);
+  color: #ffffff;
+  text-shadow: 2px 4px 4px rgba(7, 7, 12, 0.6);
 }
 .prevBtn,
 .nextBtn {
