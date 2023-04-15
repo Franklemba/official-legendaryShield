@@ -32,7 +32,7 @@ const multipleUploads = imagesUpload.fields([
 
 router.get("/", (req, res) => {
   console.log(req.user)
-  if(req.user.userName == 'Legendary Admin'){
+  if(req.user.userName == 'LegendaryAdmin'){
     res.render("admin/adminOptions");
   }else{
     res.render("admin/designerOptions");
