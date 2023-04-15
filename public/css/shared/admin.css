@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 10px 1px black;
+  box-shadow: 0px 0px 4px 0.5px rgb(0, 0, 0);
   border-radius: 4px;
 }
 
@@ -51,19 +51,23 @@ form button {
 .orderList {
   display: none;
   width: 100%;
-  min-height: 450px;
-  max-height: 640px;
+  min-height: 70vh;
+  max-height: 70vh;
   overflow-y: scroll;
 flex-direction: column;
   padding-top: 10px;
   align-items: center;
+  box-shadow: inset 0px 0px 4px 0.3px rgb(83, 83, 83);
 }
+
+
+
 .orderList.active{
   display: flex;
 }
 .orderList .orderItem {
   background-color: #f5f5f5;
-  box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.561);
+  box-shadow: 0px 0px 4px 0.7px rgba(0, 0, 0, 0.561);
   box-shadow: #000;
   height: 130px;
   width: 97%;
@@ -156,4 +160,85 @@ gap: 10px;
 .orderOptions button.active {
   background-color: green;
   color: white;
+}
+
+.button-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+button:not(.active) {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+button:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.button-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+button {
+  font-size: 20px;
+  padding: 10px 40px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+button.active {
+  background-color: #373737;
+  color: white;
+}
+
+button:not(.active) {
+  background-color: #f1f1f1;
+  color: black;
+  border: 1px solid #ddd;
+}
+
+button:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.trashContainer{
+width: 100%;
+display: flex;
+align-items: flex-end;
+justify-content: flex-end;
+}
+
+button#deleted-btn.active {
+  background-color: #ff5959;
+  color: rgb(0, 0, 0);
+  
+}
+
+
+#deleted-btn i{
+ 
+ font-size: 25px;
 }

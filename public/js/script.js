@@ -56,5 +56,7 @@ window.onscroll =() =>{
     search.classList.remove('active');
     // storeNavbar.classList.remove('active');
     check = true;
-    // logo.style.height = "80px";
 }
+
+
+

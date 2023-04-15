@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: false }))
 
 const mongoose = require("mongoose");
 
+
 //global database connection
    // online connection////
    mongoose.set('strictQuery', true);
@@ -47,7 +48,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false    
   }));
-
+  
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());

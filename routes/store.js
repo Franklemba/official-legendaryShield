@@ -22,7 +22,6 @@ router.get('/:categoryName', async (req,res)=>{
 
     try{
         if(product != ''){
-   
             res.render('collections/specificProduct',{
                 productName: stripedCategoryName,
                 products: product

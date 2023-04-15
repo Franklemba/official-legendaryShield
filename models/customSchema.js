@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const path = require('path')
 const customImgPath = 'uploads/customImages'
+var _uuid = require("uuid");
 
 const customSchema = new mongoose.Schema({
     name: {
@@ -37,7 +38,17 @@ const customSchema = new mongoose.Schema({
         type: String,
         required: true  
     },
-    images:[String]
+    images:[String],
+    isDeleted:{
+        type: Boolean,
+        required: false,
+        default: false
+    },
+    _id:{
+        type:String,
+        default:mongoose.Types.ObjectId()
+    }
+    
 })
 
 customSchema.virtual('customImgPath').get(function(){

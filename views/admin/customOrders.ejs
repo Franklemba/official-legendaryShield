@@ -1,106 +1,195 @@
 <!-- <link rel="stylesheet" href="/css/style.css" /> -->
 <style></style>
-<h2 class="adminHeader">Pending Orders</h2>
+<h2 class="adminHeader">Custom Orders</h2>
 
-<div class="orderOptions">
-  <button id="viewPending" class="active"><h3>Pending</h3></button>
-  <button id="viewProcessed"><h3>Processed</h3></button>
+<div class="button-section">
+  <button id="pending-btn" class="active" onclick="toggleButton('pending-btn')">
+    Pending
+  </button>
+  <button id="processed-btn" onclick="toggleButton('processed-btn')">
+    Processed
+  </button>
 </div>
 
-<section class="orderList pending">
-  <% customOrders.forEach(order => { %>
-    <% if(!order.isRead){ %>
-      <div class="orderItem">
-        <div>
-          <span class="contentSection">
-            <h5>Name: <%= order.name %></h5>
-            <!-- <h5>Email: <%= order.email %></h5> -->
-            <h5>Phone: <%= order.Pnumber %></h5>
-            <h5>Date: <%= order.requestedAt.toLocaleString(); %></h5>
-          </span>
-          <form class="buttonSection">
-            <button class="markRead">Mark Read</button>
-            <button class="delete">Delete</button>
-          </form>
-        </div>
-      </div>
-    <% } %>
-  <% }); %>
+<section class="orderList pending active" id="pending-btn" >
+  <% customOrders.forEach(order => { %> <% if(order.isRead == false && order.isDeleted == false){ %>
+  <div class="orderItem" id="<%= order._id %>">
+    <div>
+      <span class="contentSection">
+        <h5>Name: <%= order.name %></h5>
+        <!-- <h5>Email: <%= order.email %></h5> -->
+        <h5>Phone: <%= order.Pnumber %></h5>
+        <h5>Date: <%= order.requestedAt.toLocaleString(); %></h5>
+      </span>
+      <form class="buttonSection" id="<%= order._id %>">
+        <button class="markRead">Mark Read</button>
+        <button class="delete">Delete</button>
+      </form>
+    </div>
+  </div>
+  <% } %> <% }) %>
 </section>
 
-<section class="orderList processed">
-  <% customOrders.forEach(order => { %>
-    <% if(order.isRead){ %>
-      <div class="orderItem">
-        <div>
-          <span class="contentSection">
-            <h5>Name: <%= order.name %></h5>
-            <!-- <h5>Email: <%= order.email %></h5> -->
-            <h5>Phone: <%= order.Pnumber %></h5>
-            <h5>Date: <%= order.requestedAt.toLocaleString(); %></h5>
-          </span>
-          <form class="buttonSection">
-            <button class="markRead">Mark Read</button>
-            <button class="delete">Delete</button>
-          </form>
-        </div>
-      </div>
-    <% } %>
-  <% }); %>
+<section class="orderList processed" id="processed-btn" >
+  <% customOrders.forEach(order => { %> <% if(order.isRead == true && order.isDeleted == false){ %>
+  <div class="orderItem" id="<%= order._id %>">
+    <div>
+      <span class="contentSection">
+        <h5>Name: <%= order.name %></h5>
+        <!-- <h5>Email: <%= order.email %></h5> -->
+        <h5>Phone: <%= order.Pnumber %></h5>
+        <h5>Date: <%= order.requestedAt.toLocaleString(); %></h5>
+      </span>
+      <form class="buttonSection" id="<%= order._id %>">
+        <button class="markRead">Mark Unread</button>
+        <button class="delete">Delete</button>
+      </form>
+    </div>
+  </div>
+  <% } %> <% }); %>
 </section>
 
+<section class="orderList processed" id="deleted-btn" >
+  <% customOrders.forEach(order => { %> <% if(order.isDeleted == true){ %>
+  <div class="orderItem" id="<%= order._id %>">
+    <div>
+      <span class="contentSection">
+        <h5>Name: <%= order.name %></h5>
+        <!-- <h5>Email: <%= order.email %></h5> -->
+        <h5>Phone: <%= order.Pnumber %></h5>
+        <h5>Date: <%= order.requestedAt.toLocaleString(); %></h5>
+      </span>
+      <form class="buttonSection" id="<%= order._id %>">
+        <button class="markRead restore">Undo delete</button>
+        <button class="erase">Erase</button>
+      </form>
+    </div>
+  </div>
+  <% } %> <% }); %>
+</section>
 
+<div class="trashContainer">
+  <button id="deleted-btn" onclick="toggleButton('deleted-btn')"> <i class="fa fa-trash"></i></button>
+</div>
 
 <script>
-  const switchButtons = document.querySelectorAll('.orderOptions button');
-  const sections = document.querySelectorAll('section');
-  const adminHeader = document.querySelector('.adminHeader');
-  
-  switchButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-      switchButtons.forEach((button) => {
-        button.classList.remove('active');
+  const switchButtons = document.querySelectorAll(".orderOptions button");
+  const sections = document.querySelectorAll("section");
+  const adminHeader = document.querySelector(".adminHeader");
+
+  const forms = document.querySelectorAll(".buttonSection");
+  const markReadButtons = document.querySelectorAll(".markRead");
+  const deleteButtons = document.querySelectorAll(".delete");
+  const eraseButtons = document.querySelectorAll('.erase');
+  const orderItems = document.querySelectorAll('.orderItem')
+
+
+  deleteButtons.forEach((deleteButton) => {
+    deleteButton.addEventListener("click", () => {
+      forms.forEach((form) => {
+        if (form.id == deleteButton.parentElement.id) {
+          form.action = `/admin/updateCustomOrder/${form.id}/delete`;
+          form.method = "post";
+          form.submit();
+        }
       });
-  
-      sections.forEach((section) => {
-        section.classList.remove('active');
+    });
+
+  });
+
+  markReadButtons.forEach((markReadButton) => {
+    markReadButton.addEventListener("click", () => {
+      const state = markReadButton.innerText =='Mark Read'?"read":"unread"
+      forms.forEach((form) => {
+        if (form.id == markReadButton.parentElement.id) {
+          form.action = `/admin/updateCustomOrder/${form.id}/${state}`;
+          form.method = "post";
+          form.submit();
+        }
       });
-  
-      button.classList.add('active');
-      sections[index].classList.add('active');
-  
-      if (button.innerText == 'Processed') {
-        adminHeader.innerText = 'Processed Orders';
-      } else {
-        adminHeader.innerText = 'Pending Orders';
-      }
+    });
+  });
+
+  document.querySelectorAll('.restore').forEach((markReadButton) => {
+    markReadButton.addEventListener("click", () => {
+    
+      forms.forEach((form) => {
+        if (form.id == markReadButton.parentElement.id) {
+          form.action = `/admin/updateCustomOrder/${form.id}/restore`;
+          form.method = "post";
+          form.submit();
+        }
+      });
+    });
+  });
+
+
+  eraseButtons.forEach((eraseButton) => {
+    eraseButton.addEventListener("click", () => {
+     
+      forms.forEach((form) => {
+        if (form.id == eraseButton.parentElement.id) {
+          form.action = `/admin/updateCustomOrder/${form.id}/erase`;
+          form.method = "post";
+          form.submit();
+        }
+      });
     });
   });
 
   
-  const orderItems = document.querySelectorAll(".orderItem");
-  
-  orderItems.forEach((orderItem) => {
-    orderItem.addEventListener("click", () => {
-      console.log(orderItem.getAttribute("data-info"));
-      screen.classList.add('open');
+  orderItems.forEach(orderItem=>{
+    orderItem.firstElementChild.firstElementChild.addEventListener('click', async()=>{
+      screen.classList.add('open')
+      const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id:orderItem.id
+        })
+    }
+    const res = await fetch(`/customOrder/${orderItem.id}`, options);
+    const data = await res.json()
+    console.log(data)
+        // Update the HTML with the detailed message information
+        const messageDetails = `
+        <br>
+          <h4>Name: ${data.name}</h4>
+          <br>
+          <h4>Number: ${data.Pnumber}</h4>
+          <br>
+          <h4>Email: ${data.email}</h4>
+          <br>
+          <h4>Qty: ${data.quantity}</h4>
+          <br>
+          <h4>Description${data.description}</h4>
+          <br>
+          <h4>Date: ${data.requestedAt.toLocaleString()}</h4>
+          <br>
+          <br>
+          <h4>Attached Image</h4>
+          <img style="width:340px; height:340px;" src="${data.images[0]}"/>
+          
+         
+        `;
+    
+        document.querySelector('.screen .content section').innerHTML = messageDetails;
+    
+    })
+  })
+
+
+  function toggleButton(id) {
+    var activeBtn = document.querySelector("button.active");
+    activeBtn.classList.remove("active");
+
+    document.querySelector(`button#${id}`).classList.add("active");
+    sections.forEach((section) => {
+      section.classList.remove("active");
     });
-
-    const form = document.querySelector('.buttonSection');
-const markReadButton = document.querySelector('.markRead');
-const deleteButton = document.querySelector('.delete');
-
-deleteButton.addEventListener('click', () => {
-  form.action = '/admin/deleteCustomOrder';
-form.method = 'post'
-  form.submit();
-});
-
-markReadButton.addEventListener('click', () => {
-  form.action = '/admin/updateCustomOrder';
-  form.method = 'post'
-  form.submit();
-});
-
-  });
-  </script>
+    document.querySelector(`section#${id}`).classList.add("active");
+  
+  }
+</script>
