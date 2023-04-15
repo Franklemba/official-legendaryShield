@@ -47,9 +47,13 @@ const customOrder = require("../models/customSchema");
 const purchaseOrder = require("../models/purchaseSchema");
 
 
-//   customOrder.deleteMany({})
-//   .then(() => console.log('All items deleted'))
-//   .catch(err => console.error(err));
+  customOrder.deleteMany({})
+  .then(() => console.log('All items deleted'))
+  .catch(err => console.error(err));
+
+  purchaseOrder.deleteMany({})
+  .then(() => console.log('All items deleted'))
+  .catch(err => console.error(err));
 
 
 
