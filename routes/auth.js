@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const router = express.Router();
 const User = require('../models/adminUserSchema');
-User.deleteMany({})
-  .then(() => console.log('All items deleted'))
-  .catch(err => console.error(err));
+// User.deleteMany({})
+//   .then(() => console.log('All items deleted'))
+//   .catch(err => console.error(err));
 
 router.get('/', (req, res) =>{
     res.render('auth/login');
