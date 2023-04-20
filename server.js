@@ -12,7 +12,7 @@ require('./config/passport')(passport);
 const { ensureAuthenticated} = require('./config/auth');
 
 const indexRouter = require('./routes/home');
-const customRouter = require('./routes/custom'); 
+const customRouter = require('./routes/custom');
 const adminRouter = require('./routes/admin');
 const storeRouter = require('./routes/store');
 const authRouter = require('./routes/auth');
