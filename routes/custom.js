@@ -52,7 +52,7 @@ router.post('/',multipleUploads,async (req,res)=>{
             message: "request was unsuccessful",
             url: "/custom"
         })
-       
+        console.log(err)    
     }
 })
 

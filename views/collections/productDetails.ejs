@@ -181,27 +181,16 @@
   let currCart = localStorage.getItem("cartList");
 
   buyButton.addEventListener("click", () => {
-    currCart = localStorage.getItem("cartList");
-
-    if (currCart.includes((addToCartButton.innerText == "Added")==false)) {
+    if (!currCart.includes(addToCartButton.id) && addToCartButton.innerText == "Added") {
       addToCartButton.innerText = "Added";
       if (localStorage.getItem("cartList") != null) {
-        localStorage.setItem("cartList",localStorage.getItem("cartList") + `${addToCartButton.id},`
+        localStorage.setItem(
+          "cartList",
+          localStorage.getItem("cartList") + `${addToCartButton.id},`
         );
       } else {
         localStorage.setItem("cartList", `${addToCartButton.id},`);
-      } 
-    }else{
-    if(currCart.includes(`${addToCartButton.id}`+`,`)){
-      
-    }else{
-      if (localStorage.getItem("cartList") != null) {
-        localStorage.setItem("cartList",localStorage.getItem("cartList") + `${addToCartButton.id},`
-        );
-      } else {
-        localStorage.setItem("cartList", `${addToCartButton.id},`);
-      } 
-    }
+      }
     }
   });
 

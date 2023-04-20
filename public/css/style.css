@@ -122,8 +122,6 @@ body {
   width: 40%;
   /* background-color: #606063; */
 }
-
-
 #carouselExampleControls .carousel-item .imgText p {
   font-size: 80px;
   font-weight: 400;
@@ -194,8 +192,6 @@ body {
   width: fit-content;
   cursor: pointer;
 }
-
-
 .category h2:hover {
   color: #088178;
   border-bottom: 0.15rem solid #088178;
@@ -400,7 +396,6 @@ body {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  
   
 }
 
