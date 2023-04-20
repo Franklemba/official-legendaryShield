@@ -12,7 +12,7 @@ require('./config/passport')(passport);
 const { ensureAuthenticated} = require('./config/auth');
 
 const indexRouter = require('./routes/home');
-const customRouter = require('./routes/custom');
+const customRouter = require('./routes/custom'); 
 const adminRouter = require('./routes/admin');
 const storeRouter = require('./routes/store');
 const authRouter = require('./routes/auth');
@@ -30,16 +30,16 @@ const mongoose = require("mongoose");
 //global database connection
    // online connection////
     mongoose.set('strictQuery', true);
-    mongoose.connect('mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
-    .then(()=>{
-        console.log('database is connected')
-    }).catch((err) => console.log(err));
+  //   mongoose.connect('mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
+  //   .then(()=>{
+  //       console.log('database is connected')
+  //   }).catch((err) => console.log(err));
 //////////local database connection
 
-// mongoose.connect('mongodb://localhost:27017/legendary_shield')
-// .then(()=>{
-//     console.log('database is connected')
-// }).catch((err) => console.log(err));
+mongoose.connect('mongodb://localhost:27017/legendary_shield')
+.then(()=>{
+    console.log('database is connected')
+}).catch((err) => console.log(err));
 
 app.use('/',indexRouter );
 

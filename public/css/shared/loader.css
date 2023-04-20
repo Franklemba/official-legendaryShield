@@ -1,6 +1,7 @@
 
 .loader {
     position: relative;
+    transition: 900ms ease-in;
   }
   .loader .dot {
     -webkit-animation-name: movement;
@@ -352,4 +353,19 @@
     top: 0;
     left: 0;
     background-color: #ffffff;
+    transition: 500ms ease-in;
   }
+
+
+  #loaderMessage{
+    color: #1fb8ad;
+    position: fixed;
+    bottom: 37vh;
+    font-weight: 800;
+    transition: 400ms ease-in;
+  }
+
+ 
+  .fadeAway{
+    opacity: 0;
+      }

@@ -1,5 +1,5 @@
 /* craftmen section */
-#craftMen {
+#craftMen, #newArrivals {
   background-color: #eaecef;
   padding: 4%;
   width: 100%;
@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-content: center;
 }
-#craftMen #craftMenContent {
+#craftMen #craftMenContent, #newArrivals #newArrivalsContent {
   padding: 6%;
   /* height: fit-content; */
   width: 50%;
@@ -18,7 +18,7 @@
   font-size: 80px;
   font-weight: 900;
 }
-#craftMen #craftMenItems {
+#craftMen #craftMenItems, #newArrivals #newArrivalsItems {
   width: 50%;
   display: flex;
   flex-wrap: wrap;
