@@ -26,21 +26,15 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: false }))
 
 const mongoose = require("mongoose");
 
+      
 
 //global database connection
    // online connection////
     mongoose.set('strictQuery', true);
-<<<<<<< HEAD
     // mongoose.connect('mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
     // .then(()=>{
     //     console.log('database is connected')
     // }).catch((err) => console.log(err));
-=======
-  //   mongoose.connect('mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
-  //   .then(()=>{
-  //       console.log('database is connected')
-  //   }).catch((err) => console.log(err));
->>>>>>> parent of c07dca0 (server change)
 //////////local database connection
 
 mongoose.connect('mongodb://localhost:27017/legendary_shield')
