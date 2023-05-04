@@ -178,6 +178,8 @@ router.post("/", multipleUploads, async (req, res) => {
     brandName: req.body.brandName,
     category: req.body.category,
     price: req.body.price,
+    oldPrice: req.body.oldPrice,
+    type: req.body.type,
     quantity: req.body.quantity,
     description: req.body.description,
     mainImg: mainImgName,
@@ -264,5 +266,8 @@ router.get("/:id", async (req, res) => {
   }
   //    res.send(req.params.id)
 });
+
+
+///
 
 module.exports = router;

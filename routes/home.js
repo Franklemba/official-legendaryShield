@@ -1,11 +1,25 @@
 const express = require("express");
 const router = express.Router();
+const fs = require("fs");
+const path = require("path");
 const customOrder = require('../models/customSchema')
 const purchaseOrder = require("../models/purchaseSchema");
 const Product = require("../models/uploadSchema");
 const mongoose = require('mongoose')
-router.get("/", (req, res) => {
-  res.render("home/index");
+
+
+router.get("/", async (req, res) => {
+  const promoProducts = await Product.find({type:'promo'}).limit(4);
+
+  try{
+    res.render("home/index",{
+        products: promoProducts 
+    });
+  }catch(err){
+    res.send("error fetching promo products")
+  }
+  // console.log(promoProducts);
+  
 });
 
 router.get("/about", (req, res) => {

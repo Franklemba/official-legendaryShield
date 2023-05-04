@@ -40,9 +40,9 @@
                 </div>
               </div>
             </div>
-            <span id="viewBtn">
+            <!-- <span id="viewBtn">
                 view more
-            </span>
+            </span> -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden" >Previous</span>
@@ -65,48 +65,132 @@
             <p>From stunning jewelry to stylish accessories and more.</p>
           <!-- <button class="viewBtn">show all</button> -->
        </div>
-       <div id="craftMenItems">
-          <div class="item">
+       <% if(products.length != 0) { %> 
+       
+          <div class="craftAds">
+            <h2>Promo Products</h2>
+          </div>
+        <div id="craftMenItems">
+
+        <% products.forEach(data=> { %>
+          <a href="/store/item/<%=data._id%>">
+            <div class="item">
+              <div class="itemImg">
+                 <img width="200" src="<%= data.ImagesPath%>\<%=data.mainImg%>" alt="Promo Image">
+                 <div class="itemImgText">
+                   <span id="newPrice">save <%= (((data.oldPrice - data.price)/data.oldPrice)*100).toFixed(0) %>%</span>
+                   <p><%= data.brandName %></p>
+                  </div>
+              </div>
+              <div class="itemDetails">
+                 <p>from <span id="prePrice"> K<%= data.oldPrice %></span></p>
+                 <span id="newPrice">to K<%= data.price %></span>
+              </div>
+           </div>
+          </a>
+         <% }) %>
+
+                 
+          <!-- <div class="item">
              <div class="itemImg">
                 <img width="200" src="images/img10.png" alt="image10">
+                <div class="itemImgText">
+                  <p>Keychains</p>
+                </div>
              </div>
              <div class="itemDetails">
-                <p>Keychains</p>
-                <span>from K50.00</span>
+                <p>from <span id="prePrice"> K75.00</span></p>
+                <span id="newPrice">to K50.00</span>
              </div>
           </div>
           <div class="item">
             <div class="itemImg">
                <img width="200" src="images/img5.png" alt="image10">
+               <div class="itemImgText">
+                 <p>Necklaces</p>
+               </div>
             </div>
             <div class="itemDetails">
-               <p>Necklaces</p>
-               <span>from K100.00</span>
+               <p>from <span id="prePrice">K100.00</span></p>
+               <span id="newPrice">to K90.00</span>
             </div>
          </div>
          <div class="item">
             <div class="itemImg">
                <img width="200" src="images/img9.png" alt="image10">
+               <div class="itemImgText">
+                 <p>Jewerly</p>
+               </div>
             </div>
             <div class="itemDetails">
-               <p>Jewerly</p>
-               <span>from K23.00</span>
+               <p>from <span id="prePrice"> K23.00</span></p>
+               <span id="newPrice">to K20.00</span>
             </div>
          </div>
          <div class="item">
             <div class="itemImg">
                <img width="200" src="images/img2.png" alt="image10">
+               <div class="itemImgText">
+                 <p>Neck Chains</p>
+               </div>
             </div>
             <div class="itemDetails">
-               <p>Neck Chains</p>
-               <span>from K90.00</span>
+               <p>from <span id="prePrice"> K110.00</span></p>
+               <span id="newPrice">to K90.00</span>
             </div>
-         </div>
-       </div>
+         </div>-->
+       </div> 
+       <% } %>
     </section>
     
         <!-- Product Section -->
      <section class="productsAd">
+      <div id="product1" class="section-p1">
+        <h2>The Jewelry Collection</h2>
+        <p>Discover our exquisite jewelry collection, crafted with passion and designed to make you shine.</p>
+        <div class="pro-container">
+           <!-- ///////////product 4///////////// -->
+           <div class="pro">
+           <a id="linkTag" href="/store/Necklaces">
+             <img src="images/img5.png" alt="">
+             <div class="des">
+                 <span>Necklaces</span>
+                 <h5>Glamorous</h5>
+                 <span>from K120.00</span>
+                 <!-- <h3>K15,500.00</h3> -->
+             </div>
+             <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+           </a>
+           </div>
+         
+           <div class="pro">
+               <a id="linkTag" href="/store/Rings">
+                 <img src="images/img3.png" alt="">
+               <div class="des">
+                   <span>Rings</span>
+                   <h5>Timeless and Classic</h5>
+                   <span>from K100.00</span>
+                   <!-- <h3>K3,500.00</h3> -->
+               </div>
+               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+               </a>
+           </div>
+          
+           <div class="pro">
+               <a id="linkTag" href="/store/Bracelets">
+                 <img src="images/img2.png" alt="">
+               <div class="des">
+                   <span>Bracelet</span>
+                   <h5>Radiant</h5>
+                   <span>from K90.00</span>
+                   <!-- <h3>K11,500.00</h3> -->
+               </div>
+               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+               </a>
+           </div>
+        </div>
+        <!-- <button class="viewBtn">view more</button> -->
+   </div>
         <div id="product1" class="section-p1">
             <h2>The Wrist watch Collection</h2>
             <p>Timeless Elegance, Discover Our Wrist Watch Collection</p>
@@ -145,61 +229,16 @@
                         <span>from K100.00</span>
                         <!-- <h3>K9,500.00</h3> -->
                     </div>
-                    <span id="linkTag" href="/store/Unisex Watch"><i class="fa fa-shopping-cart cart"></i></span>
+                    <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
                   </a>
                </div>
             </div>
             <!-- <button class="viewBtn">view more</button> -->
        </div>
-       <div id="product1" class="section-p1">
-           <h2>The Jewelry Collection</h2>
-           <p>Discover our exquisite jewelry collection, crafted with passion and designed to make you shine.</p>
-           <div class="pro-container">
-              <!-- ///////////product 4///////////// -->
-              <div class="pro">
-              <a id="linkTag" href="/store/Necklaces">
-                <img src="images/img5.png" alt="">
-                <div class="des">
-                    <span>Necklaces</span>
-                    <h5>Glamorous</h5>
-                    <span>from K120.00</span>
-                    <!-- <h3>K15,500.00</h3> -->
-                </div>
-                <a id="linkTag" href="/store/Necklaces"><i class="fa fa-shopping-cart cart"></i></a>
-              </a>
-              </div>
-            
-              <div class="pro">
-                  <a id="linkTag" href="/store/Rings">
-                    <img src="images/img3.png" alt="">
-                  <div class="des">
-                      <span>Rings</span>
-                      <h5>Timeless and Classic</h5>
-                      <span>from K100.00</span>
-                      <!-- <h3>K3,500.00</h3> -->
-                  </div>
-                  <a id="linkTag" href="/store/Rings"><i class="fa fa-shopping-cart cart"></i></a>
-                  </a>
-              </div>
-             
-              <div class="pro">
-                  <a id="linkTag" href="/store/Bracelets">
-                    <img src="images/img2.png" alt="">
-                  <div class="des">
-                      <span>Bracelet</span>
-                      <h5>Radiant</h5>
-                      <span>from K90.00</span>
-                      <!-- <h3>K11,500.00</h3> -->
-                  </div>
-                  <a id="linkTag" href="/store/Bracelets"><i class="fa fa-shopping-cart cart"></i></a>
-                  </a>
-              </div>
-           </div>
-           <!-- <button class="viewBtn">view more</button> -->
-      </div>
+       
       
     <div class="customImg">
-       <img src="images/customImg.png"  alt="Legendary Shield">
+       <img style="height: fit-content;" src="images/customImg.png"  alt="Legendary Shield">
     </div>
 
     <div id="product1" class="section-p1">
@@ -215,7 +254,7 @@
                  <div class="des">
                   <span>Wallet</span>
                   <h5>Classic and Stylish</h5>
-                  <span>from K200.00</span>
+                  <span>fom K90.00</span>
                   <!-- <h3>K15,500.00</h3> -->
               </div>
               <a id="linkTag" href="/custom"><i class="fa fa-shopping-cart cart"></i></a>
@@ -228,7 +267,7 @@
                 <div class="des">
                     <span>Flask</span>
                     <h5>Personalized Creations</h5>
-                    <span>from K80.00</span>
+                    <span>from K90.00</span>
                 </div>
                 <a id="linkTag" href="/custom
 "><i class="fa fa-shopping-cart cart"></i></a>
@@ -241,11 +280,22 @@
                 <div class="des">
                   <span>Key Holder</span>
                   <h5>Custom Crafts</h5>
-                  <span>from K100.00</span>
+                  <span>from K50.00</span>
               </div>
               <a id="linkTag" href="/custom"><i class="fa fa-shopping-cart cart"></i></a>
               </a>
           </div>
+          <div class="pro">
+            <a id="linkTag" href="/custom">
+              <img src="images/img2.png" alt="">
+              <div class="des">
+                <span>Key Holder</span>
+                <h5>Custom Crafts</h5>
+                <span>from K50.00</span>
+            </div>
+            <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </a>
+        </div>
        </div>
        <!-- <button class="viewBtn">view more</button> -->
        <br>
@@ -304,3 +354,10 @@
     </style>
       </div>
      </section>
+
+     <!-- <script>
+        let craftMen = document.getElementById('craftMen');
+        let craftMenItems = document.getElementById('craftMenItems');
+        craftMen.style.height = 'fit-content';
+        console.log(craftMenItems);
+     </script> -->

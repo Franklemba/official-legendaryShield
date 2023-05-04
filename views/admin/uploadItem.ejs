@@ -24,7 +24,7 @@
       <h2 class="adminHeader">Insert Item</h2>
 
       <div class="inputbox">
-        <label for="brandName"><strong>Enter brandname:</strong></label>
+        <!-- <label for="brandName"><strong>Enter brandname:</strong></label> -->
         <input
           style="text-transform: lowercase"
           type="text"
@@ -34,9 +34,17 @@
           required
         />
       </div>
-
       <div class="inputbox">
-        <label for="category"><strong>select category:</strong></label>
+        <select name="type" id="type">
+          <option value="ordinary">Ordinary</option>
+          <option value="promo">Promotion</option>
+        </select>
+      </div>
+
+  
+      <div class="inputbox">
+        <!-- <label for="category"><strong>select category:</strong></label> -->
+        
         <select name="category" id="category">
           <option value="Mens Watch">Mens Watch</option>
           <option value="Women Watch">Women Watch</option>
@@ -45,23 +53,33 @@
           <option value="Rings">Rings</option>
           <option value="Neck chain">Neck chain</option>
           <option value="Bracelet">Bracelet</option>
+          <option value="Custom Product">Custom Product</option>
         </select>
       </div>
-
+      <div class="inputbox" id="typeInputBox">
+        <!-- <label for="price"><strong>Enter price:</strong></label> -->
+        <input
+          type="number"
+          min="4"
+          id="oldPrice"
+          name="oldPrice"
+          placeholder="enter old price"
+        />
+      </div>
       <div class="inputbox">
-        <label for="price"><strong>Enter price:</strong></label>
+        <!-- <label for="price"><strong>Enter price:</strong></label> -->
         <input
           type="number"
           min="4"
           id="price"
           name="price"
-          placeholder="price"
+          placeholder="enter new price"
           required
         />
       </div>
 
       <div class="inputbox">
-        <label for="quantity"><strong>Enter quantity:</strong></label>
+        <!-- <label for="quantity"><strong>Enter quantity:</strong></label> -->
         <input
           type="number"
           min="1"
@@ -73,7 +91,7 @@
       </div>
 
       <div class="inputbox">
-        <label for="description"><strong>Enter Description</strong></label>
+        <!-- <label for="description"><strong>Enter Description</strong></label> -->
         <textarea
           id="description"
           name="description"
@@ -86,14 +104,14 @@
 
       <div class="inputbox file">
         <label for="mainImg">
-          <h3><strong>upload main Image:</strong></h3>
+          <h3>upload main Image:</h3>
         </label>
         <input type="file" name="mainImg" required />
       </div>
 
       <div class="inputbox file">
         <label for="images">
-          <h3><strong>upload related Images:</strong></h3>
+          <h3>upload related Images:</h3>
         </label>
         <input id="uploadfiles" type="file" name="images" multiple required />
       </div>
@@ -110,8 +128,20 @@
   let uploadSubmit = document.getElementById("uploadSubmit");
   let submit = document.getElementById("submit");
   let preview = document.querySelector(".preview");
+  let type = document.getElementById('type');
+  let typeInputBox = document.getElementById('typeInputBox');
 
+  typeInputBox.style.display = 'none';
   const imageList = image.files;
+
+  type.addEventListener("change", (e)=>{
+    if(e.target.value == 'promo'){
+      typeInputBox.style.display = 'flex';
+    }else{
+      typeInputBox.style.display = 'none';
+    }
+   
+  })
 
   submit.addEventListener("click", (e) => {
     console.log(image.files);
