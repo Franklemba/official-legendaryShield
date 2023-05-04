@@ -45,7 +45,9 @@ p {
   font-size: 16px;
   color: #465b52;
 }
-
+a{
+  text-decoration: none;
+}
 .section-m1 {
   margin: 40px 0;
 }
@@ -271,9 +273,11 @@ body {
     padding: 10px;
   }
   .row .inputbox {
+    display: flex;
+    flex-direction: column;
     padding: 5px;
     font-size: 20%;
-    background-color: rgb(210, 210, 210);
+    /* background-color: rgb(210, 210, 210); */
   }
 
   .row .inputbox input {
@@ -294,6 +298,10 @@ body {
   /* #feature {
     justify-content: space-around;
   } */
+
+  .file input{
+     width: fit-content;
+  }
 
   h1 {
     font-size: 38px;

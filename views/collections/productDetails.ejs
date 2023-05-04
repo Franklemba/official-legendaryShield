@@ -77,11 +77,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 25%;
+    width: 10% !important;
     padding: 0;
     color: #fff;
     text-align: center;
-    background: none;
+    background-color: none;
     border: 0;
     opacity: 0.5;
     transition: opacity 0.15s ease;
@@ -142,6 +142,10 @@
     </div>
     <div>
       <p><strong>Available:</strong> <%=product.quantity%></p>
+          <% if (product.type == 'promo') { %>
+              <p>was <span id="prePrice"> K<%= product.oldPrice %></span></p>
+              <p>save up to <span id="newPrice"><%= (((product.oldPrice - product.price)/product.oldPrice)*100).toFixed(0) %>%</span></p>
+          <% } %>
     </div>
     <div class="price">
       <h3><strong>K <%=product.price %></strong></h3>
