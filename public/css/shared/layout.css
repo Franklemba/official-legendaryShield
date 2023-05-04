@@ -178,7 +178,7 @@
   font-size: 40px;
   font-weight: 300;
   color: red;
- 
+  text-shadow: 2px 4px 4px rgba(14, 14, 15, 0.6);
 }
 .accordion-body ul {
   padding-left: 0rem;
@@ -339,4 +339,3 @@ footer a:hover {
     display: block;
   }
 }
-
