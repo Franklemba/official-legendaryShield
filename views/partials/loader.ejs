@@ -29,7 +29,25 @@
 
   <script>
     window.addEventListener('load', function() {
-  var element = document.getElementById('screenLoader');
-  element.style.display = 'none';
+
+      var loaderMessage = document.querySelector('#loaderMessage');
+      loaderMessage.classList.remove('fadeAway');
+
+     setTimeout(()=>{
+  var loader = document.querySelector('.loader');
+  loader.classList.add('fadeAway');
+     }, 700)
+
+
+  setTimeout(()=>{
+    var loaderMessage = document.querySelector('#loaderMessage');
+  loaderMessage.classList.add('fadeAway');
+  }, 3100);
+
+
+  setTimeout(()=>{
+      var screenloader = document.getElementById('screenLoader');
+  screenloader.style.display = 'none';
+  }, 3700);
 });
   </script>
