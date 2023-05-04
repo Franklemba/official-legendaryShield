@@ -36,6 +36,124 @@
       </div>
     </section>
 
+        <div class="menuContent">
+            <ul id="navbar">
+                <div class="storeNavbar">
+                    <span class="storeNavbarClose" >x</span>
+
+                    <div class=" container accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                    aria-expanded="false" aria-controls="collapseOne">
+                                    Jewelry
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li><a href="/store/Necklaces">Necklaces</a></li>
+                                        <li><a href="/store/Rings">Rings</a></li>
+                                        <li><a href="/store/Bracelets">Bracelets</a></li>
+                                        <li><a href="/store/Chains"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Watches
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li><a href="/store/Mens Watch">Men's watch</a></li>
+                                        <li><a href="/store/Women Watch">Women's watch</a></li>
+                                        <li><a href="/store/Unisex Watch">Unisex watch</a></li>
+                                        <li><a href="/store/Classic watch">Classic watch</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Custom brands
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                <ul>
+                                    <li><a href="/custom">Wallets</a></li>
+                                    <li><a href="/custom">Flasks</a></li>
+                                    <li><a href="/custom">Phone Cases</a></li>
+                                    <li><a href="/custom">Diaries</a></li>
+                                    <li><a href="/custom">Special customization</a></li>
+                                    
+                                </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Woodwork
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Ducimus sed inventore error rem. Nobis, veniam?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <li><a class="active" href="/">Home</a></li>
+                <li class="store"><a href="">Store </a></li>
+                <li><a href="/about">About us</a></li>
+                <li><i id="searchBar" class="fa fa-search"></i></li>
+                <li><a href="/user"><i id="userBar" class="fa fa-user" ></i></a></li>
+
+            </ul>
+            <div class="search">
+                <form action="/search" method="post" id="submitForm">
+                    <div class="search-input">
+                        <input type="search" name="item" id="itemSearched" placeholder="search...">
+                        <div class="autocom-box">
+
+                        </div>
+                        <i id="searchBarSubmit" class="fa fa-search"></i>
+                    </div>
+                </form>
+            </div>
+    
+        </div> 
+        <div class="iconsMobile">
+
+            
+            <div id="mobile" style="font-size: 30px;">
+                <!-- <i id="bar" class="fa fa-outdent"></i> -->
+                <i id="bar" class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+            <!-- <div class="icons" >
+                <i id="searchBar" class="fa fa-search"></i>
+            </div> -->
+        </div>
+        
+     </section>
+    
     <!-- Before  -->
     <%- include('../partials/message') %>
     <!-- Middle -->
