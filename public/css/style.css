@@ -8,12 +8,17 @@
 
 @import "shared/loader.css";
 
+*
+
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: "Spartan", sans-serif;
+  font-family:Dosis, sans-serif;
+  line-height: 1.6em;
   text-decoration: none;
+  text-transform: none;
+  font-weight: 400;
 }
 
 input, textarea, select, button {

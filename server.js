@@ -28,7 +28,7 @@ const mongoose = require("mongoose");
 
 //global database connection
    // online connection////
-    // mongoose.set('strictQuery', true);
+    mongoose.set('strictQuery', true);
     // mongoose.connect('mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
     // .then(()=>{
     //     console.log('database is connected')
@@ -39,6 +39,7 @@ mongoose.connect('mongodb://localhost:27017/legendary_shield')
 .then(()=>{
     console.log('database is connected')
 }).catch((err) => console.log(err));
+
 
 app.use('/',indexRouter );
 app.use(session({
