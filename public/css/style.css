@@ -454,3 +454,32 @@ body {
   height: 43px;
 }
 
+.moreButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moreButton{
+  padding: 6px 12px;
+  width: fit-content;
+  height: fit-content;
+  border: 2px solid black;
+  border-radius: 28px;
+  opacity: 0;
+  transition: 800ms;
+  margin-top: 40%;
+  margin-left: 20px;
+  font-size: 16px;
+}
+.moreButton.visible{
+  opacity: 1;
+}
+.moreButton a{
+  text-decoration: none;
+  color: #03060a;
+}
+
+.moreButton span a:hover{
+  color: rgb(15, 74, 169);
+}

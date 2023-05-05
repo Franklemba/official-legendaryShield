@@ -52,6 +52,9 @@ ul {
 .custom .items .customText{
     padding: 1% 4%;
 }
+.custom .items .customText p{
+    text-align: center;
+}
 .cusOverlay{
     /* height: 100vh; */
     top: 0;

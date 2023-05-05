@@ -41,8 +41,8 @@ mongoose.connect('mongodb://localhost:27017/legendary_shield')
     console.log('database is connected')
 }).catch((err) => console.log(err));
 
-app.use('/',indexRouter );
 
+app.use('/',indexRouter );
 app.use(session({
     secret: 'mysecret',
     resave: false,
