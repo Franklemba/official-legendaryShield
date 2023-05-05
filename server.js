@@ -26,11 +26,10 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: false }))
 
 const mongoose = require("mongoose");
 
-      
 
 //global database connection
    // online connection////
-    mongoose.set('strictQuery', true);
+    // mongoose.set('strictQuery', true);
     // mongoose.connect('mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
     // .then(()=>{
     //     console.log('database is connected')
@@ -43,7 +42,6 @@ mongoose.connect('mongodb://localhost:27017/legendary_shield')
 }).catch((err) => console.log(err));
 
 app.use('/',indexRouter );
-
 app.use(session({
     secret: 'mysecret',
     resave: false,
