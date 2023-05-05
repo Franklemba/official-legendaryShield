@@ -35,6 +35,24 @@
   transition: 0.2s ease;
   position: relative;
 }
+.moreButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.moreButton span{
+  padding: 5%;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: #ffff;
+}
+.moreButton span a{
+  text-decoration: none;
+  color: black;
+}
+.moreButton span a:hover{
+  color: rgb(15, 74, 169);
+}
 #linkTag{
   text-decoration: none;
 }
