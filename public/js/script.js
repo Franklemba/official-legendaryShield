@@ -58,5 +58,18 @@ window.onscroll =() =>{
     check = true;
 }
 
+const moreButtons = document.querySelectorAll('.moreButton');
 
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.intersectionRatio > 0) {
+      entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible');
+    }
+  });
+});
 
+moreButtons.forEach(button => {
+  observer.observe(button);
+});
