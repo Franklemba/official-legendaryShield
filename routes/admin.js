@@ -23,6 +23,7 @@ const imagesUpload = multer({
   },
 });
 
+
 const multipleUploads = imagesUpload.fields([
   { name: "mainImg", maxCount: 1 },
   { name: "images", maxCount: 4 },

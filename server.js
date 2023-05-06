@@ -13,6 +13,7 @@ const { ensureAuthenticated} = require('./config/auth');
 
 const indexRouter = require('./routes/home');
 const customRouter = require('./routes/custom');
+const woodWorkRouter = require('./routes/woodWork');
 const adminRouter = require('./routes/admin');
 const storeRouter = require('./routes/store');
 const authRouter = require('./routes/auth');
@@ -25,7 +26,6 @@ app.use(express.static(__dirname + '/public/'));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false }))
 
 const mongoose = require("mongoose");
-
 
 //global database connection
    // online connection////
@@ -59,9 +59,11 @@ require('./config/passport')(passport);
 app.use('/',indexRouter );
 
 app.use('/custom', customRouter);
+app.use('/woodWork', woodWorkRouter);
 // app.use('/collections', categoryRouter)
 app.use('/store',storeRouter);
 app.use('/auth',authRouter)
 app.use('/admin',ensureAuthenticated, adminRouter);
+
 
 app.listen(process.env.PORT || 5200) 
