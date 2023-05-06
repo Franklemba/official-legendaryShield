@@ -35,7 +35,7 @@ searchBar.addEventListener('click',()=>{
         check = false;
     }else if(check == false){
         search.classList.remove('active');
-        check = true;
+        check = true; 
     }
 })
 

@@ -1,13 +1,17 @@
 const express = require('express')
 const router = express.Router()
+const fetch = require('node-fetch')
 const multer = require('multer');
 const fs = require('fs')
 const path = require('path');
+
 const customProduct = require('../models/customSchema'); 
 const ImagesPath = path.join('public',customProduct.customImgPath);
 const imageMimeType = ['image/jpeg','image/png','image/gif','image/png','image/webp']
 
+let customItems = require('./../public/js/custom');
 
+// console.log(customItems)
 const mongoose = require('mongoose')
 const imagesUpload = multer({
     dest:ImagesPath,
@@ -56,8 +60,16 @@ router.post('/',multipleUploads,async (req,res)=>{
     }
 })
 
+router.get('/:customItem',(req,res)=>{
+    const custom = req.params.customItem
+    res.send(customItems)
+
+    
+})
+
 
 module.exports = router;
+
 
 
 

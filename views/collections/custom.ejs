@@ -26,6 +26,14 @@
         opacity: 0.5;
         transition: opacity 0.15s ease;
       }
+      #customCart{
+        transition: opacity 1.3s ease-in-out;
+        opacity: 1;
+      }
+      #customCart.show{
+        transition: opacity 1.3s ease-in-out;
+        opacity: 1;
+      }
 </style>
 
 
@@ -143,66 +151,15 @@
             </p>
         </div>
         <hr>
-        <ul>
-            <li id="customCart">
-                <img  class="Photo Stand" src="images/customImages/photoStand.jpeg" alt="Photo Stand">
-                <span >custom Photo Stand</span>
-                <span class="Photo Stand" id="customPrice"><i>from</i> K200.00</span>
-            </li>
-            <li id="customCart">
-                <img class="Flask" src="images/customImages/customFlask.jpg" alt="Flask">
-                <span>customize your own flask, engrave your own name,face, words etc</span>
-              <span class="Flask" id="customPrice"><i>from</i> K350.00</span>    
-            </li>
-            <li id="customCart">
-                <img class="Key Orders" src="images/customImages/customKeyOrder.jpeg" alt="Key Orders">
-                <span>custom Key orders, customize Lorem, ipsum dolor.</span>
-               <span class="Key Orders"  id="customPrice"><i>from</i> K150.00</span>    
-            </li>
-            <li id="customCart">
-                <img class="chopping board" src="images/customImages/chopBoard.jpeg" alt="chopping board">
-                <span>custom chopping board Lorem ipsum dolor sit amet consectetur.</span>
-                <span class="chopping board" id="customPrice"><i>from</i> K230.00</span>
-            </li>
-            <li id="customCart">
-                <img class="crates" src="images/customImages/customCrate.jpg" alt="crates">
-                <span>customize your Crates in your own Lorem, ipsum dolor.</span>
-                <span class="crates" id="customPrice"><i>from</i> K200.00</span>
-            </li>
-            <li id="customCart">
-                <img class="gift box" src="images/customImages/giftBox.jpg" alt="gift box">
-                <span>Lorem, ipsum gift boxes Lorem, ipsum.</span>
-                <span class="gift box" id="customPrice"><i>from</i> K150.00</span>
-            </li>
-            <li id="customCart">
-                <img class="door signs" src="images/customImages/doorSigns.jpg" alt="door signs">
-                <span>Lorem, ipsum door signs Lorem, ipsum.</span>
-                <span class="door signs" id="customPrice"><i>from</i> K250.00</span>
-            </li>
-            <li id="customCart">
-                <img class="note books" src="images/customImages/noteBooks.png" alt="note books">
-                <span>Lorem, ipsum note books Lorem, ipsum. engrave text on your text book</span>
-                <span class="note books" id="customPrice"><i>from</i> K180.00</span>
-            </li>
-            <li id="customCart">
-                <img class="Diary" src="images/customImages/customDiary.jpeg" alt="Diary">
-                <span>Lorem, ipsum Diary Lorem, ipsum.</span>
-                <span class="Diary" id="customPrice"><i>from</i> K70.00</span>
-            </li>
-            <li id="customCart">
-                <img class="necklace" src="images/customImages/customNecklace.png" alt="necklace">
-                <span>Lorem, ipsum necklace Lorem, ipsum.</span>
-                <span class="necklace" id="customPrice"><i>from</i> K270.00</span>
-            </li>
-            <li id="customCart">
-                <img class="Bracelet" src="images/customImages/customBracelet.jpeg" alt="Bracelet">
-                <span>Lorem, ipsum Bracelet Lorem, ipsum.</span>
-                <span class="Bracelet" id="customPrice"><i>from</i> K70.00</span>
-            </li>
-        </ul>
+          <div class="customItems">
+            <ul>
+                
+            </ul>
+          </div>
      </div>
 
 </section>
+<script src="/js/custom.js"></script>
 
 <script>
     let customCart = document.querySelectorAll('#customCart');
@@ -212,7 +169,22 @@
     let formImg = document.querySelector('.formImg');
     let cusHiddenContent = document.querySelector('.cusHiddenContent');
     let closeModal = document.querySelector('.closeModal');
+    let customAllItems = document.querySelector('.customItems ul');
+    
+
+    customItems.forEach(data=>{
+        customAllItems.innerHTML += `
+        <li id = "customCart">
+             <img class="${data.customName}" src="images/customImages/${data.imgLink}" alt="${data.customName}">
+             <span>${data.details}</span>
+             <span class="${data.customName}" id="customPrice"><i>from</i> K${data.price}</span>
+        <li>
+          `;
+    })
+
+
     customCart.forEach(value=>{
+        //cartObserver.observe(value);
         value.addEventListener('click',(e)=>{
             let clickedItem = e.target.className;
             let imgSrc = e.target.src;
