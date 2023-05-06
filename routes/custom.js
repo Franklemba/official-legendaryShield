@@ -14,7 +14,8 @@ const imagesUpload = multer({
     fileFilter: (req, file, callback)=>{
         callback(null,imageMimeType.includes(file.mimetype))
     } 
-})
+});
+
 const multipleUploads = imagesUpload.fields([{name:'images', maxCount:4}]);
 router.get('/', (req,res)=>{
     res.render('collections/custom')

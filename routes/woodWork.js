@@ -20,6 +20,10 @@ router.get('/', (req,res)=>{
     res.render('collections/woodWork')
 })
 
+router.get('/specificWood', (req,res)=>{
+    res.render('collections/specificWood')
+})
+
 router.post('/',multipleUploads,async (req,res)=>{
     let photos = req.files
     let images = photos.images

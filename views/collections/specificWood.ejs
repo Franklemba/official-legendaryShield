@@ -1,0 +1,52 @@
+<form action="/custom" enctype="multipart/form-data" method="post">
+    <!-- <hr> -->
+    <div class="inputIMGbox">
+     
+      <label for="images">
+          upload sample images (Optional)
+      </label>
+      <input id="uploadfiles" type="file" name="images" multiple >
+  </div>
+  <!-- <hr> -->
+  <br>
+  
+  <div class="orderQty">
+      <input type="number" min="1" max="501" name="quantity" id="quantity" placeholder="qty" required>
+      <span>
+          <div id="cartMinus">-</div>
+          <div>|</div>
+          <div id="cartPlus">+</div>
+      </span>
+  </div>
+
+  <div>
+      <label for="wood-type">Choose a type of wood:</label>
+      <select id="wood-type" name="wood-type">
+        <option value="oak">Oak</option>
+        <option value="maple">Maple</option>
+        <option value="cherry">Cherry</option>
+        <option value="walnut">Walnut</option>
+        <option value="mahogany">Mahogany</option>
+      </select>
+  </div>
+  <div class="inputbox">
+      <input type="text"  id="name" name="name" placeholder="enter  name" required />
+  </div>
+  <div class="inputbox">
+      <input type="email" name="email" id="email" placeholder="email" required>
+  </div>
+  <div class="inputbox">
+      <input type="number" name="Pnumber" id="Pnumber" placeholder="phone number" required>
+  </div>
+  <div class="inputbox">
+      <textarea name="description" id="description" cols="30" rows="5" placeholder="(Optional) any descriptions on your custom item" ></textarea>
+  </div>
+  <input type="submit" class="btn" value="Send" id="submit" />
+  <div class="cusHiddenContent">
+  </div>
+  <p>
+      <i>To talk to our woodwork designer directly:</i>
+      <span>call: <strong>696968965</strong></span>
+      <span>whatsApp: <strong>985584759</strong></span>
+  </p>
+</form>

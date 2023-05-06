@@ -255,3 +255,25 @@ ul {
         height: 86vh;
     }
 }
+
+.orderQty{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    align-items: center
+    
+  }
+  .orderQty span{
+    display: flex;
+    flex-direction: row; 
+  }
+  .orderQty div{
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .orderQty input{
+    width: 45px;
+  }
