@@ -47,6 +47,7 @@
       .orderQty input{
         width: 45px;
       }
+
 </style>
 
 
@@ -62,7 +63,7 @@
               
               <!-- <hr> -->
               <div class="inputIMGbox">
-                <h3>custom <span id="cartItem"> </span></h3>
+                <h3>Custom <span id="cartItem"> </span></h3>
                 <div class="formImg">
 
                 </div>
@@ -81,6 +82,16 @@
                     <div id="cartPlus">+</div>
                 </span>
             </div>
+            <div>
+                <label for="wood-type">Choose a type of wood:</label>
+                <select id="wood-type" name="wood-type">
+                  <option value="oak">Oak</option>
+                  <option value="maple">Maple</option>
+                  <option value="cherry">Cherry</option>
+                  <option value="walnut">Walnut</option>
+                  <option value="mahogany">Mahogany</option>
+                </select>
+            </div>
             <div class="inputbox">
                 <input type="text"  id="name" name="name" placeholder="enter  name" required />
             </div>
@@ -95,16 +106,14 @@
             </div>
             <input type="submit" class="btn" value="Send" id="submit" />
             <div class="cusHiddenContent">
-
             </div>
             <p>
-                <i>to talk to custom designer directly:</i>
+                <i>To talk to our woodwork designer directly:</i>
                 <span>call: <strong>696968965</strong></span>
                 <span>whatsApp: <strong>985584759</strong></span>
             </p>
           </form>
     </div>
-
     
 
     <div class="items">
@@ -113,32 +122,32 @@
               <div class="carousel-item active">
                 <img src="images/customImages/photoStand.jpeg" class="d-block w-100" alt="...">
                 <div class="imgText">
-                    <p>custom photo stands</p>
+                    <p>Wood Product 1</p>
                 </div>
               </div>
               
               <div class="carousel-item">
                 <img src="images/customImages/customFlask.jpg" class="d-block w-100" alt="...">
                 <div class="imgText">
-                    <p>customize your own flask</p>
+                    <p>Wood Product 2</p>
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="images/customImages/customKeyOrder.jpeg" class="d-block w-100" alt="...">
                 <div class="imgText">
-                    <p>custom Key orders</p>
+                    <p>Wood Product 3</p>
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="images/customImages/chopBoard.jpeg" class="d-block w-100" alt="...">
                 <div class="imgText">
-                    <p>custom chopping board</p>
+                    <p>Wood Product 4</p>
                 </div>
               </div>
               <div class="carousel-item">
                 <img src="images/customImages/customCrate.jpg" class="d-block w-100" alt="...">
                 <div class="imgText">
-                    <p>customize your Crates</p>
+                    <p>Wood Prodct </p>
                 </div>
               </div>
               <div class="carousel-item">
@@ -277,5 +286,6 @@
             cartQty.value = parseInt(cartQty.value)-1
         }
     })
+
 
 </script>
