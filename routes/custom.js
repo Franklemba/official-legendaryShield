@@ -9,7 +9,7 @@ const customProduct = require('../models/customSchema');
 const ImagesPath = path.join('public',customProduct.customImgPath);
 const imageMimeType = ['image/jpeg','image/png','image/gif','image/png','image/webp']
 
-let customItems = require('./../public/js/custom');
+const customItems = require('../public/js/customItems');
 
 // console.log(customItems)
 const mongoose = require('mongoose')
@@ -21,8 +21,9 @@ const imagesUpload = multer({
 });
 
 const multipleUploads = imagesUpload.fields([{name:'images', maxCount:4}]);
+
 router.get('/', (req,res)=>{
-    res.render('collections/custom')
+    res.render('collections/custom',{customItems})
 })
 
 router.post('/',multipleUploads,async (req,res)=>{
@@ -61,10 +62,14 @@ router.post('/',multipleUploads,async (req,res)=>{
     }
 })
 
-router.get('/:customItem',(req,res)=>{
-    const custom = req.params.customItem
-    res.send(customItems)
-
+router.get('/specificCustom/:customItem',(req,res)=>{
+    const customItemName = req.params.customItem
+    customItems.forEach(customItem=>{
+        if(customItem.customName == customItemName){
+            res.render('collections/specificCustom', {customItem})
+            return
+        }
+    })
     
 })
 

@@ -96,17 +96,17 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img
-      src="images/customImages/<%=woodItem.imgLink%>"
+      src="images/customImages/<%=customItem.imgLink%>"
         class="d-block w-100"
         alt="..."
       />
       <!-- <img src="images/img10.png"  alt="..."> -->
     </div>
 
-    <% for( let i=0; i < woodItem.relatedImages.length; i++ ) { %>
+    <% for( let i=0; i < customItem.relatedImages.length; i++ ) { %>
     <div class="carousel-item active">
       <img
-      src="images/customImages/<%=woodItem.imgLink%>"
+      src="images/customImages/<%=customItem.imgLink%>"
         class="d-block w-100"
         alt="..."
       />
@@ -138,39 +138,30 @@
   <section class="productDetails">
     <div class="productDetails">
       <div class="brandName">
-        <h2><%=woodItem.customName %></h2>
+        <h2><%=customItem.customName %></h2>
       </div>
       <div>
         <li id="customCart">
             <a
-              href="/custom/specificCustom/<%=woodItem.customName%>"
+              href="/custom/specificCustom/<%=customItem.customName%>"
               style="text-decoration: none"
             >
               <img
-                class="<%woodItem.customName%>"
-                src="images/customImages/<%=woodItem.imgLink%>"
-                alt="<%=woodItem.customName%>"
+                class="<%customItem.customName%>"
+                src="images/customImages/<%=customItem.imgLink%>"
+                alt="<%=customItem.customName%>"
               />
-              <span><%=woodItem.details%></span>
+              <span><%=customItem.details%></span>
               <span class="" id="customPrice"
-                ><i>from</i> K<%=woodItem.price%></span
+                ><i>from</i> K<%=customItem.price%></span
               >
             </a>
           </li>
       </div>
       <div class="price">
-        <h3><strong>K <%=woodItem.price %></strong></h3>
+        <h3><strong>K <%=customItem.price %></strong></h3>
       </div>
-      <div>
-        <select id="wood-type" name="wood-type">
-            <option value="oak">Oak</option>
-            <option value="maple">Maple</option>
-            <option value="cherry">Cherry</option>
-            <option value="walnut">Walnut</option>
-            <option value="mahogany">Mahogany</option>
-          </select>
-       
-      </div>
+ 
       <hr />
       <div class="buttons" >
         <div id="buyBtn" id="">

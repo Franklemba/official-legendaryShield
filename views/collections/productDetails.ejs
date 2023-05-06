@@ -142,20 +142,28 @@
     </div>
     <div>
       <p><strong>Available:</strong> <%=product.quantity%></p>
-          <% if (product.type == 'promo') { %>
-              <p>was <span id="prePrice"> K<%= product.oldPrice %></span></p>
-              <p>save up to <span id="newPrice"><%= (((product.oldPrice - product.price)/product.oldPrice)*100).toFixed(0) %>%</span></p>
-          <% } %>
+      <% if (product.type == 'promo') { %>
+      <p>was <span id="prePrice"> K<%= product.oldPrice %></span></p>
+      <p>
+        save up to
+        <span id="newPrice"
+          ><%= (((product.oldPrice -
+          product.price)/product.oldPrice)*100).toFixed(0) %>%</span
+        >
+      </p>
+      <% } %>
     </div>
     <div class="price">
       <h3><strong>K <%=product.price %></strong></h3>
     </div>
 
     <hr />
-    <div class="buttons" >
+    <div class="buttons">
       <div id="buyBtn" id="<%=product._id%>">
         <span>
-          <a style="color: white; text-decoration: none" href="/cart">Buy it now</a>
+          <a style="color: white; text-decoration: none" href="/cart"
+            >Buy it now</a
+          >
         </span>
       </div>
       <div class="cartBtn" id="<%=product._id%>">
@@ -185,7 +193,10 @@
   let currCart = localStorage.getItem("cartList");
 
   buyButton.addEventListener("click", () => {
-    if (!currCart.includes(addToCartButton.id) && addToCartButton.innerText == "Added") {
+    if (
+      !currCart.includes(addToCartButton.id) &&
+      addToCartButton.innerText == "Added"
+    ) {
       addToCartButton.innerText = "Added";
       if (localStorage.getItem("cartList") != null) {
         localStorage.setItem(

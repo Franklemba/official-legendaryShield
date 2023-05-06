@@ -7,6 +7,8 @@ const woodProduct = require('../models/woodSchema');
 const ImagesPath = path.join('public',woodProduct.woodImgPath);
 const imageMimeType = ['image/jpeg','image/png','image/gif','image/png','image/webp']
 
+const woodItems = require('../public/js/customItems');
+
 
 const mongoose = require('mongoose')
 const imagesUpload = multer({
@@ -15,14 +17,14 @@ const imagesUpload = multer({
         callback(null,imageMimeType.includes(file.mimetype))
     } 
 })
+
 const multipleUploads = imagesUpload.fields([{name:'images', maxCount:4}]);
+
 router.get('/', (req,res)=>{
-    res.render('collections/woodWork')
+    res.render('collections/woodWork',{woodItems})
 })
 
-router.get('/specificWood', (req,res)=>{
-    res.render('collections/specificWood')
-})
+
 
 router.post('/',multipleUploads,async (req,res)=>{
     let photos = req.files
@@ -59,6 +61,18 @@ router.post('/',multipleUploads,async (req,res)=>{
         console.log(err)    
     }
 })
+
+
+router.get('/specificWood/:itemName', (req,res)=>{
+    const woodItemName = req.params.itemName;
+    woodItems.forEach(woodItem=>{
+        if(woodItem.customName == woodItemName){
+            res.render('collections/specificWood', {woodItem})
+            return
+        }
+    })
+})
+
 
 
 module.exports = router;
