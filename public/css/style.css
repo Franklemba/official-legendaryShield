@@ -51,7 +51,7 @@ p {
   color: #465b52;
 }
 a{
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .section-m1 {
   margin: 40px 0;

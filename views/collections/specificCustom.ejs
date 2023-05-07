@@ -96,7 +96,7 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img
-      src="images/customImages/<%=customItem.imgLink%>"
+      src="/images/customImages/<%=customItem.imgLink%>"
         class="d-block w-100"
         alt="..."
       />
@@ -106,7 +106,7 @@
     <% for( let i=0; i < customItem.relatedImages.length; i++ ) { %>
     <div class="carousel-item active">
       <img
-      src="images/customImages/<%=customItem.imgLink%>"
+      src="/images/customImages/<%=customItem.imgLink%>"
         class="d-block w-100"
         alt="..."
       />
@@ -138,25 +138,15 @@
   <section class="productDetails">
     <div class="productDetails">
       <div class="brandName">
-        <h2><%=customItem.customName %></h2>
+        <h2>custom <%=customItem.customName %></h2>
       </div>
       <div>
-        <li id="customCart">
-            <a
-              href="/custom/specificCustom/<%=customItem.customName%>"
-              style="text-decoration: none"
-            >
-              <img
-                class="<%customItem.customName%>"
-                src="images/customImages/<%=customItem.imgLink%>"
-                alt="<%=customItem.customName%>"
-              />
+        <p id="customCart">
               <span><%=customItem.details%></span>
               <span class="" id="customPrice"
                 ><i>from</i> K<%=customItem.price%></span
               >
-            </a>
-          </li>
+          </p>
       </div>
       <div class="price">
         <h3><strong>K <%=customItem.price %></strong></h3>

@@ -63,7 +63,7 @@ router.post('/',multipleUploads,async (req,res)=>{
 })
 
 
-router.get('/specificWood/:itemName', (req,res)=>{
+router.get('/:itemName', (req,res)=>{
     const woodItemName = req.params.itemName;
     woodItems.forEach(woodItem=>{
         if(woodItem.customName == woodItemName){

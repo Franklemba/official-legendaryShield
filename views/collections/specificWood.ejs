@@ -96,7 +96,7 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img
-      src="images/customImages/<%=woodItem.imgLink%>"
+      src="/images/customImages/<%=woodItem.imgLink%>"
         class="d-block w-100"
         alt="..."
       />
@@ -106,7 +106,7 @@
     <% for( let i=0; i < woodItem.relatedImages.length; i++ ) { %>
     <div class="carousel-item active">
       <img
-      src="images/customImages/<%=woodItem.imgLink%>"
+      src="/images/customImages/<%=woodItem.imgLink%>"
         class="d-block w-100"
         alt="..."
       />
@@ -141,28 +141,20 @@
         <h2><%=woodItem.customName %></h2>
       </div>
       <div>
-        <li id="customCart">
-            <a
-              href="/custom/specificCustom/<%=woodItem.customName%>"
-              style="text-decoration: none"
-            >
-              <img
-                class="<%woodItem.customName%>"
-                src="images/customImages/<%=woodItem.imgLink%>"
-                alt="<%=woodItem.customName%>"
-              />
+        <p id="customCart">
+          
               <span><%=woodItem.details%></span>
               <span class="" id="customPrice"
                 ><i>from</i> K<%=woodItem.price%></span
               >
-            </a>
-          </li>
+          </p>
       </div>
       <div class="price">
         <h3><strong>K <%=woodItem.price %></strong></h3>
       </div>
       <div>
         <select id="wood-type" name="wood-type">
+          <option value="" disabled selected>select wood type</option>
             <option value="oak">Oak</option>
             <option value="maple">Maple</option>
             <option value="cherry">Cherry</option>

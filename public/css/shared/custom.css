@@ -20,7 +20,10 @@
 ul {
     padding-left: 0rem !important;
 }
-.custom .items ul li {
+.custom .items ul li{
+    list-style: none;
+}
+.custom .items ul li a{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,24 +33,26 @@ ul {
     width: 50%;
     padding: 5%;
 }
-.custom .items ul li img{
+.custom .items ul li a img{
     background-color: rgb(179, 186, 183);
     width: 200px;
     height: 360px;
 }
 
-.custom .items ul li span{
-    text-align: center;
-    text-align: center;
+.custom .items ul li a span{
+    text-align: center !important;
     font-size: medium;
     text-transform: uppercase;
+    text-decoration: none !important;
+    color: black !important;
 }
-.custom .items ul li span i{
+
+.custom .items ul li a span i{
     font-size: small;
     text-transform: lowercase;
 }
-.custom .items ul li #customPrice{
-    color: brown;
+.custom .items ul li a #customPrice{
+    color: brown !important;
 }
 .custom .items .customText{
     padding: 1% 4%;
@@ -181,6 +186,40 @@ ul {
     text-align: center;
   }
 
+/* for the custom and woodwork landing page  */
+
+#customCart {
+    transition: opacity 1.3s ease-in-out;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #customCart.show {
+    transition: opacity 1.3s ease-in-out;
+    opacity: 1;
+  }
+  .orderQty {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    align-items: center;
+  }
+  .orderQty span {
+    display: flex;
+    flex-direction: row;
+  }
+  .orderQty div {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .orderQty input {
+    width: 45px;
+  }
+
 @media (max-width: 799px) {
     .cusOverlay{
         height: 100vh;
@@ -190,12 +229,12 @@ ul {
         width: 100%;
         height: fit-content;
     }
-    .custom .items ul li {
+    .custom .items ul li a {
         height: 280px;
         width: 50%;
         padding: 5%;
     }
-    .custom .items ul li img{
+    .custom .items ul li a img{
         /* background-color: rgb(179, 186, 183); */
         width: 160px;
         height: 260px;
@@ -226,12 +265,12 @@ ul {
 }
 
 @media (max-width: 477px) {
-    .custom .items ul li {
+    .custom .items ul li a{
         height: fit-content;
         width: 90%;
         padding: 5%;
     }
-    .custom .items ul li img, .selectedItem form .formImg img{
+    .custom .items ul li a img, .selectedItem form .formImg img{
         width: 90vw;
         height: 250px;
     }

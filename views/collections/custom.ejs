@@ -25,33 +25,7 @@
     opacity: 0.5;
     transition: opacity 0.15s ease;
   }
-  #customCart {
-    transition: opacity 1.3s ease-in-out;
-    opacity: 1;
-  }
-  #customCart.show {
-    transition: opacity 1.3s ease-in-out;
-    opacity: 1;
-  }
-  .orderQty {
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    align-items: center;
-  }
-  .orderQty span {
-    display: flex;
-    flex-direction: row;
-  }
-  .orderQty div {
-    padding: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .orderQty input {
-    width: 45px;
-  }
+ 
 </style>
 
 <section class="custom">
@@ -232,10 +206,10 @@
     <div class="customItems">
       <ul>
         <% customItems.forEach(customItem=>{%>
-        <div><%= customItem.customName %></div>
+  
         <li id="customCart">
           <a
-            href="/custom/specificCustom/<%=customItem.customName%>"
+            href="/custom/<%=customItem.customName%>"
             style="text-decoration: none"
           >
             <img
@@ -249,13 +223,12 @@
             >
           </a>
         </li>
-
-        <li><%})%></li>
+        
+        <%})%>
       </ul>
     </div>
   </div>
 </section>
-<script src="/js/custom.js"></script>
 
 <script>
   let customCart = document.querySelectorAll("#customCart");
@@ -267,18 +240,14 @@
   let closeModal = document.querySelector(".closeModal");
   let customAllItems = document.querySelector(".customItems ul");
 
-  // customItems.forEach(data=>{
-  //     customAllItems.innerHTML += `
-  //     <li id = "customCart">
-  //          <img class="${data.customName}" src="images/customImages/${data.imgLink}" alt="${data.customName}">
-  //          <span>${data.details}</span>
-  //          <span class="${data.customName}" id="customPrice"><i>from</i> K${data.price}</span>
-  //     <li>
-  //       `;
-  // })
+  const cartObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry =>{
+      entry.target.classList.toggle("show",entry.isIntersecting)
+    })
+  })
 
   customCart.forEach((value) => {
-    //cartObserver.observe(value);
+    cartObserver.observe(value);
     value.addEventListener("click", (e) => {
       let clickedItem = e.target.className;
       let imgSrc = e.target.src;
