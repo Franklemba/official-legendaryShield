@@ -122,166 +122,86 @@
        <% } %>
     </section>
     
-        <!-- Product Section -->
-     <section class="productsAd">
-       <div id="product1" class="section-p1">
+    
+
+    <section class="productsAd">
+       <!------------------------ jewery section --------------------->
+    <% if(jeweryCollection.length != 0) { %>
+      <div id="product1" class="section-p1">
         <h2>The Jewelry Collection</h2>
         <p>Discover our exquisite jewelry collection, crafted with passion and designed to make you shine.</p>
         <div class="pro-container">
            <!-- ///////////product 4///////////// -->
-           <div class="pro">
-           <a id="linkTag" href="/store/Necklaces">
-             <img src="images/img5.png" alt="">
-             <div class="des">
-                 <span>Necklaces</span>
-                 <h5>Glamorous</h5>
-                 <span>from K120.00</span>
-                 <!-- <h3>K15,500.00</h3> -->
-             </div>
-             <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-           </a>
+           <% jeweryCollection.forEach(jewery => { %>
+            <div class="pro">
+              <a id="linkTag" id="linkTag" href="/store/item/<%=jewery._id%>">
+                <img src="<%= jewery.ImagesPath%>\<%=jewery.mainImg%>" alt="<%=jewery.category%>">
+                <div class="des">
+                    <span><%=jewery.brandName%></span>
+                    <h5><%=jewery.category%></h5>
+                    <span>from K<%=jewery.price%></span>
+                </div>
+                <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+              </a>
            </div>
-         
-           <div class="pro">
-               <a id="linkTag" href="/store/Rings">
-                 <img src="images/img3.png" alt="">
-               <div class="des">
-                   <span>Rings</span>
-                   <h5>Timeless and Classic</h5>
-                   <span>from K100.00</span>
-                   <!-- <h3>K3,500.00</h3> -->
-               </div>
-               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-               </a>
-           </div>
-          
-           <div class="pro">
-               <a id="linkTag" href="/store/Bracelets">
-                 <img src="images/img2.png" alt="">
-               <div class="des">
-                   <span>Bracelet</span>
-                   <h5>Radiant</h5>
-                   <span>from K90.00</span>
-                   <!-- <h3>K11,500.00</h3> -->
-               </div>
-               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-               </a>
-           </div>
-           <div class="moreButton">
-            <a href="/store">
-              <span>more</span>
-              <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
-           </a>
-        </div>
+           <% }) %>
+           
+           
         </div>
         <!-- <button class="viewBtn">view more</button> -->
-       </div>
+      </div>
+    <% } %>
+    
+    <!------------------------ watch section --------------------->
+
+    <% if(watchCollection.length != 0) { %>
         <div id="product1" class="section-p1">
             <h2>The Wrist watch Collection</h2>
             <p>Timeless Elegance, Discover Our Wrist Watch Collection</p>
             <div class="pro-container">
                <!-- ///////////product 1///////////// -->
-               <div class="pro">
-                  <a id="linkTag" id="linkTag" href="/store/Mens Watch">
-                    <img src="images/img10.png" alt="">
-                    <div class="des">
-                        <span>Men's Watches</span>
-                        <h5>Modern Styles</h5>
-                        <span>from K150.00</span>
-                    </div>
-                    <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-                  </a>
-               </div>
-               <!-- ///////////product 2///////////// -->
-               <div class="pro">
-                   <a id="linkTag" href="/store/Womens Watch">
-                    <img src="images/img2.png" alt="">
-                   <div class="des">
-                       <span>Women's Watches</span>
-                       <h5>Elegant Designs</h5>
-                       <span>from K100.00</span>
-                   </div>
-                   <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-                   </a>
-               </div>
-               <!-- ///////////product 3///////////// -->
-               <div class="pro">
-                  <a id="linkTag" href="/store/Unisex Watch">
-                    <img src="images/img9.png" alt="">
-                    <div class="des">
-                        <span>Unisex Watches</span>
-                        <h5>Updated Selection</h5>
-                        <span>from K100.00</span>
-                        <!-- <h3>K9,500.00</h3> -->
-                    </div>
-                    <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-                  </a>
-               </div>
 
-              <div class="moreButton">
-                <a href="/store">
-                  <span>more</span>
-                  <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
-               </a>
-            </div>
+               <% watchCollection.forEach(watch => { %>
+                
+                <div class="pro">
+                   <a id="linkTag" id="linkTag" href="/store/item/<%=watch._id%>">
+                     <img src="<%= watch.ImagesPath%>\<%=watch.mainImg%>" alt="<%=watch.category%>">
+                     <div class="des">
+                         <span><%=watch.brandName%></span>
+                         <h5><%=watch.category%></h5>
+                         <span>from K<%=watch.price%></span>
+                     </div>
+                     <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+                   </a>
+                </div>
+
+               <% }) %>
+
             </div>
             <!-- <button class="viewBtn">view more</button> -->
         </div>
-       
+    <% } %>
+    <!------------------------ custom section --------------------->
        
     <div id="product1" class="section-p1">
 
       <h2>The Custom Collection</h2>
       <p>Our Custom Collection offers a unique opportunity to create your own personalized jewelry pieces. </p>
       <div class="pro-container">
-         <!-- ///////////product 4///////////// -->
-         <div class="pro">
-             <a id="linkTag" href="/custom">
-               <img src="images/img5.png" alt="">
+
+        <% for( let index = 0; index < 4; index++ ) { %>
+          <div class="pro">
+            <a id="linkTag" href="/custom/<%=customItems[index].customName %>">
+              <img src="images/customImages/<%=customItems[index].imgLink%>" alt="<%=customItems[index].customName %>">
                 <div class="des">
-                 <span>Wallet</span>
-                 <h5>Classic and Stylish</h5>
-                 <span>fom K90.00</span>
-                 <!-- <h3>K15,500.00</h3> -->
-             </div>
-             <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-             </a>
-         </div>
-         <!-- ///////////product 5///////////// -->
-         <div class="pro">
-           <a id="linkTag" href="/custom">
-               <img src="images/img3.png" alt="">
-               <div class="des">
-                   <span>Flask</span>
-                   <h5>Personalized Creations</h5>
-                   <span>from K90.00</span>
-               </div>
-               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-           </a>
-         </div>
-         <!-- ///////////product 6///////////// -->
-         <div class="pro">
-             <a id="linkTag" href="/custom">
-               <img src="images/img2.png" alt="">
-               <div class="des">
-                 <span>Key Holder</span>
-                 <h5>Custom Crafts</h5>
-                 <span>from K50.00</span>
-             </div>
-             <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-             </a>
-         </div>
-         <div class="pro">
-           <a id="linkTag" href="/custom">
-             <img src="images/img2.png" alt="">
-             <div class="des">
-               <span>Key Holder</span>
-               <h5>Custom Crafts</h5>
-               <span>from K50.00</span>
-           </div>
-           <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-           </a>
-       </div>
+                <span><%=customItems[index].customName %></span>
+                <h5><%=customItems[index].details %></h5>
+                <span>from K<%=customItems[index].price %></span>
+            </div>
+            <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </a>
+        </div>
+        <% } %>
 
        <div class="moreButton">
           <a href="/custom">
@@ -292,10 +212,10 @@
       </div>
     </div>
     <br>
-    <!-- woodwork section -->
-    <!-- <div class="customImg">
-       <img style="height: fit-content;" src="images/customImg.png"  alt="Legendary Shield">
-    </div> -->
+
+
+    <!------------------------ woodwork section --------------------->
+    
     <hr>
     <div class="woodworkAd">
       <h2>Woodwork</h2>
@@ -305,41 +225,15 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="images/customImg.png"   class="d-block w-100" alt="...">
-          <!-- <div class="imgText">
-              <p>Carry Your Personality with Our Keychains.</p>
-          </div> -->
+
         </div>
-        
-        <div class="carousel-item">
-          <img src="images/woodwork/choppingBoard.jpg" class="d-block w-100" alt="...">
-          <!-- <div class="imgText">
-              <p>Transform your neckline with our stunning neck chains & necklaces.</p>
-          </div> -->
-        </div>
-        <div class="carousel-item">
-          <img src="images/woodwork/photFrame.jpg" class="d-block w-100" alt="...">
-          <!-- <div class="imgText">
-              <p> Find Your Perfect Fit with Our Sleek Neck Chains.</p>
-          </div> -->
-        </div>
-        <div class="carousel-item">
-          <img src="images/woodwork/woodenCoasters.jpg" class="d-block w-100" alt="...">
-          <!-- <div class="imgText">
-              <p> Unleash Your Inner Glam with Our Stunning Rings.</p>
-          </div> -->
-        </div>
-        <div class="carousel-item">
-          <img src="images/woodwork/woodenPhotoFrame.jpg" class="d-block w-100" alt="...">
-          <!-- <div class="imgText">
-              <p>Timeless Style at Your Wrist with Our Watches</p>
-          </div> -->
-        </div>
-        <div class="carousel-item">
-          <img src="images/woodwork/woodenTable.jpg" class="d-block w-100" alt="...">
-          <!-- <div class="imgText">
-              <p> Elevate Your Look with Our Elegant Necklaces.</p>
-          </div> -->
-        </div>
+
+        <% woodItems.forEach(image => { %>
+          <div class="carousel-item">
+            <img src="images/woodwork/<%=image.imgLink%>" class="d-block w-100" alt="<%=image.woodItem %>">
+          </div>
+        <% }) %>
+
       </div>
 
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -358,55 +252,23 @@
          <h2>The Woodwork Collection</h2>
        <div class="pro-container">
           <!-- ///////////product 4///////////// -->
-          <div class="pro">
-              <a id="linkTag" href="/woodWork">
-                <img src="images/img5.png" alt="">
+          <% for( let index = 0; index < 4; index++ ) { %>
+
+            <div class="pro">
+              <a id="linkTag" href="/woodWork/<%=woodItems[index].woodItem %>">
+                <img src="images/woodwork/<%=woodItems[index].imgLink%>" alt="<%=woodItems[index].woodItem %>">
                  <div class="des">
-                  <span>Wallet</span>
-                  <h5>Classic and Stylish</h5>
-                  <span>fom K90.00</span>
+                  <span><%=woodItems[index].woodItem %></span>
+                  <h5><%=woodItems[index].details %></h5>
+                  <span>from K<%=woodItems[index].price %></span>
                   <!-- <h3>K15,500.00</h3> -->
               </div>
               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
               </a>
           </div>
-          <!-- ///////////product 5///////////// -->
-          <div class="pro">
-            <a id="linkTag" href="/woodWork">
-                <img src="images/img3.png" alt="">
-                <div class="des">
-                    <span>Flask</span>
-                    <h5>Personalized Creations</h5>
-                    <span>from K90.00</span>
-                </div>
-                <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </a>
-          </div>
-          <!-- ///////////product 6///////////// -->
-          <div class="pro">
-              <a id="linkTag" href="/woodWork">
-                <img src="images/img2.png" alt="">
-                <div class="des">
-                  <span>Key Holder</span>
-                  <h5>Custom Crafts</h5>
-                  <span>from K50.00</span>
-              </div>
-              <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-              </a>
-          </div>
-          <div class="pro">
-            <a id="linkTag" href="/woodWork">
-              <img src="images/img2.png" alt="">
-              <div class="des">
-                <span>Key Holder</span>
-                <h5>Custom Crafts</h5>
-                <span>from K50.00</span>
-            </div>
-            <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </a>
-        </div>
-
-     
+          
+          <% } %>
+         
         <div class="moreButton">
               <a href="/woodWork">
                  <span>more</span>
