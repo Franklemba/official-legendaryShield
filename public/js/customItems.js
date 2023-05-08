@@ -42,7 +42,7 @@ const customItems = [
         relatedImages: []
     },
     {
-        customName: 'bote books',
+        customName: 'note books',
         imgLink: 'noteBooks.png',
         details: 'Lorem, ipsum note Books Lorem, ipsum.',
         price: 180.00,
@@ -56,14 +56,14 @@ const customItems = [
         relatedImages: []
     },
     {
-        customName: 'necklace',
+        customName: 'custom necklace',
         imgLink: 'customNecklace.png',
         details: 'Lorem, ipsum necklace Lorem, ipsum.',
         price: 270.00,
         relatedImages: []
     },
     {
-        customName: 'bracelet',
+        customName: 'custom bracelet',
         imgLink: 'customBracelet.jpeg',
         details: 'Lorem, ipsum bracelet Lorem, ipsum.',
         price: 70.00,

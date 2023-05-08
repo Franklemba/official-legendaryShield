@@ -9,7 +9,11 @@ const LSproducts = [
     },
     {
         "category":"custom brands",
-        "products":["wallets","flasks","phone pouches","diaries","special customization"]
+        "products":["photo stand","Flask","chopping board","crates","gift box","door signs","diary","note books","custom necklace","custom bracelet"]
+    },
+    {
+        "category":"woodwork",
+        "products":["wooden chop boards","wooden Photo frame","wooden coaster","wooden frame","wooden table"]
     }
 ]
 

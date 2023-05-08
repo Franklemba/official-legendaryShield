@@ -116,10 +116,14 @@ console.log(id)
 
 router.post('/search', (req,res)=>{
     let keyword = req.body.item;
-    const customArray = ["wallets","flasks","phone pouches","diaries","special customization"];
+    const customArray = ["photo stand","Flask","chopping board","crates","gift box","door signs","diary","note books","custom necklace","custom bracelet"];
+    const woodWorkArray = ["wooden chop boards","wooden Photo frame","wooden coaster","wooden frame","wooden table"];
     if(customArray.includes(keyword) == true){
-        res.redirect("/custom")
-    }else{
+        res.redirect(`/custom/${keyword}`)
+    }else if(woodWorkArray.includes(keyword) == true){
+        res.redirect(`/woodwork/${keyword}`)
+    }
+    else{
         res.redirect(`/store/${keyword}`)
     }
 })

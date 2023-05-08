@@ -65,7 +65,7 @@
       right: 10px;
     }
     #carouselExampleControls img {
-      height: 60vh;
+      height: 40vh;
     }
   
     .carousel-control-prev,
@@ -86,6 +86,11 @@
       opacity: 0.5;
       transition: opacity 0.15s ease;
     }
+    #textPreview{
+      color: brown;
+      font-weight: 800;
+    }
+    
   </style>
   
   <div
@@ -141,7 +146,7 @@
         <h2>custom <%=customItem.customName %></h2>
       </div>
       <div>
-        <p id="customCart">
+        <p>
               <span><%=customItem.details%></span>
               <span class="" id="customPrice"
                 ><i>from</i> K<%=customItem.price%></span
@@ -151,8 +156,33 @@
       <div class="price">
         <h3><strong>K <%=customItem.price %></strong></h3>
       </div>
- 
+      <div>
+      <hr>
+        <label for="">Upload image</label><br>
+        <label for="yesIMG">Yes</label>
+        <input type="radio" name="woodIMG" id="yesIMG">
+        <label for="noIMG">No</label>
+        <input type="radio" name="woodIMG" id="noIMG">
+        <input type="file" name="sampleWoodIMG" id="sampleWoodIMG">
+        <br>
+      <hr>
+        <label for="">Add custom text</label><br>
+        <label for="yesText">Yes</label>
+        <input type="radio" name="woodText" id="yesText">
+        <label for="noText">No</label>
+        <input type="radio" name="woodText" id="noText">
+       <br>
+       <textarea name="customText" id="yesTextArea" cols="30" rows="10"></textarea>
+      </div>
+      <hr>
+        <ul>
+          <li><i>A preview of your design will be emailed to you within <span id="textPreview">2-3 working days</span>.</i></li>
+          <li><i>You can either <span id="textPreview">confirm the design or ask for changes</span> on it.</i></li>
+          <li><i>Once design is confirmed, production will take <span id="textPreview">3-4 working days</span>.</i></li>
+          <li><i>The delivery time for any engraved product is about <span id="textPreview">8-12 working days</span>.</i></li>
+        </ul>
       <hr />
+      
       <div class="buttons" >
         <div id="buyBtn" id="">
           <span>
@@ -163,8 +193,9 @@
           <span>Add to cart</span>
         </div>
       </div>  
-      <hr />
 
+      <hr />
+         
     </div>
   </section>
   
@@ -172,7 +203,30 @@
     const buyButton = document.querySelector("#buyBtn");
     const buyModal = document.querySelector(".buyModal");
     const addToCartButton = document.querySelector(".cartBtn");
-  
+    const yesTextArea = document.getElementById('yesTextArea');
+    const yesText = document.getElementById('yesText');   
+    const noText = document.getElementById('noText'); 
+    const yesIMG = document.getElementById('yesIMG');
+    const noIMG = document.getElementById('noIMG');
+    const sampleWoodIMG = document.getElementById('sampleWoodIMG');
+
+    yesTextArea.style.display = "none";
+    sampleWoodIMG.style.display = "none";
+    yesText.addEventListener('click',()=>{
+      yesTextArea.style.display = "block";
+    })
+
+    noText.addEventListener('click',()=>{
+      yesTextArea.style.display = "none";
+    })
+
+    yesIMG.addEventListener('click',()=>{
+      sampleWoodIMG.style.display = "block";
+    })
+    noIMG.addEventListener('click',()=>{
+      sampleWoodIMG.style.display = "none";
+    })
+
     let currCart = localStorage.getItem("cartList");
   
     buyButton.addEventListener("click", () => {
