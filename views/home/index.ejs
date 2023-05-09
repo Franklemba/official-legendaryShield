@@ -1,5 +1,33 @@
 
-    <section id="hero" >        
+   <style>
+    .about{
+        padding: 2% 10%;
+    }
+    .top{
+      padding-top: 20%;
+    }
+    .top h2, .middle h3{
+      text-align: center;
+    }
+    .middle ul{
+        padding-left: 80%;
+    }
+    .middle ul li{
+       list-style: none;
+       text-indent: 5px;
+    }
+    .woodworkAd{
+      padding: 5%;
+    }
+    .woodworkAd h2, .woodworkAd p{
+      text-align: center;
+    }
+    
+
+   
+</style>
+   
+   <section id="hero" >        
         <div id="carouselExampleControls" class=" carousel slide " data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -94,119 +122,79 @@
        <% } %>
     </section>
     
-        <!-- Product Section -->
-     <section class="productsAd">
+    
+
+    <section class="productsAd">
+       <!------------------------ jewery section --------------------->
+    <% if(jeweryCollection.length != 0) { %>
       <div id="product1" class="section-p1">
         <h2>The Jewelry Collection</h2>
         <p>Discover our exquisite jewelry collection, crafted with passion and designed to make you shine.</p>
         <div class="pro-container">
            <!-- ///////////product 4///////////// -->
-           <div class="pro">
-           <a id="linkTag" href="/store/Necklaces">
-             <img src="images/img5.png" alt="">
-             <div class="des">
-                 <span>Necklaces</span>
-                 <h5>Glamorous</h5>
-                 <span>from K120.00</span>
-                 <!-- <h3>K15,500.00</h3> -->
-             </div>
-             <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-           </a>
+           <% jeweryCollection.forEach(jewery => { %>
+            <div class="pro">
+              <a id="linkTag" id="linkTag" href="/store/item/<%=jewery._id%>">
+                <img src="<%= jewery.ImagesPath%>\<%=jewery.mainImg%>" alt="<%=jewery.category%>">
+                <div class="des">
+                    <span><%=jewery.brandName%></span>
+                    <h5><%=jewery.category%></h5>
+                    <span>from K<%=jewery.price%></span>
+                </div>
+                <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+              </a>
            </div>
-         
-           <div class="pro">
-               <a id="linkTag" href="/store/Rings">
-                 <img src="images/img3.png" alt="">
-               <div class="des">
-                   <span>Rings</span>
-                   <h5>Timeless and Classic</h5>
-                   <span>from K100.00</span>
-                   <!-- <h3>K3,500.00</h3> -->
-               </div>
-               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-               </a>
-           </div>
-          
-           <div class="pro">
-               <a id="linkTag" href="/store/Bracelets">
-                 <img src="images/img2.png" alt="">
-               <div class="des">
-                   <span>Bracelet</span>
-                   <h5>Radiant</h5>
-                   <span>from K90.00</span>
-                   <!-- <h3>K11,500.00</h3> -->
-               </div>
-               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-               </a>
-           </div>
-           <div class="moreButton">
-            <a href="/store/">more</a>
-            <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
-        </div>
+           <% }) %>
+           
+           
         </div>
         <!-- <button class="viewBtn">view more</button> -->
-   </div>
+      </div>
+    <% } %>
+    
+    <!------------------------ watch section --------------------->
+
+    <% if(watchCollection.length != 0) { %>
         <div id="product1" class="section-p1">
             <h2>The Wrist watch Collection</h2>
             <p>Timeless Elegance, Discover Our Wrist Watch Collection</p>
             <div class="pro-container">
                <!-- ///////////product 1///////////// -->
-               <div class="pro">
-                  <a id="linkTag" id="linkTag" href="/store/Mens Watch">
-                    <img src="images/img10.png" alt="">
-                    <div class="des">
-                        <span>Men's Watches</span>
-                        <h5>Modern Styles</h5>
-                        <span>from K150.00</span>
-                    </div>
-                    <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-                  </a>
-               </div>
-               <!-- ///////////product 2///////////// -->
-               <div class="pro">
-                   <a id="linkTag" href="/store/Womens Watch">
-                    <img src="images/img2.png" alt="">
-                   <div class="des">
-                       <span>Women's Watches</span>
-                       <h5>Elegant Designs</h5>
-                       <span>from K100.00</span>
-                   </div>
-                   <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-                   </a>
-               </div>
-               <!-- ///////////product 3///////////// -->
-               <div class="pro">
-                  <a id="linkTag" href="/store/Unisex Watch">
-                    <img src="images/img9.png" alt="">
-                    <div class="des">
-                        <span>Unisex Watches</span>
-                        <h5>Updated Selection</h5>
-                        <span>from K100.00</span>
-                        <!-- <h3>K9,500.00</h3> -->
-                    </div>
-                    <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-                  </a>
-               </div>
 
-               <div class="moreButton">
-                <a href="/store/">more</a>
-                <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
-            </div>
+               <% watchCollection.forEach(watch => { %>
+                
+                <div class="pro">
+                   <a id="linkTag" id="linkTag" href="/store/item/<%=watch._id%>">
+                     <img src="<%= watch.ImagesPath%>\<%=watch.mainImg%>" alt="<%=watch.category%>">
+                     <div class="des">
+                         <span><%=watch.brandName%></span>
+                         <h5><%=watch.category%></h5>
+                         <span>from K<%=watch.price%></span>
+                     </div>
+                     <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+                   </a>
+                </div>
+
+               <% }) %>
+
             </div>
             <!-- <button class="viewBtn">view more</button> -->
-       </div>
-       
+        </div>
+    <% } %>
+    <!------------------------ custom section --------------------->
        
     <div id="product1" class="section-p1">
 
       <h2>The Custom Collection</h2>
       <p>Our Custom Collection offers a unique opportunity to create your own personalized jewelry pieces. </p>
       <div class="pro-container">
-         <!-- ///////////product 4///////////// -->
-         <div class="pro">
-             <a id="linkTag" href="/custom">
-               <img src="images/img5.png" alt="">
+
+        <% for( let index = 0; index < 4; index++ ) { %>
+          <div class="pro">
+            <a id="linkTag" href="/custom/<%=customItems[index].customName %>">
+              <img src="images/customImages/<%=customItems[index].imgLink%>" alt="<%=customItems[index].customName %>">
                 <div class="des">
+<<<<<<< HEAD
                  <span>Wallet</span>
                  <h5>Classic and Stylish</h5>
                  <span>fom K90.00</span>
@@ -260,132 +248,163 @@
       
     <div class="customImg">
        <img style="height: fit-content;" src="images/customImg.png"  alt="Legendary Shield"/>
+=======
+                <span><%=customItems[index].customName %></span>
+                <h5><%=customItems[index].details %></h5>
+                <span>from K<%=customItems[index].price %></span>
+            </div>
+            <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+            </a>
+        </div>
+        <% } %>
+
+       <div class="moreButton">
+          <a href="/custom">
+            <span>more</span>
+            <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
+        </a>
+       </div>
+      </div>
+    </div>
+    <br>
+
+
+    <!------------------------ woodwork section --------------------->
+    
+    <hr>
+    <div class="woodworkAd">
+      <h2>Woodwork</h2>
+     <p> Let your imagination run wild as we work with you to bring your vision to life.</p>
+     </div>
+    <div id="carouselExampleControls" class=" carousel slide " data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="images/customImg.png"   class="d-block w-100" alt="...">
+
+        </div>
+
+        <% woodItems.forEach(image => { %>
+          <div class="carousel-item">
+            <img src="images/woodwork/<%=image.imgLink%>" class="d-block w-100" alt="<%=image.woodItem %>">
+          </div>
+        <% }) %>
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden" >Previous</span>
+        <!-- <p class="prevBtn">&DoubleLeftArrow;</p> -->
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>              
+      </button>
+>>>>>>> 43c61b1047d710c407d6b69dbfb32fc3e601eb2f
     </div>
     <div id="product1" class="section-p1">
       <br>
       <br>
-       <h2>Woodwork</h2>
-       <p> Let your imagination run wild as we work with you to bring your vision to life.</p>
+         <h2>The Woodwork Collection</h2>
        <div class="pro-container">
           <!-- ///////////product 4///////////// -->
-          <div class="pro">
-              <a id="linkTag" href="/woodWork">
-                <img src="images/img5.png" alt="">
+          <% for( let index = 0; index < 4; index++ ) { %>
+
+            <div class="pro">
+              <a id="linkTag" href="/woodWork/<%=woodItems[index].woodItem %>">
+                <img src="images/woodwork/<%=woodItems[index].imgLink%>" alt="<%=woodItems[index].woodItem %>">
                  <div class="des">
-                  <span>Wallet</span>
-                  <h5>Classic and Stylish</h5>
-                  <span>fom K90.00</span>
+                  <span><%=woodItems[index].woodItem %></span>
+                  <h5><%=woodItems[index].details %></h5>
+                  <span>from K<%=woodItems[index].price %></span>
                   <!-- <h3>K15,500.00</h3> -->
               </div>
               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
               </a>
           </div>
-          <!-- ///////////product 5///////////// -->
-          <div class="pro">
-            <a id="linkTag" href="/woodWork">
-                <img src="images/img3.png" alt="">
-                <div class="des">
-                    <span>Flask</span>
-                    <h5>Personalized Creations</h5>
-                    <span>from K90.00</span>
-                </div>
-                <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </a>
-          </div>
-          <!-- ///////////product 6///////////// -->
-          <div class="pro">
-              <a id="linkTag" href="/woodWork">
-                <img src="images/img2.png" alt="">
-                <div class="des">
-                  <span>Key Holder</span>
-                  <h5>Custom Crafts</h5>
-                  <span>from K50.00</span>
-              </div>
-              <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-              </a>
-          </div>
-          <div class="pro">
-            <a id="linkTag" href="/woodWork">
-              <img src="images/img2.png" alt="">
-              <div class="des">
-                <span>Key Holder</span>
-                <h5>Custom Crafts</h5>
-                <span>from K50.00</span>
-            </div>
-            <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </a>
-        </div>
-
-     
+          
+          <% } %>
+         
         <div class="moreButton">
-          <a href="/woodWork">more</a>
-          <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
+              <a href="/woodWork">
+                 <span>more</span>
+                 <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
+              </a>
       </div>
     
        </div>
-       <!-- <button class="viewBtn">view more</button> -->
-       <br>
-       <br>
-       <br>
-
        
-       <section class="about">
-        <div class="top">
-            <h2>LEGENDARY SHIELD INNOVATIONS</h2>
-            <p>Legendary shield innovations specializes in wood production and product retail. Our main objective is to produce the
-                highest quality products and experiences for our customers. We guarantee outstanding workmanship and customer
-                satisfaction at all times.</p>
-        </div>
-        <div class="middle">
-        <hr>
-            <legend><h3>Main Services</h3></legend>
-            <ul>
-                <li>Jewelry retail</li>
-                <li>Dairies retail and customization</li>
-                <li>Woodwork Design, production and Retail</li>
-                <li>Wallets retail and customization</li>
-            </ul>
-        <hr>
-            <p>
-                We operate nationwide and in the process of expanding globally. Our headquarters are in Kitwe, Copperbelt Province. We
-                hold ourselves responsible for managing customer expectations in delivering superior levels of online services in order
-                to meet the demand country wide.
-            </p>
-            <p>
-              <strong>Principal customer industries include</strong>: Private Residential,Gift Shops
-            ,Jewelry Shops,Schools,Corporate Bodies
-            </p>
-        </div>
-        <div class="bottom">
-            <p>
-                All Legendary Shield employees are trained and qualified to provide a service of the highest quality. Legendary Shield
-                adheres to all Health & Safety regulations and employees are regularly trained to maintain their skills & guarantee
-                their safety and the satisfaction of customers.
-            </p>
-            <!-- <span><strong>Some of our featured works include: </strong></span> -->
-            <!-- <div class="featuredProducts">
-            </div> -->
-        </div>
-    </section>
-    
-    <style>
-        .about{
-            padding: 2% 10%;
-        }
-        .middle ul{
-            padding-left: 80%;
-        }
-        .middle ul li{
-           list-style: none;
-           text-indent: 5px;
-        }
-    </style>
-      </div>
-     </section>
 
-     <!-- <script>
-        let craftMen = document.getElementById('craftMen');
-        let craftMenItems = document.getElementById('craftMenItems');
-        craftMen.style.height = 'fit-content';
-        console.log(craftMenItems);
-     </script> -->
+      </div>
+    </section>
+
+
+
+    <!-- About us section -->
+
+  <section class="about" id="aboutID">
+      <div class="top">
+          <h2>LEGENDARY SHIELD INNOVATIONS</h2>
+          <p>Legendary shield innovations specializes in wood production and product retail. Our main objective is to produce the
+              highest quality products and experiences for our customers. We guarantee outstanding workmanship and customer
+              satisfaction at all times.</p>
+      </div>
+      <div class="middle">
+      <hr>
+          <legend><h3>Main Services</h3></legend>
+          <ul>
+              <li>Jewelry retail</li>
+              <li>Dairies retail and customization</li>
+              <li>Woodwork Design, production and Retail</li>
+              <li>Wallets retail and customization</li>
+          </ul>
+      <hr>
+          <p>
+              We operate nationwide and in the process of expanding globally. Our headquarters are in Kitwe, Copperbelt Province. We
+              hold ourselves responsible for managing customer expectations in delivering superior levels of online services in order
+              to meet the demand country wide.
+          </p>
+          <p>
+            <strong>Principal customer industries include</strong>: Private Residential,Gift Shops
+          ,Jewelry Shops,Schools,Corporate Bodies
+          </p>
+      </div>
+      <div class="bottom">
+          <p>
+              All Legendary Shield employees are trained and qualified to provide a service of the highest quality. Legendary Shield
+              adheres to all Health & Safety regulations and employees are regularly trained to maintain their skills & guarantee
+              their safety and the satisfaction of customers.
+          </p>
+      </div>
+  </section>
+
+  
+
+
+
+     <script>
+       
+              let aboutID = document.getElementById('aboutID');
+              let pro = document.querySelectorAll('.pro');
+     
+      const proObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry =>{
+          entry.target.classList.toggle("show",entry.isIntersecting)
+        })
+      })
+
+       pro.forEach(element=>{
+          proObserver.observe(element)
+       })
+
+        function scrollToAbout(){
+          
+          aboutID.scrollIntoView({
+                  block: "start",
+                  behavior: "smooth"
+              })
+          }
+
+          
+      
+     </script>

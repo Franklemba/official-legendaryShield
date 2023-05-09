@@ -6,14 +6,43 @@ const customOrder = require('../models/customSchema')
 const purchaseOrder = require("../models/purchaseSchema");
 const Product = require("../models/uploadSchema");
 const mongoose = require('mongoose')
+const CustomItems = require('../public/js/customItems');
+const WoodItems = require('../public/js/woodItems');
+
 
 
 router.get("/", async (req, res) => {
   const promoProducts = await Product.find({type:'promo'}).limit(4);
+  const watchArray = [];
+  const jeweryArray = [];
 
+  // ----------- the wrist watch collection
+  const menWatch = await Product.findOne({category:'Mens Watch'});
+  if(menWatch) watchArray.push(menWatch);
+  const womenWatch = await Product.findOne({category:'Women Watch'});
+  if(womenWatch) watchArray.push(womenWatch);
+  const uniWatch = await Product.findOne({category:'Unisex Watch'});
+  if(uniWatch) watchArray.push(uniWatch);
+
+  // ----------- the jewery collection
+  const necklace = await Product.findOne({category:'Necklaces'});
+  if(necklace) jeweryArray.push(necklace);
+  const ring = await Product.findOne({category:'Rings'});
+  if(ring) jeweryArray.push(ring);
+  const bracelet = await Product.findOne({category:'Bracelet'});
+  if(bracelet) jeweryArray.push(bracelet);
+
+
+  
+
+  // console.log(watchArray);
   try{
     res.render("home/index",{
-        products: promoProducts 
+        products: promoProducts, 
+        customItems: CustomItems,
+        woodItems: WoodItems,
+        watchCollection: watchArray,
+        jeweryCollection: jeweryArray
     });
   }catch(err){
     res.send("error fetching promo products")
@@ -116,10 +145,14 @@ console.log(id)
 
 router.post('/search', (req,res)=>{
     let keyword = req.body.item;
-    const customArray = ["wallets","flasks","phone pouches","diaries","special customization"];
+    const customArray = ["photo stand","Flask","chopping board","crates","gift box","door signs","diary","note books","custom necklace","custom bracelet"];
+    const woodWorkArray = ["wooden chop boards","wooden Photo frame","wooden coaster","wooden frame","wooden table"];
     if(customArray.includes(keyword) == true){
-        res.redirect("/custom")
-    }else{
+        res.redirect(`/custom/${keyword}`)
+    }else if(woodWorkArray.includes(keyword) == true){
+        res.redirect(`/woodwork/${keyword}`)
+    }
+    else{
         res.redirect(`/store/${keyword}`)
     }
 })

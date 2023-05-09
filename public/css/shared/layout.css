@@ -142,9 +142,10 @@
   color: #000000;
   transition: 0.3s ease;
 }
-.store a{
+.store a, .about a{
   pointer-events: none;
 }
+
 #navbar li a:hover,
 #navbar li a.active {
   color: #088178;

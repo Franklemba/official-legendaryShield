@@ -33,7 +33,8 @@ router.post('/',multipleUploads,async (req,res)=>{
     
     images?.forEach(data=>{
         imagesArray.push(data.filename)
-    })
+    });
+    
     const cProduct = new customProduct({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
@@ -62,7 +63,7 @@ router.post('/',multipleUploads,async (req,res)=>{
     }
 })
 
-router.get('/specificCustom/:customItem',(req,res)=>{
+router.get('/:customItem',(req,res)=>{
     const customItemName = req.params.customItem
     customItems.forEach(customItem=>{
         if(customItem.customName == customItemName){

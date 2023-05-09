@@ -51,7 +51,7 @@ p {
   color: #465b52;
 }
 a{
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .section-m1 {
   margin: 40px 0;
@@ -340,13 +340,13 @@ body {
 
   #hero {
     background: linear-gradient(to top, #eaecef, rgb(250, 248, 248));
-    height: 50vh;
+    height: 40vh;
     width: 100%;
     padding: 0px;
     display: block;
   }
   #carouselExampleControls img {
-    height: 50vh;
+    height: 40vh;
   }
 }
 
@@ -454,34 +454,38 @@ body {
   height: 43px;
 }
 
+
 .moreButton{
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  
+  opacity: 0;
+  transition: 1s;
 
-.moreButton{
+  /* margin-left: 20px; */
+  font-size: 16px;
+}
+.moreButton a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
   padding: 6px 12px;
   width: fit-content;
   height: fit-content;
   border: 2px solid black;
   border-radius: 28px;
-  opacity: 0;
-  transition: 1s;
-
-  margin-left: 20px;
-  font-size: 16px;
+  text-decoration: none;
+  color: #03060a;
 }
 .moreButton.visible{
   opacity: 1;
 }
-.moreButton a{
-  text-decoration: none;
-  color: #03060a;
-}
 
-.moreButton span a:hover{
+.moreButton a:hover{
   color: rgb(15, 74, 169);
+  border: 4px solid rgb(27, 151, 185);
 }
 
 

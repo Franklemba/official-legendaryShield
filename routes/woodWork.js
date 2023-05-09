@@ -7,7 +7,7 @@ const woodProduct = require('../models/woodSchema');
 const ImagesPath = path.join('public',woodProduct.woodImgPath);
 const imageMimeType = ['image/jpeg','image/png','image/gif','image/png','image/webp']
 
-const woodItems = require('../public/js/customItems');
+const woodItems = require('../public/js/woodItems');
 
 
 const mongoose = require('mongoose')
@@ -63,10 +63,10 @@ router.post('/',multipleUploads,async (req,res)=>{
 })
 
 
-router.get('/specificWood/:itemName', (req,res)=>{
+router.get('/:itemName', (req,res)=>{
     const woodItemName = req.params.itemName;
     woodItems.forEach(woodItem=>{
-        if(woodItem.customName == woodItemName){
+        if(woodItem.woodItem == woodItemName){
             res.render('collections/specificWood', {woodItem})
             return
         }

@@ -63,3 +63,16 @@
     }
 
 </style>
+<script>
+    let pro = document.querySelectorAll('.pro');
+     
+      const proObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry =>{
+          entry.target.classList.toggle("show",entry.isIntersecting)
+        })
+      })
+
+       pro.forEach(element=>{
+          proObserver.observe(element)
+       })
+</script>
