@@ -82,12 +82,12 @@ body {
   cursor: pointer;
   font-weight: 700;
 }
-/* .mt-4 {
+.mt-4 {
   margin-top: 0rem !important;
-} */
-/* .carousel-inner {
+}
+.carousel-inner {
   margin-top: 0px !important;
-} */
+}
 #carouselExampleControls {
   width: 100vw;
   /* margin-top: 60px; */
@@ -259,7 +259,7 @@ body {
     width: 100%;
 } */
   #carouselExampleControls {
-
+    
     width: 100%;
   }
   #carouselExampleControls #viewBtn {
@@ -340,13 +340,14 @@ body {
 
   #hero {
     background: linear-gradient(to top, #eaecef, rgb(250, 248, 248));
-    height: 40vh;
+    height: 250px;
     width: 100%;
     padding: 0px;
     display: block;
   }
   #carouselExampleControls img {
-    height: 40vh;
+    /* height: 40vh; */
+    height: 250px;
   }
 }
 

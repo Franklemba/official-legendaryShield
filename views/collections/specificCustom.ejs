@@ -25,10 +25,7 @@
     }
     .productDetails {
       padding: 5%;
-      margin-top: 5%;
-      margin: 0% 5%;
     }
-  
     .brandName {
       grid-area: brandName;
     }
@@ -38,20 +35,33 @@
         Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
         sans-serif;
     }
+    .buttons{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     .buttons div:first-child {
       background-color: rgb(58, 58, 237);
       color: #fff;
+    }
+    .buttons div:first-child:hover {
+      border: 1px solid black;
+    }
+    .buttons div:last-child:hover {
+      border: 1px solid  black;
     }
   
     .buttons div {
       text-transform: capitalize;
       margin: 5px 0px;
       background-color: #fff;
-      padding: 5%;
+      padding: 1%;
       border-radius: 30px;
       text-align: center;
       border: 1px solid rgb(58, 58, 237);
       color: black;
+      width: 40vw;
       cursor: pointer;
     }
     .buttons div span {
@@ -63,9 +73,6 @@
       position: absolute;
       top: 10px;
       right: 10px;
-    }
-    #carouselExampleControls img {
-      height: 40vh;
     }
   
     .carousel-control-prev,
@@ -90,57 +97,70 @@
       color: brown;
       font-weight: 800;
     }
+
+    @media (max-width: 477px) {
+      .productDetail{
+        padding: 0% 5% 5% 5%;
+        margin: 0;
+        width: 100%;
+      }
+      .productDetails {
+        margin-top: 5%;
+        margin: 0% 5%;
+      }
+    
+    }
     
   </style>
   
-  <div
-  id="carouselExampleControls"
-  class="carousel slide mt-4"
-  data-bs-ride="carousel"
->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img
-      src="/images/customImages/<%=customItem.imgLink%>"
-        class="d-block w-100"
-        alt="..."
-      />
-      <!-- <img src="images/img10.png"  alt="..."> -->
-    </div>
-
-    <% for( let i=0; i < customItem.relatedImages.length; i++ ) { %>
-    <div class="carousel-item active">
-      <img
-      src="/images/customImages/<%=customItem.imgLink%>"
-        class="d-block w-100"
-        alt="..."
-      />
-    </div>
-    <% } %>
-  </div>
-
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleControls"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-    <!-- <p class="prevBtn">&DoubleLeftArrow;</p> -->
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleControls"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
   
-  <section class="productDetails">
+  <section class="productDetail">
+    <div
+    id="carouselExampleControls"
+    class="carousel slide mt-4"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+        src="/images/customImages/<%=customItem.imgLink%>"
+          class="d-block w-100"
+          alt="..."
+        />
+        <!-- <img src="images/img10.png"  alt="..."> -->
+      </div>
+  
+      <% for( let i=0; i < customItem.relatedImages.length; i++ ) { %>
+      <div class="carousel-item active">
+        <img
+        src="/images/customImages/<%=customItem.imgLink%>"
+          class="d-block w-100"
+          alt="..."
+        />
+      </div>
+      <% } %>
+    </div>
+  
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      <!-- <p class="prevBtn">&DoubleLeftArrow;</p> -->
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
     <div class="productDetails">
       <div class="brandName">
         <h2>custom <%=customItem.customName %></h2>
@@ -184,7 +204,7 @@
       <hr />
       
       <div class="buttons" >
-        <div id="buyBtn" id="">
+        <div id="buyBtn" >
           <span>
             <a style="color: white; text-decoration: none" href="/cart">Buy it now</a>
           </span>
@@ -269,8 +289,6 @@
           localStorage.getItem("cartList").split(",").length - 1;
       }
   
-      // console.log(addToCartButton.id)
-      // console.log(localStorage)
     });
   </script>
   
