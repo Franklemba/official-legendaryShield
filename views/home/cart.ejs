@@ -10,13 +10,7 @@
   </h4>
   <form action="/makeOrder" method="post">
     <div class="inputbox">
-      <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Name"
-        required
-      />
+      <input type="text" id="name" name="name" placeholder="Name" required />
     </div>
     <div class="inputbox">
       <input
@@ -35,107 +29,187 @@
         placeholder="Phone Number"
         required
       />
-      <input type="hidden" name="orderData" id="orderData">
+      <input type="hidden" name="orderData" id="orderData" />
     </div>
-    
-      <input type="submit" class="btn sendOrder" value="Send" id="submit" />
-    
+
+    <input type="submit" class="btn sendOrder" value="Send" id="submit" />
   </form>
 </div>
 <div id="cartBtnContainer">
-  <button
-    id="submitOrder">
-    Proceed to checkout
-  </button>
+  <button id="submitOrder">Proceed to checkout</button>
 </div>
 <div class="cusOverlay"></div>
+<input id="previousImageUrl" type="hidden" value="<%=imgUrl%>" />
+
 <script defer>
-  const cartItems = localStorage.getItem("cartList");
+  console.log(document.getElementById("previousImageUrl").value);
+
   const _overlay = document.querySelector(".cusOverlay");
   const buyModal = document.querySelector(".buyModal");
   const closeModal = document.querySelector(".closeModal");
   const submitOrder = document.querySelector("#submitOrder");
+
   let totalPrice = 0;
+  //document.getElementById("previousImageUrl").value
+  if (document.getElementById("previousImageUrl").value) {
+    const cartItems = localStorage.getItem("cartList").split("+");
+    let newCart = [];
+
+    cartItems.forEach((cartItem, index) => {
+      if (cartItem) {
+        const dataItem = JSON.parse(cartItem);
+        //modItem.data.imagePath=document.getElementById("previousImageUrl").value
+        console.log(dataItem);
+        newCart.push(dataItem);
+      }
+    });
+    newCart[newCart.length - 1].data.imagePath =
+      document.getElementById("previousImageUrl").value;
+
+    let newCartStr = "";
+    newCart.forEach((cartItem) => {
+      newCartStr += `${JSON.stringify(cartItem)}+`;
+    });
+
+    localStorage.setItem("cartList", newCartStr);
+    console.log(newCartStr);
+    console.log(cartItems);
+  }
 
   submitOrder.addEventListener("click", () => {
     buyModal.classList.add("active");
     _overlay.classList.add("active");
-    let cartString = '';
- 
-    document.querySelectorAll('.cartItem').forEach(cartItem=>{
-      cartString += `${cartItem.lastElementChild.firstElementChild.id}:${cartItem.lastElementChild.firstElementChild.nextElementSibling.innerText},`
-    })
-    document.getElementById('orderData').value = cartString
+    let cartString = "";
+    // document.querySelectorAll(".cartItem").forEach((cartItem) => {
+    //   cartString += `${cartItem.lastElementChild.firstElementChild.id}:${cartItem.lastElementChild.firstElementChild.nextElementSibling.innerText},`;
+    // });
+    // document.getElementById("orderData").value = cartString;
   });
 
-  async function getItems() {
-    const options = {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+  function getItems() {
+    const cartItems = localStorage.getItem("cartList").split("+");
+    let qtyMinus;
+    let qtyPlus;
 
-    if (cartItems) {
-      const res = await fetch(`/getItems/${cartItems}`);
-      const data = await res.json();
-      let qtyMinus;
-      let qtyPlus;
-
-      data?.forEach((item) => {
-        addToTotal(item.price);
+    cartItems.forEach((cartObject, index) => {
+      console.log(cartObject);
+      if (index < cartItems.length - 1) {
+        const item = JSON.parse(cartObject);
+        addToTotal(parseInt(item.itemPrice));
+        let imagePath;
+        let imageText;
+        let woodType;
+        if (item.data) {
+          imagePath = item.data.imagePath;
+          itemText = item.data.text;
+          woodType = item.data.woodType;
+        } else {
+          imagePath = "";
+          itemText = "";
+          woodType = "";
+        }
         const cartItem = document.createElement("div");
         cartItem.classList.add("cartItem");
         cartItem.innerHTML = `
-      
     <div class="cartImage">
-      <img src="/uploads/images/${item.mainImg}" alt="null" />
+      <img src="/uploads/purchaseImages/${imagePath}" alt="null" />
     </div>
     <div class="contentSection">
-        <span>${item.brandName}</span>
-        <span>${item.category}</span>
-        <span>Price: K${item.price}</span>
+        <span>${item.itemName}</span>
+        <span>${item.data.itemText?item.data.itemText:''}</span>
+        <span>${item?.data.woodType?item?.data.woodType:''}</span>
+        <span>Price: K${item.itemPrice}</span>
     </div>
-    <div class="qtyControl" id="${item.price}">
-      <div class="qtyMinus" id="${item._id}">-</div>
-      <div class="qty">1</div>
-      <div class="qtyPlus">+</div>
+    <div class="qtyControl" id="${item.itemPrice}">
+      <div class="qtyMinus" id="${item.itemName}">-</div>
+      <div class="qty">${item.quantity}</div>
+      <div class="qtyPlus" id="${item.itemName}">+</div>
     </div>
+    
       `;
+
         document.querySelector(".cartList").append(cartItem);
+      }
+    });
+
+    qtyMinus = document.querySelectorAll(".qtyMinus");
+    qtyPlus = document.querySelectorAll(".qtyPlus");
+
+    qtyMinus.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        console.log(button);
+        if (parseInt(button.nextElementSibling.innerText) > 0) {
+          button.nextElementSibling.innerText =
+            parseInt(button.nextElementSibling.innerText) - 1;
+          minusTotalPrice(parseInt(button.parentElement.id));
+          minusQty(button.id);
+          ///qty mode
+          const cartItems = localStorage.getItem("cartList").split("+");
+          let newCart = [];
+          cartItems.forEach((cartItem, index) => {
+            if (cartItem) {
+              const dataItem = JSON.parse(cartItem);
+              if (dataItem.itemName == button.id) {
+                console.log("matched minues");
+                dataItem.quantity -= 1;
+              }
+              //modItem.data.imagePath=document.getElementById("previousImageUrl").value
+              console.log(dataItem);
+              newCart.push(dataItem);
+            }
+          });
+          let newCartStr = "";
+          newCart.forEach((cartItem) => {
+            newCartStr += `${JSON.stringify(cartItem)}+`;
+          });
+          localStorage.setItem("cartList", newCartStr);
+          console.log(newCartStr);
+
+          //cart str mode
+        } else if (parseInt(button.nextElementSibling.innerText) == 0) {
+          const oldCart = localStorage.getItem("cartList").split("+");
+          console.log(oldCart);
+          document.getElementById("cartCounter").innerText =
+            parseInt(document.getElementById("cartCounter").innerText) - 1;
+          button.parentElement.parentElement.remove();
+        }
       });
+    });
 
-      qtyMinus = document.querySelectorAll(".qtyMinus");
-      qtyPlus = document.querySelectorAll(".qtyPlus");
+    qtyPlus.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        console.log(button);
+        button.previousElementSibling.innerText =
+          parseInt(button.previousElementSibling.innerText) + 1;
+        addToTotal(parseInt(button.parentElement.id));
+        addQty(button.id);
 
-      qtyMinus.forEach((button) => {
-        button.addEventListener("click", (e) => {
-          if (parseInt(button.nextElementSibling.innerText) > 0) {
-            button.nextElementSibling.innerText =
-              parseInt(button.nextElementSibling.innerText) - 1;
-              minusTotalPrice(parseInt(button.parentElement.id));
-            
-          }
-          else if(parseInt(button.nextElementSibling.innerText) == 0){
-            const oldCart = localStorage.getItem("cartList");
-            const newCart = oldCart.replace(`${button.id},`, "");
-            localStorage.setItem("cartList", newCart);
-            document.getElementById('cartCounter').innerText = parseInt(document.getElementById('cartCounter').innerText)-1
-            button.parentElement.parentElement.remove()
-          }
-        });
+           ///qty mode
+           const cartItems = localStorage.getItem("cartList").split("+");
+          let newCart = [];
+          cartItems.forEach((cartItem, index) => {
+            if (cartItem) {
+              const dataItem = JSON.parse(cartItem);
+              if (dataItem.itemName == button.id) {
+                console.log("matched minues");
+                dataItem.quantity += 1;
+              }
+              //modItem.data.imagePath=document.getElementById("previousImageUrl").value
+              console.log(dataItem);
+              newCart.push(dataItem);
+            }
+          });
+          let newCartStr = "";
+          newCart.forEach((cartItem) => {
+            newCartStr += `${JSON.stringify(cartItem)}+`;
+          });
+          localStorage.setItem("cartList", newCartStr);
+          console.log(newCartStr);
+
+          //cart str mode
+
       });
-
-      qtyPlus.forEach((button) => {
-        button.addEventListener("click", (e) => {
-          button.previousElementSibling.innerText =
-            parseInt(button.previousElementSibling.innerText) + 1;
-          addToTotal(parseInt(button.parentElement.id));
-        });
-      });
-
-      console.log(data);
-    }
+    });
   }
 
   getItems();
@@ -159,15 +233,31 @@
     totalPrice -= price;
     document.getElementById("totalPrice").innerText = `Total: K${totalPrice}`;
   }
-  document.getElementById('submit').addEventListener('click',()=>{
-    const nameField = document.getElementById('name').value
-    const emailField = document.getElementById('email').value
-    const numberField = document.getElementById('Pnumber').value
 
-    if(nameField&&numberField){
-      localStorage.setItem('cartList', "")
+  function addQty(id) {
+    console.log(id);
+  }
+
+  function minusQty(id) {
+    console.log(id);
+  }
+  document.getElementById("submit").addEventListener("click", () => {
+    const nameField = document.getElementById("name").value;
+    const emailField = document.getElementById("email").value;
+    const numberField = document.getElementById("Pnumber").value;
+    document.getElementById('orderData').value = localStorage.getItem('cartList')
+    localStorage.setItem('name', nameField)
+    localStorage.setItem('email', emailField)
+    localStorage.setItem('Pnumber', numberField)
+    if (nameField && numberField && emailField) {
+      localStorage.setItem("cartList", "");
     }
-  })
+  });
+
+
+  document.getElementById("name").value = localStorage.getItem('name')
+document.getElementById("email").value = localStorage.getItem('email')
+document.getElementById("Pnumber").value = localStorage.getItem('Pnumber')
 </script>
 
 <style>

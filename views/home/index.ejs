@@ -100,7 +100,7 @@
           </div>
         <div id="craftMenItems">
 
-        <% products.forEach(data=> { %>
+        <% products?.forEach(data=> { %>
           <a href="/store/item/<%=data._id%>">
             <div class="item">
               <div class="itemImg">
@@ -126,13 +126,13 @@
 
     <section class="productsAd">
        <!------------------------ jewery section --------------------->
-    <% if(jeweryCollection.length != 0) { %>
+    <% if(jeweryCollection?.length != 0) { %>
       <div id="product1" class="section-p1">
         <h2>The Jewelry Collection</h2>
         <p>Discover our exquisite jewelry collection, crafted with passion and designed to make you shine.</p>
         <div class="pro-container">
            <!-- ///////////product 4///////////// -->
-           <% jeweryCollection.forEach(jewery => { %>
+           <% jeweryCollection?.forEach(jewery => { %>
             <div class="pro">
               <a id="linkTag" id="linkTag" href="/store/item/<%=jewery._id%>">
                 <img src="<%= jewery.ImagesPath%>\<%=jewery.mainImg%>" alt="<%=jewery.category%>">
@@ -154,14 +154,14 @@
     
     <!------------------------ watch section --------------------->
 
-    <% if(watchCollection.length != 0) { %>
+    <% if(watchCollection?.length != 0) { %>
         <div id="product1" class="section-p1">
             <h2>The Wrist watch Collection</h2>
             <p>Timeless Elegance, Discover Our Wrist Watch Collection</p>
             <div class="pro-container">
                <!-- ///////////product 1///////////// -->
 
-               <% watchCollection.forEach(watch => { %>
+               <% watchCollection?.forEach(watch => { %>
                 
                 <div class="pro">
                    <a id="linkTag" id="linkTag" href="/store/item/<%=watch._id%>">
@@ -189,74 +189,21 @@
       <p>Our Custom Collection offers a unique opportunity to create your own personalized jewelry pieces. </p>
       <div class="pro-container">
 
-        <% for( let index = 0; index < 4; index++ ) { %>
-          <div class="pro">
-            <a id="linkTag" href="/custom/<%=customItems[index].customName %>">
-              <img src="images/customImages/<%=customItems[index].imgLink%>" alt="<%=customItems[index].customName %>">
-                <div class="des">
-<<<<<<< HEAD
-                 <span>Wallet</span>
-                 <h5>Classic and Stylish</h5>
-                 <span>fom K90.00</span>
-                 <!-- <h3>K15,500.00</h3> -->
-             </div>
-             <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-             </a>
-         </div>
-         <!-- ///////////product 5///////////// -->
-         <div class="pro">
-           <a id="linkTag" href="/custom">
-               <img src="images/img3.png" alt="">
-               <div class="des">
-                   <span>Flask</span>
-                   <h5>Personalized Creations</h5>
-                   <span>from K90.00</span>
-               </div>
-               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-           </a>
-         </div>
-         <!-- ///////////product 6///////////// -->
-         <div class="pro">
-             <a id="linkTag" href="/custom">
-               <img src="images/img2.png" alt="">
-               <div class="des">
-                 <span>Key Holder</span>
-                 <h5>Custom Crafts</h5>
-                 <span>from K50.00</span>
-             </div>
-             <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-             </a>
-         </div>
-         <div class="pro">
-           <a id="linkTag" href="/custom">
-             <img src="images/img2.png" alt="">
-             <div class="des">
-               <span>Key Holder</span>
-               <h5>Custom Crafts</h5>
-               <span>from K50.00</span>
-           </div>
-           <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-           </a>
-       </div>
- 
-       <div class="moreButton">
-           <a href="/custom">more</a>
-           <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
-    </div> 
-  </div> 
+    <%if(customItems.length>1){%>
+      <% for( let index = 0; index < 4; index++ ) { %>
+        <div class="pro">
+          <a id="linkTag" href="/custom/<%=customItems[index].customName %>">
+            <img src="images/customImages/<%=customItems[index].imgLink%>" alt="<%=customItems[index].customName %>">
+              <div class="des">
+              <span><%=customItems[index].customName %></span>
+              <h5><%=customItems[index].details %></h5>
+              <span>from K<%=customItems[index].price %></span>
+          </div>
+          <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+          </a>
       </div>
-      
-    <div class="customImg">
-       <img style="height: fit-content;" src="images/customImg.png"  alt="Legendary Shield"/>
-=======
-                <span><%=customItems[index].customName %></span>
-                <h5><%=customItems[index].details %></h5>
-                <span>from K<%=customItems[index].price %></span>
-            </div>
-            <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </a>
-        </div>
-        <% } %>
+      <% } %>
+      <% } %>
 
        <div class="moreButton">
           <a href="/custom">
@@ -300,7 +247,6 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>              
       </button>
->>>>>>> 43c61b1047d710c407d6b69dbfb32fc3e601eb2f
     </div>
     <div id="product1" class="section-p1">
       <br>
@@ -308,6 +254,7 @@
          <h2>The Woodwork Collection</h2>
        <div class="pro-container">
           <!-- ///////////product 4///////////// -->
+           <% if(woodItems.length>1) {%>
           <% for( let index = 0; index < 4; index++ ) { %>
 
             <div class="pro">
@@ -322,7 +269,7 @@
               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
               </a>
           </div>
-          
+          <% } %>
           <% } %>
          
         <div class="moreButton">

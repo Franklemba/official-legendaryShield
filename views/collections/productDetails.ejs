@@ -39,7 +39,7 @@
       sans-serif;
   }
   .buttons div:first-child {
-    background-color: rgb(58, 58, 237);
+    background-color: rgb(0, 0, 0);
     color: #fff;
   }
 
@@ -50,7 +50,7 @@
     padding: 5%;
     border-radius: 30px;
     text-align: center;
-    border: 1px solid rgb(58, 58, 237);
+    border: 1px solid rgb(0, 0, 0);
     color: black;
     cursor: pointer;
   }
@@ -184,32 +184,54 @@
     </p>
   </div>
 </section>
-
+<input
+  type="hidden"
+  value="<%=product.brandName%>, <%=product.category%>"
+  id="itemName"
+/>
+<input
+  type="hidden"
+  value="<%= product.ImagesPath%>\<%=product.mainImg%>"
+  id="itemImages"
+/>
+<input type="hidden" value="<%=product.price%>" id="itemPrice" />
 <script>
+  const itemName = document.getElementById("itemName").value;
+  const itemImage = document.getElementById("itemImages").value;
+  const itemPrice = document.getElementById("itemPrice").value;
+
+  //console.log(itemName+itemPrice+itemImage)
+  const cartData = JSON.stringify({
+    itemName,
+    itemPrice,
+    itemImage,
+    quantity: 1,
+    productType:'regular',
+    data: { imagePath: "" },
+  });
+
+  console.log();
   const buyButton = document.querySelector("#buyBtn");
-  const buyModal = document.querySelector(".buyModal");
+
   const addToCartButton = document.querySelector(".cartBtn");
 
   let currCart = localStorage.getItem("cartList");
 
   buyButton.addEventListener("click", () => {
-    if (
-      !currCart.includes(addToCartButton.id) &&
-      addToCartButton.innerText == "Added"
-    ) {
+    if (addToCartButton.innerText != "Added") {
       addToCartButton.innerText = "Added";
       if (localStorage.getItem("cartList") != null) {
         localStorage.setItem(
           "cartList",
-          localStorage.getItem("cartList") + `${addToCartButton.id},`
+          localStorage.getItem("cartList") + `${cartData}+`
         );
       } else {
-        localStorage.setItem("cartList", `${addToCartButton.id},`);
+        localStorage.setItem("cartList", `${cartData}+`);
       }
     }
   });
 
-  if (currCart && currCart.includes(addToCartButton.id)) {
+  if (currCart && currCart.includes(cartData)) {
     addToCartButton.innerText = "Added";
   }
 
@@ -217,22 +239,22 @@
     if (addToCartButton.innerText == "Added") {
       addToCartButton.innerText = "Add To Cart";
       const oldCart = localStorage.getItem("cartList");
-      const newCart = oldCart.replace(`${addToCartButton.id},`, "");
+      const newCart = oldCart.replace(`${cartData}+`, "");
       localStorage.setItem("cartList", newCart);
       document.getElementById("cartCounter").innerText =
-        localStorage.getItem("cartList").split(",").length - 1;
+        localStorage.getItem("cartList").split("+").length - 1;
     } else {
       if (localStorage.getItem("cartList") != null) {
         localStorage.setItem(
           "cartList",
-          localStorage.getItem("cartList") + `${addToCartButton.id},`
+          localStorage.getItem("cartList") + `${cartData}+`
         );
       } else {
-        localStorage.setItem("cartList", `${addToCartButton.id},`);
+        localStorage.setItem("cartList", `${cartData}+`);
       }
       addToCartButton.innerText = "Added";
       document.getElementById("cartCounter").innerText =
-        localStorage.getItem("cartList").split(",").length - 1;
+        localStorage.getItem("cartList").split("+").length - 1;
     }
 
     // console.log(addToCartButton.id)

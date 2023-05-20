@@ -2,13 +2,23 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const path = require("path");
-const customOrder = require('../models/customSchema')
+
 const purchaseOrder = require("../models/purchaseSchema");
 const Product = require("../models/uploadSchema");
 const mongoose = require('mongoose')
 const CustomItems = require('../public/js/customItems');
 const WoodItems = require('../public/js/woodItems');
 
+const multer = require("multer");
+
+const imagesPath = path.join("public", purchaseOrder.purchaseImgPath);
+const imageMimeType = [
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "image/png",
+  "image/webp",
+];
 
 
 router.get("/", async (req, res) => {
@@ -57,7 +67,7 @@ router.get("/about", (req, res) => {
 });
 
 router.get("/cart", (req, res) => {
-  res.render("home/cart");
+  res.render("home/cart",{imgUrl:''});
   // res.send('we run this shit')
 });
 
@@ -76,39 +86,45 @@ router.get("/getItems/:list", async (req, res) => {
 
 router.post("/makeOrder", async (req, res) => {
   const { name, email, Pnumber, orderData } = req.body;
-  console.log(orderData)
-  const orderList = orderData.split(",");
+  //console.log(orderData)
+  const orderList = orderData.split("+");
   let orderArray = [];
-  orderList.forEach((item) => {
-    if (item != "") {
-      orderArray.push({
-        itemId: item.split(":")[0],
-        quantity: item.split(":")[1],
-      });
-    }
-  });
+orderList.forEach((orderItem)=>{
+  if(orderItem){
+    orderArray.push(JSON.parse(orderItem))
+  }
+})
+
 
   const newOrder = new purchaseOrder({
     _id: new mongoose.Types.ObjectId(),
     name,
     email,
-    cart: orderArray,
+    orderData:orderArray,
     Pnumber,
   });
-
   newOrder
     .save()
-    .then(() => {
-      console.log("product successfully saved");
+    .then((purchaseItem) => {
+      console.log("product successfully saved----");
+      console.log(purchaseItem)
+      console.log('-----')
       res.render("home/index", {
-        message: "Order Successfully Made, press cancel to return",
-        url: "/",
+        message: "Order Successfully Made, Enter Transaction Id to confirm payment",
+        txnUrl: `/confirmTransaction/${purchaseItem._id}`,
+        url:'/',
+        transactionIdRequest:true,
+        products:[],
+        jeweryCollection:[],
+        customItems:[],
+        woodItems:[],
+        watchCollection:[],
       });
     })
     .catch((err) => {
       res.render("home/index", {
         message: "Something went wrong, press cancel to return",
-        url: "/",
+        url: "_id",
       });
       console.log(err);
     });
@@ -133,8 +149,6 @@ router.post("/purchaseOrder/:id", async (req, res) => {
 console.log(id)
   purchaseOrder.findOne({_id:`${id}`})
     .then(order => {
-      
-
       res.json(order);
     })
     .catch((err) => {
@@ -155,6 +169,45 @@ router.post('/search', (req,res)=>{
     else{
         res.redirect(`/store/${keyword}`)
     }
+})
+
+const imagesUpload = multer({
+  dest: imagesPath,
+  fileFilter: (req, file, callback) => {
+    callback(null, imageMimeType.includes(file.mimetype));
+  },
+});
+
+const imageUpload = imagesUpload.fields([
+  { name: "sampleImage", maxCount: 1 },
+]);
+
+router.post("/cartWithImage", imageUpload, async(req, res) => {
+  //const imgName = req;
+  let photos=''
+  let imageName='' 
+  if(req.files){
+    photos = req.files;
+    let images = photos.images;
+    imageName = req.files.sampleImage[0].filename;
+    console.log(imageName);
+  }
+  // res.send(imageName);
+  res.render('home/cart', {imgUrl:imageName})
+});
+
+
+
+router.post('/confirmTransaction/:orderId',(req, res)=>{
+  const {orderId } = req.params;
+  const {transactionId} = req.body;
+  purchaseOrder.updateOne({_id:orderId},{transactionId:transactionId}).then((result)=>{
+    console.log(result)
+    res.redirect('/')
+  })
+  
+  // console.log(orderId)
+  // console.log(transactionId)
 })
 
 module.exports = router;

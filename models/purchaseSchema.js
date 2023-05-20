@@ -1,47 +1,54 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 var _uuid = require("uuid");
 
 const purchaseSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    Pnumber: {
-        type: Number,
-        required: true
-    },
-    cart:{
-        type: Array,
-        required: true
-    },
-    isRead:{
-        type: Boolean,
-        required: false,
-        default: false
-    }
-    ,
-    purchasedAt: {
-        type: Date,
-        required: true,
-        default: Date.now
-    },
-    isDeleted:{
-        type: Boolean,
-        required: false,
-        default: false
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  Pnumber: {
+    type: Number,
+    required: true,
+  },
+  orderData: {
+    type: Array,
+    required: true,
+  },
+  isRead: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  isDeleted: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  purchasedAt: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+  transactionId:{
+    required:false,
+    type:String,
+    default:''
+  },
+  _id: {
+    type: String,
+    default: mongoose.Types.ObjectId(),
+  },
+});
+const purchaseImgPath = "uploads/purchaseImages";
 
-    },
-    _id:{
-        type:String,
-        default:mongoose.Types.ObjectId()
-    }
-    
-})
-
-
-
-module.exports = mongoose.model('purchases',purchaseSchema)
+purchaseSchema.virtual("purchaseImgPath").get(function () {
+  if (this.mainImg != null) {
+    return path.join("/", purchaseImgPath);
+  }
+});
+module.exports = mongoose.model("purchases", purchaseSchema);
+module.exports.purchaseImgPath = purchaseImgPath;

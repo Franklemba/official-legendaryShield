@@ -1,99 +1,98 @@
 <style>
-    .buyMessage {
-      margin: 1%;
-      right: 5%;
-      padding: 2%;
-      width: 80vw;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      background-color: aquamarine;
-      border-radius: 6px;
-      box-shadow: 0px 0px 20px 0.05px;
-    }
-    .buyMessage input {
-      border: 1px solid black;
-      margin: 3%;
-      border-radius: 10px;
-      padding: 2% 5%;
-    }
-    .buyMessage .closeBuyMessage {
-      font-weight: bold;
-      font-size: larger;
-      color: red;
-    }
-    .productDetails {
-      padding: 5%;
-      margin-top: 5%;
-      margin: 0% 5%;
-    }
-  
-    .brandName {
-      grid-area: brandName;
-    }
-    .brandName p {
-      font-weight: bold;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-        sans-serif;
-    }
-    .buttons div:first-child {
-      background-color: rgb(58, 58, 237);
-      color: #fff;
-    }
-  
-    .buttons div {
-      text-transform: capitalize;
-      margin: 5px 0px;
-      background-color: #fff;
-      padding: 5%;
-      border-radius: 30px;
-      text-align: center;
-      border: 1px solid rgb(58, 58, 237);
-      color: black;
-      cursor: pointer;
-    }
-    .buttons div span {
-      width: 100%;
-      font-size: large;
-      font-weight: 500;
-    }
-    .closeModal {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-    #carouselExampleControls img {
-      height: 40vh;
-    }
-  
-    .carousel-control-prev,
-    .carousel-control-next {
-      position: absolute;
-      top: 30%;
-      bottom: 0;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 10% !important;
-      padding: 0;
-      color: #fff;
-      text-align: center;
-      background-color: none;
-      border: 0;
-      opacity: 0.5;
-      transition: opacity 0.15s ease;
-    }
-    #textPreview{
-      color: brown;
-      font-weight: 800;
-    }
-    
-  </style>
-  
-  <div
+  .buyMessage {
+    margin: 1%;
+    right: 5%;
+    padding: 2%;
+    width: 80vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: aquamarine;
+    border-radius: 6px;
+    box-shadow: 0px 0px 20px 0.05px;
+  }
+  .buyMessage input {
+    border: 1px solid black;
+    margin: 3%;
+    border-radius: 10px;
+    padding: 2% 5%;
+  }
+  .buyMessage .closeBuyMessage {
+    font-weight: bold;
+    font-size: larger;
+    color: red;
+  }
+  .productDetails {
+    padding: 5%;
+    margin-top: 5%;
+    margin: 0% 5%;
+  }
+
+  .brandName {
+    grid-area: brandName;
+  }
+  .brandName p {
+    font-weight: bold;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+  .buttons div:first-child {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+  }
+
+  .buttons div {
+    text-transform: capitalize;
+    margin: 5px 0px;
+    background-color: #fff;
+    padding: 5%;
+    border-radius: 30px;
+    text-align: center;
+    border: 1px solid rgb(0, 0, 0);
+    color: black;
+    cursor: pointer;
+  }
+  .buttons div span {
+    width: 100%;
+    font-size: large;
+    font-weight: 500;
+  }
+  .closeModal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  #carouselExampleControls img {
+    height: 40vh;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    position: absolute;
+    top: 30%;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10% !important;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    background-color: none;
+    border: 0;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+  }
+  #textPreview {
+    color: brown;
+    font-weight: 800;
+  }
+</style>
+
+<div
   id="carouselExampleControls"
   class="carousel slide mt-4"
   data-bs-ride="carousel"
@@ -101,7 +100,7 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img
-      src="/images/customImages/<%=customItem.imgLink%>"
+        src="/images/customImages/<%=customItem.imgLink%>"
         class="d-block w-100"
         alt="..."
       />
@@ -111,7 +110,7 @@
     <% for( let i=0; i < customItem.relatedImages.length; i++ ) { %>
     <div class="carousel-item active">
       <img
-      src="/images/customImages/<%=customItem.imgLink%>"
+        src="/images/customImages/<%=customItem.imgLink%>"
         class="d-block w-100"
         alt="..."
       />
@@ -139,141 +138,239 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-  
-  <section class="productDetails">
-    <div class="productDetails">
-      <div class="brandName">
-        <h2>custom <%=customItem.customName %></h2>
-      </div>
-      <div>
-        <p>
-              <span><%=customItem.details%></span>
-              <span class="" id="customPrice"
-                ><i>from</i> K<%=customItem.price%></span
-              >
-          </p>
-      </div>
-      <div class="price">
-        <h3><strong>K <%=customItem.price %></strong></h3>
-      </div>
-      <div>
-      <hr>
-        <label for="">Upload image</label><br>
-        <label for="yesIMG">Yes</label>
-        <input type="radio" name="woodIMG" id="yesIMG">
-        <label for="noIMG">No</label>
-        <input type="radio" name="woodIMG" id="noIMG">
-        <input type="file" name="sampleWoodIMG" id="sampleWoodIMG">
-        <br>
-      <hr>
-        <label for="">Add custom text</label><br>
-        <label for="yesText">Yes</label>
-        <input type="radio" name="woodText" id="yesText">
-        <label for="noText">No</label>
-        <input type="radio" name="woodText" id="noText">
-       <br>
-       <textarea name="customText" id="yesTextArea" cols="30" rows="10"></textarea>
-      </div>
-      <hr>
-        <ul>
-          <li><i>A preview of your design will be emailed to you within <span id="textPreview">2-3 working days</span>.</i></li>
-          <li><i>You can either <span id="textPreview">confirm the design or ask for changes</span> on it.</i></li>
-          <li><i>Once design is confirmed, production will take <span id="textPreview">3-4 working days</span>.</i></li>
-          <li><i>The delivery time for any engraved product is about <span id="textPreview">8-12 working days</span>.</i></li>
-        </ul>
-      <hr />
-      
-      <div class="buttons" >
-        <div id="buyBtn" id="">
-          <span>
-            <a style="color: white; text-decoration: none" href="/cart">Buy it now</a>
-          </span>
-        </div>
-        <div class="cartBtn" id="">
-          <span>Add to cart</span>
-        </div>
-      </div>  
 
-      <hr />
-         
+<section class="productDetails">
+  <div class="productDetails">
+    <div class="brandName">
+      <h2>custom <%=customItem.customName %></h2>
     </div>
-  </section>
-  
-  <script>
-    const buyButton = document.querySelector("#buyBtn");
-    const buyModal = document.querySelector(".buyModal");
-    const addToCartButton = document.querySelector(".cartBtn");
-    const yesTextArea = document.getElementById('yesTextArea');
-    const yesText = document.getElementById('yesText');   
-    const noText = document.getElementById('noText'); 
-    const yesIMG = document.getElementById('yesIMG');
-    const noIMG = document.getElementById('noIMG');
-    const sampleWoodIMG = document.getElementById('sampleWoodIMG');
+    <div>
+      <p>
+        <span><%=customItem.details%></span>
+        <span class="" id="customPrice"
+          ><i>from</i> K<%=customItem.price%></span
+        >
+      </p>
+    </div>
+    <div class="price">
+      <h3><strong>K <%=customItem.price %></strong></h3>
+    </div>
+    <div>
+      <hr />
+      <label for="">Upload image</label><br />
+      <label for="yesIMG">Yes</label>
+      <input type="radio" name="woodIMG" id="yesIMG" />
+      <label for="noIMG">No</label>
+      <input type="radio" name="woodIMG" id="noIMG" />
+      <form
+      id="formWithImage"
+      action="/cartWithImage"
+      method="post"
+      id="imageForm" 
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="sampleImage" id="sampleImage" />
+    </form>
+    <form
+    id="formNoImage"
+    style="display: none"
+    action="/cart"
+    method="get"
+  ></form>
+      <br/>
+      <hr/>
+      <label for="">Add custom text</label><br />
+      <label for="yesText">Yes</label>
+      <input type="radio" name="woodText" id="yesText" />
+      <label for="noText">No</label>
+      <input type="radio" name="woodText" id="noText" />
+      <br/>
+      <textarea
+        name="customText"
+        id="yesTextArea"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
+    <hr />
+    <ul>
+      <li>
+        <i
+          >A preview of your design will be emailed to you within
+          <span id="textPreview">2-3 working days</span>.</i
+        >
+      </li>
+      <li>
+        <i
+          >You can either
+          <span id="textPreview">confirm the design or ask for changes</span> on
+          it.</i
+        >
+      </li>
+      <li>
+        <i
+          >Once design is confirmed, production will take
+          <span id="textPreview">3-4 working days</span>.</i
+        >
+      </li>
+      <li>
+        <i
+          >The delivery time for any engraved product is about
+          <span id="textPreview">8-12 working days</span>.</i
+        >
+      </li>
+    </ul>
+    <hr />
 
+    <div class="buttons">
+      <div id="buyBtn" id="<%=customItem.customName%>">
+        <span>
+          <a style="color: white; text-decoration: none" href="/cart"
+            >Buy it now</a
+          >
+        </span>
+      </div>
+      <div class="cartBtn" id="<%=customItem.customName%>">
+        <span>Add to cart</span>
+      </div>
+    </div>
+
+    <hr />
+  </div>
+  <input type="hidden" value="<%=customItem.customName%>" id="itemName" />
+  <input
+    type="hidden"
+    value="<%= customItem.ImagesPath%>\<%=customItem.imgLink%>"
+    id="itemImages"
+  />
+  <input type="hidden" value="<%=customItem.price%>" id="itemPrice" />
+</section>
+
+<script>
+const buyButton = document.querySelector("#buyBtn");
+  const addToCartButton = document.querySelector(".cartBtn");
+  const yesTextArea = document.getElementById("yesTextArea");
+  const yesText = document.getElementById("yesText");
+  const noText = document.getElementById("noText");
+  const yesIMG = document.getElementById("yesIMG");
+  const noIMG = document.getElementById("noIMG");
+  const sampleImage = document.getElementById("sampleImage");
+ 
+  const itemName = document.getElementById("itemName").value;
+  const itemImage = document.getElementById("itemImages").value;
+  const itemPrice = document.getElementById("itemPrice").value;
+
+  yesTextArea.style.display = "none";
+  sampleImage.style.display = "none";
+  yesText.addEventListener("click", () => {
+    yesTextArea.style.display = "block";
+  });
+
+  noText.addEventListener("click", () => {
     yesTextArea.style.display = "none";
-    sampleWoodIMG.style.display = "none";
-    yesText.addEventListener('click',()=>{
-      yesTextArea.style.display = "block";
-    })
+  });
 
-    noText.addEventListener('click',()=>{
-      yesTextArea.style.display = "none";
-    })
+  yesIMG.addEventListener("click", () => {
+    sampleImage.style.display = "block";
+  });
+  noIMG.addEventListener("click", () => {
+    sampleImage.style.display = "none";
+  });
 
-    yesIMG.addEventListener('click',()=>{
-      sampleWoodIMG.style.display = "block";
-    })
-    noIMG.addEventListener('click',()=>{
-      sampleWoodIMG.style.display = "none";
-    })
+  let currCart = localStorage.getItem("cartList");
+  let cartData = JSON.stringify({
+    itemName,
+    itemPrice,
+    itemImage,
+    quantity: 1,
+    data: { text: yesTextArea.value, woodType:'', imagePath: "" },
+  });
+  console.log(cartData);
+  const cartNoForm = document.getElementById("formNoImage");
+  const cartImageForm = document.getElementById("formWithImage");
 
-    let currCart = localStorage.getItem("cartList");
-  
-    buyButton.addEventListener("click", () => {
-      if (!currCart.includes(addToCartButton.id) && addToCartButton.innerText == "Added") {
-        addToCartButton.innerText = "Added";
-        if (localStorage.getItem("cartList") != null) {
-          localStorage.setItem(
-            "cartList",
-            localStorage.getItem("cartList") + `${addToCartButton.id},`
-          );
-        } else {
-          localStorage.setItem("cartList", `${addToCartButton.id},`);
+  cartData?.split("+").forEach((item) => {
+    currCart?.split("+").forEach((cartItem) => {
+      if (cartItem) {
+        const a = JSON.parse(item);
+        const b = JSON.parse(cartItem);
+        if (a.itemName == b.itemName) {
+          yesTextArea.value = b.data.text;
+          addToCartButton.innerText = "Added";
         }
       }
     });
-  
-    if (currCart && currCart.includes(addToCartButton.id)) {
+  });
+
+  buyButton.addEventListener("click", () => {
+    cartData = JSON.stringify({
+      itemName,
+      itemPrice,
+      itemImage,
+      quantity: 1,
+      productType:'custom',
+      data: {
+        text: yesTextArea.value,
+        imagePath: "",
+      },
+    });
+    if (addToCartButton.innerText != "Added") {
       addToCartButton.innerText = "Added";
-    }
-  
-    addToCartButton.addEventListener("click", () => {
-      if (addToCartButton.innerText == "Added") {
-        addToCartButton.innerText = "Add To Cart";
-        const oldCart = localStorage.getItem("cartList");
-        const newCart = oldCart.replace(`${addToCartButton.id},`, "");
-        localStorage.setItem("cartList", newCart);
-        document.getElementById("cartCounter").innerText =
-          localStorage.getItem("cartList").split(",").length - 1;
+      if (localStorage.getItem("cartList") != null) {
+        localStorage.setItem(
+          "cartList",
+          localStorage.getItem("cartList") + `${cartData}+`
+        );
       } else {
-        if (localStorage.getItem("cartList") != null) {
-          localStorage.setItem(
-            "cartList",
-            localStorage.getItem("cartList") + `${addToCartButton.id},`
-          );
-        } else {
-          localStorage.setItem("cartList", `${addToCartButton.id},`);
-        }
-        addToCartButton.innerText = "Added";
-        document.getElementById("cartCounter").innerText =
-          localStorage.getItem("cartList").split(",").length - 1;
+        localStorage.setItem("cartList", `${cartData}+`);
       }
-  
-      // console.log(addToCartButton.id)
-      // console.log(localStorage)
+    }
+
+    if (sampleImage.value) {
+      cartImageForm.submit();
+    } else {
+      cartNoForm.submit();
+    }
+  });
+
+  addToCartButton.addEventListener("click", () => {
+    
+    cartData = JSON.stringify({
+      itemName,
+      itemPrice,
+      itemImage,
+      quantity: 1,
+      productType:'custom',
+      data: {
+        text: yesTextArea.value,
+        woodType:'',
+        imagePath: "",
+      },
     });
-  </script>
-  
-
-
-
+    if (addToCartButton.innerText == "Added") {
+      addToCartButton.innerText = "Add To Cart";
+      const oldCart = localStorage.getItem("cartList");
+      const newCart = oldCart.replace(`${cartData}+`, "");
+      localStorage.setItem("cartList", newCart);
+      document.getElementById("cartCounter").innerText =
+        localStorage.getItem("cartList").split("+").length - 1;
+    } else {
+      if (localStorage.getItem("cartList") != null) {
+        localStorage.setItem(
+          "cartList",
+          localStorage.getItem("cartList") + `${cartData}+`
+        );
+      } else {
+        localStorage.setItem("cartList", `${cartData}+`);
+      }
+      addToCartButton.innerText = "Added";
+      document.getElementById("cartCounter").innerText =
+        localStorage.getItem("cartList").split("+").length - 1;
+    }
+    if (sampleImage.value) {
+      cartImageForm.submit();
+    }
+    // console.log(addToCartButton.id)
+    // console.log(localStorage)
+  });
+</script>

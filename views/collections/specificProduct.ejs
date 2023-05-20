@@ -8,7 +8,6 @@
 
  <div class="itemsContainer">
     <% products.forEach(data=> { %>
-
         <div class="pro-container-sub">
             <!-- ///////////product 1///////////// -->
           <a href="/store/item/<%=data._id%>">  
@@ -18,7 +17,6 @@
                     <span>
                         <strong><%= data.category %></strong> <i><%=data.brandName %></i>
                     </span>
-                
                     <h5>
                         <strong>Quantity:</strong><%=data.quantity %>
                     </h5>

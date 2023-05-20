@@ -239,7 +239,13 @@ const screen = document.querySelector('.screen');
 closeButton.addEventListener('click', () => {
   screen.classList.remove('open');
 });
-   document.getElementById('cartCounter').innerText = localStorage.getItem('cartList').split(',').length -1
+   document.getElementById('cartCounter').innerText =localStorage.getItem("cartList").split("+").length - 1
+   const cart = localStorage.getItem('cartList').split('+')
+//    cart.forEach(cartItem=>{
+//        if(cartItem){
+//         console.log(JSON.parse(cartItem))
+//        }
+//    })
   </script>
   
 </html>

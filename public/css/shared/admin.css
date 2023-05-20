@@ -242,3 +242,8 @@ button#deleted-btn.active {
  
  font-size: 25px;
 }
+
+.customerUploadImage{
+  width: 100%;
+  height: 100%;
+}
