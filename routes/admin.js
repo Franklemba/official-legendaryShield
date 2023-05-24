@@ -4,8 +4,14 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 const Product = require("../models/uploadSchema"); ///imported it
+const purchaseOrder = require("../models/purchaseSchema")
 // const BuyerDetails = require('../models/buyerSchema');
 const { error } = require("console");
+
+// purchaseOrder.deleteMany({}).then((done)=>{
+//   console.log(done)
+// })
+
 const uploadPath = path.join("public", Product.mainImgPath);
 const ImagesPath = path.join("public", Product.imagesPath);
 const imageMimeType = [
@@ -44,24 +50,45 @@ router.get("/uploadItem", (req, res) => {
   res.render("admin/uploadItem");
 });
 
-const customOrder = require("../models/customSchema");
-const purchaseOrder = require("../models/purchaseSchema");
-
-
-  // customOrder.deleteMany({})
-  // .then(() => console.log('All items deleted'))
-  // .catch(err => console.error(err));
-
-  // purchaseOrder.deleteMany({})
-  // .then(() => console.log('All items deleted'))
-  // .catch(err => console.error(err));
-
 
 
 router.get("/customOrders", async (req, res) => {
   try {
-    const customOrders = await customOrder.find({});
-    res.render("admin/customOrders", { customOrders });
+    const purchaseOrders = await purchaseOrder.find({});
+    //console.log(purchaseOrders);
+    const customOrders= []
+
+    purchaseOrders.forEach(purchaseOrder=>{
+      console.log(purchaseOrder)
+      purchaseOrder.orderData.forEach(orderItem=>{
+        if(orderItem.productType == 'custom'){
+          customOrders.push(purchaseOrder)
+          return
+        }
+      })
+    })
+    res.render("admin/customOrders", { purchaseOrders:customOrders });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+router.get("/woodWorkOrders", async (req, res) => {
+  try {
+    const purchaseOrders = await purchaseOrder.find({});
+
+       const woodOrders= []
+
+    purchaseOrders.forEach(purchaseOrder=>{
+      console.log(purchaseOrder)
+      purchaseOrder.orderData.forEach(orderItem=>{
+        if(orderItem.productType == 'wood'){
+          woodOrders.push(purchaseOrder)
+          return
+        }
+      })
+    })
+    res.render("admin/woodOrders", { purchaseOrders:woodOrders });
   } catch (err) {
     res.status(500).send(err);
   }
@@ -120,47 +147,7 @@ router.post("/updatePurchaseOrder/:id/:state", async (req, res) => {
   });
 });
 
-router.post("/updateCustomOrder/:id/:state", async (req, res) => {
-  console.log(req.params.state);
-  customOrder.findOne({ _id: req.params.id }, function (err, order) {
-    if (req.params.state == "read") {
-      order.isRead = true;
-      order.save(function (err, done) {
-        res.redirect("/admin/customOrders");
-      });
-    }
 
-    if (req.params.state == "unread") {
-      order.isRead = false;
-      order.save(function (err, done) {
-        res.redirect("/admin/customOrders");
-      });
-    }
-    if (req.params.state == "delete") {
-      order.isDeleted = true;
-      order.save(function (err, done) {
-        res.redirect("/admin/customOrders");
-      });
-    }
-
-    if (req.params.state == "restore") {
-      order.isDeleted = false;
-      order.save(function (err, done) {
-        res.redirect("/admin/customOrders");
-      });
-    }
-
-    if (req.params.state == "erase") {
-      customOrder.findOneAndDelete({ _id: order._id }).then(() => {
-        if (err) {
-          console.log(err);
-          return res.status(500).send();
-        }
-        res.redirect("/admin/customOrders");
-      });
-    }
-  });
-});
 
 ///uploading  product
 router.post("/", multipleUploads, async (req, res) => {

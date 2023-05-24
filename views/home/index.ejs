@@ -100,7 +100,7 @@
           </div>
         <div id="craftMenItems">
 
-        <% products.forEach(data=> { %>
+        <% products?.forEach(data=> { %>
           <a href="/store/item/<%=data._id%>">
             <div class="item">
               <div class="itemImg">
@@ -126,13 +126,13 @@
 
     <section class="productsAd">
        <!------------------------ jewery section --------------------->
-    <% if(jeweryCollection.length != 0) { %>
+    <% if(jeweryCollection?.length != 0) { %>
       <div id="product1" class="section-p1">
         <h2>The Jewelry Collection</h2>
         <p>Discover our exquisite jewelry collection, crafted with passion and designed to make you shine.</p>
         <div class="pro-container">
            <!-- ///////////product 4///////////// -->
-           <% jeweryCollection.forEach(jewery => { %>
+           <% jeweryCollection?.forEach(jewery => { %>
             <div class="pro">
               <a id="linkTag" id="linkTag" href="/store/item/<%=jewery._id%>">
                 <img src="<%= jewery.ImagesPath%>\<%=jewery.mainImg%>" alt="<%=jewery.category%>">
@@ -154,14 +154,14 @@
     
     <!------------------------ watch section --------------------->
 
-    <% if(watchCollection.length != 0) { %>
+    <% if(watchCollection?.length != 0) { %>
         <div id="product1" class="section-p1">
             <h2>The Wrist watch Collection</h2>
             <p>Timeless Elegance, Discover Our Wrist Watch Collection</p>
             <div class="pro-container">
                <!-- ///////////product 1///////////// -->
 
-               <% watchCollection.forEach(watch => { %>
+               <% watchCollection?.forEach(watch => { %>
                 
                 <div class="pro">
                    <a id="linkTag" id="linkTag" href="/store/item/<%=watch._id%>">
@@ -189,19 +189,21 @@
       <p>Our Custom Collection offers a unique opportunity to create your own personalized jewelry pieces. </p>
       <div class="pro-container">
 
-        <% for( let index = 0; index < 4; index++ ) { %>
-          <div class="pro">
-            <a id="linkTag" href="/custom/<%=customItems[index].customName %>">
-              <img src="images/customImages/<%=customItems[index].imgLink%>" alt="<%=customItems[index].customName %>">
-                <div class="des">
-                <span><%=customItems[index].customName %></span>
-                <h5><%=customItems[index].details %></h5>
-                <span>from K<%=customItems[index].price %></span>
-            </div>
-            <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-            </a>
-        </div>
-        <% } %>
+    <%if(customItems.length>1){%>
+      <% for( let index = 0; index < 4; index++ ) { %>
+        <div class="pro">
+          <a id="linkTag" href="/custom/<%=customItems[index].customName %>">
+            <img src="images/customImages/<%=customItems[index].imgLink%>" alt="<%=customItems[index].customName %>">
+              <div class="des">
+              <span><%=customItems[index].customName %></span>
+              <h5><%=customItems[index].details %></h5>
+              <span>from K<%=customItems[index].price %></span>
+          </div>
+          <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+          </a>
+      </div>
+      <% } %>
+      <% } %>
 
        <div class="moreButton">
           <a href="/custom">
@@ -252,6 +254,7 @@
          <h2>The Woodwork Collection</h2>
        <div class="pro-container">
           <!-- ///////////product 4///////////// -->
+           <% if(woodItems.length>1) {%>
           <% for( let index = 0; index < 4; index++ ) { %>
 
             <div class="pro">
@@ -266,7 +269,7 @@
               <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
               </a>
           </div>
-          
+          <% } %>
           <% } %>
          
         <div class="moreButton">

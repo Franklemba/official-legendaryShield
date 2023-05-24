@@ -254,4 +254,8 @@ button#deleted-btn.active {
     width: 80%;
   }
   
+.customerUploadImage{
+  width: 100%;
+  height: 100%;
+}
 }

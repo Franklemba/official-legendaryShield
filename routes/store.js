@@ -27,21 +27,18 @@ router.get('/:categoryName', async (req,res)=>{
                 products: product
             })
         }else{
- 
             res.send('this category is not yet uploaded');
         }
     }
     catch{
         res.send('error accessing database')
     }
-            
 })
 
 /////page displays all details of particular selected product
 router.get('/item/:uniqueKey',async (req,res)=>{
 
     const product = await Product.findById(`${req.params.uniqueKey}`)
-    
     try{
         res.render('collections/productDetails',{
             product:product

@@ -192,9 +192,9 @@
           <h4>Follow us</h4>
           <div class="icon">
             <a href="http://www.facebook.com/LegendaryShieldsInnovations?mibextid=LQQJ4d"><i class="fa fa-facebook"></i></a>
-            <i class="fa fa-twitter"></i>
+            <!-- <i class="fa fa-twitter"></i> -->
             <a href="http://instagram.com/legendary_shields_innovations?igshid=NTc4MTIwNjQ2YQ=="><i class="fa fa-instagram"></i></a>
-            <i class="fa fa-whatsapp"></i>
+            <!-- <i class="fa fa-whatsapp"></i> -->
           </div>
         </div>
       </div>
@@ -239,7 +239,13 @@ const screen = document.querySelector('.screen');
 closeButton.addEventListener('click', () => {
   screen.classList.remove('open');
 });
-   document.getElementById('cartCounter').innerText = localStorage.getItem('cartList').split(',').length -1
+   document.getElementById('cartCounter').innerText =localStorage.getItem("cartList").split("+").length - 1
+   const cart = localStorage.getItem('cartList').split('+')
+//    cart.forEach(cartItem=>{
+//        if(cartItem){
+//         console.log(JSON.parse(cartItem))
+//        }
+//    })
   </script>
   
 </html>

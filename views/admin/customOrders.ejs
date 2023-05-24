@@ -1,6 +1,6 @@
 <!-- <link rel="stylesheet" href="/css/style.css" /> -->
-<style></style>
-<h2 class="adminHeader">Custom Orders</h2>
+
+<h2 class="adminHeader">Orders</h2>
 
 <div class="button-section">
   <button id="pending-btn" class="active" onclick="toggleButton('pending-btn')">
@@ -11,15 +11,16 @@
   </button>
 </div>
 
-<section class="orderList pending active" id="pending-btn" >
-  <% customOrders.forEach(order => { %> <% if(order.isRead == false && order.isDeleted == false){ %>
+<section class="orderList pending active" id="pending-btn">
+  <% purchaseOrders?.forEach(order => { %> <% if(order.isRead == false &&
+  order.isDeleted == false){ %>
   <div class="orderItem" id="<%= order._id %>">
     <div>
       <span class="contentSection">
         <h5>Name: <%= order.name %></h5>
         <!-- <h5>Email: <%= order.email %></h5> -->
         <h5>Phone: <%= order.Pnumber %></h5>
-        <h5>Date: <%= order.requestedAt.toLocaleString(); %></h5>
+        <h5>Date: <%= order.purchasedAt.toLocaleString(); %></h5>
       </span>
       <form class="buttonSection" id="<%= order._id %>">
         <button class="markRead">Mark Read</button>
@@ -30,15 +31,16 @@
   <% } %> <% }) %>
 </section>
 
-<section class="orderList processed" id="processed-btn" >
-  <% customOrders.forEach(order => { %> <% if(order.isRead == true && order.isDeleted == false){ %>
+<section class="orderList processed" id="processed-btn">
+  <% purchaseOrders?.forEach(order => { %> <% if(order.isRead == true &&
+  order.isDeleted == false){ %>
   <div class="orderItem" id="<%= order._id %>">
     <div>
       <span class="contentSection">
         <h5>Name: <%= order.name %></h5>
         <!-- <h5>Email: <%= order.email %></h5> -->
         <h5>Phone: <%= order.Pnumber %></h5>
-        <h5>Date: <%= order.requestedAt.toLocaleString(); %></h5>
+        <h5>Date: <%= order.purchasedAt.toLocaleString(); %></h5>
       </span>
       <form class="buttonSection" id="<%= order._id %>">
         <button class="markRead">Mark Unread</button>
@@ -46,21 +48,21 @@
       </form>
     </div>
   </div>
-  <% } %> <% }); %>
+  <% } %> <% })%>
 </section>
 
-<section class="orderList processed" id="deleted-btn" >
-  <% customOrders.forEach(order => { %> <% if(order.isDeleted == true){ %>
+<section class="orderList deleted" id="deleted-btn">
+  <% purchaseOrders.forEach(order => { %> <% if(order.isDeleted == true){ %>
   <div class="orderItem" id="<%= order._id %>">
     <div>
       <span class="contentSection">
         <h5>Name: <%= order.name %></h5>
         <!-- <h5>Email: <%= order.email %></h5> -->
         <h5>Phone: <%= order.Pnumber %></h5>
-        <h5>Date: <%= order.requestedAt.toLocaleString(); %></h5>
+        <h5>Date: <%= order.purchasedAt.toLocaleString(); %></h5>
       </span>
       <form class="buttonSection" id="<%= order._id %>">
-        <button class="markRead restore">Undo delete</button>
+        <button class="restore">Undo delete</button>
         <button class="erase">Erase</button>
       </form>
     </div>
@@ -69,10 +71,12 @@
 </section>
 
 <div class="trashContainer">
-  <button id="deleted-btn" onclick="toggleButton('deleted-btn')"> <i class="fa fa-trash"></i></button>
+  <button id="deleted-btn" onclick="toggleButton('deleted-btn')">
+    <i class="fa fa-trash"></i>
+  </button>
 </div>
 
-<script>
+<script defer>
   const switchButtons = document.querySelectorAll(".orderOptions button");
   const sections = document.querySelectorAll("section");
   const adminHeader = document.querySelector(".adminHeader");
@@ -80,21 +84,17 @@
   const forms = document.querySelectorAll(".buttonSection");
   const markReadButtons = document.querySelectorAll(".markRead");
   const deleteButtons = document.querySelectorAll(".delete");
-  const eraseButtons = document.querySelectorAll('.erase');
-  const orderItems = document.querySelectorAll('.orderItem')
-
-
+  const eraseButtons = document.querySelectorAll('.erase')
   deleteButtons.forEach((deleteButton) => {
     deleteButton.addEventListener("click", () => {
       forms.forEach((form) => {
         if (form.id == deleteButton.parentElement.id) {
-          form.action = `/admin/updateCustomOrder/${form.id}/delete`;
+          form.action = `/admin/updatePurchaseOrder/${form.id}/delete`;
           form.method = "post";
           form.submit();
         }
       });
     });
-
   });
 
   markReadButtons.forEach((markReadButton) => {
@@ -102,34 +102,20 @@
       const state = markReadButton.innerText =='Mark Read'?"read":"unread"
       forms.forEach((form) => {
         if (form.id == markReadButton.parentElement.id) {
-          form.action = `/admin/updateCustomOrder/${form.id}/${state}`;
+          form.action = `/admin/updatePurchaseOrder/${form.id}/${state}`;
           form.method = "post";
           form.submit();
         }
       });
     });
   });
-
-  document.querySelectorAll('.restore').forEach((markReadButton) => {
-    markReadButton.addEventListener("click", () => {
-    
-      forms.forEach((form) => {
-        if (form.id == markReadButton.parentElement.id) {
-          form.action = `/admin/updateCustomOrder/${form.id}/restore`;
-          form.method = "post";
-          form.submit();
-        }
-      });
-    });
-  });
-
 
   eraseButtons.forEach((eraseButton) => {
     eraseButton.addEventListener("click", () => {
-     
+
       forms.forEach((form) => {
         if (form.id == eraseButton.parentElement.id) {
-          form.action = `/admin/updateCustomOrder/${form.id}/erase`;
+          form.action = `/admin/updatePurchaseOrder/${form.id}/erase`;
           form.method = "post";
           form.submit();
         }
@@ -137,7 +123,22 @@
     });
   });
 
-  
+
+  document.querySelectorAll('.restore').forEach((eraseButton) => {
+    eraseButton.addEventListener("click", () => {
+      const state = eraseButton.innerText =='Mark Read'?"read":"unread"
+      forms.forEach((form) => {
+        if (form.id == eraseButton.parentElement.id) {
+          form.action = `/admin/updatePurchaseOrder/${form.id}/restore`;
+          form.method = "post";
+          form.submit();
+        }
+      });
+    });
+  });
+
+  const orderItems = document.querySelectorAll('.orderItem')
+
   orderItems.forEach(orderItem=>{
     orderItem.firstElementChild.firstElementChild.addEventListener('click', async()=>{
       screen.classList.add('open')
@@ -150,35 +151,49 @@
             id:orderItem.id
         })
     }
-    const res = await fetch(`/customOrder/${orderItem.id}`, options);
-    const data = await res.json()
-    console.log(data)
-        // Update the HTML with the detailed message information
-        const messageDetails = `
+
+    const res = await fetch(`/purchaseOrder/${orderItem.id}`, options);
+    
+    const data = await res.json();
+    //console.log(data)
+    let currCart = data.orderData
+    console.log(currCart)
+    let cartString = '';
+    currCart.forEach(data=>{
+      if(data.productType == 'custom'){
+        cartString += `<div>x${data.quantity} ${data.itemName} K${data.itemPrice} customText:"${data.data.text}"</div>
+      <img class="customerUploadImage" src="/uploads/purchaseImages/${data.data.imagePath}" alt="null" />
+        <hr>`;
+      }
+    })
+
+console.log(cartString);
+
+      const messageDetails = `
         <br>
-          <h4>Name: ${data.name}</h4>
+        <br>
+        <h4>Name: ${data.name}</h4>
           <br>
-          <h4>Number: ${data.Pnumber}</h4>
+          <h5>Number: ${data.Pnumber}</h5>
           <br>
-          <h4>Email: ${data.email}</h4>
+          <h5>Email:</h5><h5>${data.email}</h5>
           <br>
-          <h4>Qty: ${data.quantity}</h4>
+          <h5>Transaction ID</h5><h5>${data.transactionId}</h5>
           <br>
-          <h4>Description${data.description}</h4>
+          <h3>Cart<h3/>
+            <br>
+          ${cartString}
           <br>
-          <h4>Date: ${data.requestedAt.toLocaleString()}</h4>
-          <br>
-          <br>
-          <h4>Attached Image</h4>
-          <img style="width:340px; height:340px;" src="${data.images[0]}"/>
           
-         
+          <h4>Date: ${data.purchasedAt}</h4>
+          <br>
         `;
-    
         document.querySelector('.screen .content section').innerHTML = messageDetails;
-    
+        // Update the HTML with the detailed message information      
+
     })
   })
+
 
 
   function toggleButton(id) {
@@ -186,10 +201,12 @@
     activeBtn.classList.remove("active");
 
     document.querySelector(`button#${id}`).classList.add("active");
+
     sections.forEach((section) => {
       section.classList.remove("active");
     });
+
     document.querySelector(`section#${id}`).classList.add("active");
-  
+
   }
 </script>
