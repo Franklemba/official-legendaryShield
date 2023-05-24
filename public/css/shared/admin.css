@@ -1,5 +1,11 @@
+.optionsContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .optionsContainer p {
-  width: 100%;
+  width: 40%;
   height: 55px;
   background-color: rgb(230, 234, 238);
   display: flex;
@@ -241,4 +247,11 @@ button#deleted-btn.active {
 #deleted-btn i{
  
  font-size: 25px;
+}
+
+@media (max-width: 477px){
+  .optionsContainer p {
+    width: 80%;
+  }
+  
 }

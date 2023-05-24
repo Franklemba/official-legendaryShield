@@ -329,6 +329,10 @@ footer a:hover {
   .search input {
     padding-right: 30px;
   }
+  .icons a i {
+    color: red;
+    font-size: 65px;
+  }
 }
 /*_______________________________________devices of maximum width of #350  */
 @media (max-width: 350px) {
