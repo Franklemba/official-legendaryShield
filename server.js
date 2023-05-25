@@ -18,14 +18,12 @@ const adminRouter = require('./routes/admin');
 const storeRouter = require('./routes/store');
 const authRouter = require('./routes/auth');
 
-
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views/')
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
 app.use(express.static(__dirname + '/public/'));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false }));
-
 
 const mongoose = require("mongoose");
 
@@ -44,7 +42,6 @@ mongoose.connect('mongodb://localhost:27017/legendary_shield')
 }).catch((err) => console.log(err));
 
 
-
 app.use('/',indexRouter );
 app.use(session({
     secret: 'mysecret',
@@ -57,6 +54,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 // Configure Passport
 require('./config/passport')(passport);
+
 
 app.use('/',indexRouter );
 

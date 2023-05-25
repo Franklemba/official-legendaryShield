@@ -43,6 +43,7 @@
     }
     .buttons div:first-child {
       background-color: rgb(0, 0, 0);
+      background-color:black;
       color: #fff;
     }
     .buttons div:first-child:hover {
@@ -57,12 +58,12 @@
       margin: 5px 0px;
       background-color: #fff;
       padding: 1%;
-      border-radius: 30px;
       text-align: center;
-      border: 1px solid rgb(0, 0, 0);
+      border: 1px solid black;
       color: black;
       width: 40vw;
       cursor: pointer;
+      border-radius: 20px;
     }
     .buttons div span {
       width: 100%;
@@ -113,54 +114,54 @@
   </style>
   
   
-  <section class="productDetail">
-    <div
-    id="carouselExampleControls"
-    class="carousel slide mt-4"
-    data-bs-ride="carousel"
-  >
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img
-        src="/images/woodwork/<%=woodItem.imgLink%>"
-          class="d-block w-100"
-          alt="..."
-        />
-        <!-- <img src="images/img10.png"  alt="..."> -->
-      </div>
-  
-      <% for( let i=0; i < woodItem.relatedImages.length; i++ ) { %>
-      <div class="carousel-item active">
-        <img
-        src="/images/woodwork/<%=woodItem.imgLink%>"
-          class="d-block w-100"
-          alt="..."
-        />
-      </div>
-      <% } %>
+  <div
+  id="carouselExampleControls"
+  class="carousel slide mt-4"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+      src="/images/woodwork/<%=woodItem.imgLink%>"
+        class="d-block w-100"
+        alt="..."
+      />
+      <!-- <img src="images/img10.png"  alt="..."> -->
     </div>
-  
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExampleControls"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-      <!-- <p class="prevBtn">&DoubleLeftArrow;</p> -->
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExampleControls"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+
+    <% for( let i=0; i < woodItem.relatedImages.length; i++ ) { %>
+    <div class="carousel-item active">
+      <img
+      src="/images/woodwork/<%=woodItem.imgLink%>"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <% } %>
   </div>
+
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+    <!-- <p class="prevBtn">&DoubleLeftArrow;</p> -->
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
   
+<section class="productDetails">
   <div class="productDetails">
     <div class="brandName">
       <h2><%=woodItem.woodItem %></h2>
