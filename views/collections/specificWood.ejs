@@ -1,5 +1,5 @@
 <style>
-    .buyMessage {
+   .buyMessage {
       margin: 1%;
       right: 5%;
       padding: 2%;
@@ -8,7 +8,7 @@
       justify-content: center;
       align-items: center;
       position: absolute;
-      background-color: aquamarine;
+      background-color: rgb(0, 0, 0);
       border-radius: 6px;
       box-shadow: 0px 0px 20px 0.05px;
     }
@@ -23,16 +23,9 @@
       font-size: larger;
       color: red;
     }
-    .productDetail{
-      padding: 0% 5% 5% 5%;
-      margin: 0;
-      width: 100%;
-    }
     .productDetails {
-      margin-top: 5%;
-      margin: 0% 5%;
+      padding: 5%;
     }
-  
     .brandName {
       grid-area: brandName;
     }
@@ -42,20 +35,33 @@
         Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
         sans-serif;
     }
+    .buttons{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     .buttons div:first-child {
-      background-color: rgb(58, 58, 237);
+      background-color: rgb(0, 0, 0);
       color: #fff;
+    }
+    .buttons div:first-child:hover {
+      border: 1px solid black;
+    }
+    .buttons div:last-child:hover {
+      border: 1px solid  black;
     }
   
     .buttons div {
       text-transform: capitalize;
       margin: 5px 0px;
       background-color: #fff;
-      padding: 5%;
+      padding: 1%;
       border-radius: 30px;
       text-align: center;
-      border: 1px solid rgb(58, 58, 237);
+      border: 1px solid rgb(0, 0, 0);
       color: black;
+      width: 40vw;
       cursor: pointer;
     }
     .buttons div span {
@@ -67,9 +73,6 @@
       position: absolute;
       top: 10px;
       right: 10px;
-    }
-    #carouselExampleControls img {
-      height: 40vh;
     }
   
     .carousel-control-prev,
@@ -93,6 +96,19 @@
     #textPreview{
       color: brown;
       font-weight: 800;
+    }
+
+    @media (max-width: 477px) {
+      .productDetail{
+        padding: 0% 5% 5% 5%;
+        margin: 0;
+        width: 100%;
+      }
+      .productDetails {
+        margin-top: 5%;
+        margin: 0% 5%;
+      }
+    
     }
   </style>
   
@@ -144,69 +160,7 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-    <div class="productDetails">
-      <div class="brandName">
-        <h2><%=woodItem.woodItem %></h2>
-      </div>
-      <div>
-        <p>
-          
-              <span><%=woodItem.details%></span>
-              <span class="" id="customPrice"
-                ><i>from</i> K<%=woodItem.price%> </span>
-          </p>
-      </div>
-      <div class="price">
-        <h3><strong>K <%=woodItem.price %></strong></h3>
-      </div>
-      <div>
-        <hr>
-        <select id="wood-type" name="wood-type">
-          <option value="" disabled selected>select wood type</option>
-            <option value="oak">Oak</option>
-            <option value="maple">Maple</option>
-            <option value="cherry">Cherry</option>
-            <option value="walnut">Walnut</option>
-            <option value="mahogany">Mahogany</option>
-          </select>
-      <hr>
-        <label for="">Upload image</label><br>
-        <label for="yesIMG">Yes</label>
-        <input type="radio" name="woodIMG" id="yesIMG">
-        <label for="noIMG">No</label>
-        <input type="radio" name="woodIMG" id="noIMG">
-        <input type="file" name="sampleWoodIMG" id="sampleWoodIMG">
-        <br>
-      <hr>
-        <label for="">Add custom text</label><br>
-        <label for="yesText">Yes</label>
-        <input type="radio" name="woodText" id="yesText">
-        <label for="noText">No</label>
-        <input type="radio" name="woodText" id="noText">
-       <br>
-       <textarea name="customText" id="yesTextArea" cols="30" rows="10"></textarea>
-      </div>
-      <hr>
-        <ul>
-          <li><i>A preview of your design will be emailed to you within <span id="textPreview">2-3 working days</span>.</i></li>
-          <li><i>You can either <span id="textPreview">confirm the design or ask for changes</span> on it.</i></li>
-          <li><i>Once design is confirmed, production will take <span id="textPreview">3-4 working days</span>.</i></li>
-          <li><i>The delivery time for any engraved product is about <span id="textPreview">8-12 working days</span>.</i></li>
-        </ul>
-      <hr />
-      <div class="buttons" >
-        <div id="buyBtn" id="">
-          <span>
-            <a style="color: white; text-decoration: none" href="/cart">Buy it now</a>
-          </span>
-        </div>
-        <div class="cartBtn" id="">
-          <span>Add to cart</span>
-        </div>
-      </div>  
-      <hr />
-
-<section class="productDetails">
+  
   <div class="productDetails">
     <div class="brandName">
       <h2><%=woodItem.woodItem %></h2>
@@ -357,6 +311,7 @@
     quantity: 1,
     data: { text: yesTextArea.value, woodType: woodtype.value, imagePath: "" },
   });
+
   console.log(cartData);
   const cartNoForm = document.getElementById("formNoImage");
   const cartImageForm = document.getElementById("formWithImage");
@@ -387,6 +342,7 @@
         imagePath: "",
       },
     });
+    
     if (addToCartButton.innerText != "Added") {
       addToCartButton.innerText = "Added";
       if (localStorage.getItem("cartList") != null) {

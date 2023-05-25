@@ -1,144 +1,5 @@
 <style>
-  .buyMessage {
-    margin: 1%;
-    right: 5%;
-    padding: 2%;
-    width: 80vw;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-color: aquamarine;
-    border-radius: 6px;
-    box-shadow: 0px 0px 20px 0.05px;
-  }
-  .buyMessage input {
-    border: 1px solid black;
-    margin: 3%;
-    border-radius: 10px;
-    padding: 2% 5%;
-  }
-  .buyMessage .closeBuyMessage {
-    font-weight: bold;
-    font-size: larger;
-    color: red;
-  }
-  .productDetails {
-    padding: 5%;
-    margin-top: 5%;
-    margin: 0% 5%;
-  }
-
-  .brandName {
-    grid-area: brandName;
-  }
-  .brandName p {
-    font-weight: bold;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-      sans-serif;
-  }
-  .buttons div:first-child {
-    background-color: rgb(0, 0, 0);
-    color: #fff;
-  }
-
-  .buttons div {
-    text-transform: capitalize;
-    margin: 5px 0px;
-    background-color: #fff;
-    padding: 5%;
-    border-radius: 30px;
-    text-align: center;
-    border: 1px solid rgb(0, 0, 0);
-    color: black;
-    cursor: pointer;
-  }
-  .buttons div span {
-    width: 100%;
-    font-size: large;
-    font-weight: 500;
-  }
-  .closeModal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  #carouselExampleControls img {
-    height: 40vh;
-  }
-
-  .carousel-control-prev,
-  .carousel-control-next {
-    position: absolute;
-    top: 30%;
-    bottom: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10% !important;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-    background-color: none;
-    border: 0;
-    opacity: 0.5;
-    transition: opacity 0.15s ease;
-  }
-  #textPreview {
-    color: brown;
-    font-weight: 800;
-  }
-</style>
-
-<div
-  id="carouselExampleControls"
-  class="carousel slide mt-4"
-  data-bs-ride="carousel"
->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img
-        src="/images/customImages/<%=customItem.imgLink%>"
-        class="d-block w-100"
-        alt="..."
-      />
-      <!-- <img src="images/img10.png"  alt="..."> -->
-    </div>
-
-    <% for( let i=0; i < customItem.relatedImages.length; i++ ) { %>
-    <div class="carousel-item active">
-      <img
-        src="/images/customImages/<%=customItem.imgLink%>"
-        class="d-block w-100"
-        alt="..."
-      />
-    </div>
-    <% } %>
-  </div>
-
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleControls"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-    <!-- <p class="prevBtn">&DoubleLeftArrow;</p> -->
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleControls"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-    .buyMessage {
+   .buyMessage {
       margin: 1%;
       right: 5%;
       padding: 2%;
@@ -147,7 +8,7 @@
       justify-content: center;
       align-items: center;
       position: absolute;
-      background-color: aquamarine;
+      background-color: rgb(0, 0, 0);
       border-radius: 6px;
       box-shadow: 0px 0px 20px 0.05px;
     }
@@ -181,7 +42,7 @@
       align-items: center;
     }
     .buttons div:first-child {
-      background-color: rgb(58, 58, 237);
+      background-color: rgb(0, 0, 0);
       color: #fff;
     }
     .buttons div:first-child:hover {
@@ -198,7 +59,7 @@
       padding: 1%;
       border-radius: 30px;
       text-align: center;
-      border: 1px solid rgb(58, 58, 237);
+      border: 1px solid rgb(0, 0, 0);
       color: black;
       width: 40vw;
       cursor: pointer;
@@ -250,8 +111,8 @@
     
     }
     
-  </style>
-  
+</style>
+
   
   <section class="productDetail">
     <div
@@ -300,60 +161,8 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-    <div class="productDetails">
-      <div class="brandName">
-        <h2>custom <%=customItem.customName %></h2>
-      </div>
-      <div>
-        <p>
-              <span><%=customItem.details%></span>
-              <span class="" id="customPrice"
-                ><i>from</i> K<%=customItem.price%></span
-              >
-          </p>
-      </div>
-      <div class="price">
-        <h3><strong>K <%=customItem.price %></strong></h3>
-      </div>
-      <div>
-      <hr>
-        <label for="">Upload image</label><br>
-        <label for="yesIMG">Yes</label>
-        <input type="radio" name="woodIMG" id="yesIMG">
-        <label for="noIMG">No</label>
-        <input type="radio" name="woodIMG" id="noIMG">
-        <input type="file" name="sampleWoodIMG" id="sampleWoodIMG">
-        <br>
-      <hr>
-        <label for="">Add custom text</label><br>
-        <label for="yesText">Yes</label>
-        <input type="radio" name="woodText" id="yesText">
-        <label for="noText">No</label>
-        <input type="radio" name="woodText" id="noText">
-       <br>
-       <textarea name="customText" id="yesTextArea" cols="30" rows="10"></textarea>
-      </div>
-      <hr>
-        <ul>
-          <li><i>A preview of your design will be emailed to you within <span id="textPreview">2-3 working days</span>.</i></li>
-          <li><i>You can either <span id="textPreview">confirm the design or ask for changes</span> on it.</i></li>
-          <li><i>Once design is confirmed, production will take <span id="textPreview">3-4 working days</span>.</i></li>
-          <li><i>The delivery time for any engraved product is about <span id="textPreview">8-12 working days</span>.</i></li>
-        </ul>
-      <hr />
-      
-      <div class="buttons" >
-        <div id="buyBtn" >
-          <span>
-            <a style="color: white; text-decoration: none" href="/cart">Buy it now</a>
-          </span>
-        </div>
-        <div class="cartBtn" id="">
-          <span>Add to cart</span>
-        </div>
-      </div>  
+  
 
-<section class="productDetails">
   <div class="productDetails">
     <div class="brandName">
       <h2>custom <%=customItem.customName %></h2>
@@ -439,13 +248,11 @@
     <div class="buttons">
       <div id="buyBtn" id="<%=customItem.customName%>">
         <span>
-          <a style="color: white; text-decoration: none" href="/cart"
-            >Buy it now</a
-          >
+          <span style="color: white; text-decoration: none">Buy it now</span>
         </span>
       </div>
       <div class="cartBtn" id="<%=customItem.customName%>">
-        <span>Add to cart</span>
+        <span style="color: black" href="/cartImage">Add to cart</span>
       </div>
     </div>
 
@@ -528,6 +335,7 @@ const buyButton = document.querySelector("#buyBtn");
         imagePath: "",
       },
     });
+   
     if (addToCartButton.innerText != "Added") {
       addToCartButton.innerText = "Added";
       if (localStorage.getItem("cartList") != null) {
@@ -538,7 +346,6 @@ const buyButton = document.querySelector("#buyBtn");
       } else {
         localStorage.setItem("cartList", `${cartData}+`);
       }
-<<<<<<< HEAD
     }
 
     if (sampleImage.value) {
@@ -555,15 +362,12 @@ const buyButton = document.querySelector("#buyBtn");
       itemPrice,
       itemImage,
       quantity: 1,
-      productType:'custom',
+      productType:'wood',
       data: {
         text: yesTextArea.value,
-        woodType:'',
+        woodType: '',
         imagePath: "",
       },
-=======
-  
->>>>>>> 2e759c55868c93089773d8d026f00a056fd9add1
     });
     if (addToCartButton.innerText == "Added") {
       addToCartButton.innerText = "Add To Cart";
