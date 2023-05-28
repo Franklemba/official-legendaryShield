@@ -71,6 +71,7 @@ router.get("/cart", (req, res) => {
     imgUrl:"",
     message: "",
     url:" ",
+    transactionIdRequest:""
   });
   // res.send('we run this shit')
 });
