@@ -38,6 +38,9 @@
 <div id="cartBtnContainer">
   <button id="submitOrder">Proceed to checkout</button>
 </div>
+<div id="cartBtnContainer">
+  <button id="clearOrder">clear cart</button>
+</div>
 <div class="cusOverlay"></div>
 <input id="previousImageUrl" type="hidden" value="<%=imgUrl%>" />
 
@@ -48,6 +51,8 @@
   const buyModal = document.querySelector(".buyModal");
   const closeModal = document.querySelector(".closeModal");
   const submitOrder = document.querySelector("#submitOrder");
+
+  //window.localStorage.clear();
 
   let totalPrice = 0;
   //document.getElementById("previousImageUrl").value

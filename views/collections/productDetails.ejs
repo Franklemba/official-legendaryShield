@@ -1,199 +1,114 @@
-<style>
-  .buyMessage {
-    margin: 1%;
-    right: 5%;
-    padding: 2%;
-    width: 80vw;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-color: aquamarine;
-    border-radius: 6px;
-    box-shadow: 0px 0px 20px 0.05px;
-  }
-  .buyMessage input {
-    border: 1px solid black;
-    margin: 3%;
-    border-radius: 10px;
-    padding: 2% 5%;
-  }
-  .buyMessage .closeBuyMessage {
-    font-weight: bold;
-    font-size: larger;
-    color: red;
-  }
-  .productDetails {
-    padding: 5%;
-    margin-top: 5%;
-    margin: 0% 5%;
-  }
+<section class="specificCustom">
 
-  .brandName {
-    grid-area: brandName;
-  }
-  .brandName p {
-    font-weight: bold;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-      sans-serif;
-  }
-  .buttons div:first-child {
-    background-color: rgb(0, 0, 0);
-    color: #fff;
-  }
-
-  .buttons div {
-    text-transform: capitalize;
-    margin: 5px 0px;
-    background-color: #fff;
-    padding: 5%;
-    text-align: center;
-    border: 1px solid rgb(0, 0, 0);
-    color: black;
-    cursor: pointer;
-  }
-  .buttons div span {
-    width: 100%;
-    font-size: large;
-    font-weight: 500;
-  }
-  .closeModal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  #carouselExampleControls img {
-    height: 60vh;
-  }
-
-  .carousel-control-prev,
-  .carousel-control-next {
-    position: absolute;
-    top: 30%;
-    bottom: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10% !important;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-    background-color: none;
-    border: 0;
-    opacity: 0.5;
-    transition: opacity 0.15s ease;
-  }
-</style>
-
-<div
-  id="carouselExampleControls"
-  class="carousel slide mt-4"
-  data-bs-ride="carousel"
->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img
-        src="<%= product.ImagesPath%>\<%=product.mainImg%>"
-        class="d-block w-100"
-        alt="..."
-      />
-      <!-- <img src="images/img10.png"  alt="..."> -->
-    </div>
-
-    <% for( let i=0; i < product.images.length; i++ ) { %>
-    <div class="carousel-item active">
-      <img
-        src="<%= product.ImagesPath%>\<%=product.images[i]%>"
-        class="d-block w-100"
-        alt="..."
-      />
-    </div>
-    <% } %>
-  </div>
-
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleControls"
-    data-bs-slide="prev"
+  <div
+    id="carouselExampleControls"
+    class="carousel slide mt-4"
+    data-bs-ride="carousel"
   >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-    <!-- <p class="prevBtn">&DoubleLeftArrow;</p> -->
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleControls"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-<section class="productDetails">
-  <div class="productDetails">
-    <div class="brandName">
-      <h2><%=product.category %>, <i><%=product.brandName %></i></h2>
-    </div>
-    <div>
-      <p><strong>Available:</strong> <%=product.quantity%></p>
-      <% if (product.type == 'promo') { %>
-      <p>was <span id="prePrice"> K<%= product.oldPrice %></span></p>
-      <p>
-        save up to
-        <span id="newPrice"
-          ><%= (((product.oldPrice -
-          product.price)/product.oldPrice)*100).toFixed(0) %>%</span
-        >
-      </p>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="<%= product.ImagesPath%>\<%=product.mainImg%>"
+          class="d-block w-100"
+          alt="..."
+        />
+        <!-- <img src="images/img10.png"  alt="..."> -->
+      </div>
+  
+      <% for( let i=0; i < product.images.length; i++ ) { %>
+      <div class="carousel-item active">
+        <img
+          src="<%= product.ImagesPath%>\<%=product.images[i]%>"
+          class="d-block w-100"
+          alt="..."
+        />
+      </div>
       <% } %>
     </div>
-    <div class="price">
-      <h3><strong>K <%=product.price %></strong></h3>
-    </div>
-
-    <hr />
-    <div class="buttons">
-      <div id="buyBtn" id="<%=product._id%>">
-        <span>
-          <a style="color: white; text-decoration: none" href="/cart"
-            >Buy it now</a
-          >
-        </span>
-      </div>
-      <div class="cartBtn" id="<%=product._id%>">
-        <span>Add to cart</span>
-      </div>
-    </div>
-
-    <hr />
-    <p>
-      <i
-        ><strong>Description:</strong>
-        <%=product.description %>
-      </i>
-    </p>
-    <p>
-      <strong>Date uploaded:</strong>
-      <%= product.createdAt.toString().split('GMT')[0]%>
-    </p>
+  
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      <!-- <p class="prevBtn">&DoubleLeftArrow;</p> -->
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
+  
+  <div class="productDetails">
+    <div class="productDetails">
+      <div class="brandName">
+        <h2><%=product.category %>, <i><%=product.brandName %></i></h2>
+      </div>
+      <div>
+        <p><strong>Available:</strong> <%=product.quantity%></p>
+        <% if (product.type == 'promo') { %>
+        <p>was <span id="prePrice"> K<%= product.oldPrice %></span></p>
+        <p>
+          save up to
+          <span id="newPrice"
+            ><%= (((product.oldPrice -
+            product.price)/product.oldPrice)*100).toFixed(0) %>%</span
+          >
+        </p>
+        <% } %>
+      </div>
+      <div class="price">
+        <h3><strong>K <%=product.price %></strong></h3>
+      </div>
+  
+      <hr />
+      <div class="buttons">
+        <div id="buyBtn" id="<%=product._id%>">
+          <span>
+            <a style="color: white; text-decoration: none" href="/cart"
+              >Buy it now</a
+            >
+          </span>
+        </div>
+        <div class="cartBtn" id="<%=product._id%>">
+          <span>Add to cart</span>
+        </div>
+      </div>
+  
+      <hr />
+      <p>
+        <i
+          ><strong>Description:</strong>
+          <%=product.description %>
+        </i>
+      </p>
+      <p>
+        <strong>Date uploaded:</strong>
+        <%= product.createdAt.toString().split('GMT')[0]%>
+      </p>
+    </div>
+    <input
+      type="hidden"
+      value="<%=product.brandName%>, <%=product.category%>"
+      id="itemName"
+    />
+    <input
+      type="hidden"
+      value="<%= product.ImagesPath%>\<%=product.mainImg%>"
+      id="itemImages"
+    />
+    <input type="hidden" value="<%=product.price%>" id="itemPrice" />
+  </div>
+  
 </section>
-<input
-  type="hidden"
-  value="<%=product.brandName%>, <%=product.category%>"
-  id="itemName"
-/>
-<input
-  type="hidden"
-  value="<%= product.ImagesPath%>\<%=product.mainImg%>"
-  id="itemImages"
-/>
-<input type="hidden" value="<%=product.price%>" id="itemPrice" />
 <script>
   const itemName = document.getElementById("itemName").value;
   const itemImage = document.getElementById("itemImages").value;

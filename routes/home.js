@@ -67,7 +67,11 @@ router.get("/about", (req, res) => {
 });
 
 router.get("/cart", (req, res) => {
-  res.render("home/cart",{imgUrl:''});
+  res.render("home/cart",{
+    imgUrl:"",
+    message: "",
+    url:" ",
+  });
   // res.send('we run this shit')
 });
 

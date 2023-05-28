@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const Product = require("../models/uploadSchema"); ///imported it
 const purchaseOrder = require("../models/purchaseSchema")
+var ObjectId = require('mongodb').ObjectID;
 // const BuyerDetails = require('../models/buyerSchema');
 const { error } = require("console");
 
@@ -34,6 +35,7 @@ const multipleUploads = imagesUpload.fields([
   { name: "mainImg", maxCount: 1 },
   { name: "images", maxCount: 4 },
 ]);
+
 
 ///create product
 
@@ -256,6 +258,9 @@ router.get("/:id", async (req, res) => {
 });
 
 
-///
+/// uploading news
+router.get("/uploadNews",(req,res) =>{
+  res.render("admin/uploadNews");
+});
 
 module.exports = router;
