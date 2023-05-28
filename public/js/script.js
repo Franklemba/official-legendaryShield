@@ -74,3 +74,13 @@ moreButtons.forEach(button => {
   observer.observe(button);
 });
 
+
+
+if(localStorage.getItem('localReset')){
+  
+}else{
+
+  localStorage.clear()
+  localStorage.setItem('localReset', 'reset')
+
+}
