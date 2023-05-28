@@ -200,6 +200,7 @@
     quantity: 1,
     data: { text: yesTextArea.value, woodType: woodtype.value, imagePath: "" },
   });
+
   console.log(cartData);
   const cartNoForm = document.getElementById("formNoImage");
   const cartImageForm = document.getElementById("formWithImage");
@@ -230,6 +231,7 @@
         imagePath: "",
       },
     });
+    
     if (addToCartButton.innerText != "Added") {
       addToCartButton.innerText = "Added";
       if (localStorage.getItem("cartList") != null) {

@@ -24,6 +24,8 @@
     </div>
     <% } %>
   </div>
+  
+
 
   <button
     class="carousel-control-prev"
@@ -133,13 +135,11 @@
     <div class="buttons">
       <div id="buyBtn" id="<%=customItem.customName%>">
         <span>
-          <a style="color: white; text-decoration: none" href="/cart"
-            >Buy it now</a
-          >
+          <span style="color: white; text-decoration: none">Buy it now</span>
         </span>
       </div>
       <div class="cartBtn" id="<%=customItem.customName%>">
-        <span>Add to cart</span>
+        <span style="color: black" href="/cartImage">Add to cart</span>
       </div>
     </div>
 
@@ -224,6 +224,7 @@
         imagePath: "",
       },
     });
+   
 
     if (addToCartButton.innerText != "Added") {
       addToCartButton.innerText = "Added";
@@ -251,10 +252,10 @@
       itemPrice,
       itemImage,
       quantity: 1,
-      productType:'custom',
+      productType:'wood',
       data: {
         text: yesTextArea.value,
-        woodType:'',
+        woodType: '',
         imagePath: "",
       },
   

@@ -73,3 +73,4 @@ const observer = new IntersectionObserver(entries => {
 moreButtons.forEach(button => {
   observer.observe(button);
 });
+
