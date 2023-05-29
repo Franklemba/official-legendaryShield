@@ -152,7 +152,7 @@ ul {
     height: fit-content;
     background-color:rgb(250, 248, 248);
     padding: 2%;
-    border-radius: 10px;
+    border-radius: 0px;
     border: solid 1px black ;
 }
 .selectedItem form .inputIMGbox input{
@@ -187,7 +187,7 @@ ul {
     /* max-width: 370px; */
     width: 80%;
     margin: 0.2rem 0;
-    border-radius: 10px;
+    border-radius: 0px;
     background-color: white;
     outline: none;
     padding: 0.5rem 1rem;
@@ -197,7 +197,7 @@ ul {
     width: 70%;
     height: 60px;
     margin: 0.2rem 0;
-    border-radius: 10px;
+    border-radius: 0px;
     background-color: white;
     outline: none;
     padding: 0 1rem;

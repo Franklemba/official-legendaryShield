@@ -176,16 +176,7 @@
       <h3><strong>K <%=woodItem.price %></strong></h3>
     </div>
     <div>
-      <hr />
-      <select id="wood-type" name="wood-type">
-        <option value="" disabled selected>select wood type</option>
-        <option value="oak">Oak</option>
-        <option value="maple">Maple</option>
-        <option value="cherry">Cherry</option>
-        <option value="walnut">Walnut</option>
-        <option value="mahogany">Mahogany</option>
-      </select>
-      <hr />
+      
       <label for="">Upload image</label><br />
       <label for="yesIMG">Yes</label>
       <input type="radio" name="woodIMG" id="yesIMG" />
@@ -281,8 +272,7 @@
   const yesIMG = document.getElementById("yesIMG");
   const noIMG = document.getElementById("noIMG");
   const sampleImage = document.getElementById("sampleImage");
-  const woodtype = document.getElementById("wood-type");
-
+  
   const itemName = document.getElementById("itemName").value;
   const itemImage = document.getElementById("itemImages").value;
   const itemPrice = document.getElementById("itemPrice").value;
@@ -310,7 +300,7 @@
     itemPrice,
     itemImage,
     quantity: 1,
-    data: { text: yesTextArea.value, woodType: woodtype.value, imagePath: "" },
+    data: { text: yesTextArea.value, imagePath: "" },
   });
 
   console.log(cartData);
@@ -339,7 +329,6 @@
       productType:'wood',
       data: {
         text: yesTextArea.value,
-        woodType: woodtype.value,
         imagePath: "",
       },
     });
@@ -373,7 +362,6 @@
       productType:'wood',
       data: {
         text: yesTextArea.value,
-        woodType: woodtype.value,
         imagePath: "",
       },
     });

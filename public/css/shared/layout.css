@@ -56,7 +56,7 @@
 .search input {
   padding: 20px;
   padding-right: 60px;
-  border-radius: 17px;
+  border-radius: 0px;
   width: 70vw;
   height: 50px;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
@@ -344,4 +344,12 @@ footer a:hover {
     height: 80vh;
     display: block;
   }
+}
+
+.icon{
+  display: flex;
+  gap: 20px;
+}
+.icon a{
+  font-size: 32px;
 }

@@ -98,15 +98,15 @@
         addToTotal(parseInt(item.itemPrice));
         let imagePath;
         let imageText;
-        let woodType;
+      
         if (item.data) {
           imagePath = item.data.imagePath;
           itemText = item.data.text;
-          woodType = item.data.woodType;
+        
         } else {
           imagePath = "";
           itemText = "";
-          woodType = "";
+          
         }
         const cartItem = document.createElement("div");
         cartItem.classList.add("cartItem");
@@ -117,7 +117,6 @@
     <div class="contentSection">
         <span>${item.itemName}</span>
         <span>${item.data.itemText?item.data.itemText:''}</span>
-        <span>${item?.data.woodType?item?.data.woodType:''}</span>
         <span>Price: K${item.itemPrice}</span>
     </div>
     <div class="qtyControl" id="${item.itemPrice}">
@@ -276,10 +275,11 @@ document.getElementById("Pnumber").value = localStorage.getItem('Pnumber')
     background-color: #f5f5f5;
     box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.561);
     box-shadow: #000;
-    height: 130px;
-    width: 97%;
-    max-width: 600px;
-    border-radius: 5px;
+    height: fit-content;
+    padding: 15px 4px;
+    width: 95%;
+    max-width: 550px;
+    border-radius: 0px;
     margin: 5px 0px;
     display: flex;
     flex-direction: row;

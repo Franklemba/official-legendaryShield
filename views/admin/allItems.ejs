@@ -18,7 +18,7 @@
       <p>K<%= data.price%>  <%= data.type%></p>
       <p><%= data.createdAt.toString().split('GMT')[0] %></p>
       <div class="buttons">
-        <span><a href="/admin/<%= data._id%>">update</a></span>
+        <span><a href="/admin/getProduct/<%= data._id%>">update</a></span>
       <span>
         <form action="/admin/delete/<%= data._id%>" method="post">
           <input type="submit" class="btn" value="delete" id="submit" />
