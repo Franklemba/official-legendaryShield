@@ -28,38 +28,38 @@
         <div id="carouselExampleControls" class=" carousel slide " data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="images/img10.png" class="d-block w-100" alt="...">
+                <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/img10.png" class="d-block w-100" alt="...">
                 <div class="imgText">
                     <p>Carry Your Personality with Our Keychains.</p>
                 </div>
               </div>
               
               <div class="carousel-item">
-                <img src="images/img2.png" class="d-block w-100" alt="...">
+                <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/img2.png" class="d-block w-100" alt="...">
                 <div class="imgText">
                     <p>Transform your neckline with our stunning neck chains & necklaces.</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="images/img3.png" class="d-block w-100" alt="...">
+                <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/img3.png" class="d-block w-100" alt="...">
                 <div class="imgText">
                     <p> Find Your Perfect Fit with Our Sleek Neck Chains.</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="images/img6.png" class="d-block w-100" alt="...">
+                <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/img6.png" class="d-block w-100" alt="...">
                 <div class="imgText">
                     <p> Unleash Your Inner Glam with Our Stunning Rings.</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="images/img9.png" class="d-block w-100" alt="...">
+                <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/img9.png" class="d-block w-100" alt="...">
                 <div class="imgText">
                     <p>Timeless Style at Your Wrist with Our Watches</p>
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="images/img5.png" class="d-block w-100" alt="...">
+                <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/img5.png" class="d-block w-100" alt="...">
                 <div class="imgText">
                     <p> Elevate Your Look with Our Elegant Necklaces.</p>
                 </div>
@@ -190,7 +190,7 @@
       <% for( let index = 0; index < 4; index++ ) { %>
         <div class="pro">
           <a id="linkTag" href="/custom/<%=customItems[index].customName %>">
-            <img src="images/customImages/<%=customItems[index].imgLink%>" alt="<%=customItems[index].customName %>">
+            <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/customImages/<%=customItems[index].imgLink%>" alt="<%=customItems[index].customName %>">
               <div class="des">
               <span><%=customItems[index].customName %></span>
               <h5><%=customItems[index].details %></h5>
@@ -221,11 +221,11 @@
     <div id="carouselExampleControls" class=" carousel slide " data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="images/customImg.png"   class="d-block w-100" alt="...">
+          <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/customImg.png"   class="d-block w-100" alt="...">
         </div>
         <% woodItems.forEach(image => { %>
           <div class="carousel-item">
-            <img src="images/woodwork/<%=image.imgLink%>" class="d-block w-100" alt="<%=image.woodItem %>">
+            <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/<%=image.imgLink%>" class="d-block w-100" alt="<%=image.woodItem %>">
           </div>
         <% }) %>
 
@@ -252,7 +252,7 @@
 
             <div class="pro">
               <a id="linkTag" href="/woodWork/<%=woodItems[index].woodItem %>">
-                <img src="images/woodwork/<%=woodItems[index].imgLink%>" alt="<%=woodItems[index].woodItem %>">
+                <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/<%=woodItems[index].imgLink%>" alt="<%=woodItems[index].woodItem %>">
                  <div class="des">
                   <span><%=woodItems[index].woodItem %></span>
                   <h5><%=woodItems[index].details %></h5>
@@ -278,7 +278,7 @@
       </div>
     </section>
 
-
+<hr>
 
     <!-- About us section -->
 
@@ -349,9 +349,10 @@
       </div>    
   </section>
 
-  
+  <hr>
+<!-- Latest section -->
 
-  
+
      <script>
               let aboutID = document.getElementById('aboutID');
               let pro = document.querySelectorAll('.pro');

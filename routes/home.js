@@ -57,7 +57,8 @@ router.get("/", async (req, res) => {
         woodItems: WoodItems,
         watchCollection: watchArray,
         jeweryCollection: jeweryArray,
-        newsItems:news
+        newsItems:news,
+        message:null
     });
   }catch(err){
     res.send("error fetching promo products")
@@ -72,7 +73,12 @@ router.get("/about", (req, res) => {
 });
 
 router.get("/cart", (req, res) => {
-  res.render("home/cart",{imgUrl:''});
+  res.render("home/cart",{
+    imgUrl:"",
+    message: null,
+    url:"",
+    transactionIdRequest:false
+  });
   // res.send('we run this shit')
 });
 
@@ -130,7 +136,7 @@ orderList.forEach((orderItem)=>{
     })
     .catch((err) => {
       res.render("home/index", {
-         age: "Something went wrong, press cancel to return",
+         message: "Something went wrong, press cancel to return",
         url: "_id",
         transactionIdRequest:false
       });

@@ -72,7 +72,7 @@ body {
   /* justify-content: center; */
 }
 
-#hero button {
+#hero button{
   margin-top: 20px;
   background-color: transparent;
   border: 0;
@@ -114,7 +114,7 @@ body {
   width: fit-content;
   padding: 1%;
   color: #03060a;
-  border-radius: 5%;
+  /* border-radius: 5%; */
   border: 3px solid #8d9094;
   background-color: transparent;
   text-shadow: 2px 4px 4px rgba(14, 14, 15, 0.6);
@@ -140,7 +140,7 @@ body {
 .nextBtn {
   margin-top: 50%;
   background-color: white;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   padding: 5px;
   width: fit-content;
 }
@@ -245,7 +245,6 @@ body {
 .row .inputbox input {
   font-size: 30px;
 }
-
 /* Start media query */
 @media (max-width: 799px) {
   #hero {
@@ -265,7 +264,7 @@ body {
   #carouselExampleControls #viewBtn {
     position: absolute;
     bottom: 15%;
-    border-radius: 7px;
+    /* border-radius: 7px; */
     right: 6%;
     padding: 2%;
     width: fit-content;
@@ -362,7 +361,7 @@ body {
   height: 55vh;
   max-height: 75vh;
   background-color:rgb(255, 255, 255);
-  border-radius: 0px;
+  /* border-radius: 6px; */
   width: 90%;
   padding: 5%;
   z-index: 600;
@@ -479,7 +478,7 @@ body {
   width: fit-content;
   height: fit-content;
   border: 2px solid black;
-  border-radius: 28px;
+  /* border-radius: 28px; */
   text-decoration: none;
   color: #03060a;
 }

@@ -160,7 +160,7 @@
     console.log(currCart)
     let cartString = '';
     currCart.forEach(data=>{
-      cartString += `<div>x${data.quantity} ${data.itemName} K${data.itemPrice} custom text:"${data.data.text} wood type:"${data.data.woodType}"</div>
+      cartString += `<div>x${data.quantity} ${data.itemName} K${data.itemPrice} custom text:"${data.data.text}"</div>
       <img class="customerUploadImage" src="/uploads/purchaseImages/${data.data.imagePath}" alt="null" />
        <hr>`;
     })
@@ -176,8 +176,10 @@ console.log(cartString);
           <br>
           <h5>Email:</h5><h5>${data.email}</h5>
           <br>
-          <h3>Cart<h3/>
+          <h5>Transaction-Id:${data.transactionId}<h5/>
+          
             <br>
+          <h3>Cart<h3/>
           ${cartString}
           <br>
           <h4>Date: ${data.purchasedAt}</h4>

@@ -6,6 +6,7 @@ const path = require("path");
 const Product = require("../models/uploadSchema"); ///imported it
 const News = require("../models/newsSchema")
 const purchaseOrder = require("../models/purchaseSchema")
+var ObjectId = require('mongodb').ObjectID;
 // const BuyerDetails = require('../models/buyerSchema');
 const { error } = require("console");
 
@@ -50,6 +51,7 @@ const multipleUploads = imagesUpload.fields([
   { name: "mainImg", maxCount: 1 },
   { name: "images", maxCount: 4 },
 ]);
+
 
 ///create product
 
