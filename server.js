@@ -1,4 +1,4 @@
-
+require("dotenv").config()
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts');
@@ -30,16 +30,16 @@ const mongoose = require("mongoose");
 //global database connection
    // online connection////
     mongoose.set('strictQuery', true);
-    mongoose.connect('mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
-    .then(()=>{
-        console.log('database is connected')
-    }).catch((err) => console.log(err));
+    // mongoose.connect('mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true})
+    // .then(()=>{
+    //     console.log('database is connected')
+    // }).catch((err) => console.log(err));
 // ////////local database connection
 
-// mongoose.connect('mongodb://localhost:27017/legendary_shield')
-// .then(()=>{
-//     console.log('database is connected')
-// }).catch((err) => console.log(err));
+mongoose.connect(process.env.DATABASE_Url)
+.then(()=>{
+    console.log('database is connected')
+}).catch((err) => console.log(err));
 
 
 app.use('/',indexRouter );
@@ -66,4 +66,4 @@ app.use('/auth',authRouter)
 app.use('/admin',ensureAuthenticated, adminRouter);
 
 
-app.listen(process.env.PORT || 5200) 
+app.listen(process.env.PORT || 5300) 

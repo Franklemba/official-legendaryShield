@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const multerS3 = require("multer-s3");
 const fs = require("fs");
 const path = require("path");
 const Product = require("../models/uploadSchema"); ///imported it
-const purchaseOrder = require("../models/purchaseSchema")
+const purchaseOrder = require("../models/purchaseSchema");
 var ObjectId = require('mongodb').ObjectID;
-// const BuyerDetails = require('../models/buyerSchema');
+const aws = require("aws-sdk");
 const { error } = require("console");
 
-// purchaseOrder.deleteMany({}).then((done)=>{
-//   console.log(done)
-// })
+
 
 const uploadPath = path.join("public", Product.mainImgPath);
 const ImagesPath = path.join("public", Product.imagesPath);
@@ -23,18 +22,33 @@ const imageMimeType = [
   "image/webp",
 ];
 
-const imagesUpload = multer({
-  dest: ImagesPath,
+aws.config.update({
+   secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY,
+   accessKeyId:process.env.AWS_ACCESS_KEY_ID,
+   region:process.env.AWS_REGION
+})
+const s3 = new aws.S3();
+const upload = multer({
+  storage: multerS3({
+    bucket: process.env.AWS_BUCKET_NAME,
+    s3:s3,
+    acl:"public-read",
+    key: (req,file,cb)=>{
+
+      cb(null, "uploads/" + file.originalname);
+    }
+  }),
   fileFilter: (req, file, callback) => {
     callback(null, imageMimeType.includes(file.mimetype));
   },
 });
 
 
-const multipleUploads = imagesUpload.fields([
+const multipleUploads = upload.fields([
   { name: "mainImg", maxCount: 1 },
   { name: "images", maxCount: 4 },
 ]);
+
 
 
 ///create product
@@ -157,11 +171,12 @@ router.post("/", multipleUploads, async (req, res) => {
   ///////////////////////////////////
   let photos = req.files;
   let images = photos.images;
-  let mainImgName = photos.mainImg[0].filename;
+  let mainImgName = photos.mainImg[0].originalname;
   const imagesArray = [];
+  console.log(photos);
 
   images.forEach((data) => {
-    imagesArray.push(data.filename);
+    imagesArray.push(data.originalname);
   });
 
   const product = new Product({
@@ -186,7 +201,6 @@ router.post("/", multipleUploads, async (req, res) => {
     // res.send(product);
   } catch {
     res.render("admin/studentPapers", {
-      StudentPapers: student_Papers,
       message: "upload was unsuccessful",
       url: "/admin",
     });
@@ -208,6 +222,14 @@ router.get("/all", async (req, res) => {
   }
 });
 
+
+  async function deleteImages(key){
+      const newLocal = "uploads/" + key;
+      await s3.deleteObject({
+       Bucket: process.env.AWS_BUCKET_NAME,
+       key: newLocal
+      }).promise();
+    }
 ///// deleting selected product
 router.post("/delete/:id", async (req, res) => {
   const id = req.body.id;
@@ -215,6 +237,7 @@ router.post("/delete/:id", async (req, res) => {
   const SelectedProduct = await Product.findById(`${id}`);
   const currentMainImg = SelectedProduct.mainImg;
   const currentImagesArray = SelectedProduct.images;
+  currentImagesArray.push(currentMainImg);
   try {
     await SelectedProduct.deleteOne({
       ///deletes selected item
@@ -224,18 +247,26 @@ router.post("/delete/:id", async (req, res) => {
 
     res.redirect("/admin/all");
 
-    if (currentMainImg) {
-      fs.unlink(path.join(ImagesPath, currentMainImg), (err) => {
-        if (err) console.log(`error deleting main image`);
-        else console.log(`main image deleted`);
-      });
+    
 
-      currentImagesArray.forEach((image) => {
-        fs.unlink(path.join(ImagesPath, image), (err) => {
-          if (err) console.log("error deleting image");
-          else console.log("images deleted");
-        });
-      });
+    if (currentMainImg) {
+     
+      
+      currentImagesArray.forEach((image)=>{
+        deleteImages(image)
+      })
+      
+      // fs.unlink(path.join(ImagesPath, currentMainImg), (err) => {
+      //   if (err) console.log(`error deleting main image`);
+      //   else console.log(`main image deleted`);
+      // });
+
+      // currentImagesArray.forEach((image) => {
+      //   fs.unlink(path.join(ImagesPath, image), (err) => {
+      //     if (err) console.log("error deleting image");
+      //     else console.log("images deleted");
+      //   });
+      // });
     }
   } catch {
     res.send("error deleting product");

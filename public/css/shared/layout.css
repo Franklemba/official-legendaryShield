@@ -56,7 +56,6 @@
 .search input {
   padding: 20px;
   padding-right: 60px;
-  border-radius: 17px;
   width: 70vw;
   height: 50px;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
@@ -68,7 +67,6 @@
   position: relative;
   padding: 3%;
   /* width: 50vw; */
-  border-radius: 17px;
   max-height: 280px;
   overflow-y: auto;
   opacity: 0;
@@ -84,7 +82,6 @@
   padding: 8px 12px;
   width: 100%;
   cursor: default;
-  border-radius: 3px;
   display: block;
   font-size: 18px;
   color: black;
@@ -306,7 +303,6 @@ footer a:hover {
     height: 80vh;
     background: #eaecef;
     width: 80vw;
-    border-radius: 5px;
     transition: 0.3s ease-in-out;
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
     padding: 80px 0 6px 10px;

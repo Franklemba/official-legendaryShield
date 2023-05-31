@@ -41,6 +41,8 @@ router.get("/", async (req, res) => {
   if(ring) jeweryArray.push(ring);
   const bracelet = await Product.findOne({category:'Bracelet'});
   if(bracelet) jeweryArray.push(bracelet);
+  const neckChain = await Product.findOne({category:'Neck chain'});
+  if(neckChain) jeweryArray.push(neckChain);
 
 
   
@@ -67,12 +69,8 @@ router.get("/about", (req, res) => {
 });
 
 router.get("/cart", (req, res) => {
-  res.render("home/cart",{
-    imgUrl:"",
-    message: "",
-    url:" ",
-    transactionIdRequest:""
-  });
+  res.render("home/cart",{imgUrl:"" }
+  );
   // res.send('we run this shit')
 });
 

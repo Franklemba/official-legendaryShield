@@ -3,7 +3,7 @@
   <div class="message">
     <br>
     <p><%=message%></p>
-    <%if(transactionIdRequest){%>
+    <%if(locals.transactionIdRequest != null){%>
     <form method="post" action="<%=txnUrl%>" class="partialForm">
       Airtel - 097xxxxxxx<br>MTN - 096xxxxxxx<br>Zamtel - 095xxxxxxx
       <br>
@@ -88,6 +88,6 @@
   }
 </style>
 <script>
-  const messageBg = document.querySelector(".messageBg");
-  messageBg.style.display = "none";
+  //const messageBg = document.querySelector(".messageBg");
+  //messageBg.style.display = "none";
 </script>
