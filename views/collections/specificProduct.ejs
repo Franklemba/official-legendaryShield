@@ -1,0 +1,76 @@
+
+<section id="product1" class="section-p1">
+    <h2>
+        <%- productName %>
+    </h2>
+    <p>Latests <%- productName %> brands available</p>
+       <p><button><a href="/cart">view cart</a></button></p>
+
+ <div class="itemsContainer">
+    <% products.forEach(data=> { %>
+        <div class="pro-container-sub">
+            <!-- ///////////product 1///////////// -->
+          <a href="/store/item/<%=data._id%>">  
+            <div class="pro">
+                <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>" alt="">
+                <div class="des">
+                    <span>
+                        <strong><%= data.category %></strong> <i><%=data.brandName %></i>
+                    </span>
+                    <h5>
+                        <strong>Quantity:</strong><%=data.quantity %>
+                    </h5>
+                       
+                    <h3>
+                        K<%= data.price%>
+                    </h3>
+                </div>
+                <i class="fa fa-shopping-cart cart"></i>
+            </div>
+           </a>
+         </div>       
+
+            <% }) %>
+ </div>
+
+</section>
+<style>
+    .itemsContainer{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .pro img{
+        height: 40vh;
+    }
+    .pro-container-sub{
+        width: fit-content;
+        margin: 2%;
+    }
+    
+    @media (max-width: 799px) {
+        .pro img{
+            height: 30vh;
+        }
+    }
+    @media (max-width: 477px) {
+            .pro img{
+                height: 25vh;
+            }
+    }
+
+</style>
+<script>
+    let pro = document.querySelectorAll('.pro');
+     
+      const proObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry =>{
+          entry.target.classList.toggle("show",entry.isIntersecting)
+        })
+      })
+
+       pro.forEach(element=>{
+          proObserver.observe(element)
+       })
+</script>

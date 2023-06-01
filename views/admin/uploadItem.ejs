@@ -1,0 +1,265 @@
+
+<style>
+  .row .inputbox select {
+    font-size: 15px;
+  }
+  .row .inputbox textarea {
+    padding: 10px;
+    font-size: 10px;
+    width: 60vw;
+    height: 120px;
+  }
+  .uploadSection{
+    height: fit-content;
+    min-height: 80vh;
+  }
+</style>
+
+<div class="button-section">
+  <button id="upload-btn" class="active" onclick="toggleButton('upload-btn')">
+    Upload
+  </button>
+  <button id="edit-btn" onclick="toggleButton('edit-btn')">
+    View & Edit
+  </button>
+</div>
+
+
+
+<section class="orderList edit" id="edit-btn">
+  <% products.forEach(data=> { %>
+    <div class="allitemsContainer">
+      <div class="imgContainer">
+        <img
+          height="140"
+          width="100"
+          src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>"
+          alt=""
+        />
+      </div>
+      <div class="textContainer">
+        <p><%= data.category%>, <%= data.brandName %></p>
+  
+        <p>K<%= data.price%>  <%= data.type%></p>
+        <p><%= data.createdAt.toString().split('GMT')[0] %></p>
+        <div class="buttons">
+          <span><a href="/admin/getProduct/<%= data._id%>">update</a></span>
+        <span>
+          <form action="/admin/delete/<%= data._id%>" method="post">
+            <input type="submit" class="btn" value="delete" id="submit" />
+            <input type="hidden" name="id" value="<%= data._id%>" />
+          </form>
+        </span>
+        </div>
+      </div>
+    </div>
+  
+    <% }) %>
+   
+</section>
+
+<section class="uploadSection orderList upload active" id="upload-btn">
+  <!-- <h1 class="heading"> <span>contact</span> us </h1> -->
+
+  <div class="row">
+    <form
+      action="/admin"
+      method="POST"
+      enctype="multipart/form-data"
+      id="uploadSubmit"
+    >
+      <h2 class="adminHeader">Upload Item</h2>
+
+      <div class="inputbox">
+        <!-- <label for="brandName"><strong>Enter brandname:</strong></label> -->
+        <input
+          style="text-transform: lowercase"
+          type="text"
+          id="name"
+          name="brandName"
+          placeholder="e.g Dior,gucci,classic shit"
+          required
+        />
+      </div>
+      <div class="inputbox">
+        <select name="type" id="type">
+          <option value="ordinary">Ordinary</option>
+          <option value="promo">Promotion</option>
+        </select>
+      </div>
+
+  
+      <div class="inputbox">
+        <!-- <label for="category"><strong>select category:</strong></label> -->
+        
+        <select name="category" id="category">
+          <option value="Mens Watch">Mens Watch</option>
+          <option value="Women Watch">Women Watch</option>
+          <option value="Unisex Watch">Unisex Watch</option>
+          <option value="Necklaces">Necklaces</option>
+          <option value="Rings">Rings</option>
+          <option value="Neck chain">Neck chain</option>
+          <option value="Bracelet">Bracelet</option>
+          <option value="Custom Product">Custom Product</option>
+        </select>
+      </div>
+      <div class="inputbox" id="typeInputBox">
+        <!-- <label for="price"><strong>Enter price:</strong></label> -->
+        <input
+          type="number"
+          min="4"
+          id="oldPrice"
+          name="oldPrice"
+          placeholder="enter old price"
+        />
+      </div>
+      <div class="inputbox">
+        <!-- <label for="price"><strong>Enter price:</strong></label> -->
+        <input
+          type="number"
+          min="4"
+          id="price"
+          name="price"
+          placeholder="enter new price"
+          required
+        />
+      </div>
+
+      <div class="inputbox">
+        <!-- <label for="quantity"><strong>Enter quantity:</strong></label> -->
+        <input
+          type="number"
+          min="1"
+          id="quantity"
+          name="quantity"
+          placeholder="quantity"
+          required
+        />
+      </div>
+
+      <div class="inputbox">
+        <!-- <label for="description"><strong>Enter Description</strong></label> -->
+        <textarea
+          id="description"
+          name="description"
+          cols="50"
+          rows="5"
+          placeholder="description"
+          required
+        ></textarea>
+      </div>
+
+      <div class="inputbox file">
+        <label for="mainImg">
+          <h3>upload main Image:</h3>
+        </label>
+        <input type="file" name="mainImg" required />
+      </div>
+
+      <div class="inputbox file">
+        <label for="images">
+          <h3>upload related Images:</h3>
+        </label>
+        <input id="uploadfiles" type="file" name="images" multiple required />
+      </div>
+
+      <button type="submit" id="submit">submit</button>
+    </form>
+  </div>
+
+  <div class="preview"></div>
+</section>
+
+<script>
+  let image = document.getElementById("uploadfiles");
+  let uploadSubmit = document.getElementById("uploadSubmit");
+  let submit = document.getElementById("submit");
+  let preview = document.querySelector(".preview");
+  let type = document.getElementById('type');
+  let typeInputBox = document.getElementById('typeInputBox');
+
+  typeInputBox.style.display = 'none';
+  const imageList = image.files;
+
+  type.addEventListener("change", (e)=>{
+    if(e.target.value == 'promo'){
+      typeInputBox.style.display = 'flex';
+    }else{
+      typeInputBox.style.display = 'none';
+    }
+   
+  })
+
+  submit.addEventListener("click", (e) => {
+    console.log(image.files);
+    if (image.files.length > 4) {
+      alert("you can only upload a maximum of 4 images");
+      for (var i = 0; i < image.files.length; i++) {
+        preview.innerHTML += `<p>${image.files[i].name}</p>`;
+      }
+    } else if (image.files.length == 0 && document.getElementById('upload-btn').classList.contains('active')) {
+      alert("please select image to upload");
+    } else {
+      uploadSubmit.submit();
+    }
+  });
+
+  const sections = document.querySelectorAll('section')
+function toggleButton(id) {
+    var activeBtn = document.querySelector("button.active");
+    activeBtn.classList.remove("active");
+
+    document.querySelector(`button#${id}`).classList.add("active");
+
+    sections.forEach((section) => {
+      section.classList.remove("active");
+    });
+
+    document.querySelector(`section#${id}`).classList.add("active");
+
+  }
+</script>
+
+<style>
+  .allItems{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+  }
+  .allitemsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 2%;
+    width: 90%;
+    margin-top: 1px;
+    border: 1px solid black;
+  }
+  .allitemsContainer .imgContainer{
+    width: 35%;
+  }
+  .allitemsContainer .textContainer{
+    line-height: 1p;
+    width: 55%;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+  }
+  .buttons span{
+    color:rgb(238, 167, 167);
+    padding: 2%;
+  }
+  .buttons span input{
+    color:rgb(219, 57, 57);
+    width: fit-content;
+  }
+  
+</style>

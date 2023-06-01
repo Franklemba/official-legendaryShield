@@ -1,0 +1,319 @@
+<br />
+<h4 id="totalPrice" style="text-align: end; width: 95%">Total: K0</h4>
+<section class="cartList"></section>
+
+<div class="buyModal">
+  <span class="closeModal"> &times; </span>
+
+  <h4 style="text-align: center">
+    Kindly Confirm Your Details and Click Submit
+  </h4>
+  <form action="/makeOrder" method="post">
+    <div class="inputbox">
+      <input type="text" id="name" name="name" placeholder="Name" required />
+    </div>
+    <div class="inputbox">
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email"
+        required
+      />
+    </div>
+    <div class="inputbox">
+      <input
+        type="number"
+        name="Pnumber"
+        id="Pnumber"
+        placeholder="Phone Number"
+        required
+      />
+      <input type="hidden" name="orderData" id="orderData" />
+    </div>
+
+    <input type="submit" class="btn sendOrder" value="Send" id="submit" />
+  </form>
+</div>
+<div id="cartBtnContainer">
+  <button id="submitOrder">Proceed to checkout</button>
+</div>
+<div id="cartBtnContainer">
+  <button id="clearOrder">clear cart</button>
+</div>
+<div class="cusOverlay"></div>
+<input id="previousImageUrl" type="hidden" value="<%=imgUrl%>" />
+
+<script defer>
+  console.log(document.getElementById("previousImageUrl").value);
+
+  const _overlay = document.querySelector(".cusOverlay");
+  const buyModal = document.querySelector(".buyModal");
+  const closeModal = document.querySelector(".closeModal");
+  const submitOrder = document.querySelector("#submitOrder");
+  const clearOrder = document.querySelector("#clearOrder")
+
+  let totalPrice = 0;
+  //document.getElementById("previousImageUrl").value
+
+  clearOrder.addEventListener('click',()=>{
+     window.localStorage.clear();
+     window.location.href = "/cart";
+  })
+  if (document.getElementById("previousImageUrl").value) {
+    const cartItems = localStorage.getItem("cartList").split("+");
+    let newCart = [];
+
+    cartItems.forEach((cartItem, index) => {
+      if (cartItem) {
+        const dataItem = JSON.parse(cartItem);
+        //modItem.data.imagePath=document.getElementById("previousImageUrl").value
+        console.log(dataItem);
+        newCart.push(dataItem);
+      }
+    });
+    newCart[newCart.length - 1].data.imagePath =
+      document.getElementById("previousImageUrl").value;
+
+    let newCartStr = "";
+    newCart.forEach((cartItem) => {
+      newCartStr += `${JSON.stringify(cartItem)}+`;
+    });
+
+    localStorage.setItem("cartList", newCartStr);
+    console.log(newCartStr);
+    console.log(cartItems);
+  }
+
+  submitOrder.addEventListener("click", () => {
+    buyModal.classList.add("active");
+    _overlay.classList.add("active");
+    let cartString = "";
+    // document.querySelectorAll(".cartItem").forEach((cartItem) => {
+    //   cartString += `${cartItem.lastElementChild.firstElementChild.id}:${cartItem.lastElementChild.firstElementChild.nextElementSibling.innerText},`;
+    // });
+    // document.getElementById("orderData").value = cartString;
+  });
+
+  function getItems() {
+    const cartItems = localStorage.getItem("cartList").split("+");
+    let qtyMinus;
+    let qtyPlus;
+
+    cartItems.forEach((cartObject, index) => {
+      console.log(cartObject);
+      if (index < cartItems.length - 1) {
+        const item = JSON.parse(cartObject);
+        addToTotal(parseInt(item.itemPrice));
+        let imagePath;
+        let imageText;
+      
+        if (item.data) {
+          imagePath = item.data.imagePath;
+          itemText = item.data.text;
+        
+        } else {
+          imagePath = "";
+          itemText = "";
+          
+        }
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cartItem");
+        cartItem.innerHTML = `
+    <div class="cartImage">
+      <img src="/uploads/purchaseImages/${imagePath}" alt="null" />
+    </div>
+    <div class="contentSection">
+        <span>${item.itemName}</span>
+        <span>${item.data.itemText?item.data.itemText:''}</span>
+        <span>Price: K${item.itemPrice}</span>
+    </div>
+    <div class="qtyControl" id="${item.itemPrice}">
+      <div class="qtyMinus" id="${item.itemName}">-</div>
+      <div class="qty">${item.quantity}</div>
+      <div class="qtyPlus" id="${item.itemName}">+</div>
+    </div>
+    
+      `;
+
+        document.querySelector(".cartList").append(cartItem);
+      }
+    });
+
+    qtyMinus = document.querySelectorAll(".qtyMinus");
+    qtyPlus = document.querySelectorAll(".qtyPlus");
+
+    qtyMinus.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        console.log(button);
+        if (parseInt(button.nextElementSibling.innerText) > 0) {
+          button.nextElementSibling.innerText =
+            parseInt(button.nextElementSibling.innerText) - 1;
+          minusTotalPrice(parseInt(button.parentElement.id));
+          minusQty(button.id);
+          ///qty mode
+          const cartItems = localStorage.getItem("cartList").split("+");
+          let newCart = [];
+          cartItems.forEach((cartItem, index) => {
+            if (cartItem) {
+              const dataItem = JSON.parse(cartItem);
+              if (dataItem.itemName == button.id) {
+                console.log("matched minues");
+                dataItem.quantity -= 1;
+              }
+              //modItem.data.imagePath=document.getElementById("previousImageUrl").value
+              console.log(dataItem);
+              newCart.push(dataItem);
+            }
+          });
+          let newCartStr = "";
+          newCart.forEach((cartItem) => {
+            newCartStr += `${JSON.stringify(cartItem)}+`;
+          });
+          localStorage.setItem("cartList", newCartStr);
+          console.log(newCartStr);
+
+          //cart str mode
+        } else if (parseInt(button.nextElementSibling.innerText) == 0) {
+          const oldCart = localStorage.getItem("cartList").split("+");
+          console.log(oldCart);
+          document.getElementById("cartCounter").innerText =
+            parseInt(document.getElementById("cartCounter").innerText) - 1;
+          button.parentElement.parentElement.remove();
+        }
+      });
+    });
+
+    qtyPlus.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        console.log(button);
+        button.previousElementSibling.innerText =
+          parseInt(button.previousElementSibling.innerText) + 1;
+        addToTotal(parseInt(button.parentElement.id));
+        addQty(button.id);
+
+           ///qty mode
+           const cartItems = localStorage.getItem("cartList").split("+");
+          let newCart = [];
+          cartItems.forEach((cartItem, index) => {
+            if (cartItem) {
+              const dataItem = JSON.parse(cartItem);
+              if (dataItem.itemName == button.id) {
+                console.log("matched minues");
+                dataItem.quantity += 1;
+              }
+              //modItem.data.imagePath=document.getElementById("previousImageUrl").value
+              console.log(dataItem);
+              newCart.push(dataItem);
+            }
+          });
+          let newCartStr = "";
+          newCart.forEach((cartItem) => {
+            newCartStr += `${JSON.stringify(cartItem)}+`;
+          });
+          localStorage.setItem("cartList", newCartStr);
+          console.log(newCartStr);
+
+          //cart str mode
+
+      });
+    });
+  }
+
+  getItems();
+
+  _overlay.addEventListener("click", () => {
+    buyModal.classList.remove("active");
+    _overlay.classList.remove("active");
+  });
+
+  closeModal.addEventListener("click", () => {
+    _overlay.classList.remove("active");
+    buyModal.classList.remove("active");
+  });
+
+  function addToTotal(price) {
+    totalPrice += price;
+    document.getElementById("totalPrice").innerText = `Total: K${totalPrice}`;
+  }
+
+  function minusTotalPrice(price) {
+    totalPrice -= price;
+    document.getElementById("totalPrice").innerText = `Total: K${totalPrice}`;
+  }
+
+  function addQty(id) {
+    console.log(id);
+  }
+
+  function minusQty(id) {
+    console.log(id);
+  }
+  document.getElementById("submit").addEventListener("click", () => {
+    const nameField = document.getElementById("name").value;
+    const emailField = document.getElementById("email").value;
+    const numberField = document.getElementById("Pnumber").value;
+    document.getElementById('orderData').value = localStorage.getItem('cartList')
+    localStorage.setItem('name', nameField)
+    localStorage.setItem('email', emailField)
+    localStorage.setItem('Pnumber', numberField)
+    if (nameField && numberField && emailField) {
+      localStorage.setItem("cartList", "");
+    }
+  });
+
+
+  document.getElementById("name").value = localStorage.getItem('name')
+document.getElementById("email").value = localStorage.getItem('email')
+document.getElementById("Pnumber").value = localStorage.getItem('Pnumber')
+</script>
+
+<style>
+  .cartList {
+    display: flex;
+    width: 100%;
+    min-height: 450px;
+    max-height: 500px;
+    overflow-y: scroll;
+    flex-direction: column;
+    padding-top: 10px;
+    align-items: center;
+  }
+
+  .cartList .cartItem {
+    background-color: #f5f5f5;
+    box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.561);
+    box-shadow: #000;
+    height: fit-content;
+    padding: 15px 4px;
+    width: 95%;
+    max-width: 550px;
+    border-radius: 0px;
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .cartImage img {
+    width: 80px;
+    height: 80px;
+  }
+  .cartImage {
+    width: 30%;
+    margin: 5px;
+  }
+  .contentSection {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  .qtyControl {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-right: 10px;
+  }
+</style>

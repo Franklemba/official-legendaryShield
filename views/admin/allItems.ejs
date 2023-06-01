@@ -1,0 +1,79 @@
+
+<h2 class="adminHeader">Insert Item</h2>
+
+<section class="allItems">
+  <% products.forEach(data=> { %>
+  <div class="allitemsContainer">
+    <div class="imgContainer">
+      <img
+        height="140"
+        width="100"
+        src="<%= data.ImagesPath%>\<%=data.mainImg%>"
+        alt=""
+      />
+    </div>
+    <div class="textContainer">
+      <p><%= data.category%>, <%= data.brandName %></p>
+
+      <p>K<%= data.price%>  <%= data.type%></p>
+      <p><%= data.createdAt.toString().split('GMT')[0] %></p>
+      <div class="buttons">
+        <span><a href="/admin/getProduct/<%= data._id%>">update</a></span>
+      <span>
+        <form action="/admin/delete/<%= data._id%>" method="post">
+          <input type="submit" class="btn" value="delete" id="submit" />
+          <input type="hidden" name="id" value="<%= data._id%>" />
+        </form>
+      </span>
+      </div>
+    </div>
+  </div>
+
+  <% }) %>
+  
+</section>
+
+<style>
+  .allItems{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+  }
+  .allitemsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 2%;
+    width: 90%;
+    margin-top: 1px;
+    border: 1px solid black;
+  }
+  .allitemsContainer .imgContainer{
+    width: 35%;
+  }
+  .allitemsContainer .textContainer{
+    line-height: 1p;
+    width: 55%;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+  }
+  .buttons span{
+    color:rgb(238, 167, 167);
+    padding: 2%;
+  }
+  .buttons span input{
+    color:rgb(219, 57, 57);
+    width: fit-content;
+  }
+  
+</style>
+
