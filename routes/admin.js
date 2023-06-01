@@ -11,14 +11,8 @@ var ObjectId = require('mongodb').ObjectID;
 const aws = require("aws-sdk");
 const { error } = require("console");
 
-<<<<<<< HEAD
 
 
-=======
-// News.deleteMany({}).then((done)=>{
-//   console.log(done)
-// })
->>>>>>> 66c9a4c23844e69c749ae842f55a605e4f14bf1b
 const uploadPath = path.join("public", Product.mainImgPath);
 const ImagesPath = path.join("public", Product.imagesPath);
 
@@ -34,27 +28,6 @@ const imageMimeType = [
   "image/webp",
 ];
 
-<<<<<<< HEAD
-aws.config.update({
-   secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY,
-   accessKeyId:process.env.AWS_ACCESS_KEY_ID,
-   region:process.env.AWS_REGION
-})
-const s3 = new aws.S3();
-const upload = multer({
-  storage: multerS3({
-    bucket: process.env.AWS_BUCKET_NAME,
-    s3:s3,
-    acl:"public-read",
-    key: (req,file,cb)=>{
-
-      cb(null, "uploads/" + file.originalname);
-    },
-    fileFilter: (req, file, callback) => {
-      callback(null, imageMimeType.includes(file.mimetype));
-    }
-  })
-=======
 const newsImagesUpload = multer({
   dest: newsImagesPath,
   fileFilter: (req, file, callback) => {
@@ -67,7 +40,6 @@ const imagesUpload = multer({
   fileFilter: (req, file, callback) => {
     callback(null, imageMimeType.includes(file.mimetype));
   },
->>>>>>> 66c9a4c23844e69c749ae842f55a605e4f14bf1b
 });
 
 const newsUploads = newsImagesUpload.fields([
@@ -340,29 +312,17 @@ router.get("/uploadNews", async (req, res) => {
   //    res.send(req.params.id)
 });
 
-<<<<<<< HEAD
 router.post("/uploadNews", multipleUploads,async (req, res) => {
-=======
-router.post("/uploadNews", newsUploads,async (req, res) => {
->>>>>>> 66c9a4c23844e69c749ae842f55a605e4f14bf1b
   const { newsTitle,
   newsContent,
   mainImg, newsDate} = req.body;
   let photos = req.files;
   let images = photos.images;
-<<<<<<< HEAD
   let mainImgName = photos.mainImg[0].originalname;
   const imagesArray = [];
 
   images?.forEach((data) => {
     imagesArray.push(data.originalname);
-=======
-  let mainImgName = photos.mainImg[0].filename;
-  const imagesArray = [];
-
-  images?.forEach((data) => {
-    imagesArray.push(data.filename);
->>>>>>> 66c9a4c23844e69c749ae842f55a605e4f14bf1b
   });
   console.log(req.body);
 
