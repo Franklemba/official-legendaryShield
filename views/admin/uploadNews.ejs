@@ -1,3 +1,128 @@
-<section class="news">
-  <h2>hgjhkjggf</h2>
+
+<style>
+    .row .inputbox select {
+      font-size: 15px;
+    }
+    .row .inputbox textarea {
+      padding: 10px;
+      font-size: 10px;
+      width: 60vw;
+      height: 120px;
+    }
+    .date-container{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .date-container input{
+      max-width: 35vw;
+    }
+  </style>
+  
+  <section class="uploadSection" id="uploadSection">
+    <!-- <h1 class="heading"> <span>contact</span> us </h1> -->
+  
+    <h2 class="adminHeader">News</h2>
+    <div class="button-section">
+      <button id="upload-btn" class="active" onclick="toggleButton('upload-btn')">
+        Upload
+      </button>
+      <button id="delete-btn" onclick="toggleButton('delete-btn')">
+        Delete
+      </button>
+    </div>
+    
+<section class="orderList upload active" id="upload-btn">
+
+    <div class="row">
+      <form
+        action="/admin/uploadNews"
+        method="POST"
+        id="uploadSubmit"
+        enctype="multipart/form-data"
+      >
+        <div class="inputbox">
+         <input
+            style="text-transform: lowercase"
+            type="text"
+            id="newsTitle"
+            name="newsTitle"
+            placeholder="News Title"
+            required
+          />
+        </div>
+        <div class="date-container">
+          <input type="date" name="newsDate" id="">
+        </div>
+
+        <div class="inputbox">
+          <!-- <label for="price"><strong>Enter price:</strong></label> -->
+          <textarea
+            type="text"
+            id="newsContent"
+            name="newsContent"
+            placeholder="News Content"
+            required
+          ></textarea>
+        </div>
+  
+        <div class="inputbox file">
+          <label for="mainImg">
+            <h3>Upload main image:</h3>
+          </label>
+          <input type="file" name="mainImg" required />
+        </div>
+        <div class="inputbox file">
+          <label for="images">
+            <h3>Upload more images:</h3>
+          </label>
+          <input id="uploadfiles" type="file" name="images" multiple/>
+        </div>
+       <div class="date-container">
+        <button type="submit" id="submit">submit</button>
+       </div>
+      </form>
+    </div>
+    <div class="preview"></div>
+  </section>
+
+  
+<section class="orderList delete" id="delete-btn">
+  <% newsItems?.forEach(newsItem => { %>
+    <div class="orderItem" id="<%= newsItem._id %>">
+      <div>
+        <span class="contentSection">
+          <h5><%= newsItem.newsTitle %></h5>
+        
+          <p><%= newsItem.newsContent%></p>
+          <h5>Date: <%= newsItem.date %></h5>
+        </span>
+        <form class="buttonSection" method="post" action="/admin/deleteNews">
+          <button class="delete">Delete</button>
+          <input type="hidden" name="newsId" value="<%= newsItem._id %>">
+        </form>
+      </div>
+    </div>
+   <% })%>
 </section>
+
+  
+  <script>
+const sections = document.querySelectorAll('section')
+function toggleButton(id) {
+    var activeBtn = document.querySelector("button.active");
+    activeBtn.classList.remove("active");
+
+    document.querySelector(`button#${id}`).classList.add("active");
+
+    sections.forEach((section) => {
+      section.classList.remove("active");
+    });
+
+    document.querySelector(`section#${id}`).classList.add("active");
+
+  }
+    
+  </script>
+  

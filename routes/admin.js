@@ -5,7 +5,8 @@ const multerS3 = require("multer-s3");
 const fs = require("fs");
 const path = require("path");
 const Product = require("../models/uploadSchema"); ///imported it
-const purchaseOrder = require("../models/purchaseSchema");
+const News = require("../models/newsSchema")
+const purchaseOrder = require("../models/purchaseSchema")
 var ObjectId = require('mongodb').ObjectID;
 const aws = require("aws-sdk");
 const { error } = require("console");
@@ -14,8 +15,13 @@ const { error } = require("console");
 
 const uploadPath = path.join("public", Product.mainImgPath);
 const ImagesPath = path.join("public", Product.imagesPath);
+
+const newsUploadPath = path.join("public", News.mainImgPath);
+const newsImagesPath = path.join("public", News.imagesPath);
+
 const imageMimeType = [
   "image/jpeg",
+  "image/jpg",
   "image/png",
   "image/gif",
   "image/png",
@@ -36,13 +42,26 @@ const upload = multer({
     key: (req,file,cb)=>{
 
       cb(null, "uploads/" + file.originalname);
+    },
+    fileFilter: (req, file, callback) => {
+      callback(null, imageMimeType.includes(file.mimetype));
     }
-  }),
-  fileFilter: (req, file, callback) => {
-    callback(null, imageMimeType.includes(file.mimetype));
-  },
+  })
 });
 
+
+// const newsImagesUpload = multer({
+//   dest: newsImagesPath,
+//   fileFilter: (req, file, callback) => {
+//     callback(null, imageMimeType.includes(file.mimetype));
+//   }
+// });
+
+
+// const newsUploads = newsImagesUpload.fields([
+//   { name: "mainImg", maxCount: 1 },
+//   { name: "images", maxCount: 4 },
+// ]);
 
 const multipleUploads = upload.fields([
   { name: "mainImg", maxCount: 1 },
@@ -53,7 +72,7 @@ const multipleUploads = upload.fields([
 
 ///create product
 
-router.get("/", (req, res) => {
+router.get("/", async(req, res) => {
   console.log(req.user)
   if(req.user.userName == 'LegendaryAdmin'){
     res.render("admin/adminOptions");
@@ -62,8 +81,17 @@ router.get("/", (req, res) => {
   }
 });
 
-router.get("/uploadItem", (req, res) => {
-  res.render("admin/uploadItem");
+router.get("/uploadItem", async(req, res) => {
+
+  try{
+    const products = await Product.find({});
+    res.render("admin/uploadItem", {
+      products
+    });
+  }
+  catch{
+res.redirect('/')
+  }
 });
 
 
@@ -72,8 +100,7 @@ router.get("/customOrders", async (req, res) => {
   try {
     const purchaseOrders = await purchaseOrder.find({});
     //console.log(purchaseOrders);
-    const customOrders= []
-
+    const customOrders= []; 
     purchaseOrders.forEach(purchaseOrder=>{
       console.log(purchaseOrder)
       purchaseOrder.orderData.forEach(orderItem=>{
@@ -109,7 +136,6 @@ router.get("/woodWorkOrders", async (req, res) => {
     res.status(500).send(err);
   }
 });
-
 
 router.get("/orders", async (req, res) => {
   try {
@@ -191,18 +217,21 @@ router.post("/", multipleUploads, async (req, res) => {
     images: imagesArray,
   });
 
+
   try {
     await product.save();
     console.log("product successfully saved");
     res.render("admin/uploadItem", {
       message: "product uploaded successfully",
       url: "/admin",
+      transactionIdRequest:false
     });
     // res.send(product);
   } catch {
     res.render("admin/studentPapers", {
       message: "upload was unsuccessful",
       url: "/admin",
+      transactionIdRequest:false
     });
     console.log(err);
   }
@@ -233,7 +262,6 @@ router.get("/all", async (req, res) => {
 ///// deleting selected product
 router.post("/delete/:id", async (req, res) => {
   const id = req.body.id;
-
   const SelectedProduct = await Product.findById(`${id}`);
   const currentMainImg = SelectedProduct.mainImg;
   const currentImagesArray = SelectedProduct.images;
@@ -243,30 +271,17 @@ router.post("/delete/:id", async (req, res) => {
       ///deletes selected item
       _id: `${id}`,
     });
-    console.log("product successfully updated");
+    console.log("product successfully deleted");
 
-    res.redirect("/admin/all");
+    res.redirect("/admin/uploadItem");
 
     
-
     if (currentMainImg) {
      
-      
       currentImagesArray.forEach((image)=>{
         deleteImages(image)
       })
       
-      // fs.unlink(path.join(ImagesPath, currentMainImg), (err) => {
-      //   if (err) console.log(`error deleting main image`);
-      //   else console.log(`main image deleted`);
-      // });
-
-      // currentImagesArray.forEach((image) => {
-      //   fs.unlink(path.join(ImagesPath, image), (err) => {
-      //     if (err) console.log("error deleting image");
-      //     else console.log("images deleted");
-      //   });
-      // });
     }
   } catch {
     res.send("error deleting product");
@@ -274,8 +289,9 @@ router.post("/delete/:id", async (req, res) => {
   }
 });
 
+
 ///selecting item for update
-router.get("/:id", async (req, res) => {
+router.get("/getProduct/:id", async (req, res) => {
   const id = req.params.id;
   const product = await Product.findById(`${id}`);
   try {
@@ -289,9 +305,65 @@ router.get("/:id", async (req, res) => {
 });
 
 
-/// uploading news
-router.get("/uploadNews",(req,res) =>{
-  res.render("admin/uploadNews");
+//Upload news
+router.get("/uploadNews", async (req, res) => {
+
+  const news = await News.find({})
+  res.render("admin/uploadNews", {
+    newsItems:news
+  });
+  //    res.send(req.params.id)
+});
+
+router.post("/uploadNews", multipleUploads,async (req, res) => {
+  const { newsTitle,
+  newsContent,
+  mainImg, newsDate} = req.body;
+  let photos = req.files;
+  let images = photos.images;
+  let mainImgName = photos.mainImg[0].originalname;
+  const imagesArray = [];
+
+  images?.forEach((data) => {
+    imagesArray.push(data.originalname);
+  });
+  console.log(req.body);
+
+
+  const newsItem = new News({
+    newsTitle,
+    date:newsDate,
+    mainImg:mainImgName,
+    images:imagesArray,
+    newsContent
+  })
+
+  try{
+    await newsItem.save();
+    res.render("admin/adminOptions", {
+      message: "News Uploaded successfully",
+      url: '/admin/uploadNews',
+      transactionIdRequest:false
+    });
+  }
+  catch{
+    res.send('something went wrong')
+  }
+});
+
+
+router.post("/deleteNews", async (req, res) => {
+  const {newsId} = req.body;
+
+  const news = await News.deleteOne({_id:newsId})
+
+  res.render("admin/uploadNews", {
+    newsItems:[],
+    message:'News Deleted',
+    url:'/admin/uploadNews',
+    transactionIdRequest:false
+  });
+  //    res.send(req.params.id)
 });
 
 module.exports = router;

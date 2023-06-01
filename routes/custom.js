@@ -8,7 +8,7 @@ const customItems = require('../public/js/customItems');
 
 
 router.get('/', (req,res)=>{
-    res.render('collections/custom',{customItems})
+    res.render('collections/custom',{customItems, message:null})
 })
 
 
@@ -16,7 +16,7 @@ router.get('/:customItem',(req,res)=>{
     const customItemName = req.params.customItem
     customItems.forEach(customItem=>{
         if(customItem.customName == customItemName){
-            res.render('collections/specificCustom', {customItem})
+            res.render('collections/specificCustom', {customItem, message:null})
             return
         }
     })

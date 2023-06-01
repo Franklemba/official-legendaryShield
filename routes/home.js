@@ -5,6 +5,8 @@ const path = require("path");
 
 const purchaseOrder = require("../models/purchaseSchema");
 const Product = require("../models/uploadSchema");
+const News = require("../models/newsSchema");
+
 const mongoose = require('mongoose')
 const CustomItems = require('../public/js/customItems');
 const WoodItems = require('../public/js/woodItems');
@@ -25,6 +27,7 @@ router.get("/", async (req, res) => {
   const promoProducts = await Product.find({type:'promo'}).limit(4);
   const watchArray = [];
   const jeweryArray = [];
+  
 
   // ----------- the wrist watch collection
   const menWatch = await Product.findOne({category:'Mens Watch'});
@@ -44,7 +47,8 @@ router.get("/", async (req, res) => {
   const neckChain = await Product.findOne({category:'Neck chain'});
   if(neckChain) jeweryArray.push(neckChain);
 
-
+  const news = await News.find({})
+  console.log(news)
   
 
   // console.log(watchArray);
@@ -54,7 +58,9 @@ router.get("/", async (req, res) => {
         customItems: CustomItems,
         woodItems: WoodItems,
         watchCollection: watchArray,
-        jeweryCollection: jeweryArray
+        jeweryCollection: jeweryArray,
+        newsItems:news,
+        message:null
     });
   }catch(err){
     res.send("error fetching promo products")
@@ -69,8 +75,12 @@ router.get("/about", (req, res) => {
 });
 
 router.get("/cart", (req, res) => {
-  res.render("home/cart",{imgUrl:"" }
-  );
+  res.render("home/cart",{
+    imgUrl:"",
+    message: null,
+    url:"",
+    transactionIdRequest:false
+  });
   // res.send('we run this shit')
 });
 
@@ -92,6 +102,7 @@ router.post("/makeOrder", async (req, res) => {
   //console.log(orderData)
   const orderList = orderData.split("+");
   let orderArray = [];
+  const news = await News.find({})
 orderList.forEach((orderItem)=>{
   if(orderItem){
     orderArray.push(JSON.parse(orderItem))
@@ -122,12 +133,14 @@ orderList.forEach((orderItem)=>{
         customItems:[],
         woodItems:[],
         watchCollection:[],
+        newsItems:news
       });
     })
     .catch((err) => {
       res.render("home/index", {
-        message: "Something went wrong, press cancel to return",
+         message: "Something went wrong, press cancel to return",
         url: "_id",
+        transactionIdRequest:false
       });
       console.log(err);
     });
