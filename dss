@@ -1,0 +1,285 @@
+[33mcommit 868a5c73805fe656b02712c6e847f8b2fe1d4c41[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Thu Jun 1 11:17:54 2023 +0200
+
+    dealing with unkown errors
+
+[33mcommit 00a573dc3968f7c5e60b6536d67f5f208d095a05[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Thu Jun 1 00:11:39 2023 +0200
+
+    imageless server
+
+[33mcommit e0550219a655c41287f22ef1a7598dddd9a9bcfa[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Sun May 28 13:07:30 2023 +0200
+
+    forgot to change DB
+
+[33mcommit 81f0793d741602c0e3ddd7b7a11fc183d7e39a2f[m
+Merge: e155275 0b86027
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Sun May 28 13:04:37 2023 +0200
+
+    changed static image location
+
+[33mcommit e1552753719321f5b88a891dceb5a52dab7ea7f1[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Sun May 28 12:43:06 2023 +0200
+
+    changed static image location
+
+[33mcommit a45567b15d2ef7e84ec113a975b42960b0627739[m
+Merge: 5b9a9f0 7bb64ad
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Sun May 28 11:35:44 2023 +0200
+
+    some changes
+
+[33mcommit 0b8602734f09c09fe98aae0ccea609147d235924[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sun May 28 10:51:14 2023 +0200
+
+    amends
+
+[33mcommit 5a5b18f4210419d91703201f31b05c2dbe0ff226[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sun May 28 10:50:30 2023 +0200
+
+    amends
+
+[33mcommit 5b9a9f028c97f015146e57b624adc18a7eee5228[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Sun May 28 10:11:46 2023 +0200
+
+    grand finale
+
+[33mcommit 7bb64ad852db4dfee9e59011bf900470485bad9f[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sun May 28 09:25:16 2023 +0200
+
+    switch db
+
+[33mcommit 2037a35fe7f621692aafb5cf77fdbcecb81f07a5[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sat May 27 19:59:38 2023 +0200
+
+    switch db
+
+[33mcommit a57293adffb852484d42d60e69390cf01c63e7e5[m
+Merge: c0eb613 c109f5c
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Thu May 25 12:13:38 2023 +0200
+
+    custom fixes
+
+[33mcommit c0eb6131538ed85949783af3fb64b6d58fb6115b[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Thu May 25 11:59:19 2023 +0200
+
+    custom fixes
+
+[33mcommit c109f5c34e8c9cf6f2b8e713a415e75dffc2da61[m
+Merge: 48e2f71 506c43d
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Wed May 24 20:37:00 2023 +0200
+
+    some change 101
+
+[33mcommit 48e2f714aab6a151b47f38240c5323f0c13c320e[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Wed May 24 17:09:53 2023 +0200
+
+    some change
+
+[33mcommit 506c43d12b9f298f78312f82c1a517a385bad257[m
+Merge: 1295f24 2e759c5
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sat May 20 20:40:32 2023 +0200
+
+    some commit
+
+[33mcommit 1295f24a97c75231f786f608c31b2c8159fdf103[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sat May 20 20:26:12 2023 +0200
+
+    some commit
+
+[33mcommit 2e759c55868c93089773d8d026f00a056fd9add1[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Thu May 18 13:13:46 2023 +0200
+
+    desktop edits
+
+[33mcommit b2c99394c817d670d6fc31b97f1a04a9be53e1f1[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Thu May 18 13:12:07 2023 +0200
+
+    desktop edits
+
+[33mcommit 631d9bebe5219cf78ee491c960303e10fe3de4db[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Thu May 18 13:10:44 2023 +0200
+
+    desktop edits
+
+[33mcommit 32346bd47c66c7743c3a9abd5ae7af313611bedb[m
+Merge: e7111a0 43c61b1
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Tue May 9 07:09:55 2023 +0200
+
+    some commit
+
+[33mcommit e7111a0fb09cd73be7bed6ad46d694e7eafa3632[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Mon May 8 21:07:45 2023 +0200
+
+    some commit
+
+[33mcommit 43c61b1047d710c407d6b69dbfb32fc3e601eb2f[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Mon May 8 20:36:32 2023 +0200
+
+    fully dynamic fron page
+
+[33mcommit 916bafa0f842b5b8a81ffe9633519b2a3f7d87a0[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Mon May 8 03:08:55 2023 +0200
+
+    updated the search, modified some styles
+
+[33mcommit 4fda88a00d965f24636f1bee96bba86e8369586d[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Sun May 7 17:56:50 2023 +0200
+
+    fading opacity style added
+
+[33mcommit f9a78d8923fe9a06ccd54e543c18ba3c121857ce[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sun May 7 10:11:55 2023 +0200
+
+    charles push
+
+[33mcommit dba41be72f2efd416649d2445edd9c23d4a76fb6[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sat May 6 17:24:11 2023 +0200
+
+    charles push
+
+[33mcommit 50a0b030a32a32b7f8e9ba0ec42dc26f2b4e304a[m
+Merge: 0c5a0fa a3bef03
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sat May 6 15:27:36 2023 +0200
+
+    Merge branch 'main' of https://github.com/Franklemba/official-legendaryShield
+
+[33mcommit 0c5a0fa94fc26ab8e067f66e0a865f90b445f61e[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sat May 6 15:27:28 2023 +0200
+
+    'pulls'
+
+[33mcommit a3bef032bf5d7d02ddcc3e72341d37a13420235a[m
+Merge: 1485375 69d03d6
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Sat May 6 15:18:33 2023 +0200
+
+    rearranging the custom design
+
+[33mcommit 14853753e22489f67c133ccd77b66c951a9df1b9[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Sat May 6 15:11:02 2023 +0200
+
+    rearranging the custom design
+
+[33mcommit 69d03d6920b8e19446c716f747baee4ef62fae6a[m
+Merge: 120bd2b 765e568
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sat May 6 12:16:16 2023 +0200
+
+    Merge branch 'main' of https://github.com/Franklemba/official-legendaryShield
+
+[33mcommit 120bd2bb20e97c940c73618d5725d72e8ed795da[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Sat May 6 12:15:34 2023 +0200
+
+    charles push
+
+[33mcommit 765e568d46d17f7c478a540537e19eaa9af0e15b[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Sat May 6 00:12:04 2023 +0200
+
+    custom page edited...
+
+[33mcommit b0279f883603ba8804b07210fcd0855eb2e3696e[m
+Merge: 4d1e6f8 84b84df
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Fri May 5 23:36:06 2023 +0200
+
+    Merge branch 'main' of https://github.com/Franklemba/official-legendaryShield
+
+[33mcommit 4d1e6f80c5ff4f1d9c9f5685b1c4f08e0d80c688[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Fri May 5 23:35:50 2023 +0200
+
+    charles push
+
+[33mcommit 84b84dfcdcc9cadce7edf5855293264e86df03c8[m
+Merge: 2c84101 d3f4ba3
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Fri May 5 23:27:33 2023 +0200
+
+    custom page edited
+
+[33mcommit 2c84101972bb6194e44e0e2892d0dea5f2597a81[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Fri May 5 23:08:24 2023 +0200
+
+    custom page edited
+
+[33mcommit 89facb64d325d5a72939b8ba655be39e577ae63a[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Fri May 5 09:47:18 2023 +0200
+
+    font attemt change
+
+[33mcommit d3f4ba3467510f20137c014cb0284a414e17b533[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Fri May 5 08:45:22 2023 +0200
+
+    more buttons
+
+[33mcommit e6c00edda570be6d88c30386ff62f89af5ee524b[m
+Merge: 9a5ddd7 ecacf12
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Fri May 5 06:34:12 2023 +0200
+
+    Merge branch 'main' of https://github.com/Franklemba/official-legendaryShield
+
+[33mcommit 9a5ddd728a0486dca04f830768e1186e1a0a2995[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Fri May 5 06:33:46 2023 +0200
+
+    message
+
+[33mcommit ecacf12c0ecedacee23c0d8d5784262999162777[m
+Author: Frank <franklembalemba3@gmail.com>
+Date:   Fri May 5 02:07:30 2023 +0200
+
+    resolved the menu bug
+
+[33mcommit 4ab930c88b482ddddc38c9e743f12badf6e3d84c[m
+Merge: 9b72d8a 4936d7b
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Thu May 4 19:49:29 2023 +0200
+
+    Merge branch 'main' of https://github.com/Franklemba/official-legendaryShield
+
+[33mcommit 9b72d8a94fc8d3de92dae3b6930ec6e2457f6d7f[m
+Author: Awesome Charles <chisalecharles23@gmail.com>
+Date:   Thu May 4 19:49:09 2023 +0200
+
+    charles push
+
+[33mcommit d95cd8dee9f255fc0ede46a76613eaa246b73311[m
+Author: Awesome Charles <chi
