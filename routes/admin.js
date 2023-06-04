@@ -344,9 +344,22 @@ router.post("/uploadNews", multipleUploads,async (req, res) => {
 
 router.post("/deleteNews", async (req, res) => {
   const {newsId} = req.body;
+  const id = req.body.newsId;
+  const SelectedProduct = await News.findById(`${id}`);
+  const currentMainImg = SelectedProduct.mainImg;
+  const currentImagesArray = SelectedProduct.images;
+  currentImagesArray.push(currentMainImg);
+  console.log(id);
   
 
   const news = await News.deleteOne({_id:newsId})
+
+  if (currentMainImg) {
+    currentImagesArray.forEach((image)=>{
+      deleteImages(image)
+    })
+    
+  }
 
   res.render("admin/uploadNews", {
     newsItems:[],
