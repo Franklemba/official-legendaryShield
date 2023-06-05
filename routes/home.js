@@ -44,6 +44,8 @@ router.get("/", async (req, res) => {
   if(ring) jeweryArray.push(ring);
   const bracelet = await Product.findOne({category:'Bracelet'});
   if(bracelet) jeweryArray.push(bracelet);
+  const neckChain = await Product.findOne({category:'Neck chain'});
+  if(neckChain) jeweryArray.push(neckChain);
 
   const news = await News.find({})
   console.log(news)

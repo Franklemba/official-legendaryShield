@@ -101,7 +101,7 @@
           <a href="/store/item/<%=data._id%>">
             <div class="item">
               <div class="itemImg">
-                 <img width="200" src="<%= data.ImagesPath%>\<%=data.mainImg%>" alt="Promo Image">
+                 <img width="200" src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>" alt="Promo Image">
                  <div class="itemImgText">
                    <span id="newPrice">save <%= (((data.oldPrice - data.price)/data.oldPrice)*100).toFixed(0) %>%</span>
                    <p><%= data.brandName %></p>
@@ -114,7 +114,6 @@
            </div>
           </a>
          <% }) %>
-
           
        <% } %>
     </section>
@@ -132,7 +131,7 @@
            <% jeweryCollection?.forEach(jewery => { %>
             <div class="pro">
               <a id="linkTag" id="linkTag" href="/store/item/<%=jewery._id%>">
-                <img src="<%= jewery.ImagesPath%>\<%=jewery.mainImg%>" alt="<%=jewery.category%>">
+                <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=jewery.mainImg%>" alt="<%=jewery.category%>">
                 <div class="des">
                     <span><%=jewery.brandName%></span>
                     <h5><%=jewery.category%></h5>
@@ -162,7 +161,7 @@
                 
                 <div class="pro">
                    <a id="linkTag" id="linkTag" href="/store/item/<%=watch._id%>">
-                     <img src="<%= watch.ImagesPath%>\<%=watch.mainImg%>" alt="<%=watch.category%>">
+                     <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=watch.mainImg%>" alt="<%=watch.category%>">
                      <div class="des">
                          <span><%=watch.brandName%></span>
                          <h5><%=watch.category%></h5>
@@ -315,7 +314,7 @@
 
                 <div class="news-item carousel-item <%=index==0?'active':''%>">
                   <div class="image-container">
-                   <img src="/uploads/newsImages/<%=newsItem.mainImg%>" alt="News Image">
+                   <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=newsItem.mainImg%>" alt="News Image">
                    <p class="news-date"><%=newsItem.date%></p>
                    <h3 class="news-title "><%=newsItem.newsTitle%></h3>
                   </div>

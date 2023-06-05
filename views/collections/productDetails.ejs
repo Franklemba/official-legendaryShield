@@ -8,7 +8,7 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img
-          src="<%= product.ImagesPath%>\<%=product.mainImg%>"
+          src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=product.mainImg%>"
           class="d-block w-100"
           alt="..."
         />
@@ -18,7 +18,7 @@
       <% for( let i=0; i < product.images.length; i++ ) { %>
       <div class="carousel-item active">
         <img
-          src="<%= product.ImagesPath%>\<%=product.images[i]%>"
+          src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=product.images[i]%>"
           class="d-block w-100"
           alt="..."
         />
@@ -109,6 +109,7 @@
   </div>
   
 </section>
+
 <script>
   const itemName = document.getElementById("itemName").value;
   const itemImage = document.getElementById("itemImages").value;
