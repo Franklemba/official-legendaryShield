@@ -612,3 +612,8 @@ hr {
     width: fit-content;
   }
 }
+input {
+  text-size-adjust: 100%;
+  
+}
+
