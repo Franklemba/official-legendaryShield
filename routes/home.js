@@ -8,8 +8,6 @@ const Product = require("../models/uploadSchema");
 const News = require("../models/newsSchema");
 
 const mongoose = require('mongoose')
-const CustomItems = require('../public/js/customItems');
-const WoodItems = require('../public/js/woodItems');
 
 const multer = require("multer");
 
