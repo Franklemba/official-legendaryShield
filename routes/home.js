@@ -101,12 +101,70 @@ router.get("/getItems/:list", async (req, res) => {
   res.json(productList);
 });
 
+var SibApiV3Sdk = require('sib-api-v3-sdk');
+var defaultClient = SibApiV3Sdk.ApiClient.instance;
+
+// Configure API key authorization: api-key
+var apiKey = defaultClient.authentications['api-key'];
+apiKey.apiKey = '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';
+
+var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+
+// orderData.forEach(orderItem=>{
+//   orderString+=`${orderItem.itemName} - K200, <br>`
+// })
+// console.log(orderString)
+
+
 router.post("/makeOrder", async (req, res) => {
   const { name, email, Pnumber, orderData } = req.body;
-  //console.log(orderData)
+  //console.log(email)
   const orderList = orderData.split("+");
   let orderArray = [];
-  const news = await News.find({})
+  let toEmailString = ''
+
+orderList.forEach((orderItem)=>{
+  if(orderItem){
+    const o = JSON.parse(orderItem)
+    console.log(o)
+    orderArray.push(JSON.parse(orderItem))
+    toEmailString+=`<li>${o.itemName} - K${o.itemPrice}</li>`
+  }
+})
+console.log(toEmailString)
+  let orderString = ''
+  new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
+    "sender":{ "email":"chisalecharles23@gmail.com", "name":"Sendinblue"},
+    "subject":"Legendary Shield",
+    "htmlContent":
+    `<html>
+    <head></head>
+    <body>Legendary Shield</body>
+    </html>
+    `,
+    "messageVersions":[
+      //Definition for Message Version 1 
+      {
+          "to":[
+             {
+                "email":email,
+                "name":name,
+             }
+          ],
+          "htmlContent": generateUserEmail(name,toEmailString)
+          ,
+          "subject":"Order Recieved!~Legendary Shield"
+        },
+      ]
+      //"htmlCont,ent":"<html><head></head><body><p>Hello,</p>This is my first transactional email sent from Brevo.</p></body></html>"
+    }).then(function(data) {
+ //console.log(data);
+}, function(error) {
+ console.error(error);
+});
+
+  const news = await News.find({});
+
 orderList.forEach((orderItem)=>{
   if(orderItem){
     orderArray.push(JSON.parse(orderItem))
@@ -229,5 +287,103 @@ router.post('/confirmTransaction/:orderId',(req, res)=>{
   // console.log(orderId)
   // console.log(transactionId)
 })
+
+
+
+function generateUserEmail(name, cartString) {
+  return `<html>
+    <head>
+      <style>
+        /* Inline CSS */
+        body {
+          background-color: #f5f5f5;
+          font-family: Arial, sans-serif;
+          display: flex;
+          flex-direction: column;
+        }
+    
+        .black-box {
+          background-color: #000000;
+          color: #ffffff;
+          padding: 20px;
+          border-radius: 10px;
+          margin-top: 30px;
+        }
+        h1 {
+          color: #000000;
+          font-size: 32px;
+          margin: 0;
+          margin-top: 20px;
+        }
+        h2 {
+          color: #ffffff;
+          font-size: 24px;
+          margin: 5px 0;
+        }
+        h3{
+          color: #ffffff;
+          font-size: 20px;
+        }
+        strong {
+          font-weight: bold;
+        }
+        ul {
+          list-style-type: none;
+          padding: 0;
+          text-align: left;
+          margin-left: 0;
+        }
+        li {
+          margin-bottom: 10px;
+        }
+        img {
+          max-width: 100px;
+          display: block;
+          margin: 0 auto;
+          margin-top: 20px;
+        }
+        .company-name {
+          margin-top: 20px;
+          font-size: 24px;
+          font-weight: bold;
+        }
+
+        .align{
+          display:flex;
+          flex-direction:row;
+          justify-content:center;
+          align-items:center;
+          gap:30px;
+        }
+        .hh1{
+          margin:0;
+          padding:0;
+          text-align:center;
+          color:black;
+        }
+      </style>
+    </head>
+    <body>
+        <h1>Hello ${name},</h1>
+        <div class="black-box">
+        <h2>We have received your order for the items,</h2>
+        <ul>
+        ${cartString}
+        </ul>
+        <br>
+        <h3>Thank you for shopping with us.</h3>
+        </div>
+        <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/lsiLogo.png" alt="Legendary Shield" class="logo">
+        <div class="company-name">Legendary Shield</div>
+      
+    </body>
+  </html>`;
+}
+
+
+
+function sendEmailToAdmin(){
+
+}
 
 module.exports = router;

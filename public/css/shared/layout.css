@@ -18,8 +18,8 @@
     grid-gap: 10px;
     grid-template-areas:
         "cart logo menu"
-
     ;
+    
   /* grid-area: auto; */
 }
 
