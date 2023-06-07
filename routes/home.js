@@ -25,6 +25,8 @@ const imageMimeType = [
 
 router.get("/", async (req, res) => {
   const promoProducts = await Product.find({type:'promo'}).limit(4);
+  const customProducts = await Product.find({category:'Custom Product'}).limit(4);
+  const woodworkProducts = await Product.find({category:'Woodwork Product'}).limit(4);
   const watchArray = [];
   const jeweryArray = [];
   
@@ -60,6 +62,8 @@ router.get("/", async (req, res) => {
         watchCollection: watchArray,
         jeweryCollection: jeweryArray,
         newsItems:news,
+        CustomProducts:customProducts,
+        WoodworkProducts: woodworkProducts,
         message:null
     });
   }catch(err){

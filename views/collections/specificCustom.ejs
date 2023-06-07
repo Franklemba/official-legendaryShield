@@ -6,18 +6,14 @@
 >
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img
-      src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/customImages/<%=customItem.imgLink%>"
-        class="d-block w-100"
-        alt="..."
-      />
+      <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=customItem[0].mainImg%>" alt="<%=customItem[0].category%>">
       <!-- <img src="images/img10.png"  alt="..."> -->
     </div>
 
-    <% for( let i=0; i < customItem.relatedImages.length; i++ ) { %>
+    <% for( let i=0; i < customItem[0].images.length; i++ ) { %>
     <div class="carousel-item active">
       <img
-      src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/customImages/<%=customItem.imgLink%>"
+      src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=customItem[0].images[i]%>"
         class="d-block w-100"
         alt="..."
       />
@@ -52,18 +48,18 @@
   
   <div class="productDetails">
     <div class="brandName">
-      <h2>custom <%=customItem.customName %></h2>
+      <h2>custom <%=customItem[0].customType %></h2>
     </div>
     <div>
       <p>
-        <span><%=customItem.details%></span>
+        <span><%=customItem[0].description%></span>
         <span class="" id="customPrice"
-          ><i>from</i> K<%=customItem.price%></span
+          ><i>from</i> K<%=customItem[0].price%></span
         >
       </p>
     </div>
     <div class="price">
-      <h3><strong>K <%=customItem.price %></strong></h3>
+      <h3><strong>K <%=customItem[0].price %></strong></h3>
     </div>
     <div>
       <hr />
@@ -133,25 +129,25 @@
     <hr />
 
     <div class="buttons">
-      <div id="buyBtn" id="<%=customItem.customName%>">
+      <div id="buyBtn" id="<%=customItem[0].customType%>">
         <span>
           <span style="color: white; text-decoration: none">Buy it now</span>
         </span>
       </div>
-      <div class="cartBtn" id="<%=customItem.customName%>">
+      <div class="cartBtn" id="<%=customItem[0].customType%>">
         <span style="color: black" href="/cartImage">Add to cart</span>
       </div>
     </div>
 
     <hr />
   </div>
-  <input type="hidden" value="<%=customItem.customName%>" id="itemName" />
+  <input type="hidden" value="<%=customItem[0].customType%>" id="itemName" />
   <input
     type="hidden"
     value="<%= customItem.ImagesPath%>\<%=customItem.imgLink%>"
     id="itemImages"
   />
-  <input type="hidden" value="<%=customItem.price%>" id="itemPrice" />
+  <input type="hidden" value="<%=customItem[0].price%>" id="itemPrice" />
 </div>
 
 </section>

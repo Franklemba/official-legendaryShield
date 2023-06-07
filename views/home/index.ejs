@@ -178,36 +178,46 @@
         </div>
     <% } %>
     <!------------------------ custom section --------------------->
-       
-    <div id="product1" class="section-p1">
+      
+    <% if(CustomProducts?.length != 0) { %>
+      <div id="product1" class="section-p1">
+        <h2>The Custom Collection</h2>
+        <p>Our Custom Collection offers a unique opportunity to create your own personalized jewelry pieces. </p>
+        <div class="pro-container">
+             <!-- ///////////product 1///////////// -->
 
-      <h2>The Custom Collection</h2>
-      <p>Our Custom Collection offers a unique opportunity to create your own personalized jewelry pieces. </p>
-      <div class="pro-container">
+             <% CustomProducts?.forEach(custom => { %>
+              
+              <div class="pro">
+                 <a id="linkTag" id="linkTag" href="/custom/<%=custom.customType %>">
+                   <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" alt="<%=custom.category%>">
+                   <div class="des">
+                       <span><%=custom.brandName%></span>
+                       <h5><%=custom.description%></h5>
+                       <h5><%=custom.customType%></h5>
+                       <span>from K<%=custom.price%></span>
+                   </div>
+                   <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+                 </a>
+              </div>
 
-    <%if(customItems.length>1){%>
-      <% for( let index = 0; index < 4; index++ ) { %>
-        <div class="pro">
-          <a id="linkTag" href="/custom/<%=customItems[index].customName %>">
-            <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/customImages/<%=customItems[index].imgLink%>" alt="<%=customItems[index].customName %>">
-              <div class="des">
-              <span><%=customItems[index].customName %></span>
-              <h5><%=customItems[index].details %></h5>
-              <span>from K<%=customItems[index].price %></span>
+             <% }) %>
+             <div class="moreButton">
+              <a href="/custom">
+                <span>
+                  more
+                </span>
+                <i style="color: black; margin-left:10px;" class="fa fa-chevron-rigth"></i>
+              </a>
+             </div>
+
           </div>
-          <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-          </a>
+          <!-- <button class="viewBtn">view more</button> -->
       </div>
-      <% } %>
-      <% } %>
-       <div class="moreButton">
-          <a href="/custom">
-            <span>more</span>
-            <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
-        </a>
-       </div>
-      </div>
-    </div>
+  <% } %>
+    
+
+
     <br>
 
     <!------------------------ woodwork section --------------------->
@@ -222,9 +232,9 @@
         <div class="carousel-item active">
           <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/customImg.png"   class="d-block w-100" alt="...">
         </div>
-        <% woodItems.forEach(image => { %>
+        <% WoodworkProducts.forEach(image => { %>
           <div class="carousel-item">
-            <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/<%=image.imgLink%>" class="d-block w-100" alt="<%=image.woodItem %>">
+            <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=image.mainImg%>" alt="<%=image.customType%>">
           </div>
         <% }) %>
 
@@ -240,41 +250,46 @@
         <span class="visually-hidden">Next</span>              
       </button>
     </div>
-    <div id="product1" class="section-p1">
-      <br>
-      <br>
-         <h2>The Woodwork Collection</h2>
-       <div class="pro-container">
-          <!-- ///////////product 4///////////// -->
-           <% if(woodItems.length>1) {%>
-          <% for( let index = 0; index < 4; index++ ) { %>
 
-            <div class="pro">
-              <a id="linkTag" href="/woodWork/<%=woodItems[index].woodItem %>">
-                <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/<%=woodItems[index].imgLink%>" alt="<%=woodItems[index].woodItem %>">
-                 <div class="des">
-                  <span><%=woodItems[index].woodItem %></span>
-                  <h5><%=woodItems[index].details %></h5>
-                  <span>from K<%=woodItems[index].price %></span>
-                  <!-- <h3>K15,500.00</h3> -->
+
+    <% if(WoodworkProducts?.length != 0) { %>
+      <div id="product1" class="section-p1">
+        <br>
+      <br>
+        <h2>The Woodwork Collection</h2>
+        <div class="pro-container">
+             <!-- ///////////product 1///////////// -->
+
+             <% WoodworkProducts?.forEach(custom => { %>
+              
+              <div class="pro">
+                 <a id="linkTag" id="linkTag" href="/woodWork/<%=custom.customType %>">
+                   <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" alt="<%=custom.category%>">
+                   <div class="des">
+                       <span><%=custom.brandName%></span>
+                       <h5><%=custom.description%></h5>
+                       <h5><%=custom.customType%></h5>
+                       <span>from K<%=custom.price%></span>
+                   </div>
+                   <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
+                 </a>
               </div>
-              <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
-              </a>
-          </div>
-          <% } %>
-          <% } %>
-         
-        <div class="moreButton">
-              <a href="/woodWork">
-                 <span>more</span>
-                 <i style="color: black; margin-left: 10px;" class="fa fa-chevron-right"></i>
-              </a>
-      </div>
-    
-       </div>
-       
 
+             <% }) %>
+             <div class="moreButton">
+              <a href="/woodwork">
+                <span>
+                  more
+                </span>
+                <i style="color: black; margin-left:10px;" class="fa fa-chevron-rigth"></i>
+              </a>
+             </div>
+
+          </div>
+          <!-- <button class="viewBtn">view more</button> -->
       </div>
+  <% } %>
+
     </section>
 
 <hr>
