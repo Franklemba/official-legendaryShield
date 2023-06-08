@@ -158,8 +158,8 @@ console.log(toEmailString)
         {
           "to":[
              {
-                 //"email":`Legendaryshieldsretailer@gmail.com`,
-                "email":`chisalecharles23@gmail.com`,
+                 "email":`Legendaryshieldsretailer@gmail.com`,
+                //"email":`chisalecharles23@gmail.com`,
                 "name":'legendary admin',
              }
           ],

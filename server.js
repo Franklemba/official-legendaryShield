@@ -38,7 +38,7 @@ const mongoose = require("mongoose");
 // ////local database connection
 
 //mongoose.connect('mongodb://localhost:27017/legendary_shield')
-mongoose.connect(process.env.LIVE_DATABASE_URL)
+mongoose.connect(process.env.LIVE_DATABASE_URL,{useNewUrlParser: true})
 .then(()=>{
     console.log('database is connected')
 }).catch((err) => console.log(err));// 
