@@ -10,7 +10,7 @@
   <span class="closeModal"> &times; </span>
 
   <h4 style="text-align: center">
-    Kindly Confirm Your Details and Click Submit
+    Confirm your details and click submit
   </h4>
   <form action="/makeOrder" method="post">
     <div class="inputbox">
@@ -33,9 +33,15 @@
         placeholder="Phone Number"
         required
       />
-      <input type="hidden" name="orderData" id="orderData" />
     </div>
-    <input type="hidden" id="deliveryType" name="deliveryType" value="">
+    <br>
+    <div id="totalShower">
+    </div>
+    <br>
+    <input type="hidden" name="orderData" id="orderData" />
+    <input type="hidden" id="deliveryType" name="deliveryType" value="pickup">
+    <input type="hidden" id="paymentType" name="paymentType" value="pay now">
+    <input type="hidden" id="cartTotal" name="cartTotal" value="">
     <input type="submit" class="btn sendOrder" value="Send" id="submit" />
   </form>
 </div>
@@ -45,14 +51,50 @@
 <div class="deliveryContainer">
   <h2>Shipping Options</h2>
   <div class="options">
-    <div class="option" id="courier">
+    <div class="deliveryOption" id="courier">
      <label for="shipping-option1">Shipping</label>
-      <p>Product will be sent via a discussed courier.</p>
+      <p>Product will be sent via a discussed courier. Courier service charge is independent of total charge. Appox K80 with kitwe, K200 outside kitwe.</p>
     </div>
-    <div class="option" id="pickup">
+    <div class="deliveryOption selected" id="pickup">
       <label for="shipping-option2">Pickup</label>
-      <p>You can come pick up the product when the order is complete.</p>
+      <p>You will recieve an email to come pick up the product from one our locations when the order is complete. No charges on delivery costs.</p>
     </div>
+  </div>
+</div>
+
+<div class="paymentContainer" style="padding:10px;">
+  <h2>Payment Plan</h2>
+  <div class="paymentOptions">
+    <div class="paymentOption selected" id="Pay Now">
+      <label for="payment-option2">Pay now</label>
+    </div>
+    <div class="paymentOption" id="Lay By">
+      <label for="payment-option3">Lay by</label>
+    </div>
+    <div class="paymentOption" id="Cash On Complete">
+      <label for="payment-option1">Cash on complete</label>
+    </div>
+  </div>
+
+  <div>
+    <p><strong>Airtel Money ~ 0972012369, John Doe</strong></p>
+    <p><strong>MTN Money ~ 0765034585, John Mwale</strong></p>
+  </div>
+  <div>
+     <p><strong>
+      Account Number -23xxxxxx33234
+     </strong></p>
+  </div>
+     <p>
+      1. Cash on Complete: You have the option to pay in cash when your order is complete and ready for pickup or delivery.
+     </p>
+     <p>
+      2. Lay by: With our layby option, you can reserve your desired products by paying a deposit, and complete the payment in installments over a specified period.
+     </p>
+    <p>  3. Pay Now: You can choose to pay for your order immediately using our secure online payment system.
+    </p>
+      <p> Please note that certain payment plans are not available on certain products and exceeding certain prices.
+      </p>
   </div>
 </div>
 
@@ -133,8 +175,7 @@
         
         } else {
           imagePath = "";
-          itemText = "";
-          
+          itemText = ""; 
         }
         const cartItem = document.createElement("div");
         cartItem.classList.add("cartItem");
@@ -253,12 +294,16 @@
 
   function addToTotal(price) {
     totalPrice += price;
+    document.getElementById('cartTotal').value = totalPrice
     document.getElementById("totalPrice").innerText = `Total: K${totalPrice}`;
+    document.getElementById('totalShower').innerText = `Total Cost K${totalPrice}`
   }
 
   function minusTotalPrice(price) {
     totalPrice -= price;
+    document.getElementById('cartTotal').value = totalPrice
     document.getElementById("totalPrice").innerText = `Total: K${totalPrice}`;
+    document.getElementById('totalShower').innerText = `Total Cost K${totalPrice}`
   }
 
   function addQty(id) {
@@ -289,12 +334,12 @@ document.getElementById("Pnumber").value = localStorage.getItem('Pnumber')
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  const options = document.querySelectorAll('.option');
+  const deliveryOptions = document.querySelectorAll('.deliveryOption');
   const proceedButton = document.getElementById('proceed-button');
 
-  options.forEach(function(option) {
+  deliveryOptions.forEach(function(option) {
     option.addEventListener('click', function() {
-      options.forEach(function(opt) {
+      deliveryOptions.forEach(function(opt) {
         opt.classList.remove('selected');
       });
       
@@ -302,6 +347,19 @@ document.addEventListener('DOMContentLoaded', function() {
       option.classList.add('selected');
     });
   });
+
+  const paymentOptions = document.querySelectorAll('.paymentOption');
+
+  paymentOptions.forEach(function(option) {
+    option.addEventListener('click', function() {
+      paymentOptions.forEach(function(opt) {
+        opt.classList.remove('selected');
+      });
+      document.getElementById('paymentType').value = option.id
+      option.classList.add('selected');
+    });
+  });
+
 
 });
 
@@ -387,7 +445,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-.option {
+.deliveryOption {
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -396,11 +454,11 @@ h2 {
   cursor: pointer;
 }
 
-.option p {
+.deliveryOption p {
   margin-top: 10px;
 }
 
-.option.selected {
+.deliveryOption.selected {
   border-color: #000;
   background-color: #000;
   color: #fff;
@@ -428,4 +486,34 @@ input{
   justify-content:flex-end;
 
 }
+
+.paymentOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+ 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  width: 100px;
+}
+
+.paymentOption label {
+  margin-left: 10px;
+}
+
+.paymentOption.selected {
+  border-color: #000;
+  background-color: #000;
+  color: #fff;
+}
+  
 </style>

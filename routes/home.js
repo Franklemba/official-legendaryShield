@@ -117,7 +117,7 @@ var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 
 router.post("/makeOrder", async (req, res) => {
-  const { name, email, Pnumber, orderData, deliveryType } = req.body;
+  const { name, email, Pnumber, orderData, deliveryType, cartTotal, paymentType } = req.body;
   //console.log(email)
   const orderList = orderData.split("+");
   let orderArray = [];
@@ -128,7 +128,7 @@ orderList.forEach((orderItem)=>{
     const o = JSON.parse(orderItem)
     console.log(o)
     orderArray.push(JSON.parse(orderItem))
-    toEmailString+=`<li class="aLink">${o.itemName} - K${o.itemPrice}<hr></li>`
+    toEmailString+=`<li class="aLink">${o.itemName} - K${o.itemPrice} x${o.quantity}<hr></li>`
   }
 })
 console.log(toEmailString)
@@ -151,19 +151,19 @@ console.log(toEmailString)
                 "name":name,
              }
           ],
-          "htmlContent": generateUserEmail(name,toEmailString, deliveryType)
+          "htmlContent": generateUserEmail(name,toEmailString, deliveryType, cartTotal, paymentType)
           ,
           "subject":"Order Recieved!~Legendary Shield"
         },
         {
           "to":[
              {
-                 "email":`Legendaryshieldsretailer@gmail.com`,
-                // "email":`chisalecharles23@gmail.com`,
+                 //"email":`Legendaryshieldsretailer@gmail.com`,
+                "email":`chisalecharles23@gmail.com`,
                 "name":'legendary admin',
              }
           ],
-          "htmlContent": generateAdminEmail(name,Pnumber,email,toEmailString, deliveryType)
+          "htmlContent": generateAdminEmail(name,Pnumber,email,toEmailString, deliveryType,cartTotal, paymentType)
           ,
           "subject":"Recieved New Order!~Legendary Shield"
         },
@@ -189,7 +189,9 @@ orderList.forEach((orderItem)=>{
     email,
     orderData:orderArray,
     Pnumber,
-    deliveryType
+    deliveryType,
+    cartTotal,
+    paymentType
   });
   newOrder
     .save()
@@ -198,7 +200,7 @@ orderList.forEach((orderItem)=>{
       console.log(purchaseItem)
       console.log('-----')
       res.render("home/index", {
-        message: "Order Successfully Made, Enter Transaction Id to confirm payment",
+        message: "Order Successful, Enter Transaction Id to confirm payment",
         txnUrl: `/confirmTransaction/${purchaseItem._id}`,
         url:'/',
         transactionIdRequest:true,
@@ -207,7 +209,9 @@ orderList.forEach((orderItem)=>{
         customItems:[],
         woodItems:[],
         watchCollection:[],
-        newsItems:news
+        newsItems:news,
+        CustomProducts:[],
+        WoodworkProducts:[]
       });
     })
     .catch((err) => {
@@ -302,7 +306,7 @@ router.post('/confirmTransaction/:orderId',(req, res)=>{
 
 
 
-function generateUserEmail(name, cartString) {
+function generateUserEmail(name, cartString, deliveryType,cartTotal, paymentType) {
   return `<html>
     <head>
       <style>
@@ -395,18 +399,18 @@ function generateUserEmail(name, cartString) {
         ${cartString}
         </ul>
         <br>
+        <h3>Total K${cartTotal}</h3>
+        <h3>Payment Type - ${paymentType}</h3>
         <h2>Our team will contact you shortly.</h2>
         </div>
         <h3 class="aLink">Thank you for shopping with us.</h3>
-   
     </body>
   </html>`;
 }
 
 
 
-function generateAdminEmail(name, number,email, cartString, deliveryType){
-
+function generateAdminEmail(name, number,email, cartString, deliveryType, cartTotal, paymentType){
   return `<html>
   <head>
     <style>
@@ -503,6 +507,8 @@ function generateAdminEmail(name, number,email, cartString, deliveryType){
       ${cartString}
       </ul>
       <br>
+      <h3>Total K${cartTotal}</h3>
+      <h3>Payment Type - ${paymentType}</h3>
       <h3>delivery type: ${deliveryType}</h3>
       <h3><a class="aLink" href="https://legendaryshield.onrender.com/admin">View In Admin</a></h3>
       </div>
@@ -511,8 +517,6 @@ function generateAdminEmail(name, number,email, cartString, deliveryType){
 </html>`;
 }
 
-function sendEmailToAdmin(){
 
-}
 
 module.exports = router;
