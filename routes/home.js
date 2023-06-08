@@ -1,8 +1,14 @@
+//SERVER CONFIG
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
+//EMAIL DECS
+var SibApiV3Sdk = require('sib-api-v3-sdk');
+var defaultClient = SibApiV3Sdk.ApiClient.instance;
+
+//SCHEMA DEFINITION
 const purchaseOrder = require("../models/purchaseSchema");
 const Product = require("../models/uploadSchema");
 const News = require("../models/newsSchema");
@@ -11,8 +17,9 @@ const mongoose = require('mongoose')
 const CustomItems = require('../public/js/customItems');
 const WoodItems = require('../public/js/woodItems');
 
-const multer = require("multer");
 
+// FILE UPLOAD CONFIG
+const multer = require("multer");
 const imagesPath = path.join("public", purchaseOrder.purchaseImgPath);
 const imageMimeType = [
   "image/jpeg",
@@ -22,13 +29,11 @@ const imageMimeType = [
   "image/webp",
 ];
 
-
+//FECTION PRODUCTS
 router.get("/", async (req, res) => {
   const promoProducts = await Product.find({type:'promo'}).limit(4);
   const watchArray = [];
   const jeweryArray = [];
-  
-
   // ----------- the wrist watch collection
   const menWatch = await Product.findOne({category:'Mens Watch'});
   if(menWatch) watchArray.push(menWatch);
@@ -97,12 +102,10 @@ router.get("/getItems/:list", async (req, res) => {
   res.json(productList);
 });
 
-var SibApiV3Sdk = require('sib-api-v3-sdk');
-var defaultClient = SibApiV3Sdk.ApiClient.instance;
 
 // Configure API key authorization: api-key
 var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = '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';
+apiKey.apiKey = process.env.BREVO_EMAIL_API;
 
 var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
@@ -113,23 +116,23 @@ var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 
 router.post("/makeOrder", async (req, res) => {
-  const { name, email, Pnumber, orderData } = req.body;
+  const { name, email, Pnumber, orderData, deliveryType } = req.body;
   //console.log(email)
   const orderList = orderData.split("+");
   let orderArray = [];
-  let toEmailString = ''
+  let toEmailString = '';
 
 orderList.forEach((orderItem)=>{
   if(orderItem){
     const o = JSON.parse(orderItem)
     console.log(o)
     orderArray.push(JSON.parse(orderItem))
-    toEmailString+=`<li>${o.itemName} - K${o.itemPrice}</li>`
+    toEmailString+=`<li class="aLink">${o.itemName} - K${o.itemPrice}<hr></li>`
   }
 })
 console.log(toEmailString)
   let orderString = ''
-  new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail({
+  apiInstance.sendTransacEmail({
     "sender":{ "email":"chisalecharles23@gmail.com", "name":"Sendinblue"},
     "subject":"Legendary Shield",
     "htmlContent":
@@ -147,12 +150,23 @@ console.log(toEmailString)
                 "name":name,
              }
           ],
-          "htmlContent": generateUserEmail(name,toEmailString)
+          "htmlContent": generateUserEmail(name,toEmailString, deliveryType)
           ,
           "subject":"Order Recieved!~Legendary Shield"
         },
+        {
+          "to":[
+             {
+                // "email":`Legendaryshieldsretailer@gmail.com`,
+                "email":`chisalecharles23@gmail.com`,
+                "name":'legendary admin',
+             }
+          ],
+          "htmlContent": generateAdminEmail(name,Pnumber,email,toEmailString, deliveryType)
+          ,
+          "subject":"Recieved New Order!~Legendary Shield"
+        },
       ]
-      //"htmlCont,ent":"<html><head></head><body><p>Hello,</p>This is my first transactional email sent from Brevo.</p></body></html>"
     }).then(function(data) {
  //console.log(data);
 }, function(error) {
@@ -174,6 +188,7 @@ orderList.forEach((orderItem)=>{
     email,
     orderData:orderArray,
     Pnumber,
+    deliveryType
   });
   newOrder
     .save()
@@ -357,26 +372,143 @@ function generateUserEmail(name, cartString) {
           text-align:center;
           color:black;
         }
+        .hItem{
+          color:black;
+        }
+        .aLink{
+          text-decoration:none;
+          color:#dfc780;
+        }
+        hr{
+          background-color:white;
+          color:white;
+        }
       </style>
     </head>
     <body>
+    <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/lsiLogo.png" alt="Legendary Shield" class="logo">
         <h1>Hello ${name},</h1>
         <div class="black-box">
-        <h2>We have received your order for the items,</h2>
+        <h2>We received your order for the items,</h2>
         <ul>
         ${cartString}
         </ul>
         <br>
-        <h3>Thank you for shopping with us.</h3>
+        <h2>Our team will contact you shortly.</h2>
         </div>
-        <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/lsiLogo.png" alt="Legendary Shield" class="logo">
-        <div class="company-name">Legendary Shield</div>
-      
+        <h3 class="aLink">Thank you for shopping with us.</h3>
+   
     </body>
   </html>`;
 }
 
 
+
+function generateAdminEmail(name, number,email, cartString, deliveryType){
+
+  return `<html>
+  <head>
+    <style>
+      /* Inline CSS */
+      body {
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .black-box {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      h1 {
+        color: #000000;
+        font-size: 32px;
+        margin: 0;
+        margin-top: 20px;
+      }
+      h2 {
+        color: #ffffff;
+        font-size: 24px;
+        margin: 5px 0;
+      }
+      h3{
+        color: #ffffff;
+        font-size: 20px;
+      }
+      strong {
+        font-weight: bold;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        text-align: left;
+        margin-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      img {
+        max-width: 100px;
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+      }
+      .company-name {
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .align{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+        gap:30px;
+      }
+      .hh1{
+        margin:0;
+        padding:0;
+        text-align:center;
+        color:black;
+      }
+      .hItem{
+        color:black;
+      }
+      .aLink, h3 a,a.aLink{
+        text-decoration:none;
+        color:#dfc780;
+      }
+      hr{
+        background-color:white;
+        color:white;
+      }
+    </style>
+  </head>
+  <body>
+  <img src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/lsiLogo.png" alt="Legendary Shield" class="logo">
+      <h1>Order Details</h1>
+      <br>
+      <h2 class="hItem">From: ${name}</h2>
+      <h2 class="hItem">Phone: ${number}</h2>
+      <h2 class="hItem">Email:  ${email}</h2>
+      <div class="black-box">
+      <h2>Requested Items</h2>
+      <ul>
+      ${cartString}
+      </ul>
+      <br>
+      <h3>delivery type: ${deliveryType}</h3>
+      <h3><a class="aLink" href="https://legendaryshield.onrender.com/admin">View In Admin</a></h3>
+      </div>
+    
+  </body>
+</html>`;
+}
 
 function sendEmailToAdmin(){
 
