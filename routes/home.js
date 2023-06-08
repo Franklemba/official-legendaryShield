@@ -55,8 +55,6 @@ router.get("/", async (req, res) => {
   try{
     res.render("home/index",{
         products: promoProducts, 
-        customItems: CustomItems,
-        woodItems: WoodItems,
         watchCollection: watchArray,
         jeweryCollection: jeweryArray,
         newsItems:news,
@@ -66,6 +64,7 @@ router.get("/", async (req, res) => {
     });
   }catch(err){
     res.send("error fetching promo products")
+    console.log(err)
   }
   // console.log(promoProducts);
   
