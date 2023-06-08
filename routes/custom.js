@@ -1,25 +1,26 @@
 const express = require('express')
 const router = express.Router()
+const Product = require("../models/uploadSchema");
 
 
-const customItems = require('../public/js/customItems');
-
-// console.log(customItems)
-
-
-router.get('/', (req,res)=>{
-    res.render('collections/custom',{customItems, message:null})
+router.get('/', async (req,res)=>{
+    const CustomItems = await Product.find({category:'Custom Product'});
+    res.render('collections/custom',{
+        customItems:CustomItems, 
+        message:null
+   })
 })
 
 
-router.get('/:customItem',(req,res)=>{
-    const customItemName = req.params.customItem
-    customItems.forEach(customItem=>{
-        if(customItem.customName == customItemName){
-            res.render('collections/specificCustom', {customItem, message:null})
-            return
-        }
+router.get('/:custom_Item', async (req,res)=>{
+    const customItemName = req.params.custom_Item
+    const CustomItem = await Product.find({customType:customItemName}).limit(1);
+    
+    res.render('collections/specificCustom', {
+        customItem:CustomItem,
+        message:null
     })
+    // res.send(customItem);
     
 })
 

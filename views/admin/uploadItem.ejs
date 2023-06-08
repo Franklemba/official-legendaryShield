@@ -33,7 +33,7 @@
         <img
           height="140"
           width="100"
-          src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>"
+          src="https:legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>"
           alt=""
         />
       </div>
@@ -60,6 +60,8 @@
 
 <section class="uploadSection orderList upload active" id="upload-btn">
   <!-- <h1 class="heading"> <span>contact</span> us </h1> -->
+
+ 
 
   <div class="row">
     <form
@@ -101,8 +103,27 @@
           <option value="Neck chain">Neck chain</option>
           <option value="Bracelet">Bracelet</option>
           <option value="Custom Product">Custom Product</option>
+          <option value="Woodwork Product">Woodwork Product</option>
         </select>
       </div>
+      <div class="inputbox" id="selectCustom">
+        <select name="customType" id="customType">
+          <option value="Non custom">Non custom</option>
+          <option value="Flask">Flask</option>
+          <option value="Chopping board">Chopping board</option>
+          <option value="Crates">Crates</option>
+          <option value="Gift box">Gift box</option>
+          <option value="Door signs">Door signs</option>
+          <option value="Note books">Note books</option>
+          <option value="Necklace">Necklace</option>   
+          <option value="Wooden chop boards">Wooden chop boards</option>
+          <option value="Wooden Photo frame">Wooden Photo frame</option>
+          <option value="Wooden coaster">Wooden coaster</option>
+          <option value="Wooden frame">Wooden frame</option>
+          <option value="Wooden table">Wooden table</option>
+        </select>
+      </div>
+      
       <div class="inputbox" id="typeInputBox">
         <!-- <label for="price"><strong>Enter price:</strong></label> -->
         <input
@@ -177,7 +198,10 @@
   let preview = document.querySelector(".preview");
   let type = document.getElementById('type');
   let typeInputBox = document.getElementById('typeInputBox');
+  let category = document.getElementById('category');
+  let selectCustom = document.getElementById('selectCustom');
 
+  selectCustom.style.display = "none";
   typeInputBox.style.display = 'none';
   const imageList = image.files;
 
@@ -189,20 +213,15 @@
     }
    
   })
-
-  submit.addEventListener("click", (e) => {
-    console.log(image.files);
-    if (image.files.length > 4) {
-      alert("you can only upload a maximum of 4 images");
-      for (var i = 0; i < image.files.length; i++) {
-        preview.innerHTML += `<p>${image.files[i].name}</p>`;
-      }
-    } else if (image.files.length == 0 && document.getElementById('upload-btn').classList.contains('active')) {
-      alert("please select image to upload");
-    } else {
-      uploadSubmit.submit();
+  
+  category.addEventListener("change",(e)=>{
+    if(e.target.value == 'Custom Product' || e.target.value == 'Woodwork Product'){
+      selectCustom.style.display = 'flex';
+    }else{
+      selectCustom.style.display = 'none';
     }
-  });
+  })
+
 
   const sections = document.querySelectorAll('section')
 function toggleButton(id) {

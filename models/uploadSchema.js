@@ -38,6 +38,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    customType:{
+        type: String,
+        required: false
+    },
     mainImg:{
         type: String,
         required: true

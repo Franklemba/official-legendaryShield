@@ -53,7 +53,7 @@ const upload = multer({
 
 const multipleUploads = upload.fields([
   { name: "mainImg", maxCount: 1 },
-  { name: "images", maxCount: 4 },
+  { name: "images", maxCount: 6 },
 ]);
 
 
@@ -127,7 +127,7 @@ router.get("/woodWorkOrders", async (req, res) => {
 
 router.get("/orders", async (req, res) => {
   try {
-    const purchaseOrders = await purchaseOrder.find({});
+    const purchaseOrders = await purchaseOrder.find({}).sort({purchasedAt:-1});
     console.log(purchaseOrders);
     res.render("admin/orders", { purchaseOrders });
   } catch (err) {
@@ -180,6 +180,9 @@ router.post("/updatePurchaseOrder/:id/:state", async (req, res) => {
 
 
 ///uploading  product
+// router.post("/", (req,res)=>{
+//   res.send(req.body)
+// })
 router.post("/", multipleUploads, async (req, res) => {
   //for saving the data to the database
   ///////////////////////////////////
@@ -202,6 +205,7 @@ router.post("/", multipleUploads, async (req, res) => {
     type: req.body.type,
     quantity: req.body.quantity,
     description: req.body.description,
+    customType:req.body.customType,
     mainImg: mainImgName,
     images: imagesArray,
   });
@@ -217,8 +221,8 @@ router.post("/", multipleUploads, async (req, res) => {
       transactionIdRequest:false
     });
     // res.send(product);
-  } catch {
-    res.render("admin/studentPapers", {
+  } catch (err){
+    res.render("admin/uploadItem", {
       products: allProducts,
       message: "upload was unsuccessful",
       url: "/admin/uploadItem",
@@ -238,7 +242,7 @@ router.get("/all", async (req, res) => {
     });
   } catch (err) {
     res.render("admin/uploadItem");
-    console.log(err);
+    console.error();
   }
 });
 

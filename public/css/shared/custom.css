@@ -215,11 +215,11 @@ ul {
     padding: 4%;
     width: 48vw;
 }
-.specificCustom #carouselExampleControls img {
+/* .specificCustom #carouselExampleControls img {
     height: 90vh;
     width: 50%;
     background-size: cover;
-  }
+  } */
 .buyMessage {
     margin: 1%;
     right: 5%;
@@ -403,16 +403,17 @@ ul {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 0% 5% 5% 5%;
     }
     .specificCustom #carouselExampleControls {
           padding: 0%;
-          width: 100vw;
+          width: 80vw;
       }
-    .specificCustom #carouselExampleControls img {
+    /* .specificCustom #carouselExampleControls img {
         height: 330px;
         width: 100%;
         background-size: cover;
-      }
+      } */
     .productDetail{
         padding: 0% 5% 5% 5%;
         margin: 0;

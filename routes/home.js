@@ -14,8 +14,6 @@ const Product = require("../models/uploadSchema");
 const News = require("../models/newsSchema");
 
 const mongoose = require('mongoose')
-const CustomItems = require('../public/js/customItems');
-const WoodItems = require('../public/js/woodItems');
 
 
 // FILE UPLOAD CONFIG
@@ -32,6 +30,8 @@ const imageMimeType = [
 //FECTION PRODUCTS
 router.get("/", async (req, res) => {
   const promoProducts = await Product.find({type:'promo'}).limit(4);
+  const customProducts = await Product.find({category:'Custom Product'}).limit(4);
+  const woodworkProducts = await Product.find({category:'Woodwork Product'}).limit(4);
   const watchArray = [];
   const jeweryArray = [];
   // ----------- the wrist watch collection
@@ -60,15 +60,16 @@ router.get("/", async (req, res) => {
   try{
     res.render("home/index",{
         products: promoProducts, 
-        customItems: CustomItems,
-        woodItems: WoodItems,
         watchCollection: watchArray,
         jeweryCollection: jeweryArray,
         newsItems:news,
+        CustomProducts:customProducts,
+        WoodworkProducts: woodworkProducts,
         message:null
     });
   }catch(err){
     res.send("error fetching promo products")
+    console.log(err)
   }
   // console.log(promoProducts);
   

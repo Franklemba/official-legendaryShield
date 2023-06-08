@@ -81,59 +81,34 @@
       class="carousel slide"
       data-bs-ride="carousel"
     >
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img
-            src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/choppingBoard.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
-          <div class="imgText">
-            <p>wooden chopping boards</p>
-          </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+        src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=woodItems[0].mainImg%>"
+          class="d-block w-100"
+          alt="..."
+        />
+        <div class="imgText">
+          <p><%=woodItems[0].customType%></p>
         </div>
+      </div>
+
+      <% woodItems.forEach(customItem=>{%>
 
         <div class="carousel-item">
           <img
-            src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/photFrame.jpg"
+          src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>"
             class="d-block w-100"
             alt="..."
           />
           <div class="imgText">
-            <p>wooden photo frame</p>
+            <p><%=customItem.customType%></p>
           </div>
         </div>
-        <div class="carousel-item">
-          <img
-            src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/woodenCoasters.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
-          <div class="imgText">
-            <p>wooden coasters</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img
-            src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/woodenPhotoFrame.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
-          <div class="imgText">
-            <p>wooden photo frame</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img
-            src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/woodenTable.jpg"
-            class="d-block w-100"
-            alt="..."
-          />
-          <div class="imgText">
-            <p>wooden table</p>
-          </div>
-        </div>
-      </div>
+ 
+        <%})%>
+
+    </div>
       <button
         class="carousel-control-prev"
         type="button"
@@ -166,22 +141,21 @@
     <hr />
     <div class="customItems">
       <ul>
-        <% woodItems.forEach(woodItem=>{%>
-
+        <% woodItems.forEach(customItem=>{%>
+  
         <li id="customCart">
-          <a href="/woodWork/<%=woodItem.woodItem%>">
-            <img
-            class="<%woodItem.woodItem%>"
-            src="https://istude.s3.ap-south-1.amazonaws.com/legendaryShield/images/woodwork/<%=woodItem.imgLink%>"
-            alt="<%=woodItem.woodItem%>"
-          />
-          <span><%=woodItem.details%></span>
-          <span class="<%=woodItem.woodItem %>" id="customPrice"
-            ><i>from</i> K<%=woodItem.price%></span
+          <a
+            href="/custom/<%=customItem.customType%>"
+            style="text-decoration: none"
           >
+          <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>" alt="<%=customItem.category%>">
+            <span><%=customItem.description%></span>
+            <span class="${data.customName}" id="customPrice"
+              ><i>from</i> K<%=customItem.price%></span
+            >
           </a>
         </li>
-
+        
         <%})%>
       </ul>
     </div>
