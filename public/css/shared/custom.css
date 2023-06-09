@@ -38,7 +38,7 @@ ul {
     list-style: none;
     height: 380px;
     width: 75%;
-    padding: 5%;
+    padding: 25%;
     overflow: scroll;
     /* background-color: darkgrey; */
 }
@@ -421,7 +421,12 @@ ul {
       }
       .productDetails {
         margin-top: 5%;
-        margin: 0% 5%;
+        margin: 0% 0%;
+        width: 100%;
+        padding: 3%;
+      }
+      .productDetails p{
+        text-align: justify;
       }
     
 }

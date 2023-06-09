@@ -1,12 +1,16 @@
+
 <br />
 <h4 id="totalPrice" style="text-align: end; width: 95%">Total: K0</h4>
-<section class="cartList"></section>
 
+<section class="cartList"></section>
+<div id="clearCartContainer">
+  <button id="clearOrder">clear cart</button>
+</div>
 <div class="buyModal">
   <span class="closeModal"> &times; </span>
 
   <h4 style="text-align: center">
-    Kindly Confirm Your Details and Click Submit
+    Confirm your details and click submit
   </h4>
   <form action="/makeOrder" method="post">
     <div class="inputbox">
@@ -29,18 +33,75 @@
         placeholder="Phone Number"
         required
       />
-      <input type="hidden" name="orderData" id="orderData" />
     </div>
-
+    <br>
+    <div id="totalShower">
+    </div>
+    <br>
+    <input type="hidden" name="orderData" id="orderData" />
+    <input type="hidden" id="deliveryType" name="deliveryType" value="pickup">
+    <input type="hidden" id="paymentType" name="paymentType" value="pay now">
+    <input type="hidden" id="cartTotal" name="cartTotal" value="">
     <input type="submit" class="btn sendOrder" value="Send" id="submit" />
   </form>
 </div>
+<div>
+</div>
+
+<div class="deliveryContainer">
+  <h2>Shipping Options</h2>
+  <div class="options">
+    <div class="deliveryOption" id="courier">
+     <label for="shipping-option1">Shipping</label>
+      <p>Product will be sent via a discussed courier. Courier service charge is independent of total charge. Appox K80 with kitwe, K200 outside kitwe.</p>
+    </div>
+    <div class="deliveryOption selected" id="pickup">
+      <label for="shipping-option2">Pickup</label>
+      <p>You will recieve an email to come pick up the product from one our locations when the order is complete. No charges on delivery costs.</p>
+    </div>
+  </div>
+</div>
+
+<div class="paymentContainer" style="padding:10px;">
+  <h2>Payment Plan</h2>
+  <div class="paymentOptions">
+    <div class="paymentOption selected" id="Pay Now">
+      <label for="payment-option2">Pay now</label>
+    </div>
+    <div class="paymentOption" id="Lay By">
+      <label for="payment-option3">Lay by</label>
+    </div>
+    <div class="paymentOption" id="Cash On Complete">
+      <label for="payment-option1">Cash on complete</label>
+    </div>
+  </div>
+
+  <div>
+    <p><strong>Airtel Money ~ 0972012369, John Doe</strong></p>
+    <p><strong>MTN Money ~ 0765034585, John Mwale</strong></p>
+  </div>
+  <div>
+     <p><strong>
+      Account Number -23xxxxxx33234
+     </strong></p>
+  </div>
+     <p>
+      1. Cash on Complete: You have the option to pay in cash when your order is complete and ready for pickup or delivery.
+     </p>
+     <p>
+      2. Lay by: With our layby option, you can reserve your desired products by paying a deposit, and complete the payment in installments over a specified period.
+     </p>
+    <p>  3. Pay Now: You can choose to pay for your order immediately using our secure online payment system.
+    </p>
+      <p> Please note that certain payment plans are not available on certain products and exceeding certain prices.
+      </p>
+  </div>
+</div>
+
 <div id="cartBtnContainer">
   <button id="submitOrder">Proceed to checkout</button>
 </div>
-<div id="cartBtnContainer">
-  <button id="clearOrder">clear cart</button>
-</div>
+
 <div class="cusOverlay"></div>
 <input id="previousImageUrl" type="hidden" value="<%=imgUrl%>" />
 
@@ -57,14 +118,14 @@
   //document.getElementById("previousImageUrl").value
 
   clearOrder.addEventListener('click',()=>{
-     window.localStorage.clear();
+     window.localStorage.removeItem('cartList')
      window.location.href = "/cart";
   })
   if (document.getElementById("previousImageUrl").value) {
     const cartItems = localStorage.getItem("cartList").split("+");
     let newCart = [];
 
-    cartItems.forEach((cartItem, index) => {
+    cartItems?.forEach((cartItem, index) => {
       if (cartItem) {
         const dataItem = JSON.parse(cartItem);
         //modItem.data.imagePath=document.getElementById("previousImageUrl").value
@@ -100,7 +161,7 @@
     let qtyMinus;
     let qtyPlus;
 
-    cartItems.forEach((cartObject, index) => {
+    cartItems?.forEach((cartObject, index) => {
       console.log(cartObject);
       if (index < cartItems.length - 1) {
         const item = JSON.parse(cartObject);
@@ -114,24 +175,22 @@
         
         } else {
           imagePath = "";
-          itemText = "";
-          
+          itemText = ""; 
         }
         const cartItem = document.createElement("div");
         cartItem.classList.add("cartItem");
+        const imageString = imagePath?`<div class="cartImage"><img src="/uploads/purchaseImages/${imagePath}" alt="null"/> </div>`:''
         cartItem.innerHTML = `
-    <div class="cartImage">
-      <img src="/uploads/purchaseImages/${imagePath}" alt="null" />
-    </div>
+      ${imageString}
     <div class="contentSection">
         <span>${item.itemName}</span>
         <span>${item.data.itemText?item.data.itemText:''}</span>
         <span>Price: K${item.itemPrice}</span>
     </div>
     <div class="qtyControl" id="${item.itemPrice}">
-      <div class="qtyMinus" id="${item.itemName}">-</div>
+      <button class="qtyMinus" id="${item.itemName}">-</button>
       <div class="qty">${item.quantity}</div>
-      <div class="qtyPlus" id="${item.itemName}">+</div>
+      <button class="qtyPlus" id="${item.itemName}">+</button>
     </div>
     
       `;
@@ -154,7 +213,7 @@
           ///qty mode
           const cartItems = localStorage.getItem("cartList").split("+");
           let newCart = [];
-          cartItems.forEach((cartItem, index) => {
+          cartItems?.forEach((cartItem, index) => {
             if (cartItem) {
               const dataItem = JSON.parse(cartItem);
               if (dataItem.itemName == button.id) {
@@ -166,6 +225,7 @@
               newCart.push(dataItem);
             }
           });
+          
           let newCartStr = "";
           newCart.forEach((cartItem) => {
             newCartStr += `${JSON.stringify(cartItem)}+`;
@@ -193,7 +253,7 @@
         addQty(button.id);
 
            ///qty mode
-           const cartItems = localStorage.getItem("cartList").split("+");
+           const cartItems = localStorage.getItem("cartList")?.split("+");
           let newCart = [];
           cartItems.forEach((cartItem, index) => {
             if (cartItem) {
@@ -234,12 +294,16 @@
 
   function addToTotal(price) {
     totalPrice += price;
+    document.getElementById('cartTotal').value = totalPrice
     document.getElementById("totalPrice").innerText = `Total: K${totalPrice}`;
+    document.getElementById('totalShower').innerText = `Total Cost K${totalPrice}`
   }
 
   function minusTotalPrice(price) {
     totalPrice -= price;
+    document.getElementById('cartTotal').value = totalPrice
     document.getElementById("totalPrice").innerText = `Total: K${totalPrice}`;
+    document.getElementById('totalShower').innerText = `Total Cost K${totalPrice}`
   }
 
   function addQty(id) {
@@ -266,54 +330,190 @@
   document.getElementById("name").value = localStorage.getItem('name')
 document.getElementById("email").value = localStorage.getItem('email')
 document.getElementById("Pnumber").value = localStorage.getItem('Pnumber')
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const deliveryOptions = document.querySelectorAll('.deliveryOption');
+  const proceedButton = document.getElementById('proceed-button');
+
+  deliveryOptions.forEach(function(option) {
+    option.addEventListener('click', function() {
+      deliveryOptions.forEach(function(opt) {
+        opt.classList.remove('selected');
+      });
+      
+      document.getElementById('deliveryType').value = option.id
+      option.classList.add('selected');
+    });
+  });
+
+  const paymentOptions = document.querySelectorAll('.paymentOption');
+
+  paymentOptions.forEach(function(option) {
+    option.addEventListener('click', function() {
+      paymentOptions.forEach(function(opt) {
+        opt.classList.remove('selected');
+      });
+      document.getElementById('paymentType').value = option.id
+      option.classList.add('selected');
+    });
+  });
+
+
+});
+
+
+
 </script>
 
 <style>
-  .cartList {
-    display: flex;
-    width: 100%;
-    min-height: 450px;
-    max-height: 500px;
-    overflow-y: scroll;
-    flex-direction: column;
-    padding-top: 10px;
-    align-items: center;
-  }
 
-  .cartList .cartItem {
-    background-color: #f5f5f5;
-    box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.561);
-    box-shadow: #000;
-    height: fit-content;
-    padding: 15px 4px;
-    width: 95%;
-    max-width: 550px;
-    border-radius: 0px;
-    margin: 5px 0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .cartImage img {
-    width: 80px;
-    height: 80px;
-  }
-  .cartImage {
-    width: 30%;
-    margin: 5px;
-  }
-  .contentSection {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
-  .qtyControl {
-    width: 20%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-right: 10px;
-  }
+.cartList {
+  display: flex;
+  width: 100%;
+  min-height: 450px;
+  max-height: 500px;
+  overflow-y: scroll;
+  flex-direction: column;
+  padding-top: 10px;
+  align-items: center;
+}
+
+.cartList .cartItem {
+  background-color: #fff;
+  border-radius: 0px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  margin: 5px 0px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  width: 90%;
+}
+
+.cartImage img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.cartImage {
+  width: 30%;
+  margin-right: 20px;
+}
+
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.qtyControl {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.qtyControl button {
+  padding: 6px 8px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+}
+.qty{
+  padding: 7px;
+}
+  .deliveryContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: left;
+  padding: 6px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.deliveryOption {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+.deliveryOption p {
+  margin-top: 10px;
+}
+
+.deliveryOption.selected {
+  border-color: #000;
+  background-color: #000;
+  color: #fff;
+}
+
+#proceed-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  text-align: center;
+}
+
+input{
+  border-width: 1px;
+  width:220px;
+  min-width: 220px;
+}
+
+#clearCartContainer{
+  width: 100%;
+  display: flex;
+  justify-content:flex-end;
+
+}
+
+.paymentOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+ 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  width: 100px;
+}
+
+.paymentOption label {
+  margin-left: 10px;
+}
+
+.paymentOption.selected {
+  border-color: #000;
+  background-color: #000;
+  color: #fff;
+}
+  
 </style>

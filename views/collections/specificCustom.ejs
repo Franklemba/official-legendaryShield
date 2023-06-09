@@ -48,22 +48,19 @@
   
   <div class="productDetails">
     <div class="brandName">
-      <h2>custom <%=customItem[0].customType %></h2>
-    </div>
-    <div>
-      <p>
-        <span><%=customItem[0].description%></span>
-        <span class="" id="customPrice"
-          ><i>from</i> K<%=customItem[0].price%></span
-        >
-      </p>
+      <h2>custom <%=customItem[0].brandName %></h2>
+      <span><%=customItem[0].customType %></span>
     </div>
     <div class="price">
       <h3><strong>K <%=customItem[0].price %></strong></h3>
     </div>
     <div>
-      <hr />
-      <label for="">Upload image</label><br />
+      <p>
+        <%=customItem[0].description%>
+      </p>
+    </div>
+    <hr />
+    <div>      <label for="">Upload image</label><br />
       <label for="yesIMG">Yes</label>
       <input type="radio" name="woodIMG" id="yesIMG" />
       <label for="noIMG">No</label>

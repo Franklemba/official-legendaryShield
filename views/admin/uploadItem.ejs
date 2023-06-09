@@ -43,7 +43,7 @@
         <p>K<%= data.price%>  <%= data.type%></p>
         <p><%= data.createdAt.toString().split('GMT')[0] %></p>
         <div class="buttons">
-          <span><a href="/admin/getProduct/<%= data._id%>">update</a></span>
+          <!-- <span><a href="/admin/getProduct/<%= data._id%>">update</a></span> -->
         <span>
           <form action="/admin/delete/<%= data._id%>" method="post">
             <input type="submit" class="btn" value="delete" id="submit" />
@@ -110,13 +110,12 @@
         <select name="customType" id="customType">
           <option value="Non custom">Non custom</option>
           <option value="Flask">Flask</option>
-          <option value="Chopping board">Chopping board</option>
           <option value="Crates">Crates</option>
           <option value="Gift box">Gift box</option>
           <option value="Door signs">Door signs</option>
           <option value="Note books">Note books</option>
           <option value="Necklace">Necklace</option>   
-          <option value="Wooden chop boards">Wooden chop boards</option>
+          <option value="Wooden Chop board">Wooden chop board</option>
           <option value="Wooden Photo frame">Wooden Photo frame</option>
           <option value="Wooden coaster">Wooden coaster</option>
           <option value="Wooden frame">Wooden frame</option>

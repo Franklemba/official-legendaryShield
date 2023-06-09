@@ -46,18 +46,18 @@
   <div class="productDetails">
   <div class="productDetails">
     <div class="brandName">
-      <h2><%=woodItem[0].customType %></h2>
-    </div>
-    <div>
-      <p>
-        <span><%=woodItem[0].description%></span>
-        <span class="" id="customPrice"
-          ><i>from</i> K<%=woodItem[0].price%></span>
-      </p>
+      <h2><%=woodItem[0].brandName %></h2>
+      <span><%=woodItem[0].customType %></span>
     </div>
     <div class="price">
       <h3><strong>K <%=woodItem[0].price %></strong></h3>
     </div>
+    <div>
+      <p>
+        <%=woodItem[0].description%>
+      </p>
+    </div>
+    <hr />
     <div>
       
       <label for="">Upload image</label><br />

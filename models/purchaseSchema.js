@@ -42,6 +42,18 @@ const purchaseSchema = new mongoose.Schema({
     type: String,
     default: mongoose.Types.ObjectId(),
   },
+  deliveryType:{
+    type: String,
+    required:false
+  },
+  cartTotal:{
+    type:String,
+    required:false,
+  },
+  paymentType:{
+    type:String,
+    required:false,
+  }
 });
 const purchaseImgPath = "uploads/purchaseImages";
 

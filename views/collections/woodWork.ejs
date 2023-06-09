@@ -145,14 +145,13 @@
   
         <li id="customCart">
           <a
-            href="/custom/<%=customItem.customType%>"
+            href="/woodwork/<%=customItem.customType%>"
             style="text-decoration: none"
           >
           <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>" alt="<%=customItem.category%>">
-            <span><%=customItem.description%></span>
-            <span class="${data.customName}" id="customPrice"
-              ><i>from</i> K<%=customItem.price%></span
-            >
+          <span id="customPrice"> K<%=customItem.price%></span>
+          <span><%=customItem.brandName%></span>
+          <p><%=customItem.customType%></p>
           </a>
         </li>
         

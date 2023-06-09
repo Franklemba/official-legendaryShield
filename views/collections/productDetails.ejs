@@ -50,7 +50,11 @@
   <div class="productDetails">
     <div class="productDetails">
       <div class="brandName">
-        <h2><%=product.category %>, <i><%=product.brandName %></i></h2>
+        <h2><%=product.brandName%></h2>
+        <span><%=product.category%></span>
+      </div>
+      <div class="price">
+        <h3><strong>K <%=product.price %></strong></h3>
       </div>
       <div>
         <p><strong>Available:</strong> <%=product.quantity%></p>
@@ -65,9 +69,12 @@
         </p>
         <% } %>
       </div>
-      <div class="price">
-        <h3><strong>K <%=product.price %></strong></h3>
+      <div>
+        <p>
+          <%=product.description%>
+        </p>
       </div>
+      
   
       <hr />
       <div class="buttons">
@@ -83,17 +90,7 @@
         </div>
       </div>
   
-      <hr />
-      <p>
-        <i
-          ><strong>Description:</strong>
-          <%=product.description %>
-        </i>
-      </p>
-      <p>
-        <strong>Date uploaded:</strong>
-        <%= product.createdAt.toString().split('GMT')[0]%>
-      </p>
+      
     </div>
     <input
       type="hidden"

@@ -30,14 +30,15 @@ const mongoose = require("mongoose");
 //global database connection
    // online connection////
     mongoose.set('strictQuery', true);
-    // mongoose.connect(process.env.database_Url,{useNewUrlParser: true})
+    // mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true})
     // .then(()=>{
     //     console.log('database is connected')
     // }).catch((err) => console.log(err));
 
 // ////local database connection
 
-mongoose.connect(process.env.DATABASE_Url)
+//mongoose.connect('mongodb://localhost:27017/legendary_shield')
+mongoose.connect(process.env.LIVE_DATABASE_URL,{useNewUrlParser: true})
 .then(()=>{
     console.log('database is connected')
 }).catch((err) => console.log(err));// 
@@ -61,9 +62,12 @@ app.use('/',indexRouter );
 
 app.use('/custom', customRouter);
 app.use('/woodWork', woodWorkRouter);
+
 // app.use('/collections', categoryRouter)
+
 app.use('/store',storeRouter);
-app.use('/auth',authRouter)
+app.use('/auth',authRouter);
+
 app.use('/admin',ensureAuthenticated, adminRouter);
 
 

@@ -133,9 +133,9 @@
               <a id="linkTag" id="linkTag" href="/store/item/<%=jewery._id%>">
                 <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=jewery.mainImg%>" alt="<%=jewery.category%>">
                 <div class="des">
-                    <span><%=jewery.brandName%></span>
-                    <h5><%=jewery.category%></h5>
-                    <span>from K<%=jewery.price%></span>
+                    <span><%=jewery.category%></span>
+                    <h5><%=jewery.brandName%></h5>
+                    <span> K <%=jewery.price%></span>
                 </div>
                 <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
               </a>
@@ -143,8 +143,15 @@
            <% }) %>
            
            
+           <div class="moreButton">
+             <a href="/store/Necklaces">
+               <span>
+                 more
+               </span>
+               <i style="color: black; margin-left:10px;" class="fa fa-chevron-rigth"></i>
+             </a>
+            </div>
         </div>
-        <!-- <button class="viewBtn">view more</button> -->
       </div>
     <% } %>
     
@@ -163,9 +170,9 @@
                    <a id="linkTag" id="linkTag" href="/store/item/<%=watch._id%>">
                      <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=watch.mainImg%>" alt="<%=watch.category%>">
                      <div class="des">
-                         <span><%=watch.brandName%></span>
-                         <h5><%=watch.category%></h5>
-                         <span>from K<%=watch.price%></span>
+                         <span><%=watch.category%></span>
+                         <h5><%=watch.brandName%></h5>
+                         <span>K<%=watch.price%></span>
                      </div>
                      <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
                    </a>
@@ -173,8 +180,15 @@
 
                <% }) %>
 
+               <div class="moreButton">
+                 <a href="/store/Mens Watch">
+                   <span>
+                     more
+                   </span>
+                   <i style="color: black; margin-left:10px;" class="fa fa-chevron-rigth"></i>
+                 </a>
+                </div>
             </div>
-            <!-- <button class="viewBtn">view more</button> -->
         </div>
     <% } %>
     
@@ -194,10 +208,9 @@
                  <a id="linkTag" id="linkTag" href="/custom/<%=custom.customType %>">
                    <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" alt="<%=custom.category%>">
                    <div class="des">
-                       <span><%=custom.brandName%></span>
-                       <h5><%=custom.description%></h5>
-                       <h5><%=custom.customType%></h5>
-                       <span>from K<%=custom.price%></span>
+                       <span><%=custom.customType%></span>
+                       <h5><%=custom.brandName%></h5>
+                       <span> K<%=custom.price%></span>
                    </div>
                    <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
                  </a>
@@ -268,10 +281,9 @@
                  <a id="linkTag" id="linkTag" href="/woodWork/<%=custom.customType %>">
                    <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" alt="<%=custom.category%>">
                    <div class="des">
-                       <span><%=custom.brandName%></span>
-                       <h5><%=custom.description%></h5>
-                       <h5><%=custom.customType%></h5>
-                       <span>from K<%=custom.price%></span>
+                       <span><%=custom.customType%></span>
+                       <h5><%=custom.brandName%></h5>
+                       <span> K<%=custom.price%></span>
                    </div>
                    <a id="linkTag" href="#"><i class="fa fa-shopping-cart cart"></i></a>
                  </a>
