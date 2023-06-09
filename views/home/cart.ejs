@@ -49,16 +49,17 @@
 </div>
 
 <div class="deliveryContainer">
-  <h2>Shipping Options</h2>
+  <h2>Delivery Options</h2>
   <div class="options">
-    <div class="deliveryOption" id="courier">
-     <label for="shipping-option1">Shipping</label>
-      <p>Product will be sent via a discussed courier. Courier service charge is independent of total charge. Appox K80 with kitwe, K200 outside kitwe.</p>
-    </div>
     <div class="deliveryOption selected" id="pickup">
       <label for="shipping-option2">Pickup</label>
       <p>You will recieve an email to come pick up the product from one our locations when the order is complete. No charges on delivery costs.</p>
     </div>
+
+    <div class="deliveryOption" id="courier">
+      <label for="shipping-option1">Shipping</label>
+       <p>Product will be sent via a discussed courier. Courier service charge is independent of total charge. Appox K80 with kitwe, K200 outside kitwe.</p>
+     </div>
   </div>
 </div>
 
@@ -443,19 +444,24 @@ h2 {
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .deliveryOption {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 7px 7px;
   border: 1px solid #ccc;
   border-radius: 0px;
   cursor: pointer;
+  width: 95%;
 }
 
 .deliveryOption p {
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 .deliveryOption.selected {

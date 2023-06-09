@@ -5,8 +5,11 @@ const multerS3 = require("multer-s3");
 const fs = require("fs");
 const path = require("path");
 const Product = require("../models/uploadSchema"); ///imported it
-const News = require("../models/newsSchema")
-const purchaseOrder = require("../models/purchaseSchema")
+const News = require("../models/newsSchema");
+const StartContent = require('../models/StartContentSchema')
+const purchaseOrder = require("../models/purchaseSchema");
+
+
 var ObjectId = require('mongodb').ObjectID;
 const aws = require("aws-sdk");
 const { error } = require("console");
@@ -260,15 +263,14 @@ router.post("/delete/:id", async (req, res) => {
   const currentMainImg = SelectedProduct.mainImg;
   const currentImagesArray = SelectedProduct.images;
   currentImagesArray.push(currentMainImg);
+
   try {
     await SelectedProduct.deleteOne({
       ///deletes selected item
       _id: `${id}`,
     });
     console.log("product successfully deleted");
-
     res.redirect("/admin/uploadItem");
-
     
     if (currentMainImg) {
 
@@ -299,7 +301,8 @@ router.get("/getProduct/:id", async (req, res) => {
 });
 
 
-//Upload news
+//News Routes
+
 router.get("/uploadNews", async (req, res) => {
 
   const news = await News.find({})
@@ -354,17 +357,13 @@ router.post("/deleteNews", async (req, res) => {
   const currentImagesArray = SelectedProduct.images;
   currentImagesArray.push(currentMainImg);
   console.log(id);
-  
-
   const news = await News.deleteOne({_id:newsId})
-
   if (currentMainImg) {
     currentImagesArray.forEach((image)=>{
       deleteImages(image)
     })
     
   }
-
   res.render("admin/uploadNews", {
     newsItems:[],
     message:'News Deleted',
@@ -374,4 +373,67 @@ router.post("/deleteNews", async (req, res) => {
   //    res.send(req.params.id)
 });
 
+
+//start content routes
+
+router.get("/uploadStartContent", async (req, res) => {
+
+  const startContent = await StartContent.find({})
+  console.log(startContent)
+  res.render("admin/uploadStartContent", {
+    startContent:startContent
+  });
+  //    res.send(req.params.id)
+});
+
+router.post("/uploadStartContent", multipleUploads,async (req, res) => {
+  const { startContent} = req.body;
+  let photos = req.files;
+  let images = photos.images;
+  let mainImgName = photos.mainImg[0].originalname;
+  
+  console.log(req.body);
+
+  const startItem = new StartContent({
+    startContent:startContent,
+    mainImg:mainImgName,
+  })
+
+  try{
+    await startItem.save();
+    res.render("admin/adminOptions", {
+      message: "Home Page Item Uploaded successfully",
+      url: '/admin/uploadStartContent',
+      transactionIdRequest:false
+    });
+  }
+  catch{
+    res.send('something went wrong')
+  }
+});
+
+router.post("/deleteStartContent", async (req, res) => {
+  const {newsId} = req.body;
+  const id = req.body.newsId;
+  const SelectedProduct = await StartContent.findById(`${id}`);
+  const currentMainImg = SelectedProduct.mainImg;
+ 
+  console.log(id);
+  const news = await News.deleteOne({_id:newsId})
+  if (currentMainImg) {
+      deleteImages([currentMainImg])
+  }
+  res.render("admin/uploadStartContent", {
+    newsItems:[],
+    message:'Home Page Content Deleted',
+    url:'/admin/uploadStartContent',
+    transactionIdRequest:false
+  });
+  //    res.send(req.params.id)
+});
+
 module.exports = router;
+
+
+
+

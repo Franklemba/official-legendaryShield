@@ -1,0 +1,108 @@
+
+<style>
+    .row .inputbox select {
+      font-size: 15px;
+    }
+    .row .inputbox textarea {
+      padding: 10px;
+      font-size: 10px;
+      width: 60vw;
+      height: 120px;
+    }
+    .date-container{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .date-container input{
+      max-width: 35vw;
+    }
+  </style>
+  
+  <section class="uploadSection" id="uploadSection">
+    <!-- <h1 class="heading"> <span>contact</span> us </h1> -->
+  
+    <h2 class="adminHeader">Start Content</h2>
+    <div class="button-section">
+      <button id="upload-btn" class="active" onclick="toggleButton('upload-btn')">
+        Upload
+      </button>
+      <button id="delete-btn" onclick="toggleButton('delete-btn')">
+        Delete
+      </button>
+    </div>
+    
+<section class="orderList upload active" id="upload-btn">
+
+    <div class="row">
+      <form
+        action="/admin/uploadStartContent"
+        method="POST"
+        id="uploadSubmit"
+        enctype="multipart/form-data"
+      >
+
+        <div class="inputbox file">
+          <label for="mainImg">
+            <h3>Upload main image:</h3>
+          </label>
+          <input type="file" name="mainImg" required />
+        </div>
+
+        <div class="inputbox">
+            <!-- <label for="price"><strong>Enter price:</strong></label> -->
+            <textarea
+              type="text"
+              id="startContent"
+              name="startContent"
+              placeholder="Decriptive, Marketable, Content"
+              required
+            ></textarea>
+          </div>
+     
+       <div class="date-container">
+        <button type="submit" id="submit">Submit</button>
+       </div>
+      </form>
+    </div>
+    <div class="preview"></div>
+  </section>
+
+  
+<section class="orderList delete" id="delete-btn">
+  <% startContent.forEach(startItem => { %>
+    <div class="orderItem" id="<%= startItem._id %>">
+      <div>
+        <span class="contentSection">
+        <img src="<%=startItem.mainImg%>" width="100px" height="100px">
+          <p> Content<%= startItem.startContent%></p>
+        </span>
+        <form class="buttonSection" method="post" action="/admin/deleteStartItem">
+          <button class="delete">Delete</button>
+          <input type="hidden" name="startItemId" value="<%= startItem._id %>">
+        </form>
+      </div>
+    </div>
+   <% })%>
+</section>
+
+  
+  <script>
+const sections = document.querySelectorAll('section')
+function toggleButton(id) {
+    var activeBtn = document.querySelector("button.active");
+    activeBtn.classList.remove("active");
+
+    document.querySelector(`button#${id}`).classList.add("active");
+
+    sections.forEach((section) => {
+      section.classList.remove("active");
+    });
+
+    document.querySelector(`section#${id}`).classList.add("active");
+
+  }
+    
+  </script>
+  
