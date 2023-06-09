@@ -139,6 +139,7 @@
       </p>
     </div>
     <hr />
+
     <div class="customItems">
       <ul>
         <% customItems.forEach(customItem=>{%>
@@ -151,7 +152,7 @@
           <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>" alt="<%=customItem.category%>">
             <span><%=customItem.description%></span>
             <span class="${data.customName}" id="customPrice"
-              ><i>from</i> K<%=customItem.price%></span
+              > K<%=customItem.price%></span
             >
           </a>
         </li>
@@ -159,7 +160,9 @@
         <%})%>
       </ul>
     </div>
+    
   </div>
+
 </section>
 
 <script>

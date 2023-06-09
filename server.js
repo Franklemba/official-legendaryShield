@@ -30,17 +30,17 @@ const mongoose = require("mongoose");
 //global database connection
    // online connection////
     mongoose.set('strictQuery', true);
-    mongoose.connect(process.env.database_Url,{useNewUrlParser: true})
-    .then(()=>{
-        console.log('database is connected')
-    }).catch((err) => console.log(err));
+    // mongoose.connect(process.env.database_Url,{useNewUrlParser: true})
+    // .then(()=>{
+    //     console.log('database is connected')
+    // }).catch((err) => console.log(err));
 
 // ////local database connection
 
-// mongoose.connect(process.env.DATABASE_Url)
-// .then(()=>{
-//     console.log('database is connected')
-// }).catch((err) => console.log(err));// 
+mongoose.connect(process.env.DATABASE_Url)
+.then(()=>{
+    console.log('database is connected')
+}).catch((err) => console.log(err));// 
 
 
 app.use('/',indexRouter );

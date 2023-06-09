@@ -1,66 +1,172 @@
 
-<section id="product1" class="section-p1">
-    <h2>
-        <%- productName %>
-    </h2>
-    <p>Latests <%- productName %> brands available</p>
-       <p><button><a href="/cart">view cart</a></button></p>
+<section  class="custom">
+    <div class="cusOverlay"></div>
+    <div class="selectedItem">
+      <span class="closeModal"> &times; </span>
+      <form action="/custom" enctype="multipart/form-data" method="post">
+        <!-- <hr> -->
+        <div class="inputIMGbox">
+          <h3>custom <span id="cartItem"> </span></h3>
+          <div class="formImg"></div>
+          <label for="images"> upload sample images (Optional) </label>
+          <input id="uploadfiles" type="file" name="images" multiple />
+        </div>
+        <!-- <hr> -->
+        <br />
+        <div class="orderQty">
+          <input
+            type="number"
+            min="1"
+            max="501"
+            name="quantity"
+            id="quantity"
+            placeholder="qty"
+            required
+          />
+          <span>
+            <div id="cartMinus">-</div>
+            <div>|</div>
+            <div id="cartPlus">+</div>
+          </span>
+        </div>
+        <div class="inputbox">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="enter  name"
+            required
+          />
+        </div>
+        <div class="inputbox">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email"
+            required
+          />
+        </div>
+        <div class="inputbox">
+          <input
+            type="number"
+            name="Pnumber"
+            id="Pnumber"
+            placeholder="phone number"
+            required
+          />
+        </div>
+        <div class="inputbox">
+          <textarea
+            name="description"
+            id="description"
+            cols="30"
+            rows="5"
+            placeholder="(Optional) any descriptions on your custom item"
+          ></textarea>
+        </div>
+        <input type="submit" class="btn" value="Send" id="submit" />
+        <div class="cusHiddenContent"></div>
+        <p>
+          <i>to talk to custom designer directly:</i>
+          <span>call: <strong>696968965</strong></span>
+          <span>whatsApp: <strong>985584759</strong></span>
+        </p>
+      </form>
+    </div>
+  
 
- <div class="itemsContainer">
-    <% products.forEach(data=> { %>
-        <div class="pro-container-sub">
-            <!-- ///////////product 1///////////// -->
-          <a href="/store/item/<%=data._id%>">  
-            <div class="pro">
-                <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>" alt="">
-                <div class="des">
-                    <span>
-                        <strong><%= data.category %></strong> <i><%=data.brandName %></i>
-                    </span>
-                    <h5>
-                        <strong>Quantity:</strong><%=data.quantity %>
-                    </h5>
-                       
-                    <h3>
-                        K<%= data.price%>
-                    </h3>
-                </div>
-                <i class="fa fa-shopping-cart cart"></i>
+    <div class="items">
+        <div
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+          src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=products[0].mainImg%>"
+            class="d-block w-100"
+            alt="..."
+          />
+          <div class="imgText">
+            <p><%=products[0].brandName%></p>
+          </div>
+        </div>
+
+        <% products.forEach(customItem=>{%>
+  
+          <div class="carousel-item">
+            <img
+            src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>"
+              class="d-block w-100"
+              alt="..."
+            />
+            <div class="imgText">
+                <p><%=customItem.brandName%></p>
             </div>
-           </a>
-         </div>       
+          </div>
+   
+          <%})%>
 
-            <% }) %>
- </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        <!-- <p class="prevBtn">&DoubleLeftArrow;</p> -->
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+        </div>
+        
+            <hr />
+            <div class="customText">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed cupiditate
+                quod quasi maxime minus voluptatem accusantium et quis ea id unde,
+                praesentium non alias quos, cumque quidem obcaecati adipisci a!
+              </p>
+            </div>
+            <hr />
+
+            <div class="customItems">
+                <ul>
+                  <% products.forEach(data=>{%>
+            
+                  <li id="customCart">
+                    <a
+                      href="/store/item/<%=data._id%>"
+                      style="text-decoration: none"
+                    >
+                    <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>" alt="<%=data.category%>">
+                      <span><%=data.description%></span>
+                      <span class="${data.customName}" id="customPrice"
+                        > K<%=data.price%></span
+                      >
+                    </a>
+                  </li>
+                  
+                  <%})%>
+                </ul>
+              </div>
+    </div>
+
+
 
 </section>
-<style>
-    .itemsContainer{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
-    .pro img{
-        height: 40vh;
-    }
-    .pro-container-sub{
-        width: fit-content;
-        margin: 2%;
-    }
-    
-    @media (max-width: 799px) {
-        .pro img{
-            height: 30vh;
-        }
-    }
-    @media (max-width: 477px) {
-            .pro img{
-                height: 25vh;
-            }
-    }
 
-</style>
 <script>
     let pro = document.querySelectorAll('.pro');
      
