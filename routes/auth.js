@@ -29,6 +29,7 @@ router.get('/registerdesigner/:username/:password',(req, res) =>{
   res.send('designer created successfully');
 });
 
+
 router.post('/loginAdmin', (req, res, next)=>{
 
     passport.authenticate('local', {
