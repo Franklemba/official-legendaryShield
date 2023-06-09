@@ -12,7 +12,7 @@ var defaultClient = SibApiV3Sdk.ApiClient.instance;
 const purchaseOrder = require("../models/purchaseSchema");
 const Product = require("../models/uploadSchema");
 const News = require("../models/newsSchema");
-
+const StartContent = require('../models/StartContentSchema')
 const mongoose = require('mongoose')
 
 
@@ -54,7 +54,7 @@ router.get("/", async (req, res) => {
 
   const news = await News.find({})
   console.log(news)
-  
+  const startContents = await StartContent.find({})
 
   // console.log(watchArray);
   try{
@@ -65,7 +65,8 @@ router.get("/", async (req, res) => {
         newsItems:news,
         CustomProducts:customProducts,
         WoodworkProducts: woodworkProducts,
-        message:null
+        message:null,
+        startItems:startContents
     });
   }catch(err){
     res.send("error fetching promo products")
@@ -211,7 +212,8 @@ orderList.forEach((orderItem)=>{
         watchCollection:[],
         newsItems:news,
         CustomProducts:[],
-        WoodworkProducts:[]
+        WoodworkProducts:[],
+        startItems:[]
       });
     })
     .catch((err) => {
