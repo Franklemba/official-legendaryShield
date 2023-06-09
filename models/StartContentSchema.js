@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const path = require('path')
 const mainImgPath = 'uploads/mainImg';
+const imagesPath = 'uploads/startContentImages';
 
 
 const startContentSchema = new mongoose.Schema({
@@ -22,4 +23,5 @@ startContentSchema.virtual('ImagesPath').get(function(){
 })
 
 module.exports = mongoose.model('StartContent',startContentSchema )
-module.exports.mainImgPath = mainImgPath
+module.exports.mainImgPath = mainImgPath;
+module.exports.imagesPath = imagesPath
