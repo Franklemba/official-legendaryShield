@@ -12,9 +12,8 @@ router.get('/', async (req,res)=>{
 })
 
 
-router.get('/:custom_Item', async (req,res)=>{
-    const customItemName = req.params.custom_Item
-    const CustomItem = await Product.find({customType:customItemName}).limit(1);
+router.get('/:uniqueKey', async (req,res)=>{
+    const CustomItem = await Product.findById(`${req.params.uniqueKey}`)
     
     res.render('collections/specificCustom', {
         customItem:CustomItem,

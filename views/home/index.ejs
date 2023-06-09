@@ -177,7 +177,7 @@
              <% CustomProducts?.forEach(custom => { %>
               
               <div class="pro">
-                 <a id="linkTag" id="linkTag" href="/custom/<%=custom.customType %>">
+                 <a id="linkTag" id="linkTag" href="/custom/<%=custom._id %>">
                    <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" alt="<%=custom.category%>">
                    <div class="des">
                        <span><%=custom.customType%></span>
@@ -250,7 +250,7 @@
              <% WoodworkProducts?.forEach(custom => { %>
               
               <div class="pro">
-                 <a id="linkTag" id="linkTag" href="/woodWork/<%=custom.customType %>">
+                 <a id="linkTag" id="linkTag" href="/woodWork/<%=custom._id %>">
                    <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" alt="<%=custom.category%>">
                    <div class="des">
                        <span><%=custom.customType%></span>

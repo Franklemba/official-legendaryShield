@@ -30,7 +30,7 @@ const mongoose = require("mongoose");
 //global database connection
    // online connection////
     mongoose.set('strictQuery', true);
-    // mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true})
+    // mongoose.connect(process.env.database_Url,{useNewUrlParser: true})
     // .then(()=>{
     //     console.log('database is connected')
     // }).catch((err) => console.log(err));

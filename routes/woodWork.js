@@ -12,9 +12,9 @@ router.get("/", async (req, res) => {
 });
 
 
-router.get("/:itemName", async (req, res) => {
-  const woodItemName = req.params.itemName;
-  const woodItem = await Product.find({customType:woodItemName}).limit(1);
+router.get("/:uniqueKey", async (req, res) => {
+  const woodItem = await Product.findById(`${req.params.uniqueKey}`)
+
 
       res.render("collections/specificWood", { woodItem });
  
