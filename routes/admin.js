@@ -67,8 +67,10 @@ router.get("/", async(req, res) => {
   console.log(req.user)
   if(req.user.userName == 'LegendaryAdmin'){
     res.render("admin/adminOptions");
-  }else{
+  }else if(req.user.userName == 'LegendaryDesigner'){
     res.render("admin/designerOptions");
+  }else{
+    res.render("admin/secretaryOptions");
   }
 });
 
@@ -402,7 +404,7 @@ router.post("/uploadStartContent", multipleUploads,async (req, res) => {
   try{
     await startItem.save();
     res.render("admin/adminOptions", {
-      message: "Home Page Item Uploaded successfully",
+      message: "Home Page Content Uploaded successfully",
       url: '/admin/uploadStartContent',
       transactionIdRequest:false
     });
@@ -412,14 +414,14 @@ router.post("/uploadStartContent", multipleUploads,async (req, res) => {
   }
 });
 
-router.post("/deleteStartContent", async (req, res) => {
-  const {newsId} = req.body;
-  const id = req.body.newsId;
+router.post("/deleteStartItem", async (req, res) => {
+  const {startItemId} = req.body;
+  const id = startItemId;
   const SelectedProduct = await StartContent.findById(`${id}`);
   const currentMainImg = SelectedProduct.mainImg;
  
   console.log(id);
-  const news = await News.deleteOne({_id:newsId})
+  const item = await StartContent.deleteOne({_id:id})
   if (currentMainImg) {
       deleteImages([currentMainImg])
   }
@@ -427,7 +429,8 @@ router.post("/deleteStartContent", async (req, res) => {
     newsItems:[],
     message:'Home Page Content Deleted',
     url:'/admin/uploadStartContent',
-    transactionIdRequest:false
+    transactionIdRequest:false,
+    startContent:[]
   });
   //    res.send(req.params.id)
 });

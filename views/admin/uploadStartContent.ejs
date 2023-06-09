@@ -74,8 +74,8 @@
   <% startContent.forEach(startItem => { %>
     <div class="orderItem" id="<%= startItem._id %>">
       <div>
+        <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=startItem.mainImg%>" alt="Content Image">
         <span class="contentSection">
-        <img src="<%=startItem.mainImg%>" width="100px" height="100px">
           <p> Content<%= startItem.startContent%></p>
         </span>
         <form class="buttonSection" method="post" action="/admin/deleteStartItem">
