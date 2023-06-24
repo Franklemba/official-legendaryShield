@@ -341,7 +341,7 @@ body {
     padding: 0px;
     display: block;
   }
-  #carouselExampleControls img {
+  .specificCustom #carouselExampleControls img {
     /* height: 40vh; */
     height: 290px;
   }
