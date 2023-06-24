@@ -29,15 +29,15 @@ overlay.addEventListener('click',()=>{
 
 // console.log("what the heck is going on here")
 
-searchBar.addEventListener('click',()=>{
-    if(check == true){
-        search.classList.add('active');
-        check = false;
-    }else if(check == false){
-        search.classList.remove('active');
-        check = true; 
-    }
-})
+// searchBar.addEventListener('click',()=>{
+//     if(check == true){
+//         search.classList.add('active');
+//         check = false;
+//     }else if(check == false){
+//         search.classList.remove('active');
+//         check = true; 
+//     }
+// })
 
 store.addEventListener('click', () => {
     storeNavbar.classList.add('active');
