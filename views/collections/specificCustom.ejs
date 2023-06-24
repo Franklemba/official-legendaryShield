@@ -6,14 +6,14 @@
 >
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>" alt="<%=customItem.category%>">
+      <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>" alt="<%=customItem.category%>">
       <!-- <img src="images/img10.png"  alt="..."> -->
     </div>
 
     <% for( let i=0; i < customItem.images.length; i++ ) { %>
     <div class="carousel-item active">
       <img
-      src="https://legendary-shield-uploads.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.images[i]%>"
+      src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.images[i]%>"
         class="d-block w-100"
         alt="..."
       />
@@ -48,8 +48,7 @@
   
   <div class="productDetails">
     <div class="brandName">
-      <h2>custom <%=customItem.brandName %></h2>
-      <span><%=customItem.customType %></span>
+      <h2> <%=customItem.brandName %></h2>
     </div>
     <div class="price">
       <h3><strong>K <%=customItem.price %></strong></h3>
