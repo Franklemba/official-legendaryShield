@@ -84,8 +84,8 @@ ul {
     bottom: -100%;
     display: none;
     width: 100%;
-    position: absolute;
-    background-color: rgba(51, 48, 48, 0.516);
+    position: fixed;
+    background-color: rgba(51, 48, 48, 0.616);
     z-index: 300;
 }
 .cusOverlay.active{

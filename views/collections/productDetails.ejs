@@ -69,13 +69,28 @@
         </p>
         <% } %>
       </div>
-      <div>
+      <div id="productDescription">
         <p>
           <%=product.description%>
         </p>
       </div>
       
-  
+      <hr />
+      <ul>
+      
+        <li>
+          <i>
+            <span id="textPreview">Dispatch will be within 24 hours and delivery takes 2-4 working days</span>.
+            </i
+          >
+        </li>
+        <li>
+          <i
+            >
+            <span id="textPreview">Orders with atmost urgency will be an exception</span>(Please communicate urgency upon ordering via email).</i
+          >
+        </li>
+      </ul>
       <hr />
       <div class="buttons">
         <div id="buyBtn" id="<%=product._id%>">
@@ -91,6 +106,7 @@
       </div>
   
       
+
     </div>
     <input
       type="hidden"

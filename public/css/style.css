@@ -343,7 +343,7 @@ body {
   }
   #carouselExampleControls img {
     /* height: 40vh; */
-    height: 260px;
+    height: 280px;
   }
 }
 
@@ -612,3 +612,7 @@ input {
   
 }
 
+
+div#productDescription p{
+font-size:16px ;
+}
