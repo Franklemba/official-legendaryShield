@@ -313,6 +313,10 @@ footer a:hover {
     right: 100%;
     transition: 0.3s ease-in-out;
   }
+  footer{
+    display: flex;
+    flex-direction: column;
+  }
 }
 /*_______________________________________devices of maximum width of #477  */
 

@@ -32,15 +32,23 @@ const imageMimeType = [
 ];
 
 aws.config.update({
-   secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY,
-   accessKeyId:process.env.AWS_ACCESS_KEY_ID,
-   region:process.env.AWS_REGION
+  secretAccessKey:"DoZzXNIrsP4e4RFzt6np8/zmd5x02mqPcUYP11qA",
+  accessKeyId:"AKIAWDHVUZREUENJ7RWN",
+  region:"ap-south-1"
 })
+
+
+// aws.config.update({
+//    secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY,
+//    accessKeyId:process.env.AWS_ACCESS_KEY_ID,
+//    region:process.env.AWS_REGION
+// })
 
 const s3 = new aws.S3();
 const upload = multer({
   storage: multerS3({
-    bucket: process.env.AWS_BUCKET_NAME,
+    // bucket: process.env.AWS_BUCKET_NAME,
+    bucket:"legendaryshield",
     s3:s3,
     acl:"public-read",
     key: (req,file,cb)=>{
@@ -58,7 +66,6 @@ const multipleUploads = upload.fields([
   { name: "mainImg", maxCount: 1 },
   { name: "images", maxCount: 6 },
 ]);
-
 
 
 ///create product
@@ -86,7 +93,6 @@ router.get("/uploadItem", async(req, res) => {
 res.redirect('/')
   }
 });
-
 
 
 router.get("/customOrders", async (req, res) => {
@@ -129,11 +135,15 @@ router.get("/woodWorkOrders", async (req, res) => {
     res.status(500).send(err);
   }
 });
+// purchaseOrder.deleteMany({}).then((done)=>{
+//   console.log(done);
+// });
 
 router.get("/orders", async (req, res) => {
   try {
     const purchaseOrders = await purchaseOrder.find({}).sort({purchasedAt:-1});
     console.log(purchaseOrders);
+    
     res.render("admin/orders", { purchaseOrders });
   } catch (err) {
     res.status(500).send(err);
@@ -149,6 +159,7 @@ router.post("/updatePurchaseOrder/:id/:state", async (req, res) => {
         res.redirect("/admin/orders");
       });
     }
+
     if (req.params.state == "unread") {
       console.log("sas");
       order.isRead = false;
@@ -254,12 +265,14 @@ router.get("/all", async (req, res) => {
 
   async function deleteImages(item){
       await s3.deleteObject({
-       Bucket: process.env.AWS_BUCKET_NAME,
+      //  Bucket: process.env.AWS_BUCKET_NAME,
+      Bucket:"legendaryshield",
        Key: `uploads/${item}`
       }).promise();
     }
 ///// deleting selected product
 router.post("/delete/:id", async (req, res) => {
+
   const id = req.body.id;
   const SelectedProduct = await Product.findById(`${id}`);
   const currentMainImg = SelectedProduct.mainImg;
@@ -303,15 +316,38 @@ router.get("/getProduct/:id", async (req, res) => {
 });
 
 
+
+
 //News Routes
 
 router.get("/uploadNews", async (req, res) => {
 
-  const news = await News.find({})
+  const news = await News.find({});
+
   res.render("admin/uploadNews", {
     newsItems:news
   });
+
   //    res.send(req.params.id)
+});
+
+router.post("/updateQty/:buttonId/:quantity", async(req, res) => {
+  const buttonId  = req.params.buttonId;
+  const quantity = req.params.quantity;
+
+  console.log(buttonId+'ds'+ quantity);
+  //    res.send(req.params.id)
+
+  const SelectedProduct = await Product.findById(`${buttonId}`);
+ 
+  const newQuantity = SelectedProduct.quantity - quantity;
+ 
+ SelectedProduct.updateOne({quantity:newQuantity})
+ .then((done)=>{
+    console.log(done)
+  }).catch((err)=>{
+    console.log(err)
+  })
 });
 
 router.post("/uploadNews", multipleUploads,async (req, res) => {

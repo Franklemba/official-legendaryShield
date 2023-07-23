@@ -11,6 +11,7 @@
           src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=product.mainImg%>"
           class="d-block w-100"
           alt="..."
+          loading="lazy"
         />
         <!-- <img src="images/img10.png"  alt="..."> -->
       </div>
@@ -21,6 +22,7 @@
           src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=product.images[i]%>"
           class="d-block w-100"
           alt="..."
+          loading="lazy"
         />
       </div>
       <% } %>
@@ -93,16 +95,17 @@
       </ul>
       <hr />
       <div class="buttons">
+        <div class="cartBtn" id="<%=product._id%>">
+          <span>Add to cart</span>
+        </div>
         <div id="buyBtn" id="<%=product._id%>">
           <span>
-            <a style="color: white; text-decoration: none" href="/cart"
+            <a style="color: rgb(0, 0, 0); text-decoration: none" href="/cart"
               >Buy it now</a
             >
           </span>
         </div>
-        <div class="cartBtn" id="<%=product._id%>">
-          <span>Add to cart</span>
-        </div>
+       
       </div>
   
       
@@ -119,6 +122,7 @@
       id="itemImages"
     />
     <input type="hidden" value="<%=product.price%>" id="itemPrice" />
+    <input type="hidden" value="<%=product._id%>" id="itemId">
   </div>
   
 </section>
@@ -127,13 +131,14 @@
   const itemName = document.getElementById("itemName").value;
   const itemImage = document.getElementById("itemImages").value;
   const itemPrice = document.getElementById("itemPrice").value;
-
+  const itemId = document.getElementById("itemId").value;
   //console.log(itemName+itemPrice+itemImage)
   const cartData = JSON.stringify({
     itemName,
     itemPrice,
     itemImage,
     quantity: 1,
+    itemId,
     productType:'regular',
     data: { imagePath: "" },
   });

@@ -1,4 +1,4 @@
-require("dotenv").config()
+// require("dotenv").config()
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts');
@@ -21,12 +21,12 @@ const authRouter = require('./routes/auth');
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views/')
 app.set('layout', 'layouts/layout')
-app.use(expressLayouts)
+app.use(expressLayouts);
 app.use(express.static(__dirname + '/public/'));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: false }));
 
 const mongoose = require("mongoose");
-
+  
 //global database connection
    // online connection////
     mongoose.set('strictQuery', true);
@@ -38,7 +38,7 @@ const mongoose = require("mongoose");
 // ////local database connection
 
 //mongoose.connect('mongodb://localhost:27017/legendary_shield')
-mongoose.connect(process.env.LIVE_DATABASE_URL,{useNewUrlParser: true})
+ mongoose.connect("mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser: true})
 .then(()=>{
     console.log('database is connected')
 }).catch((err) => console.log(err));// 

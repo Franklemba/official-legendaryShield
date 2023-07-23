@@ -131,7 +131,7 @@ gap: 10px;
 .orderOptions button{
     padding: 6px;
 }
-.orderItem button {
+.orderItem button,.confirmOrderAdmin {
   width: 95px;
   height: fit-content;
   border: none;
@@ -258,4 +258,23 @@ button#deleted-btn.active {
   width: 100%;
   height: 100%;
 }
+}
+
+.confirmOrderAdmin{
+min-width: 86px;
+border: 1px solid black;
+display: flex;
+align-items: center;
+justify-content: center;
+padding:4px;
+color: rgb(213, 213, 213);
+background-color: #000000;
+flex-direction: column;
+border-radius: 6px 6px;
+box-shadow: 0px 0px 5px 0.4px #000;
+text-align: center;
+}
+span.orderItemContainer{
+  display: flex;
+  flex-direction: row;
 }

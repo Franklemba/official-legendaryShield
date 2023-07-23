@@ -87,6 +87,7 @@
           src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=customItems[0].mainImg%>"
             class="d-block w-100"
             alt="..."
+            loading="lazy"
           />
           <div class="imgText">
             <p><%=customItems[0].brandName%></p>
@@ -100,6 +101,7 @@
             src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>"
               class="d-block w-100"
               alt="..."
+              loading="lazy"
             />
             <div class="imgText">
               <p><%=customItem.brandName%></p>
@@ -149,7 +151,7 @@
             href="/custom/<%=customItem._id%>"
             style="text-decoration: none"
           >
-          <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>" alt="<%=customItem.category%>">
+          <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=customItem.mainImg%>" loading="lazy" alt="<%=customItem.category%>">
           <span id="customPrice"> K<%=customItem.price%></span>
             <span><%=customItem.brandName%></span>
            

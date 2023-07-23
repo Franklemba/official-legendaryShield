@@ -73,7 +73,7 @@
           <a href="/store/item/<%=data._id%>">
             <div class="item">
               <div class="itemImg">
-                 <img width="200" src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>" alt="Promo Image">
+                 <img width="200" src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>" loading="lazy" alt="Promo Image">
                  <div class="itemImgText">
                    <span id="newPrice">save <%= (((data.oldPrice - data.price)/data.oldPrice)*100).toFixed(0) %>%</span>
                    <p><%= data.brandName %></p>
@@ -103,7 +103,7 @@
            <% jeweryCollection?.forEach(jewery => { %>
             <div class="pro">
               <a id="linkTag" id="linkTag" href="/store/item/<%=jewery._id%>">
-                <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=jewery.mainImg%>" alt="<%=jewery.category%>">
+                <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=jewery.mainImg%>" loading="lazy" alt="<%=jewery.category%>">
                 <div class="des">
                     <span><%=jewery.category%></span>
                     <h5><%=jewery.brandName%></h5>
@@ -140,7 +140,7 @@
                 
                 <div class="pro">
                    <a id="linkTag" id="linkTag" href="/store/item/<%=watch._id%>">
-                     <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=watch.mainImg%>" alt="<%=watch.category%>">
+                     <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=watch.mainImg%>" loading="lazy" alt="<%=watch.category%>">
                      <div class="des">
                          <span><%=watch.category%></span>
                          <h5><%=watch.brandName%></h5>
@@ -178,7 +178,7 @@
               
               <div class="pro">
                  <a id="linkTag" id="linkTag" href="/custom/<%=custom._id %>">
-                   <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" alt="<%=custom.category%>">
+                   <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" loading="lazy" alt="<%=custom.category%>">
                    <div class="des">
                      
                        <h5><%=custom.brandName%></h5>
@@ -217,11 +217,11 @@
     <div id="carouselExampleControls" class=" carousel slide " data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/images/customImg.jpg"   class="d-block w-100" alt="...">
+          <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/images/customImg.jpg" loading="lazy"  class="d-block w-100" alt="...">
         </div>
         <% WoodworkProducts.forEach(image => { %>
           <div class="carousel-item">
-            <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=image.mainImg%>" alt="<%=image.customType%>">
+            <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=image.mainImg%>" loading="lazy" alt="<%=image.customType%>">
           </div>
         <% }) %>
 
@@ -251,7 +251,7 @@
               
               <div class="pro">
                  <a id="linkTag" id="linkTag" href="/woodWork/<%=custom._id %>">
-                   <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" alt="<%=custom.category%>">
+                   <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" loading="lazy" alt="<%=custom.category%>">
                    <div class="des">
                   
                        <h5><%=custom.brandName%></h5>
@@ -315,7 +315,7 @@
 
                 <div class="news-item carousel-item <%=index==0?'active':''%>">
                   <div class="image-container">
-                   <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=newsItem.mainImg%>" alt="Content Image">
+                   <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=newsItem.mainImg%>" loading="lazy" alt="Content Image">
                    <p class="news-date"><%=newsItem.date%></p>
                    <h3 class="news-title "><%=newsItem.newsTitle%></h3>
                   </div>

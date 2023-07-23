@@ -84,7 +84,8 @@
   const forms = document.querySelectorAll(".buttonSection");
   const markReadButtons = document.querySelectorAll(".markRead");
   const deleteButtons = document.querySelectorAll(".delete");
-  const eraseButtons = document.querySelectorAll('.erase')
+  const eraseButtons = document.querySelectorAll(".erase");
+
   deleteButtons.forEach((deleteButton) => {
     deleteButton.addEventListener("click", () => {
       forms.forEach((form) => {
@@ -99,7 +100,7 @@
 
   markReadButtons.forEach((markReadButton) => {
     markReadButton.addEventListener("click", () => {
-      const state = markReadButton.innerText =='Mark Read'?"read":"unread"
+      const state = markReadButton.innerText == "Mark Read" ? "read" : "unread";
       forms.forEach((form) => {
         if (form.id == markReadButton.parentElement.id) {
           form.action = `/admin/updatePurchaseOrder/${form.id}/${state}`;
@@ -112,7 +113,6 @@
 
   eraseButtons.forEach((eraseButton) => {
     eraseButton.addEventListener("click", () => {
-
       forms.forEach((form) => {
         if (form.id == eraseButton.parentElement.id) {
           form.action = `/admin/updatePurchaseOrder/${form.id}/erase`;
@@ -123,10 +123,9 @@
     });
   });
 
-
-  document.querySelectorAll('.restore').forEach((eraseButton) => {
+  document.querySelectorAll(".restore").forEach((eraseButton) => {
     eraseButton.addEventListener("click", () => {
-      const state = eraseButton.innerText =='Mark Read'?"read":"unread"
+      const state = eraseButton.innerText == "Mark Read" ? "read" : "unread";
       forms.forEach((form) => {
         if (form.id == eraseButton.parentElement.id) {
           form.action = `/admin/updatePurchaseOrder/${form.id}/restore`;
@@ -137,37 +136,42 @@
     });
   });
 
-  const orderItems = document.querySelectorAll('.orderItem')
+  const orderItems = document.querySelectorAll(".orderItem");
 
-  orderItems.forEach(orderItem=>{
-    orderItem.firstElementChild.firstElementChild.addEventListener('click', async()=>{
-      screen.classList.add('open')
-      const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            id:orderItem.id
-        })
-    }
+  orderItems.forEach((orderItem) => {
+    orderItem.firstElementChild.firstElementChild.addEventListener(
+      "click",
+      async () => {
+        screen.classList.add("open");
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: orderItem.id,
+          }),
+        };
+   
+        const res = await fetch(`/purchaseOrder/${orderItem.id}`, options);
 
-    const res = await fetch(`/purchaseOrder/${orderItem.id}`, options);
-    
-    const data = await res.json();
-    //console.log(data)
-    let currCart = data.orderData
-    console.log(currCart)
-    let cartString = '';
-    currCart.forEach(data=>{
-      cartString += `<div>x${data.quantity} ${data.itemName} K${data.itemPrice} custom text:"${data.data.text}"</div>
+        const data = await res.json();
+        // console.log(data)
+        let currCart = data.orderData;
+        console.log(currCart);
+        let cartString = "";
+        currCart.forEach((data) => {
+          cartString += `<span class="orderItemContainer">
+        <div>x${data.quantity} ${data.itemName} K${data.itemPrice} custom text:"${data.data.text}"</div>
       <img class="customerUploadImage" src="/uploads/purchaseImages/${data.data.imagePath}" alt="null" />
-       <hr>`;
-    })
+      <span class="confirmOrderAdmin" id="${data.itemId}">${data.qtyUpdated?"stock updated":`<div id="${data.quantity}">confirm</div><div style="color:red;">stock-${data.quantity}</div>`}</span>
+      </span>
+      <hr>`;
+        });
 
-console.log(cartString);
+        console.log(cartString);
 
-      const messageDetails = `
+        const messageDetails = `
         <br>
         <br>
         <h4>Name: ${data.name}</h4>
@@ -184,18 +188,18 @@ console.log(cartString);
           ${cartString}
           <h5>Total: K${data.cartTotal}<h5/>
           <h5>Payment Type:${data.paymentType}<h5/>
-          
           <br>
           <h4>Date: ${data.purchasedAt}</h4>
           <br>
-        `;
-        document.querySelector('.screen .content section').innerHTML = messageDetails;
-        // Update the HTML with the detailed message information      
 
-    })
-  })
-
-
+       `;
+        document.querySelector(".screen .content section").innerHTML =
+          messageDetails;
+        // Update the HTML with the detailed message information
+        resetListener();
+      }
+    );
+  });
 
   function toggleButton(id) {
     var activeBtn = document.querySelector("button.active");
@@ -208,6 +212,37 @@ console.log(cartString);
     });
 
     document.querySelector(`section#${id}`).classList.add("active");
+  }
 
+  async function resetListener() {
+    const updateStockbuttons = document.querySelectorAll(".confirmOrderAdmin");
+    updateStockbuttons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        console.log(button)
+
+     
+              const buttonId = button.id;
+              const quantity = button.firstElementChild.id;
+            
+        if (button.innerHTML != "stock updated") {
+          console.log(button.id);
+
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          
+          };
+
+          const res = await fetch(`/admin/updateQty/${buttonId}/${quantity}`, options);
+          const data = await res.json();
+          console.log(data);
+          
+          button.innerHTML = "stock updated";
+        }
+
+      });
+    });
   }
 </script>

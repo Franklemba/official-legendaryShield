@@ -7,7 +7,7 @@
   >
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=woodItem.mainImg%>" alt="<%=woodItem.category%>">
+      <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=woodItem.mainImg%>" alt="<%=woodItem.category%>" loading="lazy">
       <!-- <img src="images/img10.png"  alt="..."> -->
     </div>
 
@@ -17,6 +17,7 @@
       src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=woodItem.images[i]%>"
         class="d-block w-100"
         alt="..."
+        loading="lazy"
       />
     </div>
     <% } %>
@@ -150,7 +151,8 @@
     id="itemImages"
   />
   <input type="hidden" value="<%=woodItem.price%>" id="itemPrice" />
-  </div>
+  <input type="hidden" value="<%=woodItem._id%>" id="itemId">  
+</div>
 </section>
   
 
@@ -167,6 +169,7 @@
   const itemName = document.getElementById("itemName").value;
   const itemImage = document.getElementById("itemImages").value;
   const itemPrice = document.getElementById("itemPrice").value;
+  const itemId =  document.getElementById("itemId").value;
 
   yesTextArea.style.display = "none";
   sampleImage.style.display = "none";
@@ -191,6 +194,7 @@
     itemPrice,
     itemImage,
     quantity: 1,
+    itemId,
     data: { text: yesTextArea.value, imagePath: "" },
   });
 
@@ -218,6 +222,7 @@
       itemImage,
       quantity: 1,
       productType:'wood',
+      itemId,
       data: {
         text: yesTextArea.value,
         imagePath: "",
@@ -251,6 +256,7 @@
       itemImage,
       quantity: 1,
       productType:'wood',
+      itemId,
       data: {
         text: yesTextArea.value,
         imagePath: "",

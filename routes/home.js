@@ -107,7 +107,8 @@ router.get("/getItems/:list", async (req, res) => {
 
 // Configure API key authorization: api-key
 var apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = process.env.BREVO_EMAIL_API;
+apiKey.apiKey = "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"
+//apiKey.apiKey =   	v.BREVO_EMAIL_API;
 
 var apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
@@ -177,12 +178,8 @@ console.log(toEmailString)
 
   const news = await News.find({});
 
-orderList.forEach((orderItem)=>{
-  if(orderItem){
-    orderArray.push(JSON.parse(orderItem))
-  }
-})
 
+console.log(orderArray)
 
   const newOrder = new purchaseOrder({
     _id: new mongoose.Types.ObjectId(),
