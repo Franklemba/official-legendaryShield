@@ -235,6 +235,8 @@ width: 100%;
 display: flex;
 align-items: flex-end;
 justify-content: flex-end;
+position: fixed;
+bottom: 30px;
 }
 
 button#deleted-btn.active {
@@ -277,4 +279,14 @@ text-align: center;
 span.orderItemContainer{
   display: flex;
   flex-direction: row;
+}
+.button-section button, .trashContainer button{
+  position: relative;
+}
+.totalOrders{
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  z-index: 1;
+  
 }

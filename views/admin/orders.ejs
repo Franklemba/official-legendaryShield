@@ -1,19 +1,36 @@
-<!-- <link rel="stylesheet" href="/css/style.css" /> -->
-
+<script>
+  let pendingCount
+  let deletedCount
+  let processedCount
+</script>
 <h2 class="adminHeader">Orders</h2>
 
 <div class="button-section">
   <button id="pending-btn" class="active" onclick="toggleButton('pending-btn')">
     Pending
+    <div class="totalOrders" id="pendingOnes">0</div>
   </button>
   <button id="processed-btn" onclick="toggleButton('processed-btn')">
     Processed
+    <div class="totalOrders" id="processedOnes">0</div>
+  </button>
+</div>
+
+<div class="trashContainer">
+  <button id="deleted-btn" onclick="toggleButton('deleted-btn')">
+    <div class="totalOrders" id="deletedOnes">0</div>
+    <i class="fa fa-trash"></i>
   </button>
 </div>
 
 <section class="orderList pending active" id="pending-btn">
   <% purchaseOrders?.forEach(order => { %> <% if(order.isRead == false &&
   order.isDeleted == false){ %>
+    <script>
+        pendingCount = document.querySelector('.totalOrders#pendingOnes');
+      pendingCount.innerHTML = parseInt(pendingCount.innerHTML)+1
+    </script>
+  
   <div class="orderItem" id="<%= order._id %>">
     <div>
       <span class="contentSection">
@@ -34,6 +51,10 @@
 <section class="orderList processed" id="processed-btn">
   <% purchaseOrders?.forEach(order => { %> <% if(order.isRead == true &&
   order.isDeleted == false){ %>
+    <script>
+      processedCount = document.querySelector('.totalOrders#processedOnes');
+    processedCount.innerHTML = parseInt(processedCount.innerHTML)+1
+  </script>
   <div class="orderItem" id="<%= order._id %>">
     <div>
       <span class="contentSection">
@@ -53,7 +74,13 @@
 
 <section class="orderList deleted" id="deleted-btn">
   <% purchaseOrders.forEach(order => { %> <% if(order.isDeleted == true){ %>
-  <div class="orderItem" id="<%= order._id %>">
+   
+   <script>
+          deletedCount = document.querySelector('.totalOrders#deletedOnes');
+    deletedCount.innerHTML = parseInt(deletedCount.innerHTML)+1
+  </script>
+  
+    <div class="orderItem" id="<%= order._id %>">
     <div>
       <span class="contentSection">
         <h5>Name: <%= order.name %></h5>
@@ -70,11 +97,7 @@
   <% } %> <% }); %>
 </section>
 
-<div class="trashContainer">
-  <button id="deleted-btn" onclick="toggleButton('deleted-btn')">
-    <i class="fa fa-trash"></i>
-  </button>
-</div>
+
 
 <script defer>
   const switchButtons = document.querySelectorAll(".orderOptions button");
