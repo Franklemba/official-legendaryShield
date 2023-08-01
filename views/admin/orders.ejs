@@ -211,6 +211,8 @@
           ${cartString}
           <h5>Total: K${data.cartTotal}<h5/>
           <h5>Payment Type:${data.paymentType}<h5/>
+            <div id="confirmStockUpdate">Confirm Stock Changes<div/>
+            <hr>
           <br>
           <h4>Date: ${data.purchasedAt}</h4>
           <br>
@@ -218,6 +220,8 @@
        `;
         document.querySelector(".screen .content section").innerHTML =
           messageDetails;
+
+          
         // Update the HTML with the detailed message information
         resetListener();
       }
@@ -249,13 +253,44 @@
             
         if (button.innerHTML != "stock updated") {
           console.log(button.id);
-
           const options = {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
+          };
+
+          const res = await fetch(`/admin/updateQty/${buttonId}/${quantity}/minus`, options);
+          const data = await res.json();
+          console.log(data);
           
+          button.innerHTML = "stock updated";
+        }else{
+          console.log(button.id);
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+
+          const res = await fetch(`/admin/updateQty/${buttonId}/${quantity}/add`, options);
+          const data = await res.json();
+          console.log(data);
+        }
+
+      });
+    });
+
+    document.querySelector('#confirmStockUpdate').
+    addEventListener('click', async  ()=>{
+      if (button.innerHTML != "stock updated") {
+          console.log(button.id);
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
           };
 
           const res = await fetch(`/admin/updateQty/${buttonId}/${quantity}`, options);
@@ -265,7 +300,8 @@
           button.innerHTML = "stock updated";
         }
 
-      });
-    });
+    })
+
+
   }
 </script>

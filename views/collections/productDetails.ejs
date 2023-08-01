@@ -7,11 +7,13 @@
   >
     <div class="carousel-inner">
       <div class="carousel-item active">
+        <div class="startLoader"></div>
         <img
           src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=product.mainImg%>"
           class="d-block w-100"
           alt="..."
           loading="lazy"
+          onload="removePreviousLoader(this)"
         />
         <!-- <img src="images/img10.png"  alt="..."> -->
       </div>

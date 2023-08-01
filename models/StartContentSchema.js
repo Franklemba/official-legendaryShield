@@ -13,8 +13,12 @@ const startContentSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    
+    smallVersionImage:{
+        type: String,
+        required: false 
+    }
 })
+
 
 startContentSchema.virtual('ImagesPath').get(function(){
     if(this.mainImg != null){

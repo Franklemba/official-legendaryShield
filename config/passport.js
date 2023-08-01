@@ -13,6 +13,7 @@ module.exports = function(passport) {
            // console.log('That email is not registered' )
             return done(null, false, { message: 'That email is not registered' });
           }
+          
           // Match password
           bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) throw err;

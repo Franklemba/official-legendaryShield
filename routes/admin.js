@@ -53,6 +53,7 @@ const upload = multer({
     acl:"public-read",
     key: (req,file,cb)=>{
 
+    
       cb(null, "uploads/" + file.originalname);
     },
     fileFilter: (req, file, callback) => {
@@ -82,7 +83,6 @@ router.get("/", async(req, res) => {
 });
 
 router.get("/uploadItem", async(req, res) => {
-
   try{
     const products = await Product.find({});
     res.render("admin/uploadItem", {
@@ -323,32 +323,27 @@ router.get("/getProduct/:id", async (req, res) => {
 router.get("/uploadNews", async (req, res) => {
 
   const news = await News.find({});
-
   res.render("admin/uploadNews", {
     newsItems:news
   });
-
   //    res.send(req.params.id)
 });
 
-router.post("/updateQty/:buttonId/:quantity", async(req, res) => {
+router.post("/updateQty/:buttonId/:quantity/:mode", async(req, res) => {
   const buttonId  = req.params.buttonId;
   const quantity = req.params.quantity;
-
-  console.log(buttonId+'ds'+ quantity);
+  const mode = req.params.mode;
   //    res.send(req.params.id)
-
   const SelectedProduct = await Product.findById(`${buttonId}`);
- 
-  const newQuantity = SelectedProduct.quantity - quantity;
- 
- SelectedProduct.updateOne({quantity:newQuantity})
+  const newQuantity = mode=='minus'?SelectedProduct.quantity-quantity:SelectedProduct.quantity+quantity;
+  SelectedProduct.updateOne({quantity:newQuantity})
  .then((done)=>{
     console.log(done)
   }).catch((err)=>{
     console.log(err)
   })
 });
+
 
 router.post("/uploadNews", multipleUploads,async (req, res) => {
   const { newsTitle,
@@ -363,7 +358,6 @@ router.post("/uploadNews", multipleUploads,async (req, res) => {
     imagesArray.push(data.originalname);
   });
   console.log(req.body);
-
 
   const newsItem = new News({
     newsTitle,
@@ -421,7 +415,7 @@ router.get("/uploadStartContent", async (req, res) => {
   res.render("admin/uploadStartContent", {
     startContent:startContent
   });
-  //    res.send(req.params.id)
+      res.send(req.params.id)
 });
 
 router.post("/uploadStartContent", multipleUploads,async (req, res) => {
@@ -470,6 +464,9 @@ router.post("/deleteStartItem", async (req, res) => {
   });
   //    res.send(req.params.id)
 });
+
+
+
 
 module.exports = router;
 

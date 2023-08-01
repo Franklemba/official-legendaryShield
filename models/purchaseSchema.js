@@ -54,11 +54,12 @@ const purchaseSchema = new mongoose.Schema({
     type:String,
     required:false,
   },
-  // qtyUpdated:{
-  //   type:Boolean,
-  //   required:false,
-  //   default:false
-  // }
+  qtyUpdated:{
+    type:Boolean,
+    required:false,
+    default:false
+  }
+  
 });
 const purchaseImgPath = "uploads/purchaseImages";
 

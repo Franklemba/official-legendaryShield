@@ -22,6 +22,9 @@
       text-align: center;
     }
     
+
+
+
 </style>
    
    <section id="hero" >        
@@ -29,17 +32,22 @@
             <div class="carousel-inner">
             <% startItems?.forEach((startItem, index) => { %>
               <div class="carousel-item <%=index==0?'active':''%>">
-                <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=startItem.mainImg%>" alt="News Image">
-                <div class="imgText">
-                    <p><%=startItem.startContent%></p>
+                <div class="startLoader"></div>
+                  <img
+                    class="homeStartImage"
+                     src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=startItem.mainImg%>" loading="lazy"
+                     
+                       alt="News Image"
+                       onload="removePreviousLoader(this)"
+                       >
+                <div style="z-index: 20;" class="imgText">
+                    <p ><%=startItem.startContent%></p>
                 </div>
               </div>
                <% }) %>
             
             </div>
-            <!-- <span id="viewBtn">
-                view more
-            </span> -->
+          
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden" >Previous</span>
@@ -73,7 +81,10 @@
           <a href="/store/item/<%=data._id%>">
             <div class="item">
               <div class="itemImg">
-                 <img width="200" src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>" loading="lazy" alt="Promo Image">
+                <div class="startLoader"></div>
+
+                 <img width="200"
+                       onload="removePreviousLoader(this)" src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=data.mainImg%>" loading="lazy" alt="Promo Image">
                  <div class="itemImgText">
                    <span id="newPrice">save <%= (((data.oldPrice - data.price)/data.oldPrice)*100).toFixed(0) %>%</span>
                    <p><%= data.brandName %></p>
@@ -103,7 +114,9 @@
            <% jeweryCollection?.forEach(jewery => { %>
             <div class="pro">
               <a id="linkTag" id="linkTag" href="/store/item/<%=jewery._id%>">
-                <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=jewery.mainImg%>" loading="lazy" alt="<%=jewery.category%>">
+                <div class="startLoader"></div>
+                <img 
+                onload="removePreviousLoader(this)" src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=jewery.mainImg%>" loading="lazy" alt="<%=jewery.category%>">
                 <div class="des">
                     <span><%=jewery.category%></span>
                     <h5><%=jewery.brandName%></h5>
@@ -140,7 +153,10 @@
                 
                 <div class="pro">
                    <a id="linkTag" id="linkTag" href="/store/item/<%=watch._id%>">
-                     <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=watch.mainImg%>" loading="lazy" alt="<%=watch.category%>">
+                   <div class="startLoader"></div>
+                    <img 
+                    onload="removePreviousLoader(this)"
+                     src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=watch.mainImg%>" loading="lazy" alt="<%=watch.category%>">
                      <div class="des">
                          <span><%=watch.category%></span>
                          <h5><%=watch.brandName%></h5>
@@ -178,9 +194,10 @@
               
               <div class="pro">
                  <a id="linkTag" id="linkTag" href="/custom/<%=custom._id %>">
-                   <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" loading="lazy" alt="<%=custom.category%>">
+                  <div class="startLoader"></div>
+                  <img  onload="removePreviousLoader(this)" src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" loading="lazy" alt="<%=custom.category%>">
+                  
                    <div class="des">
-                     
                        <h5><%=custom.brandName%></h5>
                        <span> K<%=custom.price%></span>
                    </div>
@@ -217,7 +234,8 @@
     <div id="carouselExampleControls" class=" carousel slide " data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/images/customImg.jpg" loading="lazy"  class="d-block w-100" alt="...">
+          <div class="startLoader"></div>
+          <img  onload="removePreviousLoader(this)" src="https://legendaryshield.s3.ap-south-1.amazonaws.com/images/customImg.jpg" loading="lazy"  class="d-block w-100" alt="...">
         </div>
         <% WoodworkProducts.forEach(image => { %>
           <div class="carousel-item">
@@ -315,7 +333,8 @@
 
                 <div class="news-item carousel-item <%=index==0?'active':''%>">
                   <div class="image-container">
-                   <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=newsItem.mainImg%>" loading="lazy" alt="Content Image">
+                 <div class="startLoader"></div>
+                    <img  onload="removePreviousLoader(this)" src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=newsItem.mainImg%>" loading="lazy" alt="Content Image">
                    <p class="news-date"><%=newsItem.date%></p>
                    <h3 class="news-title "><%=newsItem.newsTitle%></h3>
                   </div>
@@ -372,3 +391,16 @@
               })
           }
      </script>
+
+<script>
+  function replaceImage(img) {
+    img.src = "fallback-image.jpg"; // Set the source of the fallback image
+  }
+
+  function removePreviousLoader(imageElement) {
+    // Get the previous sibling element, which is the loader div
+    const loaderDiv = imageElement.previousElementSibling;
+    // Remove the loader div from its parent
+    loaderDiv.parentNode.removeChild(loaderDiv);
+  }
+</script>

@@ -29,19 +29,22 @@ const mongoose = require("mongoose");
   
 //global database connection
    // online connection////
-    mongoose.set('strictQuery', true);
+ // mongoose.set('strictQuery', true);
     // mongoose.connect(process.env.database_Url,{useNewUrlParser: true})
     // .then(()=>{
     //     console.log('database is connected')
     // }).catch((err) => console.log(err));
 
-// ////local database connection
+    ////local database connection
 
-//mongoose.connect('mongodb://localhost:27017/legendary_shield')
- mongoose.connect("mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser: true})
+    
+   // mongoose.connect('mongodb://127.0.0.1:27017/legendary_shield')
+     mongoose.connect("mongodb+srv://franklemba:sharon@svintstore.q1axgo7.mongodb.net/?retryWrites=true&w=majority",{useNewUrlParser: true})
 .then(()=>{
     console.log('database is connected')
 }).catch((err) => console.log(err));// 
+
+
 
 
 app.use('/',indexRouter );
@@ -69,7 +72,7 @@ app.use('/woodWork', woodWorkRouter);
 app.use('/store',storeRouter);
 app.use('/auth',authRouter);
 
-app.use('/admin',ensureAuthenticated, adminRouter);
+app.use('/admin', adminRouter);
 
 
 app.listen(process.env.PORT || 5300) 
