@@ -21,7 +21,7 @@
     .woodworkAd h2, .woodworkAd p{
       text-align: center;
     }
-    
+     
 
 
 
@@ -36,7 +36,6 @@
                   <img
                     class="homeStartImage"
                      src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=startItem.mainImg%>" loading="lazy"
-                     
                        alt="News Image"
                        onload="removePreviousLoader(this)"
                        >
@@ -234,8 +233,10 @@
     <div id="carouselExampleControls" class=" carousel slide " data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="startLoader"></div>
-          <img  onload="removePreviousLoader(this)" src="https://legendaryshield.s3.ap-south-1.amazonaws.com/images/customImg.jpg" loading="lazy"  class="d-block w-100" alt="...">
+          <img
+           src="https://legendaryshield.s3.ap-south-1.amazonaws.com/images/customImg.jpg" 
+           loading="lazy" 
+            class="d-block w-100" alt="...">
         </div>
         <% WoodworkProducts.forEach(image => { %>
           <div class="carousel-item">
@@ -269,7 +270,10 @@
               
               <div class="pro">
                  <a id="linkTag" id="linkTag" href="/woodWork/<%=custom._id %>">
-                   <img src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>" loading="lazy" alt="<%=custom.category%>">
+                   <div class="startLoader"></div>
+                  <img onload="removePreviousLoader(this)"
+                   src="https://legendaryshield.s3.ap-south-1.amazonaws.com/uploads/<%=custom.mainImg%>"
+                    loading="lazy" alt="<%=custom.category%>">
                    <div class="des">
                   
                        <h5><%=custom.brandName%></h5>

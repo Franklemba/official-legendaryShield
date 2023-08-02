@@ -72,14 +72,14 @@ const multipleUploads = upload.fields([
 ///create product
 
 router.get("/", async(req, res) => {
-  console.log(req.user)
-  if(req.user.userName == 'LegendaryAdmin'){
+  // console.log(req.user)
+  // if(req.user.userName == 'LegendaryAdmin'){
     res.render("admin/adminOptions");
-  }else if(req.user.userName == 'LegendaryDesigner'){
-    res.render("admin/designerOptions");
-  }else{
-    res.render("admin/secretaryOptions");
-  }
+  // }else if(req.user.userName == 'LegendaryDesigner'){
+  //   res.render("admin/designerOptions");
+  // }else{
+  //   res.render("admin/secretaryOptions");
+  // }
 });
 
 router.get("/uploadItem", async(req, res) => {
