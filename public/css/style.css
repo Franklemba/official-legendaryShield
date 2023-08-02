@@ -637,3 +637,11 @@ div#productDescription p {
   z-index: 10;
   position: relative;
 }
+
+.startItem{
+  overflow: hidden;
+}
+
+.startItem .startLoader{
+  max-height:340px;
+}
