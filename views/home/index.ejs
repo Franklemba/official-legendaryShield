@@ -22,8 +22,9 @@
       text-align: center;
     }
      
-
-
+    .startItem{
+      overflow: hidden;
+    }
 
 </style>
    
@@ -31,7 +32,7 @@
         <div id="carouselExampleControls" class=" carousel slide " data-bs-ride="carousel">
             <div class="carousel-inner">
             <% startItems?.forEach((startItem, index) => { %>
-              <div class="carousel-item <%=index==0?'active':''%>">
+              <div class="carousel-item startItem <%=index==0?'active':''%>">
                 <div class="startLoader"></div>
                   <img
                     class="homeStartImage"
@@ -218,13 +219,9 @@
           <!-- <button class="viewBtn">view more</button> -->
       </div>
   <% } %>
-    
-
 
     <br>
-
     <!------------------------ woodwork section --------------------->
-    
     <hr>
     <div class="woodworkAd">
       <h2>Woodwork</h2>

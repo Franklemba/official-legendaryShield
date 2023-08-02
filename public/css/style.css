@@ -8,20 +8,21 @@
 
 @import "shared/loader.css";
 
-
-
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family:Dosis, sans-serif;
+  font-family: Dosis, sans-serif;
   line-height: 1.6em;
   text-decoration: none;
   text-transform: none;
   font-weight: 400;
 }
 
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
   font-size: 16px;
   max-height: 100px; /* or any other value that suits your design */
   -webkit-text-size-adjust: none;
@@ -50,7 +51,7 @@ p {
   font-size: 16px;
   color: #465b52;
 }
-a{
+a {
   text-decoration: none !important;
 }
 .section-m1 {
@@ -72,7 +73,7 @@ body {
   /* justify-content: center; */
 }
 
-#hero button{
+#hero button {
   margin-top: 20px;
   background-color: transparent;
   border: 0;
@@ -142,7 +143,8 @@ body {
   padding: 5px;
   width: fit-content;
 }
-.carousel-control-prev, .carousel-control-next {
+.carousel-control-prev,
+.carousel-control-next {
   position: absolute;
   top: 30% !important;
   bottom: 0;
@@ -160,7 +162,6 @@ body {
   opacity: 0.5;
   transition: opacity 0.15s ease;
 }
-
 
 #productExamples {
   background-color: #1a1a1a;
@@ -256,7 +257,6 @@ body {
     width: 100%;
 } */
   #carouselExampleControls {
-    
     width: 100%;
   }
   #carouselExampleControls #viewBtn {
@@ -316,8 +316,8 @@ body {
     justify-content: space-around;
   } */
 
-  .file input{
-     width: fit-content;
+  .file input {
+    width: fit-content;
   }
 
   h1 {
@@ -351,7 +351,7 @@ body {
   }
 }
 
-.buyModal{
+.buyModal {
   position: fixed;
   top: 0;
   left: 0;
@@ -361,7 +361,7 @@ body {
   width: 60%;
   height: 55vh;
   max-height: 75vh;
-  background-color:rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   width: 90%;
   padding: 5%;
   z-index: 600;
@@ -371,22 +371,21 @@ body {
   justify-content: center;
 }
 
-.buyModal.active{
+.buyModal.active {
   display: flex;
 }
 
-.icons{
+.icons {
   position: relative;
 }
-.icons a{
- text-decoration: none;
- padding: 0;
- margin: 0;
- color: black;
- font-size: 24px;
-
+.icons a {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  color: black;
+  font-size: 24px;
 }
-#cartCounter{
+#cartCounter {
   margin-left: 4px;
 }
 
@@ -429,47 +428,45 @@ body {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  
 }
 
 .close-button:hover {
   color: #f00;
 }
 
-#cartBtnContainer{
+#cartBtnContainer {
   display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
-#submitOrder, input.sendOrder{
+#submitOrder,
+input.sendOrder {
   background-color: #03060a;
   color: white;
-  width: 100%; 
+  width: 100%;
   max-width: 300px;
 }
-.inputbox input{
+.inputbox input {
   width: 85%;
   height: 40px;
   /* border: none; */
   /* border: 2px solid rgb(0, 0, 0); */
-  
 }
 
-
-.moreButton{
+.moreButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   opacity: 0;
   transition: 1s;
 
   /* margin-left: 20px; */
   font-size: 16px;
 }
-.moreButton a{
+.moreButton a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -481,22 +478,21 @@ body {
   text-decoration: none;
   color: #03060a;
 }
-.moreButton.visible{
+.moreButton.visible {
   opacity: 1;
 }
 
-.moreButton a:hover{
+.moreButton a:hover {
   color: rgb(15, 74, 169);
   border: 4px solid rgb(27, 151, 185);
 }
 
-#formWithImage{
-width: fit-content;
-height: fit-content;
-display: flex;
-flex-direction: column;
+#formWithImage {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
-
 
 .main-section {
   text-align: center;
@@ -544,11 +540,10 @@ hr {
 .news-item {
   margin-right: 20px;
   position: relative;
-  
+
   max-width: fit-content;
   max-height: fit-content;
 }
-
 
 .news-item:last-child {
   margin-right: 0;
@@ -562,9 +557,7 @@ hr {
   object-fit: cover;
 }
 
-
-
-.news-item .image-container{
+.news-item .image-container {
   position: relative;
 }
 .news-content {
@@ -584,7 +577,6 @@ hr {
 }
 
 .news-date {
-
   font-size: 16px;
   margin-bottom: 20px;
   position: absolute;
@@ -592,13 +584,11 @@ hr {
   z-index: 10;
   bottom: 5px;
   right: 14px;
-
 }
 
 .news-description {
   font-size: 18px;
   margin-bottom: 0;
-
 }
 
 @media (max-width: 500px) {
@@ -606,45 +596,44 @@ hr {
     /* flex-wrap: nowrap; */
   }
 
- .news-content .news-item {
+  .news-content .news-item {
     flex-direction: row;
     width: fit-content;
   }
 }
 input {
   text-size-adjust: 100%;
-  
 }
 
-
-div#productDescription p{
-font-size:16px ;
+div#productDescription p {
+  font-size: 16px;
 }
 
-    /* CSS for the loader animation */
-    .startLoader {
-      width: 100%;
-      min-height:100%;
-  
-      background: linear-gradient(135deg, #999 25%, #ddd 50%, #999 75%);
-      background-size: 200% 200%;
-      animation: loaderAnimation 2s ease infinite;
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-    }
-    
-    @keyframes loaderAnimation {
-      0%, 100% {
-        background-position: 0 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-    }
-    
-    .des{
-      z-index: 100;
-      position: relative;
-    }
+/* CSS for the loader animation */
+.startLoader {
+  width: 100%;
+  min-height: 100%;
+  max-height: 300px;
+  background: linear-gradient(135deg, #999 25%, #ddd 50%, #999 75%);
+  background-size: 200% 200%;
+  animation: loaderAnimation 2s ease infinite;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+@keyframes loaderAnimation {
+  0%,
+  100% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.des {
+  z-index: 100;
+  position: relative;
+}
